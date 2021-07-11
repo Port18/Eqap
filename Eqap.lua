@@ -3640,7 +3640,6 @@ end
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^فك التقييد @(.*)$")}, FunctionStatus, nil)
 end
-
 if text == "تفعيل تنبيه الاسماء" and Manager(msg) and database:get(bot_id.."AL:Sre:stats") == "✔" then
 send(msg.chat_id_, msg.id_, '•تم تفعيل تنبيه الاسماء')
 database:set(bot_id.."Ttn:BBE:stats"..msg.chat_id_,"open")
@@ -3675,7 +3674,6 @@ end
 end
 end,nil)
 end
-
 if text and text:match("^تقييد عام @(.*)$") and DeveloperBot1(msg) then
 function FunctionStatus(arg, result)
 if (result.id_) then
