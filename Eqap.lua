@@ -3464,6 +3464,18 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^حظر @(.*)$")}, FunctionStatus, nil)
 end
 
+
+local Text = msg.text
+local Text2 = Text:match("^"..Bot_Name.." (%d+)$")
+
+if msg.SudoUser and Text == Bot_Name and not Text2 then
+return sendMsg(msg.chat_id_,msg.id_,su[math.random(#su)])
+elseif not msg.SudoUser and Text== Bot_Name and not Text2 then  
+return sendMsg(msg.chat_id_,msg.id_,ss97[math.random(#ss97)])
+elseif Text:match("^قول (.*)$") then
+if utf8.len(Text:match("^قول (.*)$")) > 500 then 
+return sendMsg(msg.chat_id_,msg.id_,"• ما اقدر اقول اكثر من 500 حرف .")
+end
 if text and text:match("^الغاء الحظر @(.*)$") and Admin(msg) then
 function FunctionStatus(arg, result)
 if (result.id_) then
