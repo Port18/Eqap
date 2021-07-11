@@ -7450,6 +7450,21 @@ text = text:gsub("`","")
 text = text:gsub("*","") 
 redis:set(bot_id.."botss:Eqap:Add:Rd:Sudo:Text2"..test, text)  
 end  
+send(msg.chat_id_, msg.id_,"تم حفظ الرد الثاني ارسل الرد الرابع")
+return false  
+end  
+end
+if text then  
+local test = redis:get(bot_id.."botss:Eqap:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
+if redis:get(bot_id.."botss:Eqap:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "rd3" then
+redis:set(bot_id.."botss:Eqap:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd4')
+if text then   
+text = text:gsub('"',"") 
+text = text:gsub('"',"") 
+text = text:gsub("`","") 
+text = text:gsub("*","") 
+redis:set(bot_id.."botss:Eqap:Add:Rd:Sudo:Text3"..test, text)  
+end     
 send(msg.chat_id_, msg.id_,"تم حفظ الرد")
 return false  
 end  
@@ -7457,12 +7472,14 @@ end
 if text then
 local Text = redis:get(bot_id.."botss:Eqap:Add:Rd:Sudo:Text"..text)   
 local Text1 = redis:get(bot_id.."botss:Eqap:Add:Rd:Sudo:Text1"..text)   
-local Text2 = redis:get(bot_id.."botss:Eqap:Add:Rd:Sudo:Text2"..text)   
-if Text or Text1 or Text2 then 
+local Text2 = redis:get(bot_id.."botss:Eqap:Add:Rd:Sudo:Text2"..text)
+local Text2 = redis:get(bot_id.."botss:Eqap:Add:Rd:Sudo:Text3"..text)
+if Text or Text1 or Text2 or Text3 then 
 local texting = {
 Text,
 Text1,
-Text2
+Text2,
+Text3
 }
 Textes = math.random(#texting)
 send(msg.chat_id_, msg.id_,texting[Textes])
