@@ -2289,6 +2289,13 @@ return false
 end  
 end
 ------------------------------------------------------------------------------------------------------------
+if text == "ابي بوت" or text == "البوت عجبني" then Text = [[ 
+لتنصيب بوت لك  @L7_L2
+]]
+send(msg.chat_id_, msg.id_,Text)
+return false
+end
+------------------------------------------------------------------------------------------------------------
 if text then  
 local WirngFilter = redis:get(bot_id.."Eqap:Filter:Reply1"..msg.sender_user_id_..msg.chat_id_)  
 if WirngFilter and WirngFilter == "WirngFilter" then  
