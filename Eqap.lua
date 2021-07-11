@@ -8357,7 +8357,7 @@ Developer ▹ ]].. UserName_Dev..[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '⑴', callback_data=msg.sender_user_id_.."/help1"},{text = '⑵', callback_data=msg.sender_user_id_.."/help2"},{text = '⑶ ', callback_data=msg.sender_user_id_.."/help3"},
+{text = '⑴', callback_data=msg.sender_user_id_.."/help1"},{text = '⑵', callback_data=msg.sender_user_id_.."/help2"},{text = '⑶', callback_data=msg.sender_user_id_.."/help3"},
 },
 {
 {text = '⑷', callback_data="/help4"},
@@ -9452,10 +9452,10 @@ Developer - ]].. UserName_Dev..[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '⓵', callback_data=data.sender_user_id_.."/help1"},{text = '⓶', callback_data=data.sender_user_id_.."/help2"},{text = '⓷', callback_data=data.sender_user_id_.."/help3"},
+{text = '⑴', callback_data=data.sender_user_id_.."/help1"},{text = '⑵', callback_data=data.sender_user_id_.."/help2"},{text = '⑶', callback_data=data.sender_user_id_.."/help3"},
 },
 {
-{text = '⓸', callback_data=data.sender_user_id_.."/help4"},
+{text = '⑷', callback_data=data.sender_user_id_.."/help4"},
 },
 {
 {text = 'الاوامر الرئيسيه', callback_data=data.sender_user_id_.."/help"},
@@ -9505,10 +9505,10 @@ Developer - ]].. UserName_Dev..[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '⓵', callback_data=data.sender_user_id_.."/help1"},{text = '⓶', callback_data=data.sender_user_id_.."/help2"},{text = '⓷', callback_data=data.sender_user_id_.."/help3"},
+{text = '⑴', callback_data=data.sender_user_id_.."/help1"},{text = '⑵', callback_data=data.sender_user_id_.."/help2"},{text = '⑶', callback_data=data.sender_user_id_.."/help3"},
 },
 {
-{text = '⓸', callback_data=data.sender_user_id_.."/help4"},
+{text = '⑷', callback_data=data.sender_user_id_.."/help4"},
 },
 {
 {text = 'الاوامر الرئيسيه', callback_data=data.sender_user_id_.."/help"},
@@ -9551,10 +9551,10 @@ Developer - ]].. UserName_Dev..[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '⓵', callback_data=data.sender_user_id_.."/help1"},{text = '⓶', callback_data=data.sender_user_id_.."/help2"},{text = '⓷', callback_data=data.sender_user_id_.."/help3"},
+{text = '⑴', callback_data=data.sender_user_id_.."/help1"},{text = '⑵', callback_data=data.sender_user_id_.."/help2"},{text = '⑶', callback_data=data.sender_user_id_.."/help3"},
 },
 {
-{text = '⓸', callback_data=data.sender_user_id_.."/help4"},
+{text = '⑷', callback_data=data.sender_user_id_.."/help4"},
 },
 {
 {text = 'الاوامر الرئيسيه', callback_data=data.sender_user_id_.."/help"},
@@ -9600,10 +9600,10 @@ Developer - ]].. UserName_Dev..[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '⓵', callback_data=data.sender_user_id_.."/help1"},{text = '⓶', callback_data=data.sender_user_id_.."/help2"},{text = '⓷', callback_data=data.sender_user_id_.."/help3"},
+{text = '⑴', callback_data=data.sender_user_id_.."/help1"},{text = '⑵', callback_data=data.sender_user_id_.."/help2"},{text = '⑶', callback_data=data.sender_user_id_.."/help3"},
 },
 {
-{text = '⓸', callback_data=data.sender_user_id_.."/help4"},
+{text = '⑷', callback_data=data.sender_user_id_.."/help4"},
 },
 {
 {text = 'الاوامر الرئيسيه', callback_data=data.sender_user_id_.."/help"},
@@ -9629,10 +9629,10 @@ Developer ▹ ]].. UserName_Dev..[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '⓵', callback_data=data.sender_user_id_.."/help1"},{text = '⓶', callback_data=data.sender_user_id_.."/help2"},{text = '⓷', callback_data=data.sender_user_id_.."/help3"},
+{text = '⑴', callback_data=data.sender_user_id_.."/help1"},{text = '⑵', callback_data=data.sender_user_id_.."/help2"},{text = '⑶', callback_data=data.sender_user_id_.."/help3"},
 },
 {
-{text = '⓸', callback_data=data.sender_user_id_.."/help4"},
+{text = '⑷', callback_data=data.sender_user_id_.."/help4"},
 },
 {
 {text = 'اوامر التعطيل', callback_data=data.sender_user_id_.."/homeaddrem"},{text = 'اوامر القفل', callback_data=data.sender_user_id_.."/homelocks"},
