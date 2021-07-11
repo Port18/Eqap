@@ -2744,9 +2744,9 @@ end
 if text == 'السورس' or text == 'سورس' then
 Text = [[
 ⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤   
-[✾┆eqab](http://t.me/r03_1) 
+▻ [𝑆𝑈𝐾𝐴𝐼𝑅𝑂](http://t.me/L7_L1) 
  
-[✾┆eqab source](http://t.me/eqabsource) 
+▻ [𝐿𝐼𝑆𝐴 𝑆𝑂𝑈𝑅𝐶𝐸](http://t.me/L6_L5) 
 ⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤
 ]]
 send(msg.chat_id_, msg.id_,Text)
@@ -2772,7 +2772,7 @@ end
 end,nil)
 end
 end
-if text == ("قائمة CM") and Dev_Bots(msg) then
+if text == ("قائمة TR") and Dev_Bots(msg) then
 local list = redis:smembers(bot_id.."Eqap:Developer:Bot1")
 if #list == 0 then
 return send(msg.chat_id_, msg.id_, "• لا يوجد Commander ")
@@ -3776,18 +3776,18 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, FunctionStatus, nil)
 end
 
-if text == ("رفع CM") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_Bots(msg) then
+if text == ("رفع TR") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_Bots(msg) then
 function FunctionStatus(arg, result)
 redis:sadd(bot_id.."Eqap:Developer:Bot1", result.sender_user_id_)
-Send_Options(msg,result.sender_user_id_,"reply","تم ترقيته CM في البوت")  
+Send_Options(msg,result.sender_user_id_,"reply","تم ترقيته TR في البوت")  
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, FunctionStatus, nil)
 end
 
-if text == ("تنزيل CM") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_Bots(msg) then
+if text == ("تنزيل TR") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_Bots(msg) then
 function FunctionStatus(arg, result)
 redis:srem(bot_id.."Eqap:Developer:Bot1", result.sender_user_id_)
-Send_Options(msg,result.sender_user_id_,"reply","تم تنزيله من CM")  
+Send_Options(msg,result.sender_user_id_,"reply","تم تنزيله من TR")  
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, FunctionStatus, nil)
 end
@@ -3937,7 +3937,7 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^تنزيل C @(.*)$")}, FunctionStatus, nil)
 end
 
-if text and text:match("^رفع CM @(.*)$") and Dev_Bots(msg) then
+if text and text:match("^رفع TR @(.*)$") and Dev_Bots(msg) then
 function FunctionStatus(arg, result)
 if (result.id_) then
 if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
@@ -3945,12 +3945,12 @@ send(msg.chat_id_,msg.id_,"عذرا هاذا معرف قناة")
 return false 
 end      
 redis:sadd(bot_id.."Eqap:Developer:Bot1", result.id_)
-Send_Options(msg,result.id_,"reply","تم ترقيته CM في البوت")  
+Send_Options(msg,result.id_,"reply","تم ترقيته TR في البوت")  
 else
 send(msg.chat_id_, msg.id_,"المعرف غلط ")
 end
 end
-tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^رفع CM @(.*)$")}, FunctionStatus, nil)
+tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^رفع TR @(.*)$")}, FunctionStatus, nil)
 end
 
 if text and text:match("^تنزيل CM @(.*)$") and Dev_Bots(msg) then
@@ -7661,7 +7661,8 @@ return false end
 end
 if text == 'السورس' or text == 'سورس' then
 Text = [[
-- [Alex source](t.me/Alexxsource) .
+▻ [𝐿𝐼𝑆𝐴 𝑆𝑂𝑈𝑅𝐶𝐸](t.me/L6_L5) .
+▻ [𝐷𝐸𝑉𝐸𝐿𝑂𝑃𝐸𝑅 𝑆𝑈𝐾𝐴𝐼𝑅𝑂](t.me/L7_L1) .
 ]]
 send(msg.chat_id_, msg.id_,Text)
 return false
