@@ -5429,9 +5429,6 @@ redis:set(bot_id..'Eqap:Lock:Id:Photo'..msg.chat_id_,true)
 return send(msg.chat_id_, msg.id_,'• تم تعطيل الايدي') 
 end
 
-if text == "ايديي" then
-GetUserID(msg.sender_user_id_,function(arg,data)if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data.first_name_..' '..(data.last_name_ or "")) end
-end
 if text == 'تفعيل الايدي بالصوره' then
 
 if not Owner(msg) then
