@@ -2289,9 +2289,9 @@ return false
 end  
 end
 ------------------------------------------------------------------------------------------------------------
-if text == 'بوتي' or text == 'ابي بوت' then
+if text == 'البوت حلو' or text == 'ابي بوت' then
 Text = [[
-كلم المطور
+شيك على السورس و مطور السورس اذا عجبك نصب لك بوت عنده @L6_L5 
 ]]
 send(msg.chat_id_, msg.id_,Text)
 return false
@@ -2356,13 +2356,13 @@ end
 if TypeForChat == ("ForUser") then
 if text == '/start' or text == 'العوده' then  
 if Dev_Bots(msg) then
-local Text_keyboard = '• اهلا بك عزيزي Carbon \n في اوامرك الخاصه \n يمكنك تحكم في بوت عن طريق كيبورد ادناه '
+local Text_keyboard = '• اهلا بك عزيزي Develper \n في اوامرك الخاصه \n يمكنك تحكم في بوت عن طريق كيبورد ادناه '
 local List_keyboard = {
 {'تغيير اسم البوت'},
 {'الاحصائيات'},
 {'تفعيل تواصل','تعطيل تواصل'},
 {'الاذاعه'},
-{'مسح قائمة C','مسح قائمة CM'},
+{'مسح قائمة T','مسح قائمة TR'},
 {'مسح المكتومين عام','مسح قائمة العام'},
 {'اضف سوال كت تويت','حذف سوال كت تويت'},
 {'حذف سوال مقالات','اضف سوال مقالات'},
@@ -2388,7 +2388,7 @@ CmdStart = '\n• اهلا بك عزيزي \n انا بوت اسمي '..(redis:g
 '\n• ارفعه مشرف'..
 '\n• ارسل كلمة  تفعيل  ليتم تفعيل المجموعه'..
 '\n• سيتم ترقيتك منشئ اساسي في البوت'..
-'\n• معرف Carbon ← [@'..UserName_Dev..']'
+'\n• معرف Develper ← ['..UserName_Dev..']'
 send(msg.chat_id_, msg.id_,CmdStart) 
 else
 send(msg.chat_id_, msg.id_,GetCmdStart) 
@@ -2399,7 +2399,7 @@ redis:setex(bot_id..'Eqap:Ban:Cmd:Start'..msg.sender_user_id_,60,true)
 return false
 end
 if not Dev_Bots(msg) and not redis:sismember(bot_id..'Eqap:User:Ban:Pv',msg.sender_user_id_) and not redis:get(bot_id..'Eqap:Lock:Twasl') then
-send(msg.sender_user_id_,msg.id_,'• تم ارسال رسالتك \n معرف ال Carbon  ←  [@'..UserName_Dev..'] ')    
+send(msg.sender_user_id_,msg.id_,'• تم ارسال رسالتك \n معرف ال Developer  ←  [@'..UserName_Dev..'] ')    
 local List_id = {Id_Dev,msg.sender_user_id_}
 for k,v in pairs(List_id) do   
 tdcli_function({ID="GetChat",chat_id_=v},function(arg,chat) end,nil)
@@ -2455,7 +2455,7 @@ dofile("Info_Sudo.lua")
 send(msg.chat_id_, msg.id_, "تم تحديث ملفات البوت")
 end
 if text == 'الاذاعه' then  
-local Text_keyboard = '• اهلا بك عزيزي Carbon \n في اوامر الاذاعه'
+local Text_keyboard = '• اهلا بك عزيزي Developer \n في اوامر الاذاعه'
 local List_keyboard = {
 {'اذاعه خاص','اذاعه للمجموعات'},
 {'اذاعه خاص بالتوجيه','اذاعه بالتوجيه'},
@@ -2465,7 +2465,7 @@ send_inline_keyboard(msg.chat_id_,Text_keyboard,List_keyboard)
 end
 if text == 'تعيين الايدي عام' then
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:setex(bot_id.."CHENG:ID:bot"..msg.chat_id_..""..msg.sender_user_id_,240,true)  
@@ -2494,7 +2494,7 @@ send(msg.chat_id_, msg.id_,'܁تم تعيين الايدي بنجاح')
 end
 if text == 'حذف الايدي عام' or text == 'مسح الايدي عام' then
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:del(bot_id.."KLISH:ID:bot")
@@ -2503,7 +2503,7 @@ return false
 end 
 if text and text:match("^تغيير الاشتراك$") then
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:setex(bot_id.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
@@ -2512,7 +2512,7 @@ return false
 end
 if text and text:match("^تغيير رساله الاشتراك$") then
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:setex(bot_id.."textch:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
@@ -2521,7 +2521,7 @@ return false
 end
 if text == "حذف رساله الاشتراك" then
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:del(bot_id..'text:ch:user')
@@ -2530,7 +2530,7 @@ return false
 end
 if text and text:match("^وضع قناة الاشتراك$") then
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:setex(bot_id.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
@@ -2539,7 +2539,7 @@ return false
 end
 if text == "تفعيل الاشتراك" then
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 if redis:get(bot_id..'add:ch:id') then
@@ -2553,7 +2553,7 @@ return false
 end
 if text == "تعطيل الاشتراك" then
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:del(bot_id..'add:ch:id')
@@ -2563,7 +2563,7 @@ return false
 end
 if text == "الاشتراك الاجباري" then
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 if redis:get(bot_id..'add:ch:username') then
@@ -2576,7 +2576,7 @@ return false
 end
 if text == "اضف سوال كت تويت" then
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:set(bot_id.."Eqap:gamebot:Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_,true)
@@ -2584,7 +2584,7 @@ return send(msg.chat_id_, msg.id_,"ارسل السؤال الان ")
 end
 if text == "حذف سوال كت تويت" then
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:del(bot_id.."Eqap:gamebot:List:Manager")
@@ -2599,7 +2599,7 @@ return false end
 end
 if text == "اضف سوال مقالات" then
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:set(bot_id.."makal:bots:set"..msg.sender_user_id_..":"..msg.chat_id_,true)
@@ -2607,7 +2607,7 @@ return send(msg.chat_id_, msg.id_,"ارسل السؤال الان ")
 end
 if text == "حذف سوال مقالات" then
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:del(bot_id.."makal:bots")
@@ -2693,13 +2693,13 @@ if text == ("مسح المكتومين عام") then
 redis:del(bot_id.."Eqap:Silence:User:Groups")
 send(msg.chat_id_, msg.id_, "• تم مسح المحظورين عام من البوت")
 end
-if text == ("مسح قائمة C") then
+if text == ("مسح قائمة T") then
 redis:del(bot_id.."Eqap:Developer:Bot")
-send(msg.chat_id_, msg.id_, "•  تم مسح قائمة C من البوت  ")
+send(msg.chat_id_, msg.id_, "•  تم مسح قائمة T من البوت  ")
 end
-if text == ("مسح قائمة CM") then
+if text == ("مسح قائمة TR") then
 redis:del(bot_id.."Eqap:Developer:Bot")
-send(msg.chat_id_, msg.id_, "•  تم مسح قائمة C من البوت  ")
+send(msg.chat_id_, msg.id_, "•  تم مسح قائمة TR من البوت  ")
 end
 if text == ("قائمة العام") then
 local list = redis:smembers(bot_id.."Eqap:Removal:User:Groups")
@@ -2752,7 +2752,7 @@ Text = [[
 send(msg.chat_id_, msg.id_,Text)
 return false
 end
-if text == ("قائمة C") and Dev_Bots(msg) then
+if text == ("قائمة T") and Dev_Bots(msg) then
 local list = redis:smembers(bot_id.."Eqap:Developer:Bot")
 if #list == 0 then
 return send(msg.chat_id_, msg.id_, "• لا يوجد Commander ")
@@ -6742,7 +6742,7 @@ end
 if text=="اذاعه خاص" and msg.reply_to_message_id_ == 0 and DeveloperBot(msg) then
  
 if redis:get(bot_id.."Eqap:Broadcasting:Bot") and not Dev_Bots(msg) then 
-send(msg.chat_id_, msg.id_,"• تم تعطيل الاذاعه من قبل Carbon !")
+send(msg.chat_id_, msg.id_,"• تم تعطيل الاذاعه من قبل Develope !")
 return false end
 redis:setex(bot_id.."Eqap:Broadcasting:Users" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 send(msg.chat_id_, msg.id_,"• ارسل لي المنشور الان\n• يمكنك ارسال -{ صوره - ملصق - متحركه - رساله }\n• لالغاء الاذاعه ارسل : الغاء") 
@@ -6751,7 +6751,7 @@ end
 if text=="اذاعه" and msg.reply_to_message_id_ == 0 and DeveloperBot(msg) then
  
 if redis:get(bot_id.."Eqap:Broadcasting:Bot") and not Dev_Bots(msg) then 
-send(msg.chat_id_, msg.id_,"• تم تعطيل الاذاعه من قبل Carbon !")
+send(msg.chat_id_, msg.id_,"• تم تعطيل الاذاعه من قبل Developer !")
 return false end
 redis:setex(bot_id.."Eqap:Broadcasting:Groups" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 send(msg.chat_id_, msg.id_,"• ارسل لي المنشور الان\n• يمكنك ارسال -{ صوره - ملصق - متحركه - رساله }\n• لالغاء الاذاعه ارسل : الغاء") 
@@ -6760,7 +6760,7 @@ end
 if text=="اذاعه بالتوجيه" and msg.reply_to_message_id_ == 0  and DeveloperBot(msg) then
  
 if redis:get(bot_id.."Eqap:Broadcasting:Bot") and not Dev_Bots(msg) then 
-send(msg.chat_id_, msg.id_,"• تم تعطيل الاذاعه من قبل Carbon !")
+send(msg.chat_id_, msg.id_,"• تم تعطيل الاذاعه من قبل Develope !")
 return false end
 redis:setex(bot_id.."Eqap:Broadcasting:Groups:Fwd" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 send(msg.chat_id_, msg.id_,"• ارسل لي التوجيه الان\n• ليتم افتاراته في المجموعات") 
@@ -6769,7 +6769,7 @@ end
 if text=="اذاعه بالتوجيه خاص" and msg.reply_to_message_id_ == 0  and DeveloperBot(msg) then
  
 if redis:get(bot_id.."Eqap:Broadcasting:Bot") and not Dev_Bots(msg) then 
-send(msg.chat_id_, msg.id_,"• تم تعطيل الاذاعه من قبل Carbon !")
+send(msg.chat_id_, msg.id_,"• تم تعطيل الاذاعه من قبل Develper !")
 return false end
 redis:setex(bot_id.."Eqap:Broadcasting:Users:Fwd" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 send(msg.chat_id_, msg.id_,"• ارسل لي التوجيه الان\n• ليتم افتاراته الى المشتركين") 
@@ -6779,20 +6779,18 @@ if text == 'تعيين الايدي' and Owner(msg) then
 
 redis:setex(bot_id.."Eqap:Redis:Id:Group"..msg.chat_id_..""..msg.sender_user_id_,240,true)  
 send(msg.chat_id_, msg.id_,[[
-• ارسل الان النص
-• يمكنك اضافه :
-• `#username` » اسم المستخدم
-• `#msgs` » عدد الرسائل
-• `#photos` » عدد الصور
-• `#id` » ايدي المستخدم
-• `#auto` » نسبة التفاعل
-• `#stast` » رتبة المستخدم 
-• `#edit` » عدد السحكات
-• `#game` » عدد النقاط
-• `#AddMem` » عدد الجهات
-• `#Description` » تعليق الصوره
--
-شكل الايدي : @JOQOS .
+- ارسل الان النص
+- يمكنك اضافه :
+- `#username` » اسم المستخدم
+- `#msgs` » عدد الرسائل
+- `#photos` » عدد الصور
+- `#id` » ايدي المستخدم
+- `#auto` » نسبة التفاعل
+- `#stast` » رتبة المستخدم 
+- `#edit` » عدد السحكات
+- `#game` » عدد النقاط
+- `#AddMem` » عدد الجهات
+- `#Description` » تعليق الصوره
 ]])
 return false  
 end 
@@ -7666,7 +7664,7 @@ end
 if text and text:match("^تغيير الاشتراك$") then
 
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:setex(bot_id.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
@@ -7676,7 +7674,7 @@ end
 if text and text:match("^تغيير رساله الاشتراك$") then
 
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:setex(bot_id.."textch:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
@@ -7686,7 +7684,7 @@ end
 if text == "حذف رساله الاشتراك" then
 
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:del(bot_id..'text:ch:user')
@@ -7696,7 +7694,7 @@ end
 if text and text:match("^وضع قناة الاشتراك$") then
 
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:setex(bot_id.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
@@ -7706,7 +7704,7 @@ end
 if text == "تفعيل الاشتراك" then
 
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 if redis:get(bot_id..'add:ch:id') then
@@ -7721,7 +7719,7 @@ end
 if text == "تعطيل الاشتراك" then
 
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:del(bot_id..'add:ch:id')
@@ -7732,7 +7730,7 @@ end
 if text == "الاشتراك الاجباري" then
 
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 if redis:get(bot_id..'add:ch:username') then
@@ -7751,7 +7749,7 @@ end
 if text == "اضف سوال كت تويت" then
 
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:set(bot_id.."Eqap:gamebot:Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_,true)
@@ -7760,7 +7758,7 @@ end
 if text == "حذف سوال كت تويت" then
 
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:del(bot_id.."Eqap:gamebot:List:Manager")
@@ -7787,7 +7785,7 @@ end
 if text == "اضف سوال مقالات" then
 
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:set(bot_id.."makal:bots:set"..msg.sender_user_id_..":"..msg.chat_id_,true)
@@ -7796,7 +7794,7 @@ end
 if text == "حذف سوال مقالات" then
 
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:del(bot_id.."makal:bots")
@@ -8302,7 +8300,7 @@ end
 if text == 'تعيين الايدي عام' then
 
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:setex(bot_id.."CHENG:ID:bot"..msg.chat_id_..""..msg.sender_user_id_,240,true)  
@@ -8334,7 +8332,7 @@ end
 if text == 'حذف الايدي عام' or text == 'مسح الايدي عام' then
 
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:del(bot_id.."KLISH:ID:bot")
