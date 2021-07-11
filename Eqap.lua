@@ -3641,6 +3641,40 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^فك التقييد @(.*)$")}, FunctionStatus, nil)
 end
 
+if text == "تفعيل تنبيه الاسماء" and Manager(msg) and database:get(bot_id.."AL:Sre:stats") == "✔" then
+send(msg.chat_id_, msg.id_, '•تم تفعيل تنبيه الاسماء')
+database:set(bot_id.."Ttn:BBE:stats"..msg.chat_id_,"open")
+end
+if text == "تعطيل تنبيه الاسماء" and Manager(msg) and database:get(bot_id.."AL:Sre:stats") == "✔" then
+send(msg.chat_id_, msg.id_, '•تم تعطيل تنبيه الاسماء')
+database:set(bot_id.."Ttn:BBE:stats"..msg.chat_id_,"close")
+end
+if text and database:get(bot_id.."Ttn:BBE:stats"..msg.chat_id_) == "open" then
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data)
+if data.id_ then
+if data.id_ ~= bot_id then
+local LeDewChengName = database:get(bot_id.."LeDew:Cheng:Name"..data.id_)
+if not data.first_name_ then
+if LeDewChengName then
+send(msg.chat_id_, msg.id_, " خوش معرف كان ["..LeDewChengName..']')
+database:del(bot_id.."LeDew:Cheng:Name"..data.id_)
+end
+end
+if data.first_name_ then
+if LeDewChengName ~= data.first_name_ then
+local Text = {
+  "اسمك القديم كان احلى ",
+"ليش غيرت اسمك يحلو؟ ",
+"هذا لحلو غير اسمه ",
+}
+send(msg.chat_id_, msg.id_,Text[math.random(#Text)])
+end
+database:set(bot_id.."LeDew:Cheng:Name"..data.id_, data.first_name_)
+end
+end
+end
+end,nil)
+end
 
 if text and text:match("^تقييد عام @(.*)$") and DeveloperBot1(msg) then
 function FunctionStatus(arg, result)
