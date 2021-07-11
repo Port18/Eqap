@@ -246,13 +246,13 @@ end
 ------------------------------------------------------------------------------------------------------------
 function Get_Rank(user_id,chat_id)
 if Dev_Bots_User(user_id) == true then
-Status = "Carbon"  
+Status = "Developer"  
 elseif tonumber(user_id) == tonumber(bot_id) then  
 Status = "انا البوت :) "
 elseif redis:sismember(bot_id.."Eqap:Developer:Bot1", user_id) then
-Status = redis:get(bot_id.."Eqap:Developer:Bot:Reply"..chat_id) or "Commander 🎖"  
+Status = redis:get(bot_id.."Eqap:Developer:Bot:Reply"..chat_id) or "TR 🎖"  
 elseif redis:sismember(bot_id.."Eqap:Developer:Bot", user_id) then
-Status = redis:get(bot_id.."Eqap:Developer:Bot:Reply"..chat_id) or "Commander "  
+Status = redis:get(bot_id.."Eqap:Developer:Bot:Reply"..chat_id) or "T"  
 elseif redis:sismember(bot_id.."Eqap:President:Group"..chat_id, user_id) then
 Status = redis:get(bot_id.."Eqap:President:Group:Reply"..chat_id) or "المنشئ اساسي"
 elseif redis:sismember(bot_id..'Eqap:Constructor:Group'..chat_id, user_id) then
@@ -3654,7 +3654,7 @@ send(msg.chat_id_, msg.id_, "لا تسطيع تقييد البوت عام")
 return false 
 end
 if Dev_Bots_User(result.id_) == true then
-send(msg.chat_id_, msg.id_, " Carbon لا تستطيع تقييد عام")
+send(msg.chat_id_, msg.id_, " Developer لا تستطيع تقييد عام")
 return false 
 end
 redis:sadd(bot_id.."Eqap:Removalked:User:Groups", result.id_)
@@ -3687,7 +3687,7 @@ send(msg.chat_id_, msg.id_, "لا تسطيع تقييد البوت عام")
 return false 
 end
 if Dev_Bots_User(result.sender_user_id_) == true then
-send(msg.chat_id_, msg.id_, " Carbon لا تستطيع تقييد عام")
+send(msg.chat_id_, msg.id_, " Developer لا تستطيع تقييد عام")
 return false 
 end
 Send_Options(msg,result.sender_user_id_,"reply","تم تقييده عام من المجموعات")  
@@ -3760,18 +3760,18 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^طرد @(.*)$")}, FunctionStatus, nil)
 end
 
-if text == ("رفع C") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_Bots(msg) then
+if text == ("رفع T") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_Bots(msg) then
 function FunctionStatus(arg, result)
 redis:sadd(bot_id.."Eqap:Developer:Bot", result.sender_user_id_)
-Send_Options(msg,result.sender_user_id_,"reply","تم ترقيته C في البوت")  
+Send_Options(msg,result.sender_user_id_,"reply","تم ترقيته T في البوت")  
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, FunctionStatus, nil)
 end
 
-if text == ("تنزيل C") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_Bots(msg) then
+if text == ("تنزيل T") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_Bots(msg) then
 function FunctionStatus(arg, result)
 redis:srem(bot_id.."Eqap:Developer:Bot", result.sender_user_id_)
-Send_Options(msg,result.sender_user_id_,"reply","تم تنزيله من C")  
+Send_Options(msg,result.sender_user_id_,"reply","تم تنزيله من T")  
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, FunctionStatus, nil)
 end
@@ -3909,7 +3909,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, FunctionStatus, nil)
 end
 
-if text and text:match("^رفع C @(.*)$") and Dev_Bots(msg) then
+if text and text:match("^رفع T @(.*)$") and Dev_Bots(msg) then
 function FunctionStatus(arg, result)
 if (result.id_) then
 if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
@@ -3917,7 +3917,7 @@ send(msg.chat_id_,msg.id_,"عذرا هاذا معرف قناة")
 return false 
 end      
 redis:sadd(bot_id.."Eqap:Developer:Bot", result.id_)
-Send_Options(msg,result.id_,"reply","تم ترقيته C في البوت")  
+Send_Options(msg,result.id_,"reply","تم ترقيته T في البوت")  
 else
 send(msg.chat_id_, msg.id_,"المعرف غلط ")
 end
@@ -3925,7 +3925,7 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^رفع C @(.*)$")}, FunctionStatus, nil)
 end
 
-if text and text:match("^تنزيل C @(.*)$") and Dev_Bots(msg) then
+if text and text:match("^تنزيل T @(.*)$") and Dev_Bots(msg) then
 function FunctionStatus(arg, result)
 if (result.id_) then
 redis:srem(bot_id.."Eqap:Developer:Bot", result.id_)
@@ -3934,7 +3934,7 @@ else
 send(msg.chat_id_, msg.id_,"المعرف غلط ")
 end
 end
-tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^تنزيل C @(.*)$")}, FunctionStatus, nil)
+tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^تنزيل T @(.*)$")}, FunctionStatus, nil)
 end
 
 if text and text:match("^رفع TR @(.*)$") and Dev_Bots(msg) then
@@ -3953,16 +3953,16 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^رفع TR @(.*)$")}, FunctionStatus, nil)
 end
 
-if text and text:match("^تنزيل CM @(.*)$") and Dev_Bots(msg) then
+if text and text:match("^تنزيل TR @(.*)$") and Dev_Bots(msg) then
 function FunctionStatus(arg, result)
 if (result.id_) then
 redis:srem(bot_id.."Eqap:Developer:Bot1", result.id_)
-Send_Options(msg,result.id_,"reply","تم تنزيله من CM")  
+Send_Options(msg,result.id_,"reply","تم تنزيله من TR")  
 else
 send(msg.chat_id_, msg.id_,"المعرف غلط ")
 end
 end
-tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^تنزيل CM @(.*)$")}, FunctionStatus, nil)
+tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^تنزيل TR @(.*)$")}, FunctionStatus, nil)
 end
 
 if text and text:match("^رفع منشئ اساسي @(.*)$") and DeveloperBot(msg) then
@@ -8344,15 +8344,15 @@ end
 if text == 'الاوامر' or text == 'اوامر' or text == 'الأوامر' or text == 'الاعدادات' then
 if Admin(msg) then
 local Text =[[
-*• اوامر المجموعه*
- ━━━━━━━━
-• م1 => اوامر الادمنيه
-• م2 => اوامر التفعيل - التعطيل - الرفع
-• م3 => اوامر المسح
-• م4 => اوامر Commander
-• م C => اوامر Carbon 
- ━━━━━━━━
-Carbon - ]].. UserName_Dev..[[
+* قائمة الاوامر*
+⎔━━━━━━━━━━━━━━━━━━━━━━━━⎔
+- م1 ◃ اوامر الادمنيه
+- م2 ◃ اوامر التفعيل - التعطيل - الرفع
+- م3 ◃ اوامر المسح
+- م4 ◃ اوامر TR
+- م D ◃ اوامر Developer 
+⎔━━━━━━━━━━━━━━━━━━━━━━━━⎔
+Developer ▹ ]].. UserName_Dev..[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -8499,7 +8499,7 @@ end
 if text =='الاحصائيات' then
  
 if not DeveloperBot(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 send(msg.chat_id_, msg.id_,'*• عدد الاحصائيات الكامله \n━━━━━━━━\n• عدد المجموعات : '..(redis:scard(bot_id..'Eqap:ChekBotAdd') or 0)..'\n• عدد المشتركين : '..(redis:scard(bot_id..'Eqap:Num:User:Pv') or 0)..'*')
@@ -8565,20 +8565,20 @@ send(msg.chat_id_,msg.id_,'هذا ليس ملصق')
 end
 end, nil)
 end
-if text == 'تغيير C' then
+if text == 'تغيير T' then
 
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:set(bot_id..'Set:Text:Dev:Bot:id'..msg.chat_id_,true)
-send(msg.chat_id_, msg.id_,' ارسل الان معرف Carbon الجديد')
+send(msg.chat_id_, msg.id_,' ارسل الان معرف Developer الجديد')
 return false
 end
 if text and redis:get(bot_id..'Set:Text:Dev:Bot:id'..msg.chat_id_) then
 if text == 'الغاء' then 
 redis:del(bot_id..'Set:Text:Dev:Bot:id'..msg.chat_id_)
-send(msg.chat_id_, msg.id_,' تم الغاء تغيير Carbon')
+send(msg.chat_id_, msg.id_,' تم الغاء تغيير Developer')
 return false
 end
 local username = text:gsub('@','')
@@ -8613,7 +8613,7 @@ end
 if text == 'رفع نسخه الاحتياطيه' then
 
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end   
 if tonumber(msg.reply_to_message_id_) > 0 then
@@ -8630,7 +8630,7 @@ end
 if text == 'رفع المشتركين' then
 
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 function by_reply(extra, result, success)   
@@ -8652,7 +8652,7 @@ end
 if text == 'جلب المشتركين' then
 
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 local list = redis:smembers(bot_id..'Eqap:Num:User:Pv')  
@@ -8674,7 +8674,7 @@ end
 if text == 'جلب نسخه الاحتياطيه' then
 
 if not Dev_Bots(msg) then
-send(msg.chat_id_,msg.id_,' هذا الامر خاص Carbon فقط')
+send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 GetFile_Bot(msg)
@@ -9214,7 +9214,7 @@ send(msg.chat_id_, msg.id_,'• لا تستطيع تفعيل المجموعه ب
 return false
 end
 if redis:sismember(bot_id..'Eqap:ChekBotAdd',msg.chat_id_) then
-send(msg.chat_id_, msg.id_,'• تم تفعيل المجموعه مسبقا')
+send(msg.chat_id_, msg.id_,'• تم تفعيل المجموعه من قبل')
 else
 local Texti = 'عليك اختيار نوع المجموعه لتفعيلها'
 keyboard = {} 
@@ -9418,8 +9418,8 @@ send(Chat_id, Msg_id,'')
 return false
 end
 local Teext =[[
-  •  اهلا بك عزيزي 
-  • اوامر حماية المجموعه
+  •  اهلا  
+  • اوامر الحماية 
 ━━━━━━━━
   قفل - فتح - الامر 
 ━━━━━━━━
@@ -9447,7 +9447,7 @@ local Teext =[[
   • السب
   • الانلاين
 ━━━━━━━━
-Carbon - ]].. UserName_Dev..[[
+Developer - ]].. UserName_Dev..[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -9500,7 +9500,7 @@ local Teext =[[
   • القيود
   • قلبي
 ━━━━━━━━
-Carbon - ]].. UserName_Dev..[[
+Developer - ]].. UserName_Dev..[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -9546,7 +9546,7 @@ local Teext =[[
 • امر
 • الاوامر المضافه
 ━━━━━━━━
-Carbon - ]].. UserName_Dev..[[
+Developer - ]].. UserName_Dev..[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -9595,7 +9595,7 @@ local Teext =[[
 • الحمايه
 • قائمة المنع
 · •  • ⍒ •  • · · 
-Carbon - ]].. UserName_Dev..[[
+Developer - ]].. UserName_Dev..[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -9618,11 +9618,11 @@ if Admin(data) then
 local Teext =[[
 *• اوامر المجموعه*
  ━━━━━━━━
-• م1 => اوامر الادمنيه
-• م2 => اوامر التفعيل - التعطيل - الرفع
-• م3 => اوامر المسح
-• م4 => اوامر Commander
-• م C => اوامر Carbon 
+• م1 ◃ اوامر الادمنيه
+• م2 ◃ اوامر التفعيل - التعطيل - الرفع
+• م3 ◃ اوامر المسح
+• م4 ◃ اوامر TR
+• م D ▹ اوامر Developer 
  ━━━━━━━━
 Carbon - ]].. UserName_Dev..[[
 ]]
