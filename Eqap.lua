@@ -8370,7 +8370,7 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 end
-if text == 'ايدي' and tonumber(msg.reply_to_message_id_) == 0 or text == 'ID' and tonumber(msg.reply_to_message_id_) == 0 or text == 'Id' and tonumber(msg.reply_to_message_id_) == 0 or text == 'id' and tonumber(msg.reply_to_message_id_) == 0 and not redis:get(bot_id..'Eqap:Lock:Id:Photo'..msg.chat_id_) then
+if text == 'ايدي' and =tonumber(msg.reply_to_message_id_) == 0 or text == 'ID' and tonumber(msg.reply_to_message_id_) == 0 or text == 'Id' and tonumber(msg.reply_to_message_id_) == 0 or text == 'id' and tonumber(msg.reply_to_message_id_) == 0 and not redis:get(bot_id..'Eqap:Lock:Id:Photo'..msg.chat_id_) then
 tdcli_function ({ID = "GetUserProfilePhotos",user_id_ = msg.sender_user_id_,offset_ = 0,limit_ = 1},function(extra,yazon,success) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 if data.username_ then
@@ -9438,7 +9438,7 @@ local Teext =[[
   - الفيديو
   - الصور
   - الاغاني
-   الصوت
+  - الصوت
   - التوجيه
   - الملفات
   - الجهات
@@ -9452,10 +9452,10 @@ Developer - ]].. UserName_Dev..[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '⑴', callback_data=data.sender_user_id_.."/help1"},{text = '⑵', callback_data=data.sender_user_id_.."/help2"},{text = '⑶', callback_data=data.sender_user_id_.."/help3"},
+{text = '⓵', callback_data=data.sender_user_id_.."/help1"},{text = '⓶', callback_data=data.sender_user_id_.."/help2"},{text = '⓷', callback_data=data.sender_user_id_.."/help3"},
 },
 {
-{text = '⑷', callback_data=data.sender_user_id_.."/help4"},
+{text = '⓸', callback_data=data.sender_user_id_.."/help4"},
 },
 {
 {text = 'الاوامر الرئيسيه', callback_data=data.sender_user_id_.."/help"},
@@ -9489,26 +9489,26 @@ local Teext =[[
 ⎔━━━━━━━━━━━━━━━━━━⎔
  اوامر الرفع و تغيير
 ⎔━━━━━━━━━━━━━━━━━━⎔
- - مالك
- - مشرف
- - منشئ اساسي
- - منشئ
- - مدير
- - ادمن
- - مميز 
- - الادمنيه
- - القيود
- - قلبي
+  - مالك
+  - مشرف
+  - منشئ اساسي
+  - منشئ
+  - مدير
+  - ادمن
+  - مميز 
+  - الادمنيه
+  - القيود
+  - قلبي
 ⎔━━━━━━━━━━━━━━━━━━⎔
 Developer - ]].. UserName_Dev..[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '⑴', callback_data=data.sender_user_id_.."/help1"},{text = '⑵', callback_data=data.sender_user_id_.."/help2"},{text = '⑶', callback_data=data.sender_user_id_.."/help3"},
+{text = '⓵', callback_data=data.sender_user_id_.."/help1"},{text = '⓶', callback_data=data.sender_user_id_.."/help2"},{text = '⓷', callback_data=data.sender_user_id_.."/help3"},
 },
 {
-{text = '⑷', callback_data=data.sender_user_id_.."/help4"},
+{text = '⓸', callback_data=data.sender_user_id_.."/help4"},
 },
 {
 {text = 'الاوامر الرئيسيه', callback_data=data.sender_user_id_.."/help"},
@@ -9541,7 +9541,7 @@ local Teext =[[
 - المحذوفين
 - مسح قائمة المنع
 ⎔━━━━━━━━━━━━━━━━━━⎔
-  حذف - امر ↓
+  حذف - امر 
 ⎔━━━━━━━━━━━━━━━━━━⎔
 - امر
 - الاوامر المضافه
@@ -9551,10 +9551,10 @@ Developer - ]].. UserName_Dev..[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '⑴', callback_data=data.sender_user_id_.."/help1"},{text = '⑵', callback_data=data.sender_user_id_.."/help2"},{text = '⑶', callback_data=data.sender_user_id_.."/help3"},
+{text = '⓵', callback_data=data.sender_user_id_.."/help1"},{text = '⓶', callback_data=data.sender_user_id_.."/help2"},{text = '⓷', callback_data=data.sender_user_id_.."/help3"},
 },
 {
-{text = '⑷', callback_data=data.sender_user_id_.."/help4"},
+{text = '⓸', callback_data=data.sender_user_id_.."/help4"},
 },
 {
 {text = 'الاوامر الرئيسيه', callback_data=data.sender_user_id_.."/help"},
@@ -9600,10 +9600,10 @@ Developer - ]].. UserName_Dev..[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '⑴', callback_data=data.sender_user_id_.."/help1"},{text = '⑵', callback_data=data.sender_user_id_.."/help2"},{text = '⑶', callback_data=data.sender_user_id_.."/help3"},
+{text = '⓵', callback_data=data.sender_user_id_.."/help1"},{text = '⓶', callback_data=data.sender_user_id_.."/help2"},{text = '⓷', callback_data=data.sender_user_id_.."/help3"},
 },
 {
-{text = '⑷', callback_data=data.sender_user_id_.."/help4"},
+{text = '⓸', callback_data=data.sender_user_id_.."/help4"},
 },
 {
 {text = 'الاوامر الرئيسيه', callback_data=data.sender_user_id_.."/help"},
@@ -9629,10 +9629,10 @@ Developer ▹ ]].. UserName_Dev..[[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '⑴', callback_data=data.sender_user_id_.."/help1"},{text = '⑵', callback_data=data.sender_user_id_.."/help2"},{text = '⑶', callback_data=data.sender_user_id_.."/help3"},
+{text = '⓵', callback_data=data.sender_user_id_.."/help1"},{text = '⓶', callback_data=data.sender_user_id_.."/help2"},{text = '⓷', callback_data=data.sender_user_id_.."/help3"},
 },
 {
-{text = '⑷', callback_data=data.sender_user_id_.."/help4"},
+{text = '⓸', callback_data=data.sender_user_id_.."/help4"},
 },
 {
 {text = 'اوامر التعطيل', callback_data=data.sender_user_id_.."/homeaddrem"},{text = 'اوامر القفل', callback_data=data.sender_user_id_.."/homelocks"},
