@@ -3465,17 +3465,6 @@ tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^حظر @(.*)$"
 end
 
 
-local Text = msg.text
-local Text2 = Text:match("^"..Bot_Name.." (%d+)$")
-
-if msg.SudoUser and Text == Bot_Name and not Text2 then
-return sendMsg(msg.chat_id_,msg.id_,su[math.random(#su)])
-elseif not msg.SudoUser and Text== Bot_Name and not Text2 then  
-return sendMsg(msg.chat_id_,msg.id_,ss97[math.random(#ss97)])
-elseif Text:match("^قول (.*)$") then
-if utf8.len(Text:match("^قول (.*)$")) > 500 then 
-return sendMsg(msg.chat_id_,msg.id_,"• ما اقدر اقول اكثر من 500 حرف .")
-end
 if text and text:match("^الغاء الحظر @(.*)$") and Admin(msg) then
 function FunctionStatus(arg, result)
 if (result.id_) then
@@ -5439,6 +5428,15 @@ end
 redis:set(bot_id..'Eqap:Lock:Id:Photo'..msg.chat_id_,true) 
 return send(msg.chat_id_, msg.id_,'• تم تعطيل الايدي') 
 end
+
+if text == "ايديي" then
+GetUserID(msg.sender_user_id_,function(arg,data)
+if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data.first_name_..' '..(data.last_name_ or "")) end
+local USERCAR = utf8.len(USERNAME)
+SendMention(msg.chat_id_,data.id_,msg.id_,"USE : "..USERNAME.."\niD : "..data.id_.." ",37,USERCAR)  
+return false
+end)
+ 
 if text == 'تفعيل الايدي بالصوره' then
 
 if not Owner(msg) then
@@ -5447,8 +5445,9 @@ end
 redis:del(bot_id..'Eqap:Lock:Id:Py:Photo'..msg.chat_id_) 
 return send(msg.chat_id_, msg.id_,'• تم تفعيل الايدي بالصوره') 
 end
-if text == 'تعطيل الايدي بالصوره' then
-
+  
+if text == 'تعطيل الايدي بالصوره' then    
+    
 if not Owner(msg) then
 return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
 end  
