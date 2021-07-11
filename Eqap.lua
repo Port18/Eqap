@@ -5431,8 +5431,8 @@ end
 
 if text == "ايديي" then
 GetUserID(msg.sender_user_id_,function(arg,data)
-if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data.first_name_..' '..(data.last_name_ or ""))
-end)
+if data.username_ then USERNAME = '@'..data.username_ else USERNAME = FlterName(data.first_name_..' '..(data.last_name_ or "")
+end
 if text == 'تفعيل الايدي بالصوره' then
 
 if not Owner(msg) then
