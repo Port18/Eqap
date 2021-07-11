@@ -2292,7 +2292,7 @@ end
 if text == "ابي بوت" or text == "البوت عجبني" then Text = [[ 
 لتنصيب بوت لك  @L7_L2
 ]]
-send(msg.chat_id_, msg.id_,Text)
+send(msg.chat_id_,msg.id_,Text)
 return false
 end
 ------------------------------------------------------------------------------------------------------------
