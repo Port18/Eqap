@@ -7381,7 +7381,16 @@ local list = redis:smembers(bot_id.."botss:Eqap:List:Rd:Sudo")
 for k,v in pairs(list) do  
 redis:del(bot_id.."botss:Eqap:Add:Rd:Sudo:Text"..v) 
 redis:del(bot_id.."botss:Eqap:Add:Rd:Sudo:Text1"..v) 
-redis:del(bot_id.."botss:Eqap:Add:Rd:Sudo:Text2"..v)   
+redis:del(bot_id.."botss:Eqap:Add:Rd:Sudo:Text2"..v)
+redis:del(bot_id.."botss:Eqap:Add:Rd:Sudo:Text3"..v) 
+redis:del(bot_id.."botss:Eqap:Add:Rd:Sudo:Text4"..v)
+redis:del(bot_id.."botss:Eqap:Add:Rd:Sudo:Text5"..v)
+redis:del(bot_id.."botss:Eqap:Add:Rd:Sudo:Text6"..v)
+redis:del(bot_id.."botss:Eqap:Add:Rd:Sudo:Text7"..v)
+redis:del(bot_id.."botss:Eqap:Add:Rd:Sudo:Text8"..v)
+redis:del(bot_id.."botss:Eqap:Add:Rd:Sudo:Text9"..v)
+redis:del(bot_id.."botss:Eqap:Add:Rd:Sudo:Text10"..v)
+redis:del(bot_id.."botss:Eqap:Add:Rd:Sudo:Text11"..v)
 redis:del(bot_id.."botss:Eqap:List:Rd:Sudo")
 end
 send(msg.chat_id_, msg.id_,"تم حذف ردود المتعدده")
@@ -7392,7 +7401,7 @@ local list = redis:smembers(bot_id.."botss:Eqap:List:Rd:Sudo")
 text = "\nقائمة ردود المتعدده \n━━━━━━━━\n"
 for k,v in pairs(list) do
 db = "رساله "
-text = text..""..k.." => {"..v.."} => {"..db.."}\n"
+text = text..""..k.." => ("..v..") => ("..db..")\n"
 end
 if #list == 0 then
 text = "لا توجد ردود متعدده"
@@ -7464,7 +7473,113 @@ text = text:gsub('"',"")
 text = text:gsub("`","") 
 text = text:gsub("*","") 
 redis:set(bot_id.."botss:Eqap:Add:Rd:Sudo:Text3"..test, text)  
+end    
+
+send(msg.chat_id_, msg.id_,"تم حفظ الرد الثاني ارسل الرد الخامس")
+return false  
+end  
+end
+if text then  
+local test = redis:get(bot_id.."botss:Eqap:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
+if redis:get(bot_id.."botss:Eqap:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "rd4" then
+redis:set(bot_id.."botss:Eqap:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd5')
+if text then   
+text = text:gsub('"',"") 
+text = text:gsub('"',"") 
+text = text:gsub("`","") 
+text = text:gsub("*","") 
+redis:set(bot_id.."botss:Eqap:Add:Rd:Sudo:Text4"..test, text)  
 end     
+send(msg.chat_id_, msg.id_,"تم حفظ الرد الثاني ارسل الرد السادس")
+return false  
+end  
+end
+if text then  
+local test = redis:get(bot_id.."botss:Eqap:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
+if redis:get(bot_id.."botss:Eqap:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "rd5" then
+redis:set(bot_id.."botss:Eqap:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd6')
+if text then   
+text = text:gsub('"',"") 
+text = text:gsub('"',"") 
+text = text:gsub("`","") 
+text = text:gsub("*","") 
+redis:set(bot_id.."botss:Eqap:Add:Rd:Sudo:Text5"..test, text)  
+end     
+send(msg.chat_id_, msg.id_,"تم حفظ الرد الثاني ارسل الرد السابع")
+return false  
+end  
+end
+if text then  
+local test = redis:get(bot_id.."botss:Eqap:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
+if redis:get(bot_id.."botss:Eqap:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "rd6" then
+redis:set(bot_id.."botss:Eqap:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd7')
+if text then   
+text = text:gsub('"',"") 
+text = text:gsub('"',"") 
+text = text:gsub("`","") 
+text = text:gsub("*","") 
+redis:set(bot_id.."botss:Eqap:Add:Rd:Sudo:Text6"..test, text)  
+end     
+send(msg.chat_id_, msg.id_,"تم حفظ الرد الثاني ارسل الرد الثامن")
+return false  
+end  
+end
+if text then  
+local test = redis:get(bot_id.."botss:Eqap:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
+if redis:get(bot_id.."botss:Eqap:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "rd7" then
+redis:set(bot_id.."botss:Eqap:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd8')
+if text then   
+text = text:gsub('"',"") 
+text = text:gsub('"',"") 
+text = text:gsub("`","") 
+text = text:gsub("*","") 
+redis:set(bot_id.."botss:Eqap:Add:Rd:Sudo:Text7"..test, text)  
+end     
+send(msg.chat_id_, msg.id_,"تم حفظ الرد الثاني ارسل الرد التاسع")
+return false  
+end  
+end
+if text then  
+local test = redis:get(bot_id.."botss:Eqap:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
+if redis:get(bot_id.."botss:Eqap:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "rd8" then
+redis:set(bot_id.."botss:Eqap:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd9')
+if text then   
+text = text:gsub('"',"") 
+text = text:gsub('"',"") 
+text = text:gsub("`","") 
+text = text:gsub("*","") 
+redis:set(bot_id.."botss:Eqap:Add:Rd:Sudo:Text8"..test, text)  
+end     
+send(msg.chat_id_, msg.id_,"تم حفظ الرد الثاني ارسل الرد العاشر")
+return false  
+end  
+end
+if text then  
+local test = redis:get(bot_id.."botss:Eqap:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
+if redis:get(bot_id.."botss:Eqap:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "rd9" then
+redis:set(bot_id.."botss:Eqap:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd10')
+if text then   
+text = text:gsub('"',"") 
+text = text:gsub('"',"") 
+text = text:gsub("`","") 
+text = text:gsub("*","") 
+redis:set(bot_id.."botss:Eqap:Add:Rd:Sudo:Text9"..test, text)  
+end     
+send(msg.chat_id_, msg.id_,"تم حفظ الرد الثاني ارسل الرد الحادي عشر")
+return false  
+end  
+end
+if text then  
+local test = redis:get(bot_id.."botss:Eqap:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
+if redis:get(bot_id.."botss:Eqap:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "rd10" then
+redis:set(bot_id.."botss:Eqap:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,'rd11')
+if text then   
+text = text:gsub('"',"") 
+text = text:gsub('"',"") 
+text = text:gsub("`","") 
+text = text:gsub("*","") 
+redis:set(bot_id.."botss:Eqap:Add:Rd:Sudo:Text10"..test, text)  
+end          
 send(msg.chat_id_, msg.id_,"تم حفظ الرد")
 return false  
 end  
@@ -7473,13 +7588,29 @@ if text then
 local Text = redis:get(bot_id.."botss:Eqap:Add:Rd:Sudo:Text"..text)   
 local Text1 = redis:get(bot_id.."botss:Eqap:Add:Rd:Sudo:Text1"..text)   
 local Text2 = redis:get(bot_id.."botss:Eqap:Add:Rd:Sudo:Text2"..text)
-local Text2 = redis:get(bot_id.."botss:Eqap:Add:Rd:Sudo:Text3"..text)
-if Text or Text1 or Text2 or Text3 then 
+local Text3 = redis:get(bot_id.."botss:Eqap:Add:Rd:Sudo:Text3"..text)
+local Text4 = redis:get(bot_id.."botss:Eqap:Add:Rd:Sudo:Text4"..text)
+local Text5 = redis:get(bot_id.."botss:Eqap:Add:Rd:Sudo:Text5"..text)
+local Text6 = redis:get(bot_id.."botss:Eqap:Add:Rd:Sudo:Text6"..text)
+local Text7 = redis:get(bot_id.."botss:Eqap:Add:Rd:Sudo:Text7"..text)
+local Text8 = redis:get(bot_id.."botss:Eqap:Add:Rd:Sudo:Text8"..text)
+local Text9 = redis:get(bot_id.."botss:Eqap:Add:Rd:Sudo:Text9"..text)
+local Text10 = redis:get(bot_id.."botss:Eqap:Add:Rd:Sudo:Text10"..text)
+local Text11 = redis:get(bot_id.."botss:Eqap:Add:Rd:Sudo:Text11"..text)
+if Text or Text1 or Text2 or Text3 or Text4 or Text5 or Text6 or Text7 or Text8 or Text9 or Text10 or Text11 then 
 local texting = {
 Text,
 Text1,
 Text2,
-Text3
+Text3,
+Text4,
+Text5,
+Text6,
+Text7,
+Text8,
+Text9,
+Text10,
+Text11
 }
 Textes = math.random(#texting)
 send(msg.chat_id_, msg.id_,texting[Textes])
@@ -8117,16 +8248,18 @@ send(msg.chat_id_,msg.id_,'اهلا عزيزي \n الامر يخص - الادم
 return false
 end 
 local List = {[[
-𖡋 𝐔𝐒𝐄 ⌯ #username 𖥲 .
-𖡋 𝐌𝐒𝐆 ⌯ #msgs 𖥲 .
-𖡋 𝐒𝐓𝐀 ⌯ #stast 𖥲 .
-𖡋 𝐈𝐃 ⌯ #id 𖥲 .
+- ʏᴏᴜʀ ɪᴅ ➣ #id
+- ᴜѕᴇʀɴᴀᴍᴇ ➣ #username
+- ѕᴛᴀᴛѕ ➣ #stast
+- ᴍѕɢѕ ➣ #msgs
+- ᴇᴅɪᴛ ᴍsɢ ➣ #edit
+- ᴅᴇᴛᴀɪʟs ➣ #game
 ]],
 [[
--›   𝚄𝚂𝙴𝚁𝙽𝙰𝙼𝙴 ¦ #username .
--›   𝙸𝙳 ¦ #msgs .
--›   𝚂𝚃𝙰𝚂𝚃 ¦ #stast .
--›   𝙼𝚂𝙶𝚂 ¦ #id .
+-›   User ☓ ¦ #username .
+-›   ID ☓ ¦ #id .
+-›   Stast ☓ ¦ #stast .
+-›   Msg ☓ ¦ #msgs .
 ]],
 [[
 𝐔𝐬𝐞𝐫  : #username  .
@@ -8135,22 +8268,30 @@ local List = {[[
 𝐈𝐝 : #id  .
 ]],
 [[
-𝗨𝗦𝗘𝗥??𝗔𝗠??: #username  .
-𝗠𝗦𝗚: #msgs  .
-𝗦𝗧𝗔𝗧 :#stast  .
-𝗜𝗗: #id  .
+- 𝚄𝚂𝙴𝚁𝙽𝙰𝙼𝙴 . #username !
+- 𝚂𝚃𝙰𝚂𝚃 . #stast !
+- 𝙸𝙳 . #id ! 
+- 𝙶𝙼𝙰𝚂 . #gmas ! 
+- 𝙼𝚂𝙶𝚂 . #msgs !
 ]],
 [[
-𝗨𝗦𝗘𝗥 : #username  .
-𝗠𝗦𝗚 : #msgs  .
-𝗦𝗧𝗔𝗧 : #stast  .
-𝗜𝗗 : #id  .
+• 𝐮𝐬𝐞𝐫 : #username .
+• 𝐦𝐬𝐠 : #msgs .
+• 𝐬𝐭𝐚 : #stast .
+• 𝐢𝐝 : #id .
 ]],
 [[
-𝚄𝚜𝚎𝚛 ✯ #username  
-𝚂𝚝𝚊  ✯ #stast  
-𝙸𝚍   ✯ #id  
-𝙼𝚜𝚐𝚎 ✯ #msgs
+.𓄌 : 𝖴𝖲𝖤𝖱 #username 𓇡.
+.𓄌 : 𝖬𝖲𝖦 #msgs 𓇡.
+.𓄌 : 𝖲𝖳𝖠 #stast 𓇡.
+.𓄌 : 𝖨𝖣 #id 𓇡.
+]],
+[[
+- ايديك ⁞ #id ٬
+- يوزرك ⁞ #username ٬
+- رسائلك ⁞ #msgs ٬
+- رتبتك ⁞ #stast ٬
+- تعديلاتك ⁞ #edit ٬
 ]]}
 local Text_Rand = List[math.random(#List)]
 redis:set(bot_id.."Eqap:Set:Id:Group"..msg.chat_id_,Text_Rand)
@@ -8164,16 +8305,15 @@ return false
 end
 redis:setex(bot_id.."CHENG:ID:bot"..msg.chat_id_..""..msg.sender_user_id_,240,true)  
 local Text= [[
-܁يمكنك اضافة ܊
-▹ `#username` - ܁ اسم المستخدم
-▹ `#msgs` - ܁ عدد رسائل المستخدم
-▹ `#photos` - ܁ عدد صور المستخدم
-▹ `#id` - ܁ ايدي المستخدم
-▹ `#stast` - ܁ رتبة المستخدم
-▹ `#edit` - ܁ عدد تعديلات 
-▹ `#game` - ܁ نقاط
--
-شكل الايدي : @JOQOS .
+܁يمكنك اضافة ايدي بأستخدام
+    
+- `#username` ܁ اسم المستخدم
+- `#msgs` ܁ عدد رسائل المستخدم
+- `#photos` ܁ عدد صور المستخدم
+- `#id` ܁ ايدي المستخدم
+- `#stast` ܁ رتبة المستخدم
+- `#edit` ܁ عدد تعديلات 
+- `#game` ܁ نقاط
 ]]
 send(msg.chat_id_, msg.id_,Text)
 return false  
