@@ -2797,6 +2797,7 @@ end
 end
 end,nil)
 end
+    
 if text == ("مسح المميزين عام") and SudoBot(msg) then
 database:del(bot_id..'Mamez:User')
 send(msg.chat_id_, msg.id_, "\n•  تم مسح قائمة المميزين عام  ")
@@ -2961,6 +2962,7 @@ send(msg.chat_id_, msg.id_, usertext..status)
 end;end,nil)
 return false
 end
+
 if text == ("تاك للاغبياء") and Mod(msg) then
 local list = database:smembers(bot_id..'Athol:User'..msg.chat_id_)
 t = "\n•ياأغبياء تعالو . \n•━━━━•━━━━•\n"
