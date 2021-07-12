@@ -8355,27 +8355,6 @@ redis:del(bot_id.."KLISH:ID:bot")
 send(msg.chat_id_, msg.id_, '܁ تم ازالة كليشة الايدي ')
 return false  
 end
-
-if text == 'تعطيل حساب العمر' and Manager(msg) then
-send(msg.chat_id_, msg.id_, '• تم تعطيل حساب العمر')
-database:set(bot_id.."LeDew:age_Bots"..msg.chat_id_,"close")
-end
-if text == 'تفعيل حساب العمر' and Manager(msg) then
-send(msg.chat_id_, msg.id_,'• تم تفعيل حساب العمر')
-database:set(bot_id.."LeDew:age_Bots"..msg.chat_id_,"open")
-end
-if text and text:match("^احسب (.*)$") and database:get(bot_id.."LeDew:age_Bots"..msg.chat_id_) == "open" then
-local Textage = text:match("^احسب (.*)$")
-ge = https.request('https://mode-dev.tk/Api1/niggaapi.php?age='..URL.escape(Textage)..'')
-ag = JSON.decode(ge)
-i = 0
-for k,v in pairs(ag.ok) do
-i = i + 1
-t = v.."\n"
-end
-send(msg.chat_id_, msg.id_, t)
-end
-
 if text == 'الاوامر' or text == 'اوامر' or text == 'الأوامر' or text == 'الاعدادات' then
 if Admin(msg) then
 local Text =[[
@@ -8475,6 +8454,38 @@ end
 end
 end,nil)   
 end,nil)   
+end
+
+if text == "all" or text == "@all" or text == "تاك للكل" or text == "تاك الكل" and is_owner(msg.sender_user_id_, msg.chat_id_) and faeder11(msg) then if faederdx1:get(FAEDER..'bot:lock_tag'..msg.chat_id_) then faederdx(msg.chat_id_, msg.id_, 1, '❍ هذا الامر معطل ', 1, 'md') else if faederdx1:get(FAEDER.."taagall"..msg.chat_id_..':'..msg.sender_user_id_) then return faederdx(msg.chat_id_, msg.id_, 1, "❍ انتظر لا يمكن عمل تاك قبل انتهاء 5 دقائق للتاك السابق", 1, 'md') end faederdx1:setex(bot_id..'taagall'..msg.chat_id_..':'..msg.sender_user_id_,300,true) tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(dx,faeder)  tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = faeder.member_count_},function(dxx,faederr) x = 0 tags = 0 local list = faederr.members_ for k, v in pairs(list) do tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data) if x == 5 or x == tags or k == 0 then tags = x + 5 t = "#all" end x = x + 1 taagall = data.first_name_ taagall = taagall:gsub("]","") taagall = taagall:gsub("[[]","") t = t..", "..taagall.."" if x == 5 or x == tags or k == 0 then local Text = t:gsub('#all,','#all\n') sendText(msg.chat_id_,Text,0,'md') end end,nil) end end,nil) end,nil) end end
+--     By Developer LAKS     -- 
+if text:match("^all (.*)$") and is_owner(msg.sender_user_id_, msg.chat_id_) and faeder11(msg) then local txt = {string.match(text, "^(all) (.*)$")} if faederdx1:get(FAEDER..'bot:lock_geam'..msg.chat_id_) then faederdx(msg.chat_id_, msg.id_, 1, '❍ هذا الامر معطل ', 1, 'md') end if faederdx1:get(FAEDER.."taagall"..msg.chat_id_..':'..msg.sender_user_id_) then return faederdx(msg.chat_id_, msg.id_, 1, "❍ انتظر لا يمكن عمل تاك قبل انتهاء 5 دقائق للتاك السابق", 1, 'md') end faederdx1:setex(FAEDER..'taagall'..msg.chat_id_..':'..msg.sender_user_id_,300,true) tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(dx,faeder) tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = faeder.member_count_},function(dxx,faederr) x = 0 tags = 0 local list = faederr.members_ for k, v in pairs(list) do tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data) if x == 5 or x == tags or k == 0 then tags = x + 5 t = "#all "..txt[2].."\n\n" end x = x + 1 taagall = data.first_name_ taagall = taagall:gsub("]","") taagall = taagall:gsub("[[]","") t = t..", "..taagall.."" if x == 5 or x == tags or k == 0 then local Text = t:gsub('#all,','#all\n') sendText(msg.chat_id_,Text,0,'md') end end,nil) end end,nil) end,nil) end
+--     By Developer LAKS     -- 
+if text:match("^@all (.*)$") and is_owner(msg.sender_user_id_, msg.chat_id_) and faeder11(msg) then local txt = {string.match(text, "^(@all) (.*)$")} if faederdx1:get(FAEDER..'bot:lock_geam'..msg.chat_id_) then faederdx(msg.chat_id_, msg.id_, 1, '❍ هذا الامر معطل ', 1, 'md') else if faederdx1:get(FAEDER.."taagall"..msg.chat_id_..':'..msg.sender_user_id_) then return faederdx(msg.chat_id_, msg.id_, 1, "❍ انتظر لا يمكن عمل تاك قبل انتهاء 5 دقائق للتاك السابق", 1, 'md') end faederdx1:setex(FAEDER..'taagall'..msg.chat_id_..':'..msg.sender_user_id_,300,true) tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(dx,faeder) tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = faeder.member_count_},function(dxx,faederr) x = 0 tags = 0 local list = faederr.members_ for k, v in pairs(list) do tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data) if x == 5 or x == tags or k == 0 then tags = x + 5 t = "#all "..txt[2].."\n\n" end x = x + 1 taagall = data.first_name_ taagall = taagall:gsub("]","") taagall = taagall:gsub("[[]","") t = t..", "..taagall.."" if x == 5 or x == tags or k == 0 then local Text = t:gsub('#all,','#all\n') sendText(msg.chat_id_,Text,0,'md') end end,nil) end end,nil) end,nil) end end
+
+local function getChannelMembers(channel_id, offset, filter, limit,cb) 
+tdcli_function ({ 
+ID = "GetChannelMembers",
+channel_id_ = getChatId(channel_id).ID,
+filter_ = {ID = "ChannelMembers" .. filter},
+offset_ = offset,limit_ = limit}, 
+cb, nil) 
+end
+
+if text == "تحديث السورس" and is_leader(msg) then 
+faederdx(msg.chat_id_, msg.id_, 1, '• جاري تحديث السورس الى الاصدار الجديد ', 1, 'md') 
+os.execute('rm -rf اسم ملف السورس.lua') 
+os.execute('wget رابط السورس مع عمل raw ') 
+faederdx(msg.chat_id_, msg.id_, 1, '• تم تحديث السورس اكتشف المميزات الجديده الان ', 1, 'md') 
+dofile('اسم ملف السورس.lua')
+io.popen("rm -rf ~/.telegram-cli/data/audio/*")
+io.popen("rm -rf ~/.telegram-cli/data/document/*")
+io.popen("rm -rf ~/.telegram-cli/data/photo/*")
+io.popen("rm -rf ~/.telegram-cli/data/sticker/*")
+io.popen("rm -rf ~/.telegram-cli/data/temp/*")
+io.popen("rm -rf ~/.telegram-cli/data/thumb/*") 
+io.popen("rm -rf ~/.telegram-cli/data/video/*")
+io.popen("rm -rf ~/.telegram-cli/data/voice/*")
+io.popen("rm -rf ~/.telegram-cli/data/profile_photo/*") 
 end
 
 if text == 'ايدي' or text == 'كشف' then
