@@ -4255,6 +4255,9 @@ end
 end,nil)
 end
 end
+if text == 'ايديي' or 'الايدي' then
+send(msg.chat_id_, msg.id_,'• ايديك > '..msg.sender_user_id_)
+end
 if text == ("المنشئين") and PresidentGroup(msg) then
 local list = redis:smembers(bot_id.."Eqap:Constructor:Group"..msg.chat_id_)
 if #list == 0 then
