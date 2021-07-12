@@ -4375,6 +4375,16 @@ end
 end,nil)
 end
 end
+if text:match("^قول (.*)$") then
+local txt = {string.match(text, "^(قول) (.*)$")}
+send(msg.chat_id_, 0, txt[2], "md")
+local id = msg.id_
+local msgs = {
+[0] = id
+}
+local chat = msg.chat_id_
+delete_msg(chat, msgs)
+end
 if text == 'تفعيل @all' and Admin(msg) then   
 redis:del(bot_id..'Eqap:tagall'..msg.chat_id_) 
 Text = '\n اهلا عزيزي \n تم تفعيل امر @all' 
