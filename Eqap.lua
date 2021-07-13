@@ -3032,24 +3032,52 @@ end
 end,nil)
 end
 
-if text == "تعطيل الابراج" then
-send(msg.chat_id_, msg.id_, '• تم تعطيل الابراج')
-database:set(bot_id.."LeDew:brj_Bots"..msg.chat_id_,"close")
+if database:get(bot_id.."kt:twh:stats"..msg.chat_id_) == "open" then
+if text and text:match("^وضع توحيد (.*)$") and Manager(msg) and database:get(bot_id.."kt:twh:stats"..msg.chat_id_) == "open" then
+local teh = text:match("^وضع توحيد (.*)$")
+send(msg.chat_id_, msg.id_,'•تم تعيين '..teh..' كتوحيد للمجموعه')
+database:set(bot_id.."LeDew:teh"..msg.chat_id_,teh)
 end
-if text == "تفعيل الابراج" then
-send(msg.chat_id_, msg.id_,'• تم تفعيل الابراج')
-database:set(bot_id.."LeDew:brj_Bots"..msg.chat_id_,"open")
+if text and text:match("^تعين عدد الكتم (.*)$") and Manager(msg) and database:get(bot_id.."kt:twh:stats"..msg.chat_id_) == "open" then
+local nump = text:match("^تعين عدد الكتم (.*)$")
+send(msg.chat_id_, msg.id_,'•تم تعين  '..nump..' عدد الكتم')
+database:set(bot_id.."LeDew:nump"..msg.chat_id_,nump)
 end
-if text and text:match("^برج (.*)$") get(bot_id.."LeDew:brj_Bots"..msg.chat_id_) "open" then
-local Textbrj = text:match("^برج (.*)$")
-gk = https.request('https://mode-dev.tk/Api2/Modbr.php?br='..URL.escape(Textbrj)..'')
-br = JSON.decode(gk)
-i = 0
-for k,v in pairs(br.ok) do
-i = i + 1
-t = v.."\n"
+if text == "التوحيد" then
+local s1 = database:get(bot_id.."LeDew:teh"..msg.chat_id_) or "لا يوجد توحيد"
+local s2 = database:get(bot_id.."LeDew:nump"..msg.chat_id_) or 5
+send(msg.chat_id_, msg.id_,'•التوحيد هو '..s1..'\n • عدد الكتم هو : '..s2)
 end
-send(msg.chat_id_, msg.id_, t)
+end
+if text == "تفعيل التوحيد" and Constructor(msg) and database:get(bot_id.."AL:Sre:stats") == "✔" then
+send(msg.chat_id_, msg.id_, '•تم تفعيل التوحيد')
+database:set(bot_id.."kt:twh:stats"..msg.chat_id_,"open")
+end
+if text == "تعطيل التوحيد" and Constructor(msg) and database:get(bot_id.."AL:Sre:stats") == "✔" then
+send(msg.chat_id_, msg.id_, '•تم تعطيل التوحيد')
+database:set(bot_id.."kt:twh:stats"..msg.chat_id_,"close")
+end
+if not Constructor(msg) then
+if database:get(bot_id.."kt:twh:stats"..msg.chat_id_) == "open"  and database:get(bot_id.."LeDew:teh"..msg.chat_id_) then
+id = msg.sender_user_id_
+function keko_tsahke_new(tshake1,tshake2)
+if tshake2 and tshake2.first_name_ then
+if tshake2.first_name_:match("(.*)"..database:get(bot_id.."LeDew:teh"..msg.chat_id_).."(.*)") then
+database:srem(bot_id.."LeDew:Muted:User"..msg.chat_id_, msg.sender_user_id_)
+else
+local tshake_nnn = database:get(bot_id.."LeDew:nump"..msg.chat_id_) or 5
+local tshake_nnn2 = database:get(bot_id.."LeDew:nump22"..msg.chat_id_..msg.sender_user_id_) or 0
+if (tonumber(tshake_nnn2) == tonumber(tshake_nnn) or tonumber(tshake_nnn2) > tonumber(tshake_nnn)) then
+database:sadd(bot_id..'Muted:User'..msg.chat_id_, msg.sender_user_id_)
+else
+database:incrby(bot_id.."LeDew:nump22"..msg.chat_id_..msg.sender_user_id_,1)
+send(msg.chat_id_, msg.id_, "•عزيزي >>["..tshake2.username_.."](https://t.me/"..(tshake2.username_ or "DewSc1")..")\n•عليك وضع التوحيد ⪼ {`"..database:get(bot_id.."LeDew:teh"..msg.chat_id_).."`} بجانب اسمك\n•عدد المحاولات المتبقيه {"..(tonumber(tshake_nnn) - tonumber(tshake_nnn2)).."}")
+end
+end
+end
+end
+bnnaGet(id, keko_tsahke_new)
+end
 end
 if text == 'تعطيل اليوتيوب' and Constructor(msg) then
 send(msg.chat_id_,msg.id_,'\n• تم الامر بنجاح')
