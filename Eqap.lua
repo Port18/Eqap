@@ -3032,15 +3032,15 @@ end
 end,nil)
 end
 
-if text == "تعطيل الابراج" and Manager(msg) then
+if text == "تعطيل الابراج" then
 send(msg.chat_id_, msg.id_, '• تم تعطيل الابراج')
 database:set(bot_id.."LeDew:brj_Bots"..msg.chat_id_,"close")
 end
-if text == "تفعيل الابراج" and Manager(msg) then
+if text == "تفعيل الابراج" then
 send(msg.chat_id_, msg.id_,'• تم تفعيل الابراج')
 database:set(bot_id.."LeDew:brj_Bots"..msg.chat_id_,"open")
 end
-if text and text:match("^برج (.*)$") and database:get(bot_id.."LeDew:brj_Bots"..msg.chat_id_) == "open" then
+if text and text:match("^برج (.*)$") get(bot_id.."LeDew:brj_Bots"..msg.chat_id_) "open" then
 local Textbrj = text:match("^برج (.*)$")
 gk = https.request('https://mode-dev.tk/Api2/Modbr.php?br='..URL.escape(Textbrj)..'')
 br = JSON.decode(gk)
