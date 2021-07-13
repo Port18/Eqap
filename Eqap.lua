@@ -3031,6 +3031,16 @@ send(msg.chat_id_, msg.id_,"*• المعرف غلط لا يمكن استخرا�
 end
 end,nil)
 end
+if text == 'تعطيل اليوتيوب' and Constructor(msg) then
+send(msg.chat_id_,msg.id_,'\n• تم الامر بنجاح')
+database:set(bot_id.."dl_yt_dl"..msg.chat_id_,"close")
+return false
+end
+if text == 'تفعيل اليوتيوب' and Constructor(msg) then
+send(msg.chat_id_,msg.id_,'\n• تم الامر بنجاح')
+database:set(bot_id.."dl_yt_dl"..msg.chat_id_,"open")
+return false
+end
 if text and text:match("^تنزيل (.*) @(.*)") then 
 local Text = {string.match(text, "^(تنزيل) (.*) @(.*)$")}
 local mohammed = Text[2]
