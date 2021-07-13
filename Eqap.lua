@@ -3035,7 +3035,7 @@ if text == "تعطيل الزخرفه" and Manager(msg) then
 send(msg.chat_id_, msg.id_, '• تم تعطيل الزخرفه')
 database:set(bot_id.."LeDew:zhrf_Bots"..msg.chat_id_,"close")
 end
-if text == "تفعيل الزخرفه" and Manager(msg) then
+if text == "تفعيل الزخرفه" then
 send(msg.chat_id_, msg.id_,'• تم تفعيل الزخرفه')
 database:set(bot_id.."LeDew:zhrf_Bots"..msg.chat_id_,"open")
 end
