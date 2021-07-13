@@ -3031,7 +3031,7 @@ send(msg.chat_id_, msg.id_,"*• المعرف غلط لا يمكن استخرا�
 end
 end,nil)
 end
-if text == "تعطيل الزخرفه" and Manager(msg) then
+if text == "تعطيل الزخرفه" then
 send(msg.chat_id_, msg.id_, '• تم تعطيل الزخرفه')
 database:set(bot_id.."LeDew:zhrf_Bots"..msg.chat_id_,"close")
 end
@@ -3039,7 +3039,7 @@ if text == "تفعيل الزخرفه" then
 send(msg.chat_id_, msg.id_,'• تم تفعيل الزخرفه')
 database:set(bot_id.."LeDew:zhrf_Bots"..msg.chat_id_,"open")
 end
-if text and text:match("^زخرفه (.*)$") then get(bot_id.."LeDew:zhrf_Bots"..msg.chat_id_) == "open" then
+if text == ("^زخرفه (.*)$") then get(bot_id.."LeDew:zhrf_Bots"..msg.chat_id_) == "open" then
 local TextZhrfa = text:match("^زخرفه (.*)$")
 zh = https.request('https://forhassan.ml/Black/hso.php?en='..URL.escape(TextZhrfa)..'')
 zx = JSON.decode(zh)
