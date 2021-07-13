@@ -4258,7 +4258,16 @@ end
 end
 
 if text == 'ايديي' then
-send(msg.chat_id_, msg.id_,'• ايديك > '..msg.sender_user_id_)
+send(msg.chat_id_, msg.id_,'• ID - '..msg.sender_user_id_)
+end
+
+if text:match("^بايو$")  and faeder11(msg) then
+function get_username(extra,result,success)
+text = '❍ البايو حقك ، {User}'
+local text = text:gsub('{User}',('@'..result.username_ or ''))
+faederdx(msg.chat_id_, msg.id_, 1, text, 1, 'html')
+end
+getUser(msg.sender_user_id_,get_username)
 end
 
 if text == ("المنشئين") and PresidentGroup(msg) then
