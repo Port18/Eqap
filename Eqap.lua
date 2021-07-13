@@ -3041,6 +3041,36 @@ send(msg.chat_id_,msg.id_,'\n• تم الامر بنجاح')
 database:set(bot_id.."dl_yt_dl"..msg.chat_id_,"open")
 return false
 end
+if text and text:match('^بصمه (.*)$') then
+local Ttext = text:match('^بصمه (.*)$')
+local InfoSearch = https.request('https://mode-dev.tk/tg/search.php?search='..URL.escape(Ttext))
+local JsonSearch = JSON.decode(InfoSearch)
+for k,vv in pairs(JsonSearch.results) do
+if k == 1 then
+local GetStart = io.popen('downloadsh '..vv.url):read('*all')
+if GetStart and GetStart:match('(.*)oksend(.*)') then
+print('download Mp3 done ...\nName : '..vv.title..'\nIdLink : '..vv.url)
+sendVoice(msg.chat_id_, msg.id_, 0, 1, nil,'./'..vv.url..'.mp3',vv.title,'- '..vv.title..'\n- @iiDark','@iiDark')
+os.execute('rm -rf ./'..vv.url..'.mp3')
+end
+end
+end
+end
+if text and text:match('^صوت (.*)$') then
+local Ttext = text:match('^صوت (.*)$')
+local InfoSearch = https.request('https://mode-dev.tk/tg/search.php?search='..URL.escape(Ttext))
+local JsonSearch = JSON.decode(InfoSearch)
+for k,vv in pairs(JsonSearch.results) do
+if k == 1 then
+local GetStart = io.popen('downloadsh '..vv.url):read('*all')
+if GetStart and GetStart:match('(.*)oksend(.*)') then
+print('download Mp3 done ...\nName : '..vv.title..'\nIdLink : '..vv.url)
+sendAudio(msg.chat_id_,msg.id_,'./'..vv.url..'.mp3',vv.title,'- '..vv.title..'\n- @BADBOY_HERE','@BADBOY_HERE')
+os.execute('rm -rf ./'..vv.url..'.mp3')
+end
+end
+end
+end
 if text and text:match("^تنزيل (.*) @(.*)") then 
 local Text = {string.match(text, "^(تنزيل) (.*) @(.*)$")}
 local mohammed = Text[2]
