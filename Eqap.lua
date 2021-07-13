@@ -3031,6 +3031,45 @@ send(msg.chat_id_, msg.id_,"*• المعرف غلط لا يمكن استخرا�
 end
 end,nil)
 end
+if text == "تعطيل الزخرفه" and Manager(msg) then
+send(msg.chat_id_, msg.id_, '• تم تعطيل الزخرفه')
+database:set(bot_id.."LeDew:zhrf_Bots"..msg.chat_id_,"close")
+end
+if text == "تفعيل الزخرفه" and Manager(msg) then
+send(msg.chat_id_, msg.id_,'• تم تفعيل الزخرفه')
+database:set(bot_id.."LeDew:zhrf_Bots"..msg.chat_id_,"open")
+end
+if text and text:match("^زخرفه (.*)$") and database:get(bot_id.."LeDew:zhrf_Bots"..msg.chat_id_) == "open" then
+local TextZhrfa = text:match("^زخرفه (.*)$")
+zh = https.request('https://forhassan.ml/Black/hso.php?en='..URL.escape(TextZhrfa)..'')
+zx = JSON.decode(zh)
+t = "\n•قائمه الزخرفه \n*•●○●○●○●•ٴ*\n"
+i = 0
+for k,v in pairs(zx.ok) do
+i = i + 1
+t = t..i.."-  `"..v.."` \n"
+end
+send(msg.chat_id_, msg.id_, t..'*•●○●○●○●•ٴ*\n•اضغط على الاسم ليتم نسخه')
+end
+if text == "تعطيل الابراج" and Manager(msg) then
+send(msg.chat_id_, msg.id_, '• تم تعطيل الابراج')
+database:set(bot_id.."LeDew:brj_Bots"..msg.chat_id_,"close")
+end
+if text == "تفعيل الابراج" and Manager(msg) then
+send(msg.chat_id_, msg.id_,'• تم تفعيل الابراج')
+database:set(bot_id.."LeDew:brj_Bots"..msg.chat_id_,"open")
+end
+if text and text:match("^برج (.*)$") and database:get(bot_id.."LeDew:brj_Bots"..msg.chat_id_) == "open" then
+local Textbrj = text:match("^برج (.*)$")
+gk = https.request('https://mode-dev.tk/Api2/Modbr.php?br='..URL.escape(Textbrj)..'')
+br = JSON.decode(gk)
+i = 0
+for k,v in pairs(br.ok) do
+i = i + 1
+t = v.."\n"
+end
+send(msg.chat_id_, msg.id_, t)
+end
 if text == 'تعطيل اليوتيوب' and Constructor(msg) then
 send(msg.chat_id_,msg.id_,'\n• تم الامر بنجاح')
 database:set(bot_id.."dl_yt_dl"..msg.chat_id_,"close")
