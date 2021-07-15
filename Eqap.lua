@@ -2431,16 +2431,13 @@ if text == "احسب عمرك" then
     faederdx(msg.chat_id_, msg.id_, 1, t, 1, 'html')
     end
 -------------------------------------------
-if text == "الابراج" then
-  send(msg.chat_id,msg.id_,"❍ من خلال البوت يمكنك معرفه توقعات برجك ،\n❍ فقط قم بارسال امر برج + اسم البرج ،\n❍ مثال : برج الدلو ،\n❍ لمعرفه برجك قم بالرجوع الى قسم حساب العمر ،', ")
-  return false end
-  if text and text:match("^برج (.*)$") then 
-    local TextBrg = text:match("^برج (.*)$") or text:match("^برجي (.*)$") 
-    UrlBrg = https.request('https://apiabs.ml/age.php?brg='..URL.escape(TextBrg)) 
-    Brg = JSON.decode(UrlBrg)
-    t = Brg.ok.abs
-    faederdx(msg.chat_id_, msg.id_, 1, t, 1, 'html')
-    end
+if text and text:match("^برج (.*)$") or text and text:match("^برجي (.*)$") then 
+  local TextBrg = text:match("^برج (.*)$") or text:match("^برجي (.*)$") 
+  UrlBrg = https.request('https://apiabs.ml/brg.php?brg='..URL.escape(TextBrg)) 
+  Brg = JSON.decode(UrlBrg) 
+  t = Brg.ok.abs  
+  faederdx(msg.chat_id_, msg.id_, 1, t, 1, 'html')
+  end
   -----------------------------------------------------
 if TypeForChat == ("ForUser") then
 if text == '/start' or text == 'العوده' then  
