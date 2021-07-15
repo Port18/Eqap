@@ -2355,14 +2355,35 @@ end
 ---------------------------------------------------
 if TypeForChat == ("ForUser") then
 if text == '/play' or text == 'الاوامر الخدميه' then
-  local Text_keyboard = '• يمكنك ايضا استخدام الاوامر الخدميه \n❍ اليك ازرار الاوامر الخدميه اسفل الرساله\n                  ───────────────\n                               '
+  local Text_keyboard = '• يمكنك ايضا استخدام الاوامر الخدميه \n• اليك ازرار الاوامر الخدميه اسفل الرساله\n                  ───────────────\n                               '
 local List_keyboard = {
-{'افتارات عيال','افتارات بنات'},
+  {'زخرفه','احسب عمرك'},
+  {'الابراج','نسبه الحب'},
+  {'ضحكني'},
+  {'افتارات عيال'},
+  {'الالعاب'},
+  {'تخمين','كت تويت'},
+  {'ترتيب','سمايلات'},
+  {'حزوره','المعاني'},
+  {'افتارات بنات'},
+  {'العكس','المحيبس'},
+  {'امثله','المختلف'},
+  {'انقليزي','رياضيات'},
+  {'افتارات انمي'},
 }
 send_inline_keyboard(msg.chat_id_,Text_keyboard,List_keyboard)
 end
 end
 end
+
+if text == 'احسب عمرك' then send(msg.chat_id_,msg.id_, "• من خلال البوت يمكنك حساب عمرك ،\n• فقط قم بارسال امر احسب + مواليدك الى البوت ،\n• بالتنسيق التالي مثال : احسب 1996/1/17', 1") end
+if text and text:match("^احسب (.*)$") and faeder11(msg) or text and text:match("^عمري (.*)$") and faeder11(msg) then 
+  local TextAge = text:match("^احسب (.*)$") or text:match("^عمري (.*)$") 
+  UrlAge = https.request('https://apiabs.ml/age.php?age='..URL.escape(TextAge)) 
+  Age = JSON.decode(UrlAge)
+  t = Age.ok.abs
+  send(msg.chat_id_,msg.id_,)
+  end
 -------------------------------------------
 if TypeForChat == ("ForUser") then
 if text == '/start' or text == 'العوده' then  
