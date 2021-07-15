@@ -2429,7 +2429,7 @@ if text == "احسب عمرك" then
     faederdx(msg.chat_id_, msg.id_, 1, t, 1, 'html')
     end
 -------------------------------------------
-if text == "نسبه الحب" redis:get(FAEDER..'nsba'..msg.chat_id_..msg.sender_user_id_) == 'Check' then
+if text == "نسبه الحب" and redis:get(FAEDER..'nsba'..msg.chat_id_..msg.sender_user_id_) == 'Check' then
   faeder = '❍ ارسل اسمك واسم الشخص الاخر ،\n❍ مثال :- لاكس ولاكسه ، '
   faederdx(msg.chat_id_, msg.id_, 1,faeder, 1, 'md')
   end
