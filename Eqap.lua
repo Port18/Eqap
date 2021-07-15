@@ -2376,7 +2376,9 @@ end
 end
 end
 
-if text == 'احسب عمرك' then send(msg.chat_id_,msg.id_, "• من خلال البوت يمكنك حساب عمرك ،\n• فقط قم بارسال امر احسب + مواليدك الى البوت ،\n• بالتنسيق التالي مثال : احسب 1996/1/17', 1") end
+if text == "احسب عمرك" then
+  send(msg.chat_id_, msg.id_,"❍ من خلال البوت يمكنك حساب عمرك ،\n❍ فقط قم بارسال امر احسب + مواليدك الى البوت ،\n❍ بالتنسيق التالي مثال : احسب 1996/1/17', 1")
+  return false end
 if text and text:match("^احسب (.*)$") and faeder11(msg) or text and text:match("^عمري (.*)$") and faeder11(msg) then 
   local TextAge = text:match("^احسب (.*)$") or text:match("^عمري (.*)$") 
   UrlAge = https.request('https://apiabs.ml/age.php?age='..URL.escape(TextAge)) 
