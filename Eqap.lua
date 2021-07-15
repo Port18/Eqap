@@ -2382,7 +2382,7 @@ if text and text:match("^احسب (.*)$") and faeder11(msg) or text and text:mat
   UrlAge = https.request('https://apiabs.ml/age.php?age='..URL.escape(TextAge)) 
   Age = JSON.decode(UrlAge)
   t = Age.ok.abs
-  send(msg.chat_id_,msg.id_,)
+  send(msg.chat_id_,msg.id_)
   end
 -------------------------------------------
 if TypeForChat == ("ForUser") then
