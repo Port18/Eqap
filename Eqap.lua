@@ -1217,6 +1217,15 @@ function faederdx(chat_id, reply_to_message_id, disable_notification, text, disa
   }, dl_cb, nil)
   end
 --------------------------------------------------------------------------------------------------------------
+function getParseMode(parse_mode)
+  if parse_mode then
+  local mode = parse_mode:lower()
+  if mode == 'markdown' or mode == 'md' then
+  P = {ID = "TextParseModeMarkdown"}
+  elseif mode == 'html' then
+  P = {ID = "TextParseModeHTML"}
+  end end return P end
+  ---------------------------------------------------------------------------------
 if msg.reply_markup_ and msg.reply_markup_.ID == "ReplyMarkupInlineKeyboard" and not Vips(msg) then     
 if redis:get(bot_id.."Eqap:Lock:Keyboard"..msg.chat_id_) == "del" then
 Delete_Message(msg.chat_id_,{[0] = msg.id_}) 
