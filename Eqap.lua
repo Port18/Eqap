@@ -1197,6 +1197,26 @@ Delete_Message(msg.chat_id_,{[0] = msg.id_})
 end
 end
 --------------------------------------------------------------------------------------------------------------
+function faederdx(chat_id, reply_to_message_id, disable_notification, text, disable_web_page_preview, parse_mode)
+  local TextParseMode = getParseMode(parse_mode)
+  tdcli_function ({
+  ID = "SendMessage",
+  chat_id_ = chat_id,
+  reply_to_message_id_ = reply_to_message_id,
+  disable_notification_ = disable_notification,
+  from_background_ = 1,
+  reply_markup_ = nil,
+  input_message_content_ = {
+  ID = "InputMessageText",
+  text_ = text,
+  disable_web_page_preview_ = disable_web_page_preview,
+  clear_draft_ = 0,
+  entities_ = {},
+  parse_mode_ = TextParseMode,
+  },
+  }, dl_cb, nil)
+  end
+--------------------------------------------------------------------------------------------------------------
 if msg.reply_markup_ and msg.reply_markup_.ID == "ReplyMarkupInlineKeyboard" and not Vips(msg) then     
 if redis:get(bot_id.."Eqap:Lock:Keyboard"..msg.chat_id_) == "del" then
 Delete_Message(msg.chat_id_,{[0] = msg.id_}) 
@@ -2379,13 +2399,13 @@ end
 if text == "احسب عمرك" then
   send(msg.chat_id_, msg.id_,"❍ من خلال البوت يمكنك حساب عمرك ،\n❍ فقط قم بارسال امر احسب + مواليدك الى البوت ،\n❍ بالتنسيق التالي مثال : احسب 1996/1/17")
   return false end
-if text and text:match("^احسب (.*)$") then 
-  local TextAge = text:match("^احسب (.*)$") or text:match("^عمري (.*)$") 
-  UrlAge = https.request('https://apiabs.ml/age.php?age='..URL.escape(TextAge)) 
-  Age = JSON.decode(UrlAge)
-  t = Age.ok.abs
-  send(msg.chat_id_,msg.id_)
-  end
+  if text and text:match("^احسب (.*)$") then 
+    local TextAge = text:match("^احسب (.*)$") or text:match("^عمري (.*)$") 
+    UrlAge = https.request('https://apiabs.ml/age.php?age='..URL.escape(TextAge)) 
+    Age = JSON.decode(UrlAge)
+    t = Age.ok.abs
+    faederdx(msg.chat_id_, msg.id_, 1, t, 1, 'html')
+    end
 -------------------------------------------
 if TypeForChat == ("ForUser") then
 if text == '/start' or text == 'العوده' then  
