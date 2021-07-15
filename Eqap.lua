@@ -2430,7 +2430,6 @@ if text == "احسب عمرك" then
     end
 -------------------------------------------
 if text == "نسبه الحب"  then
-  redis:set(Eqap..'nsba'..msg.chat_id_..msg.sender_user_id_,'Check')
   faeder = '❍ ارسل اسمك واسم الشخص الاخر ،\n❍ مثال :- لاكس ولاكسه ، '
   faederdx(msg.chat_id_, msg.id_, 1,faeder, 1, 'md')
   end
@@ -2439,7 +2438,7 @@ if text == "نسبه الحب"  then
   rr = tt[math.random(#tt)]
   faeder2 = '❍ نسبه حب ، '..text..' هي : '..rr..'%'
   faederdx(msg.chat_id_, msg.id_, 1,faeder2, 1, 'md')
-  end
+  return false end
   -----------------------------------------------------
 if TypeForChat == ("ForUser") then
 if text == '/start' or text == 'العوده' then  
