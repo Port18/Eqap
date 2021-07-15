@@ -2438,7 +2438,7 @@ if text == "نسبه الحب" and redis:get(FAEDER..'nsba'..msg.chat_id_..msg.s
   rr = tt[math.random(#tt)]
   faeder2 = '❍ نسبه حب ، '..text..' هي : '..rr..'%'
   faederdx(msg.chat_id_, msg.id_, 1,faeder2, 1, 'md')
-  faederdx1:del(FAEDER..'nsba'..msg.chat_id_..msg.sender_user_id_)
+  redis:del(FAEDER..'nsba'..msg.chat_id_..msg.sender_user_id_)
   end
   -----------------------------------------------------
 if TypeForChat == ("ForUser") then
