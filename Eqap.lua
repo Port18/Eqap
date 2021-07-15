@@ -9103,7 +9103,6 @@ send(msg.chat_id_, msg.id_,Text)
 end 
 end
 end
-end
 ------------------------------------------------------------------------------------------------------------
 
 function tdcli_update_callback(data)
