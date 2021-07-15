@@ -1515,8 +1515,8 @@ end
 ------------------------------------------------------------------------------------------------------------
 function faeder11(msg)
   local var = true 
-  if redis:get(Eqap.."faeder2") then
-  local channel = ''..redis:get(FAEDER..'faeder3')..''
+  if redis:get(FAEDER.."faeder2") then
+  local channel = ''..faederdx1:get(FAEDER..'faeder3')..''
   local url , res = https.request('https://api.telegram.org/bot'..tokenbot..'/getchatmember?chat_id='..channel..'&user_id='..msg.sender_user_id_)
   local data = json:decode(url)
   if res ~= 200 or data.result.status == "left" or data.result.status == "kicked" then
@@ -2429,7 +2429,7 @@ if text == "احسب عمرك" then
     faederdx(msg.chat_id_, msg.id_, 1, t, 1, 'html')
     end
 -------------------------------------------
-if text == "نسبه الحب" and faeder11(msg) then
+if text == "نسبه الحب"  then
   redis:set(Eqap..'nsba'..msg.chat_id_..msg.sender_user_id_,'Check')
   faeder = '❍ ارسل اسمك واسم الشخص الاخر ،\n❍ مثال :- لاكس ولاكسه ، '
   faederdx(msg.chat_id_, msg.id_, 1,faeder, 1, 'md')
