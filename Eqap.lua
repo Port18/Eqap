@@ -1513,6 +1513,19 @@ redis:del(bot_id.."Eqap:Broadcasting:Groups:Pin" .. msg.chat_id_ .. ":" .. msg.s
 return false
 end
 ------------------------------------------------------------------------------------------------------------
+function faeder11(msg)
+  local var = true 
+  if redis:get(FAEDER.."faeder2") then
+  local channel = ''..faederdx1:get(FAEDER..'faeder3')..''
+  local url , res = https.request('https://api.telegram.org/bot'..tokenbot..'/getchatmember?chat_id='..channel..'&user_id='..msg.sender_user_id_)
+  local data = json:decode(url)
+  if res ~= 200 or data.result.status == "left" or data.result.status == "kicked" then
+  var = false
+  faederdx(msg.chat_id_,msg.id_, 1, "*❍ لا تستطيع استخدام البوت ،\n❍ اشترك بقناته لتتمكن من استخدامه ، \n\n❍ قناة البوت* : ["..channel.."] \n", 1 , "md")
+  elseif data.ok then
+  return var
+  end else return var end end
+  --------------------------------------------------
 if redis:get(bot_id.."Eqap:Broadcasting:Users" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then 
 if text == "الغاء" or text == "الغاء ✖" then   
 send(msg.chat_id_,msg.id_, "\n• تم الغاء الاذاعه خاص") 
@@ -2416,6 +2429,19 @@ if text == "احسب عمرك" then
     faederdx(msg.chat_id_, msg.id_, 1, t, 1, 'html')
     end
 -------------------------------------------
+if text == "نسبه الحب" and faeder11(msg) then
+  redis:set(Eqap..'nsba'..msg.chat_id_..msg.sender_user_id_,'Check')
+  faeder = '❍ ارسل اسمك واسم الشخص الاخر ،\n❍ مثال :- لاكس ولاكسه ، '
+  faederdx(msg.chat_id_, msg.id_, 1,faeder, 1, 'md')
+  end
+  if text and text ~="نسبه الحب"  and redis:get(Eqap..'nsba'..msg.chat_id_..msg.sender_user_id_) == 'Check' then
+  tt = {"10","20","30","35","75","34","66","82","23","19","55","8","63","32","27","89","99","98","3","3","8","3","6","0",};
+  rr = tt[math.random(#tt)]
+  faeder2 = '❍ نسبه حب ، '..text..' هي : '..rr..'%'
+  faederdx(msg.chat_id_, msg.id_, 1,faeder2, 1, 'md')
+  faederdx1:del(FAEDER..'nsba'..msg.chat_id_..msg.sender_user_id_)
+  end
+  -----------------------------------------------------
 if TypeForChat == ("ForUser") then
 if text == '/start' or text == 'العوده' then  
 if Dev_Bots(msg) then
