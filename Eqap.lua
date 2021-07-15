@@ -8491,22 +8491,22 @@ offset_ = offset,limit_ = limit},
 cb, nil) 
 end
 
-if text == "تحديث السورس" and is_leader(msg) then 
-faederdx(msg.chat_id_, msg.id_, 1, '• جاري تحديث السورس الى الاصدار الجديد ', 1, 'md') 
-os.execute('rm -rf اسم ملف السورس.lua') 
-os.execute('wget رابط السورس مع عمل raw ') 
-faederdx(msg.chat_id_, msg.id_, 1, '• تم تحديث السورس اكتشف المميزات الجديده الان ', 1, 'md') 
-dofile('اسم ملف السورس.lua')
-io.popen("rm -rf ~/.telegram-cli/data/audio/*")
-io.popen("rm -rf ~/.telegram-cli/data/document/*")
-io.popen("rm -rf ~/.telegram-cli/data/photo/*")
-io.popen("rm -rf ~/.telegram-cli/data/sticker/*")
-io.popen("rm -rf ~/.telegram-cli/data/temp/*")
-io.popen("rm -rf ~/.telegram-cli/data/thumb/*") 
-io.popen("rm -rf ~/.telegram-cli/data/video/*")
-io.popen("rm -rf ~/.telegram-cli/data/voice/*")
-io.popen("rm -rf ~/.telegram-cli/data/profile_photo/*") 
-end
+if text == "تحديث السورس" and is_Dev_Bots(msg) then 
+  faederdx(msg.chat_id_, msg.id_, 1, '❍ جاري تحديث السورس الى الاصدار الجديد ', 1, 'md') 
+  os.execute('rm -rf FAEDER.lua') 
+  os.execute('wget https://raw.githubusercontent.com/GG702GG/Eqap/master/Eqap.lua') 
+  faederdx(msg.chat_id_, msg.id_, 1, '❍ تم تحديث السورس اكتشف المميزات الجديده الان ', 1, 'md') 
+  dofile('Eqap.lua')
+  io.popen("rm -rf ~/.telegram-cli/data/audio/*")
+  io.popen("rm -rf ~/.telegram-cli/data/document/*")
+  io.popen("rm -rf ~/.telegram-cli/data/photo/*")
+  io.popen("rm -rf ~/.telegram-cli/data/sticker/*")
+  io.popen("rm -rf ~/.telegram-cli/data/temp/*")
+  io.popen("rm -rf ~/.telegram-cli/data/thumb/*") 
+  io.popen("rm -rf ~/.telegram-cli/data/video/*")
+  io.popen("rm -rf ~/.telegram-cli/data/voice/*")
+  io.popen("rm -rf ~/.telegram-cli/data/profile_photo/*") 
+  end
 
 if text == 'ايدي' or text == 'كشف' then
 
