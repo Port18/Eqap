@@ -4210,6 +4210,27 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^تنزيل ادمن @(.*)$") }, FunctionStatus, nil)
 end
 
+if text:match("^السورس$") or text:match("^سورس$") and faeder11(msg) then 
+local inline = {
+{{text="- 𝘊𝘩𝘢𝘯𝘯𝘦𝘭 𝘚𝘰𝘶𝘳𝘤𝘦 .",url="https://t.me/badboy_here"}},
+}
+send_inline(msg.chat_id_,'- 𝘋𝘦𝘷 𝘴𝘰𝘶𝘳𝘤𝘦 𝘚𝘶𝘬𝘢𝘪𝘳𝘰 (https://t.me/L7_L1) .\n- 𝘋𝘦𝘷 𝘴𝘰𝘶𝘳𝘤𝘦 𝘓𝘢𝘬𝘴𝘪𝘴 . (https://t.me/bzzzw) .',nil,inline) 
+return false 
+end
+
+function faeder11(msg)
+local var = true 
+if faederdx1:get(FAEDER.."faeder2") then
+local channel = ''..faederdx1:get(FAEDER..'faeder3')..''
+local url , res = https.request('https://api.telegram.org/bot'..tokenbot..'/getchatmember?chat_id='..channel..'&user_id='..msg.sender_user_id_)
+local data = json:decode(url)
+if res ~= 200 or data.result.status == "left" or data.result.status == "kicked" then
+var = false
+faederdx(msg.chat_id_,msg.id_, 1, "*❍ لا تستطيع استخدام البوت ،\n❍ اشترك بقناته لتتمكن من استخدامه ، \n\n❍ قناة البوت* : ["..channel.."] \n", 1 , "md")
+elseif data.ok then
+return var
+end else return var end end
+
 if text and text:match("^رفع مميز @(.*)$") and Admin(msg) then
 if not redis:get(bot_id..'Eqap:Cheking:Seted'..msg.chat_id_) and not Owner(msg) then
 send(msg.chat_id_, msg.id_,' تستطيع رفع احد وذالك لان تم تعطيل الرفع من قبل المنشئين')
