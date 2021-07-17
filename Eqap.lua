@@ -7916,14 +7916,15 @@ redis:set(bot_id.."makal:bots:set"..msg.sender_user_id_..":"..msg.chat_id_,"true
 redis:sadd(bot_id.."makal:bots", text)
 return false end
 end
-if text == 'السورس' or text == 'سورس' then
-Text = [[
-▻ [𝐿𝐼𝑆𝐴 𝑆𝑂𝑈𝑅𝐶𝐸](t.me/L6_L5) .
-▻ [𝐷𝐸𝑉𝐸𝐿𝑂𝑃𝐸𝑅 𝑆𝑈𝐾𝐴𝐼𝑅𝑂](t.me/L7_L1) .
-]]
-send(msg.chat_id_, msg.id_,Text)
-return false
+
+if text:match("^السورس$") or text:match("^سورس$") then 
+local inline = {
+{{text="- 𝘊𝘩𝘢𝘯𝘯𝘦𝘭 𝘚𝘰𝘶𝘳𝘤𝘦 .",url="https://t.me/badboy_here"}},
+}
+send_inline(msg.chat_id_,'- 𝘋𝘦𝘷 𝘴𝘰𝘶𝘳𝘤𝘦 𝘚𝘶𝘬𝘢𝘪𝘳𝘰 (https://t.me/L7_L1) .\n- 𝘋𝘦𝘷 𝘴𝘰𝘶𝘳𝘤𝘦 𝘓𝘢𝘬𝘴𝘪𝘴 . (https://t.me/bzzzw) .',nil,inline) 
+return false 
 end
+
 if text == 'مقالات' then
 
 local list = redis:smembers(bot_id.."makal:bots")
