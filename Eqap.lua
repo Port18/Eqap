@@ -2828,12 +2828,13 @@ end
 end,nil)
 end
 end
-if text:match("^السورس$") or text:match("^سورس$") then 
-local inline = {
-{{text="- 𝘊𝘩𝘢𝘯𝘯𝘦𝘭 𝘚𝘰𝘶𝘳𝘤𝘦 .",url="https://t.me/badboy_here"}},
-}
-send_inline(msg.chat_id_,'- 𝘋𝘦𝘷 𝘴𝘰𝘶𝘳𝘤𝘦 𝘚𝘶𝘬𝘢𝘪𝘳𝘰 (https://t.me/L7_L1) .\n- 𝘋𝘦𝘷 𝘴𝘰𝘶𝘳𝘤𝘦 𝘓𝘢𝘬𝘴𝘪𝘴 . (https://t.me/bzzzw) .',nil,inline) 
-return false 
+if text == 'السورس' or text == 'سورس' then
+Text = [
+- [LISA source (http://t.me/L6_L5) .
+- dev (http://t.me/L7_L1) .
+]]
+send(msg.chat_id_, msg.id_,Text)
+return false
 end
 
 if text == ("قائمة T") and Dev_Bots(msg) then
@@ -7917,12 +7918,13 @@ redis:sadd(bot_id.."makal:bots", text)
 return false end
 end
 
-if text:match("^السورس$") or text:match("^سورس$") then 
-local inline = {
-{{text="- 𝘊𝘩𝘢𝘯𝘯𝘦𝘭 𝘚𝘰𝘶𝘳𝘤𝘦 .",url="https://t.me/badboy_here"}},
-}
-send_inline(msg.chat_id_,'- 𝘋𝘦𝘷 𝘴𝘰𝘶𝘳𝘤𝘦 𝘚𝘶𝘬𝘢𝘪𝘳𝘰 (https://t.me/L7_L1) .\n- 𝘋𝘦𝘷 𝘴𝘰𝘶𝘳𝘤𝘦 𝘓𝘢𝘬𝘴𝘪𝘴 . (https://t.me/bzzzw) .',nil,inline) 
-return false 
+if text == 'السورس' or text == 'سورس' then
+Text = [
+- [LISA source (http://t.me/L6_L5) .
+- dev (http://t.me/L7_L1) .
+]]
+send(msg.chat_id_, msg.id_,Text)
+return false
 end
 
 if text == 'مقالات' then
