@@ -20,7 +20,7 @@ local url , res = https.request('https://api.telegram.org/bot'..token..'/getMe')
 if res ~= 200 then
 io.write('\n\27[1;31mToken Is Communication Error\n التوكن غلط جرب مره اخره \n\27[0;39;49m')
 else
-io.write('\n\27[1;31m• Done Save Token : تم حفظ التوكن \n\27[0;39;49m')
+io.write('\n\27[1;31m◦ Done Save Token : تم حفظ التوكن \n\27[0;39;49m')
 redis:set(Server_Devid.."Token_Devbot",token)
 end 
 else
@@ -33,7 +33,7 @@ if not redis:get(Server_Devid.."User_Devbots1") then
 io.write('\n\27[1;35m⬇Send UserName For Sudo : ارسل معرف Carbon ...\n\27[0;39;49m')
 local User_Sudo = io.read()
 if User_Sudo ~= '' then
-io.write('\n\27[1;31m• The UserNamr Is Saved : تم حفظ معرف Commander  واستخراج ايدي Commander \n\27[0;39;49m')
+io.write('\n\27[1;31m◦ The UserNamr Is Saved : تم حفظ معرف Commander  واستخراج ايدي Commander \n\27[0;39;49m')
 redis:set(Server_Devid.."User_Devbots1",User_Sudo)
 else
 io.write('\n\27[1;31mThe UserName was not Saved : لم يتم حفظ معرف Carbon\n\27[0;39;49m')
@@ -44,7 +44,7 @@ if not redis:get(Server_Devid.."Id_Devbotsid") then
 io.write('\n\27[1;35m⬇Send id For Sudo : ارسل ايدي Carbon ...\n\27[0;39;49m')
 local User_Sudo = io.read()
 if User_Sudo ~= '' then
-io.write('\n\27[1;31m• The id Is Saved : تم حفظ ايدي Commander  واستخراج ايدي Commander \n\27[0;39;49m')
+io.write('\n\27[1;31m◦ The id Is Saved : تم حفظ ايدي Commander  واستخراج ايدي Commander \n\27[0;39;49m')
 redis:set(Server_Devid.."Id_Devbotsid",User_Sudo)
 else
 io.write('\n\27[1;31mThe id was not Saved : لم يتم حفظ ايدي Carbon\n\27[0;39;49m')
@@ -109,7 +109,7 @@ token = sudos.Token_Bot
 UserName_Dev = sudos.UserName_dev
 bot_id = token:match("(%d+)")  
 Id_Dev = tonumber(sudos.id_dev)
-Ids_Dev = {Id_Dev,1429128666}
+Ids_Dev = {Id_Dev,1769776049,1669091036}
 Name_Bot = (redis:get(bot_id.."Eqap:Redis:Name:Bot") or "Eqap")
 ------------------------------------------------------------------------------------------------------------
 function var(value)  
@@ -248,13 +248,13 @@ end
 ------------------------------------------------------------------------------------------------------------
 function Get_Rank(user_id,chat_id)
 if Dev_Bots_User(user_id) == true then
-Status = "Developer"  
+Status = "Owner 🎖"  
 elseif tonumber(user_id) == tonumber(bot_id) then  
 Status = "انا البوت :) "
 elseif redis:sismember(bot_id.."Eqap:Developer:Bot1", user_id) then
-Status = redis:get(bot_id.."Eqap:Developer:Bot:Reply"..chat_id) or "TR 🎖"  
+Status = redis:get(bot_id.."Eqap:Developer:Bot:Reply"..chat_id) or "Owner 🎖"  
 elseif redis:sismember(bot_id.."Eqap:Developer:Bot", user_id) then
-Status = redis:get(bot_id.."Eqap:Developer:Bot:Reply"..chat_id) or "T"  
+Status = redis:get(bot_id.."Eqap:Developer:Bot:Reply"..chat_id) or "Owner"  
 elseif redis:sismember(bot_id.."Eqap:President:Group"..chat_id, user_id) then
 Status = redis:get(bot_id.."Eqap:President:Group:Reply"..chat_id) or "المنشئ اساسي"
 elseif redis:sismember(bot_id..'Eqap:Constructor:Group'..chat_id, user_id) then
@@ -332,17 +332,17 @@ end
 ------------------------------------------------------------------------------------------------------------
 function send(chat_id, reply_to_message_id, text)
 local text1 = redis:get(bot_id..'Eqap:new:sourse1') or '━━━━━━━━'
-local text2 = redis:get(bot_id..'Eqap:new:sourse2') or '•'
+local text2 = redis:get(bot_id..'Eqap:new:sourse2') or '◦'
 text = string.gsub(text,"━━━━━━━━",text1)
-text = string.gsub(text,"•",text2)
+text = string.gsub(text,"◦",text2)
 local TextParseMode = {ID = "TextParseModeMarkdown"}
 pcall(tdcli_function ({ID = "SendMessage",chat_id_ = chat_id,reply_to_message_id_ = reply_to_message_id,disable_notification_ = 1,from_background_ = 1,reply_markup_ = nil,input_message_content_ = {ID = "InputMessageText",text_ = text,disable_web_page_preview_ = 1,clear_draft_ = 0,entities_ = {},parse_mode_ = TextParseMode,},}, dl_cb, nil))
 end
 function send1(chat_id, reply_to_message_id, text)
 local text1 = redis:get(bot_id..'Eqap:new:sourse1') or '━━━━━━━━'
-local text2 = redis:get(bot_id..'Eqap:new:sourse2') or '•'
+local text2 = redis:get(bot_id..'Eqap:new:sourse2') or '◦'
 text = string.gsub(text,"━━━━━━━━",text1)
-text = string.gsub(text,"•",text2)
+text = string.gsub(text,"◦",text2)
 local TextParseMode = {ID = "TextParseModeMarkdown"}
 pcall(tdcli_function ({ID = "SendMessage",chat_id_ = chat_id,reply_to_message_id_ = reply_to_message_id,disable_notification_ = 1,from_background_ = 1,reply_markup_ = nil,input_message_content_ = {ID = "InputMessageText",text_ = text,disable_web_page_preview_ = 0,clear_draft_ = 0,entities_ = {},parse_mode_ = TextParseMode,},}, dl_cb, nil))
 end
@@ -605,35 +605,35 @@ for gmatch in string.gmatch(data.first_name_, "[^%s]+") do
 data.first_name_ = gmatch
 end
 if status == "Close_Status" then
-send(msg.chat_id_, msg.id_,"• بواسطه ← ["..data.first_name_.."](T.me/"..UserName..")".."\n"..text.."")
+send(msg.chat_id_, msg.id_,"◦ بواسطه ← ["..data.first_name_.."](T.me/"..UserName..")".."\n"..text.."")
 return false
 end
 if status == "Close_Status_Ktm" then
-send(msg.chat_id_, msg.id_,"• بواسطه ← ["..data.first_name_.."](T.me/"..UserName..")".."\n"..text.."\n• خاصية ← الكتم\n")
+send(msg.chat_id_, msg.id_,"◦ بواسطه ← ["..data.first_name_.."](T.me/"..UserName..")".."\n"..text.."\n◦ خاصية ← الكتم\n")
 return false
 end
 if status == "Close_Status_Kick" then
-send(msg.chat_id_, msg.id_,"• بواسطه ← ["..data.first_name_.."](T.me/"..UserName..")".."\n"..text.."\n• خاصية ← الطرد\n")
+send(msg.chat_id_, msg.id_,"◦ بواسطه ← ["..data.first_name_.."](T.me/"..UserName..")".."\n"..text.."\n◦ خاصية ← الطرد\n")
 return false
 end
 if status == "Close_Status_Kid" then
-send(msg.chat_id_, msg.id_,"• بواسطه ← ["..data.first_name_.."](T.me/"..UserName..")".."\n"..text.."\n• خاصية ← التقييد\n")
+send(msg.chat_id_, msg.id_,"◦ بواسطه ← ["..data.first_name_.."](T.me/"..UserName..")".."\n"..text.."\n◦ خاصية ← التقييد\n")
 return false
 end
 if status == "Open_Status" then
-send(msg.chat_id_, msg.id_,"• بواسطه ← ["..data.first_name_.."](T.me/"..UserName..")".."\n"..text)
+send(msg.chat_id_, msg.id_,"◦ بواسطه ← ["..data.first_name_.."](T.me/"..UserName..")".."\n"..text)
 return false
 end
 if status == "reply" then
-send(msg.chat_id_, msg.id_,"• المستخدم ← ["..data.first_name_.."](T.me/"..UserName..")".."\n"..text)
+send(msg.chat_id_, msg.id_,"◦ المستخدم ← ["..data.first_name_.."](T.me/"..UserName..")".."\n"..text)
 return false
 end
 if status == "reply_Add" then
-send(msg.chat_id_, msg.id_,"• بواسطه ← ["..data.first_name_.."](T.me/"..UserName..")".."\n"..text)
+send(msg.chat_id_, msg.id_,"◦ بواسطه ← ["..data.first_name_.."](T.me/"..UserName..")".."\n"..text)
 return false
 end
 else
-send(msg.chat_id_, msg.id_,"•  لا يمكن الوصول لمعلومات الشخص")
+send(msg.chat_id_, msg.id_,"◦  لا يمكن الوصول لمعلومات الشخص")
 end
 end,nil)   
 end
@@ -645,11 +645,11 @@ for gmatch in string.gmatch(data.first_name_, "[^%s]+") do
 data.first_name_ = gmatch
 end
 if status == "reply_Pv" then
-send(chat,idmsg,"• المستخدم ← ["..data.first_name_.."](T.me/"..UserName..")".."\n"..text)
+send(chat,idmsg,"◦ المستخدم ← ["..data.first_name_.."](T.me/"..UserName..")".."\n"..text)
 return false
 end
 else
-send(chat,idmsg,"•  لا يمكن الوصول لمعلومات الشخص")
+send(chat,idmsg,"◦  لا يمكن الوصول لمعلومات الشخص")
 end
 end,nil)   
 end
@@ -726,7 +726,7 @@ end
 ------------------------------------------------------------------------------------------------------------
 function NotSpam(msg,Type)
 if Type == "kick" then 
-Send_Options(msg,msg.sender_user_id_,"reply","• قام بالتكرار هنا وتم طرده")  
+Send_Options(msg,msg.sender_user_id_,"reply","◦ قام بالتكرار هنا وتم طرده")  
 KickGroup(msg.chat_id_,msg.sender_user_id_) 
 return false  
 end 
@@ -737,11 +737,11 @@ end
 if Type == "keed" then
 https.request("https://api.telegram.org/bot" .. token .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..msg.sender_user_id_.."") 
 redis:sadd(bot_id.."Eqap:Silence:User:Group"..msg.chat_id_,msg.sender_user_id_) 
-Send_Options(msg,msg.sender_user_id_,"reply","• قام بالتكرار هنا وتم تقييده")  
+Send_Options(msg,msg.sender_user_id_,"reply","◦ قام بالتكرار هنا وتم تقييده")  
 return false  
 end  
 if Type == "mute" then
-Send_Options(msg,msg.sender_user_id_,"reply","• قام بالتكرار هنا وتم كتمه")  
+Send_Options(msg,msg.sender_user_id_,"reply","◦ قام بالتكرار هنا وتم كتمه")  
 redis:sadd(bot_id.."Eqap:Silence:User:Group"..msg.chat_id_,msg.sender_user_id_) 
 return false  
 end
@@ -812,19 +812,19 @@ t = t..'}}'
 local File = io.open('./'..bot_id..'.json', "w")
 File:write(t)
 File:close()
-sendDocument(msg.chat_id_, msg.id_, './'..bot_id..'.json','• عدد مجموعات التي في البوت { '..#list..'}')  
+sendDocument(msg.chat_id_, msg.id_, './'..bot_id..'.json','◦ عدد مجموعات التي في البوت { '..#list..'}')  
 end
 function AddFile_Bot(msg,chat,ID_FILE,File_Name)
 if File_Name:match('.json') then
 if tonumber(File_Name:match('(%d+)')) ~= tonumber(bot_id) then 
-send(chat,msg.id_,"• ملف نسخه ليس لهذا البوت")   
+send(chat,msg.id_,"◦ ملف نسخه ليس لهذا البوت")   
 return false 
 end      
 local File = json:decode(https.request('https://api.telegram.org/bot'.. token..'/getfile?file_id='..ID_FILE) ) 
 download_to_file('https://api.telegram.org/file/bot'..token..'/'..File.result.file_path, ''..File_Name) 
 send(chat,msg.id_," جاري ...\n رفع الملف الان")
 else
-send(chat,msg.id_,"*• عذرا الملف ليس بصيغة {JSON} يرجى رفع الملف الصحيح*")   
+send(chat,msg.id_,"*◦ عذرا الملف ليس بصيغة {JSON} يرجى رفع الملف الصحيح*")   
 end      
 local info_file = io.open('./'..bot_id..'.json', "r"):read('*a')
 local groups = JSON.decode(info_file)
@@ -856,7 +856,7 @@ redis:sadd(bot_id..'Eqap:President:Group'..idg,idASAS)
 end
 end
 end
-send(chat,msg.id_,"\n•تم رفع الملف بنجاح وتفعيل المجموعات\n• ورفع {الامنشئين الاساسين ; والمنشئين ; والمدراء; والادمنيه} بنجاح")   
+send(chat,msg.id_,"\n◦تم رفع الملف بنجاح وتفعيل المجموعات\n◦ ورفع {الامنشئين الاساسين ; والمنشئين ; والمدراء; والادمنيه} بنجاح")   
 end
 function AddChannel(User)
 local var = true
@@ -1398,7 +1398,7 @@ local GetWelcomeGroup = redis:get(bot_id.."Eqap:Get:Welcome:Group"..msg.chat_id_
 if GetWelcomeGroup then 
 t = GetWelcomeGroup
 else  
-t = '\n• نورت \n name \n user' 
+t = '\n◦ نورت \n name \n user' 
 end 
 t = t:gsub('name',result.first_name_) 
 if result.username_ then 
@@ -1475,15 +1475,15 @@ photo_id = msg.content_.photo_.sizes_[0].photo_.persistent_id_
 end 
 tdcli_function ({ID = "ChangeChatPhoto",chat_id_ = msg.chat_id_,photo_ = getInputFile(photo_id) }, function(arg,data)   
 if data.code_ == 3 then
-send(msg.chat_id_, msg.id_,"• عذرا البوت ليس ادمن يرجى ترقيتي والمحاوله لاحقا") 
+send(msg.chat_id_, msg.id_,"◦ عذرا البوت ليس ادمن يرجى ترقيتي والمحاوله لاحقا") 
 redis:del(bot_id.."Eqap:Set:Chat:Photo"..msg.chat_id_..":"..msg.sender_user_id_) 
 return false 
 end
 if data.message_ == "CHAT_ADMIN_REQUIRED" then 
-send(msg.chat_id_, msg.id_,"• ليس لدي صلاحية تغيير معلومات المجموعه يرجى المحاوله لاحقا") 
+send(msg.chat_id_, msg.id_,"◦ ليس لدي صلاحية تغيير معلومات المجموعه يرجى المحاوله لاحقا") 
 redis:del(bot_id.."Eqap:Set:Chat:Photo"..msg.chat_id_..":"..msg.sender_user_id_) 
 else
-send(msg.chat_id_, msg.id_,"• تم تغيير صورة المجموعه") 
+send(msg.chat_id_, msg.id_,"◦ تم تغيير صورة المجموعه") 
 end
 end, nil) 
 redis:del(bot_id.."Eqap:Set:Chat:Photo"..msg.chat_id_..":"..msg.sender_user_id_) 
@@ -1493,12 +1493,12 @@ end
 if redis:get(bot_id.."Eqap:Broadcasting:Groups:Pin" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then 
 print(text)
 if text == "الغاء" or text == "الغاء ✖" then   
-send(msg.chat_id_,msg.id_, "\n• تم الغاء الاذاعه للمجموعات") 
+send(msg.chat_id_,msg.id_, "\n◦ تم الغاء الاذاعه للمجموعات") 
 redis:del(bot_id.."Eqap:Broadcasting:Groups:Pin" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
 return false
 end 
 local list = redis:smembers(bot_id.."Eqap:ChekBotAdd") 
-send(msg.chat_id_, msg.id_,"• تمت الاذاعه الى *- "..#list.." * مجموعه في البوت ")     
+send(msg.chat_id_, msg.id_,"◦ تمت الاذاعه الى *- "..#list.." * مجموعه في البوت ")     
 if msg.content_.text_ then
 for k,v in pairs(list) do 
 send(v, 0,"["..msg.content_.text_.."]")  
@@ -1544,12 +1544,12 @@ function faeder11(msg)
   --------------------------------------------------
 if redis:get(bot_id.."Eqap:Broadcasting:Users" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then 
 if text == "الغاء" or text == "الغاء ✖" then   
-send(msg.chat_id_,msg.id_, "\n• تم الغاء الاذاعه خاص") 
+send(msg.chat_id_,msg.id_, "\n◦ تم الغاء الاذاعه خاص") 
 redis:del(bot_id.."Eqap:Broadcasting:Users" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
 return false
 end 
 local list = redis:smembers(bot_id..'Eqap:Num:User:Pv')  
-send(msg.chat_id_, msg.id_,"• تمت الاذاعه الى *- "..#list.." * مشترك في البوت ")     
+send(msg.chat_id_, msg.id_,"◦ تمت الاذاعه الى *- "..#list.." * مشترك في البوت ")     
 if msg.content_.text_ then
 for k,v in pairs(list) do 
 send(v, 0,"["..msg.content_.text_.."]")  
@@ -1578,12 +1578,12 @@ end
 ------------------------------------------------------------------------------------------------------------
 if redis:get(bot_id.."Eqap:Broadcasting:Groups" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then 
 if text == "الغاء" or text == "الغاء ✖" then   
-send(msg.chat_id_,msg.id_, "\n• تم الغاء الاذاعه للمجموعات") 
+send(msg.chat_id_,msg.id_, "\n◦ تم الغاء الاذاعه للمجموعات") 
 redis:del(bot_id.."Eqap:Broadcasting:Groups" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
 return false
 end 
 local list = redis:smembers(bot_id.."Eqap:ChekBotAdd") 
-send(msg.chat_id_, msg.id_,"• تمت الاذاعه الى *- "..#list.." * مجموعه في البوت ")     
+send(msg.chat_id_, msg.id_,"◦ تمت الاذاعه الى *- "..#list.." * مجموعه في البوت ")     
 if msg.content_.text_ then
 for k,v in pairs(list) do 
 send(v, 0,"["..msg.content_.text_.."]")  
@@ -1652,13 +1652,13 @@ end
 ------------------------------------------------------------------------------------------------------------
 if redis:get(bot_id.."Eqap:Broadcasting:Groups:Fwd" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then 
 if text == "الغاء" or text == "الغاء ✖" then   
-send(msg.chat_id_,msg.id_, "\n• تم الغاء الاذاعه بالتوجيه للمجموعات") 
+send(msg.chat_id_,msg.id_, "\n◦ تم الغاء الاذاعه بالتوجيه للمجموعات") 
 redis:del(bot_id.."Eqap:Broadcasting:Groups:Fwd" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
 return false  
 end 
 if msg.forward_info_ then 
 local list = redis:smembers(bot_id.."Eqap:ChekBotAdd")   
-send(msg.chat_id_, msg.id_,"• تم التوجيه الى *- "..#list.." * مجموعه في البوت ")     
+send(msg.chat_id_, msg.id_,"◦ تم التوجيه الى *- "..#list.." * مجموعه في البوت ")     
 for k,v in pairs(list) do  
 tdcli_function({ID="ForwardMessages",
 chat_id_ = v,
@@ -1674,13 +1674,13 @@ end
 ------------------------------------------------------------------------------------------------------------
 if redis:get(bot_id.."Eqap:Broadcasting:Users:Fwd" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then 
 if text == "الغاء" or text == "الغاء ✖" then   
-send(msg.chat_id_,msg.id_, "\n• تم الغاء الاذاعه بالترجيه خاص") 
+send(msg.chat_id_,msg.id_, "\n◦ تم الغاء الاذاعه بالترجيه خاص") 
 redis:del(bot_id.."Eqap:Broadcasting:Users:Fwd" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
 return false  
 end 
 if msg.forward_info_ then 
 local list = redis:smembers(bot_id.."Eqap:Num:User:Pv")   
-send(msg.chat_id_, msg.id_,"• تم التوجيه الى *- "..#list.." * مجموعه في البوت ")     
+send(msg.chat_id_, msg.id_,"◦ تم التوجيه الى *- "..#list.." * مجموعه في البوت ")     
 for k,v in pairs(list) do  
 tdcli_function({ID="ForwardMessages",
 chat_id_ = v,
@@ -1695,29 +1695,29 @@ return false
 end
 if redis:get(bot_id.."Eqap:Change:Name:Bot"..msg.sender_user_id_) then 
 if text == "الغاء" or text == "الغاء ✖" then   
-send(msg.chat_id_,msg.id_, "\n• تم الغاء امر تغيير اسم البوت") 
+send(msg.chat_id_,msg.id_, "\n◦ تم الغاء امر تغيير اسم البوت") 
 redis:del(bot_id.."Eqap:Change:Name:Bot"..msg.sender_user_id_) 
 return false  
 end 
 redis:del(bot_id.."Eqap:Change:Name:Bot"..msg.sender_user_id_) 
 redis:set(bot_id.."Eqap:Redis:Name:Bot",text) 
-send(msg.chat_id_, msg.id_, "•  تم تغيير اسم البوت الى - "..text)  
+send(msg.chat_id_, msg.id_, "◦  تم تغيير اسم البوت الى - "..text)  
 return false
 end 
 if redis:get(bot_id.."Eqap:Redis:Id:Group"..msg.chat_id_..""..msg.sender_user_id_) then 
 if text == 'الغاء' then 
-send(msg.chat_id_,msg.id_, "\n• تم الغاء امر تعيين الايدي") 
+send(msg.chat_id_,msg.id_, "\n◦ تم الغاء امر تعيين الايدي") 
 redis:del(bot_id.."Eqap:Redis:Id:Group"..msg.chat_id_..""..msg.sender_user_id_) 
 return false  
 end 
 redis:del(bot_id.."Eqap:Redis:Id:Group"..msg.chat_id_..""..msg.sender_user_id_) 
 redis:set(bot_id.."Eqap:Set:Id:Group"..msg.chat_id_,text:match("(.*)"))
-send(msg.chat_id_, msg.id_,'• تم تعيين الايدي الجديد')    
+send(msg.chat_id_, msg.id_,'◦ تم تعيين الايدي الجديد')    
 end
 ------------------------------------------------------------------------------------------------------------
 if text == ""..(redis:get(bot_id.."Eqap:Random:Sm"..msg.chat_id_) or "").."" and not redis:get(bot_id.."Eqap:Set:Sma"..msg.chat_id_) then
 if not redis:get(bot_id.."Eqap:Set:Sma"..msg.chat_id_) then 
-send(msg.chat_id_, msg.id_,"\n• لقد فزت في اللعبه \n• اللعب مره اخره وارسل - سمايل او سمايلات")
+send(msg.chat_id_, msg.id_,"\n◦ لقد فزت في اللعبه \n◦ اللعب مره اخره وارسل - سمايل او سمايلات")
 redis:incrby(bot_id.."Eqap:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
 end
 redis:set(bot_id.."Eqap:Set:Sma"..msg.chat_id_,true)
@@ -1726,7 +1726,7 @@ end
 ------------------------------------------------------------------------------------------------------------
 if text == ""..(redis:get(bot_id.."Eqap:Klam:Speed"..msg.chat_id_) or "").."" and not redis:get(bot_id.."Eqap:Speed:Tr"..msg.chat_id_) then
 if not redis:get(bot_id.."Eqap:Speed:Tr"..msg.chat_id_) then 
-send(msg.chat_id_, msg.id_,"\n• لقد فزت في اللعبه \n• اللعب مره اخره وارسل - الاسرع او ترتيب")
+send(msg.chat_id_, msg.id_,"\n◦ لقد فزت في اللعبه \n◦ اللعب مره اخره وارسل - الاسرع او ترتيب")
 redis:incrby(bot_id.."Eqap:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
 end
 redis:set(bot_id.."Eqap:Speed:Tr"..msg.chat_id_,true)
@@ -1734,7 +1734,7 @@ end
 ------------------------------------------------------------------------------------------------------------
 if text == ""..(redis:get(bot_id.."Eqap:Klam:Hzor"..msg.chat_id_) or "").."" and not redis:get(bot_id.."Eqap:Set:Hzora"..msg.chat_id_) then
 if not redis:get(bot_id.."Eqap:Set:Hzora"..msg.chat_id_) then 
-send(msg.chat_id_, msg.id_,"\n• لقد فزت في اللعبه \n• اللعب مره اخره وارسل - حزوره")
+send(msg.chat_id_, msg.id_,"\n◦ لقد فزت في اللعبه \n◦ اللعب مره اخره وارسل - حزوره")
 redis:incrby(bot_id.."Eqap:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
 end
 redis:set(bot_id.."Eqap:Set:Hzora"..msg.chat_id_,true)
@@ -1742,7 +1742,7 @@ end
 ------------------------------------------------------------------------------------------------------------
 if text == ""..(redis:get(bot_id.."Eqap:Maany"..msg.chat_id_) or "").."" and not redis:get(bot_id.."Eqap:Set:Maany"..msg.chat_id_) then
 if not redis:get(bot_id.."Eqap:Set:Maany"..msg.chat_id_) then 
-send(msg.chat_id_, msg.id_,"\n• لقد فزت في اللعبه \n• اللعب مره اخره وارسل - معاني")
+send(msg.chat_id_, msg.id_,"\n◦ لقد فزت في اللعبه \n◦ اللعب مره اخره وارسل - معاني")
 redis:incrby(bot_id.."Eqap:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
 end
 redis:set(bot_id.."Eqap:Set:Maany"..msg.chat_id_,true)
@@ -1750,7 +1750,7 @@ end
 ------------------------------------------------------------------------------------------------------------
 if text == ""..(redis:get(bot_id.."Eqap:Set:Aks:Game"..msg.chat_id_) or "").."" and not redis:get(bot_id.."Eqap:Set:Aks"..msg.chat_id_) then
 if not redis:get(bot_id.."Eqap:Set:Aks"..msg.chat_id_) then 
-send(msg.chat_id_, msg.id_,"\n• لقد فزت في اللعبه \n• اللعب مره اخره وارسل - العكس")
+send(msg.chat_id_, msg.id_,"\n◦ لقد فزت في اللعبه \n◦ اللعب مره اخره وارسل - العكس")
 redis:incrby(bot_id.."Eqap:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
 end
 redis:set(bot_id.."Eqap:Set:Aks"..msg.chat_id_,true)
@@ -1760,7 +1760,7 @@ if redis:get(bot_id.."Eqap:GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_
 if text and text:match("^(%d+)$") then
 local NUM = text:match("^(%d+)$")
 if tonumber(NUM) > 20 then
-send(msg.chat_id_, msg.id_,"• عذرآ لا يمكنك تخمين عدد اكبر من ال { 20 } خمن رقم ما بين ال{ 1 و 20 }\n")
+send(msg.chat_id_, msg.id_,"◦ عذرآ لا يمكنك تخمين عدد اكبر من ال { 20 } خمن رقم ما بين ال{ 1 و 20 }\n")
 return false 
 end 
 local GETNUM = redis:get(bot_id.."Eqap:GAMES:NUM"..msg.chat_id_)
@@ -1768,15 +1768,15 @@ if tonumber(NUM) == tonumber(GETNUM) then
 redis:del(bot_id.."Eqap:SADD:NUM"..msg.chat_id_..msg.sender_user_id_)
 redis:del(bot_id.."Eqap:GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
 redis:incrby(bot_id.."Eqap:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_,5)  
-send(msg.chat_id_, msg.id_,"• مبروك فزت ويانه وخمنت الرقم الصحيح\n• تم اضافة { 5 } من النقاط \n")
+send(msg.chat_id_, msg.id_,"◦ مبروك فزت ويانه وخمنت الرقم الصحيح\n◦ تم اضافة { 5 } من النقاط \n")
 elseif tonumber(NUM) ~= tonumber(GETNUM) then
 redis:incrby(bot_id.."Eqap:SADD:NUM"..msg.chat_id_..msg.sender_user_id_,1)
 if tonumber(redis:get(bot_id.."Eqap:SADD:NUM"..msg.chat_id_..msg.sender_user_id_)) >= 3 then
 redis:del(bot_id.."Eqap:SADD:NUM"..msg.chat_id_..msg.sender_user_id_)
 redis:del(bot_id.."Eqap:GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
-send(msg.chat_id_, msg.id_,"• اوبس لقد خسرت في اللعبه \n• حظآ اوفر في المره القادمه \n• كان الرقم الذي تم تخمينه { "..GETNUM.." }")
+send(msg.chat_id_, msg.id_,"◦ اوبس لقد خسرت في اللعبه \n◦ حظآ اوفر في المره القادمه \n◦ كان الرقم الذي تم تخمينه { "..GETNUM.." }")
 else
-send(msg.chat_id_, msg.id_,"• اوبس تخمينك غلط \n• ارسل رقم تخمنه مره اخرى ")
+send(msg.chat_id_, msg.id_,"◦ اوبس تخمينك غلط \n◦ ارسل رقم تخمنه مره اخرى ")
 end
 end
 end
@@ -1786,17 +1786,17 @@ if redis:get(bot_id.."Eqap:SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id
 if text and text:match("^(%d+)$") then
 local NUM = text:match("^(%d+)$")
 if tonumber(NUM) > 6 then
-send(msg.chat_id_, msg.id_,"• عذرا لا يوجد سواء { 6 } اختيارات فقط ارسل اختيارك مره اخرى\n")
+send(msg.chat_id_, msg.id_,"◦ عذرا لا يوجد سواء { 6 } اختيارات فقط ارسل اختيارك مره اخرى\n")
 return false 
 end 
 local GETNUM = redis:get(bot_id.."Eqap:Games:Bat"..msg.chat_id_)
 if tonumber(NUM) == tonumber(GETNUM) then
 redis:del(bot_id.."Eqap:SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
-send(msg.chat_id_, msg.id_,"• مبروك فزت وطلعت المحيبس بل ايد رقم { "..NUM.." }\n• لقد حصلت على { 3 }من نقاط يمكنك استبدالهن برسائل ")
+send(msg.chat_id_, msg.id_,"◦ مبروك فزت وطلعت المحيبس بل ايد رقم { "..NUM.." }\n◦ لقد حصلت على { 3 }من نقاط يمكنك استبدالهن برسائل ")
 redis:incrby(bot_id.."Eqap:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_,3)  
 elseif tonumber(NUM) ~= tonumber(GETNUM) then
 redis:del(bot_id.."Eqap:SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
-send(msg.chat_id_, msg.id_,"• للاسف لقد خسرت \n• المحيبس بل ايد رقم { "..GETNUM.." }\n• حاول مره اخرى للعثور على المحيبس")
+send(msg.chat_id_, msg.id_,"◦ للاسف لقد خسرت \n◦ المحيبس بل ايد رقم { "..GETNUM.." }\n◦ حاول مره اخرى للعثور على المحيبس")
 end
 end
 end
@@ -1804,7 +1804,7 @@ end
 if text == ""..(redis:get(bot_id.."Eqap::Set:Moktlf"..msg.chat_id_) or "").."" then 
 if not redis:get(bot_id.."Eqap:Set:Moktlf:Bot"..msg.chat_id_) then 
 redis:del(bot_id.."Eqap::Set:Moktlf"..msg.chat_id_)
-send(msg.chat_id_, msg.id_,"\n• لقد فزت في اللعبه \n• اللعب مره اخره وارسل - المختلف")
+send(msg.chat_id_, msg.id_,"\n◦ لقد فزت في اللعبه \n◦ اللعب مره اخره وارسل - المختلف")
 redis:incrby(bot_id.."Eqap:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
 end
 redis:set(bot_id.."Eqap:Set:Moktlf:Bot"..msg.chat_id_,true)
@@ -1813,7 +1813,7 @@ end
 if text == ""..(redis:get(bot_id.."Eqap:Set:Amth"..msg.chat_id_) or "").."" then 
 if not redis:get(bot_id.."Eqap:Set:Amth:Bot"..msg.chat_id_) then 
 redis:del(bot_id.."Eqap:Set:Amth"..msg.chat_id_)
-send(msg.chat_id_, msg.id_,"\n• لقد فزت في اللعبه \n• اللعب مره اخره وارسل - امثله")
+send(msg.chat_id_, msg.id_,"\n◦ لقد فزت في اللعبه \n◦ اللعب مره اخره وارسل - امثله")
 redis:incrby(bot_id.."Eqap:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
 end
 redis:set(bot_id.."Eqap:Set:Amth:Bot"..msg.chat_id_,true)
@@ -1822,7 +1822,7 @@ end
 if redis:get(bot_id.."Eqap:Add:msg:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then 
 if text and text:match("^الغاء$") then 
 redis:del(bot_id.."Eqap:id:user"..msg.chat_id_)  
-send(msg.chat_id_,msg.id_, "\n• تم الغاء امر اضافة رسائل") 
+send(msg.chat_id_,msg.id_, "\n◦ تم الغاء امر اضافة رسائل") 
 redis:del(bot_id.."Eqap:Add:msg:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_)  
 return false  
 end 
@@ -1831,13 +1831,13 @@ local numadded = string.match(text, "(%d+)")
 local iduserr = redis:get(bot_id.."Eqap:id:user"..msg.chat_id_)  
 redis:del(bot_id.."Eqap:Msg_User"..msg.chat_id_..":"..msg.sender_user_id_) 
 redis:incrby(bot_id.."Eqap:Num:Message:User"..msg.chat_id_..":"..iduserr,numadded)  
-send(msg.chat_id_,msg.id_,"\n• تم اضافة له - "..numadded.." رسائل")  
+send(msg.chat_id_,msg.id_,"\n◦ تم اضافة له - "..numadded.." رسائل")  
 end
 ------------------------------------------------------------------------------------------------------------
 if redis:get(bot_id.."Eqap:games:add" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then 
 if text and text:match("^الغاء$") then 
 redis:del(bot_id.."Eqap:idgem:user"..msg.chat_id_)  
-send(msg.chat_id_,msg.id_, "\n• تم الغاء امر اضافة جواهر") 
+send(msg.chat_id_,msg.id_, "\n◦ تم الغاء امر اضافة جواهر") 
 redis:del(bot_id.."Eqap:games:add" .. msg.chat_id_ .. "" .. msg.sender_user_id_)  
 return false  
 end 
@@ -1845,28 +1845,28 @@ redis:del(bot_id.."Eqap:games:add" .. msg.chat_id_ .. "" .. msg.sender_user_id_)
 local numadded = string.match(text, "(%d+)") 
 local iduserr = redis:get(bot_id.."Eqap:idgem:user"..msg.chat_id_)  
 redis:incrby(bot_id.."Eqap:Num:Add:Games"..msg.chat_id_..iduserr,numadded)  
-send(msg.chat_id_,msg.id_,"\n• تم اضافة له - "..numadded.." نقاط")  
+send(msg.chat_id_,msg.id_,"\n◦ تم اضافة له - "..numadded.." نقاط")  
 end
 if text and redis:get(bot_id..'Eqap:GetTexting:DevSlbotss'..msg.chat_id_..':'..msg.sender_user_id_) then
 if text == 'الغاء' or text == 'الغاء ✖' then 
 redis:del(bot_id..'Eqap:GetTexting:DevSlbotss'..msg.chat_id_..':'..msg.sender_user_id_)
-send(msg.chat_id_,msg.id_,'• تم الغاء حفظ كليشة Commander ')
+send(msg.chat_id_,msg.id_,'◦ تم الغاء حفظ كليشة Commander ')
 return false
 end
 redis:set(bot_id..'Eqap:Texting:DevSlbotss',text)
 redis:del(bot_id..'Eqap:GetTexting:DevSlbotss'..msg.chat_id_..':'..msg.sender_user_id_)
-send(msg.chat_id_,msg.id_,'• تم حفظ كليشة Commander ')
+send(msg.chat_id_,msg.id_,'◦ تم حفظ كليشة Commander ')
 send(msg.chat_id_,msg.id_,text)
 return false
 end
 if text and redis:get(bot_id..'Eqap:Set:Cmd:Start:Bots') then
 if text == 'الغاء' or text == 'الغاء ✖' then    
-send(msg.chat_id_, msg.id_,"• تم الغاء حفظ كليشه امر /start") 
+send(msg.chat_id_, msg.id_,"◦ تم الغاء حفظ كليشه امر /start") 
 redis:del(bot_id..'Eqap:Set:Cmd:Start:Bots') 
 return false
 end
 redis:set(bot_id.."Eqap:Set:Cmd:Start:Bot",text)  
-send(msg.chat_id_, msg.id_,'• تم حفظ كليشه امر /start في البوت') 
+send(msg.chat_id_, msg.id_,'◦ تم حفظ كليشه امر /start في البوت') 
 redis:del(bot_id..'Eqap:Set:Cmd:Start:Bots') 
 return false
 end
@@ -1874,7 +1874,7 @@ end
 if text and not Vips(msg) then  
 local Text_Filter = redis:get(bot_id.."Eqap:Filter:Reply2"..text..msg.chat_id_)   
 if Text_Filter then    
-Send_Options(msg,msg.sender_user_id_,"reply","• "..Text_Filter)  
+Send_Options(msg,msg.sender_user_id_,"reply","◦ "..Text_Filter)  
 Delete_Message(msg.chat_id_, {[0] = msg.id_})     
 return false
 end
@@ -1885,9 +1885,9 @@ for k,v in pairs(filter) do
 if v == msg.content_.sticker_.set_id_ then
 tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 if data.username_ ~= false then
-send(msg.chat_id_,0, "•عذرا يا ⇠ [@"..data.username_.."]\n•  الملصق الذي ارسلته تم منعه من المجموعه \n" ) 
+send(msg.chat_id_,0, "◦عذرا يا ⇠ [@"..data.username_.."]\n◦  الملصق الذي ارسلته تم منعه من المجموعه \n" ) 
 else
-send(msg.chat_id_,0, "•عذرا يا ⇠ ["..data.first_name_.."](T.ME/hlil3)\n• الملصق الذي ارسلته تم منعه من المجموعه \n" ) 
+send(msg.chat_id_,0, "◦عذرا يا ⇠ ["..data.first_name_.."](T.ME/hlil3)\n◦ الملصق الذي ارسلته تم منعه من المجموعه \n" ) 
 end
 end,nil)   
 Delete_Message(msg.chat_id_,{[0] = msg.id_})       
@@ -1903,9 +1903,9 @@ for k,v in pairs(filter) do
 if v == msg.content_.photo_.id_ then
 tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 if data.username_ ~= false then
-send(msg.chat_id_,0,"•عذرا يا ⇠ [@"..data.username_.."]\n• الصوره التي ارسلتها تم منعها من المجموعه \n" ) 
+send(msg.chat_id_,0,"◦عذرا يا ⇠ [@"..data.username_.."]\n◦ الصوره التي ارسلتها تم منعها من المجموعه \n" ) 
 else
-send(msg.chat_id_,0,"•عذرا يا ⇠ ["..data.first_name_.."](T.ME/hlil3)\n• الصوره التي ارسلتها تم منعها من المجموعه \n") 
+send(msg.chat_id_,0,"◦عذرا يا ⇠ ["..data.first_name_.."](T.ME/hlil3)\n◦ الصوره التي ارسلتها تم منعها من المجموعه \n") 
 end
 end,nil)   
 Delete_Message(msg.chat_id_,{[0] = msg.id_})       
@@ -1920,9 +1920,9 @@ for k,v in pairs(filter) do
 if v == msg.content_.animation_.animation_.persistent_id_ then
 tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 if data.username_ ~= false then
-send(msg.chat_id_,0,"•عذرا يا ⇠ [@"..data.username_.."]\n• المتحركه التي ارسلتها تم منعها من المجموعه \n") 
+send(msg.chat_id_,0,"◦عذرا يا ⇠ [@"..data.username_.."]\n◦ المتحركه التي ارسلتها تم منعها من المجموعه \n") 
 else
-send(msg.chat_id_,0,"•عذرا يا ⇠ ["..data.first_name_.."](T.ME/hlil3)\n• المتحركه التي ارسلتها تم منعها من المجموعه \n" ) 
+send(msg.chat_id_,0,"◦عذرا يا ⇠ ["..data.first_name_.."](T.ME/hlil3)\n◦ المتحركه التي ارسلتها تم منعها من المجموعه \n" ) 
 end
 end,nil)   
 Delete_Message(msg.chat_id_,{[0] = msg.id_})       
@@ -1933,7 +1933,7 @@ end
 ------------------------------------------------------------------------------------------------------------
 if text and redis:get(bot_id.."Eqap:Command:Reids:Group"..msg.chat_id_..":"..msg.sender_user_id_) == "true" then
 redis:set(bot_id.."Eqap:Command:Reids:Group:New"..msg.chat_id_,text)
-send(msg.chat_id_, msg.id_,"• ارسل الامر الجديد ليتم وضعه مكان القديم")  
+send(msg.chat_id_, msg.id_,"◦ ارسل الامر الجديد ليتم وضعه مكان القديم")  
 redis:del(bot_id.."Eqap:Command:Reids:Group"..msg.chat_id_..":"..msg.sender_user_id_)
 redis:set(bot_id.."Eqap:Command:Reids:Group:End"..msg.chat_id_..":"..msg.sender_user_id_,"true1") 
 return false
@@ -1943,13 +1943,13 @@ if text and redis:get(bot_id.."Eqap:Command:Reids:Group:End"..msg.chat_id_..":".
 local NewCmd = redis:get(bot_id.."Eqap:Command:Reids:Group:New"..msg.chat_id_)
 redis:set(bot_id.."Eqap:Get:Reides:Commands:Group"..msg.chat_id_..":"..text,NewCmd)
 redis:sadd(bot_id.."Eqap:Command:List:Group"..msg.chat_id_,text)
-send(msg.chat_id_, msg.id_,"• تم حفظ الامر باسم ← { "..text..' }')  
+send(msg.chat_id_, msg.id_,"◦ تم حفظ الامر باسم ← { "..text..' }')  
 redis:del(bot_id.."Eqap:Command:Reids:Group:End"..msg.chat_id_..":"..msg.sender_user_id_)
 return false
 end
 if redis:get(bot_id.."Eqap:Redis:Validity:Group"..msg.chat_id_..""..msg.sender_user_id_) then 
 if text and text:match("^الغاء$") then 
-send(msg.chat_id_,msg.id_, "\n• تم الغاء امر اضافة صلاحيه") 
+send(msg.chat_id_,msg.id_, "\n◦ تم الغاء امر اضافة صلاحيه") 
 local CmdDel = redis:get(bot_id.."Eqap:Add:Validity:Group:Rt:New"..msg.chat_id_..msg.sender_user_id_)  
 redis:del(bot_id.."Eqap:Add:Validity:Group:Rt"..CmdDel..msg.chat_id_)
 redis:srem(bot_id.."Eqap:Validitys:Group"..msg.chat_id_,CmdDel)  
@@ -1958,26 +1958,26 @@ return false
 end 
 if text == "مدير" then
 if not Constructor(msg) then
-send(msg.chat_id_, msg.id_,"\n• الاستخدام خطا رتبتك اقل من منشئ \n• تستطيع اضافة صلاحيات الاتيه فقط ← { عضو ، مميز  ، ادمن }") 
+send(msg.chat_id_, msg.id_,"\n◦ الاستخدام خطا رتبتك اقل من منشئ \n◦ تستطيع اضافة صلاحيات الاتيه فقط ← { عضو ، مميز  ، ادمن }") 
 return false
 end
 end
 if text == "ادمن" then
 if not Owner(msg) then 
-send(msg.chat_id_, msg.id_,"\n• الاستخدام خطا رتبتك اقل من مدير \n• تستطيع اضافة صلاحيات الاتيه فقط ← { عضو ، مميز }") 
+send(msg.chat_id_, msg.id_,"\n◦ الاستخدام خطا رتبتك اقل من مدير \n◦ تستطيع اضافة صلاحيات الاتيه فقط ← { عضو ، مميز }") 
 return false
 end
 end
 if text == "مميز" then
 if not Admin(msg) then
-send(msg.chat_id_, msg.id_,"\n• الاستخدام خطا رتبتك اقل من ادمن \n• تستطيع اضافة صلاحيات الاتيه فقط ← { عضو }") 
+send(msg.chat_id_, msg.id_,"\n◦ الاستخدام خطا رتبتك اقل من ادمن \n◦ تستطيع اضافة صلاحيات الاتيه فقط ← { عضو }") 
 return false
 end
 end
 if text == "مدير" or text == "ادمن" or text == "مميز" or text == "عضو" then
 local textn = redis:get(bot_id.."Eqap:Add:Validity:Group:Rt:New"..msg.chat_id_..msg.sender_user_id_)  
 redis:set(bot_id.."Eqap:Add:Validity:Group:Rt"..textn..msg.chat_id_,text)
-send(msg.chat_id_, msg.id_, "\n• تم اضافة الصلاحيه باسم ← { "..textn..' }') 
+send(msg.chat_id_, msg.id_, "\n◦ تم اضافة الصلاحيه باسم ← { "..textn..' }') 
 redis:del(bot_id.."Eqap:Redis:Validity:Group"..msg.chat_id_..""..msg.sender_user_id_) 
 return false  
 end 
@@ -2027,14 +2027,14 @@ photo_in_group = msg.content_.photo_.sizes_[3].photo_.persistent_id_
 end
 redis:set(bot_id.."Eqap:Add:Rd:Manager:Photo"..test..msg.chat_id_, photo_in_group)  
 end
-send(msg.chat_id_, msg.id_,"• تم حفظ رد بنجاح \n• ارسل ( "..test.." ) لرئية الرد")
+send(msg.chat_id_, msg.id_,"◦ تم حفظ رد بنجاح \n◦ ارسل ( "..test.." ) لرئية الرد")
 return false  
 end  
 end
 
 if redis:get(bot_id.."Eqap:botsRedis:Validity:Group"..msg.chat_id_..""..msg.sender_user_id_) then 
 if text and text:match("^الغاء$") then 
-send(msg.chat_id_,msg.id_, "\n• تم الغاء امر اضافة صلاحيه عامه") 
+send(msg.chat_id_,msg.id_, "\n◦ تم الغاء امر اضافة صلاحيه عامه") 
 local CmdDel = redis:get(bot_id.."Eqap:botsAdd:Validity:Group:Rt:New"..msg.chat_id_..msg.sender_user_id_)  
 redis:del(bot_id.."Eqap:botsAdd:Validity:Group:Rt"..CmdDel..msg.chat_id_)
 redis:srem(bot_id.."Eqap:botsValiditys:Group"..msg.chat_id_,CmdDel)  
@@ -2043,26 +2043,26 @@ return false
 end 
 if text == "مدير" then
 if not Constructor(msg) then
-send(msg.chat_id_, msg.id_,"\n• الاستخدام خطا رتبتك اقل من منشئ \n• تستطيع اضافة صلاحيات الاتيه فقط ← { عضو ، مميز  ، ادمن }") 
+send(msg.chat_id_, msg.id_,"\n◦ الاستخدام خطا رتبتك اقل من منشئ \n◦ تستطيع اضافة صلاحيات الاتيه فقط ← { عضو ، مميز  ، ادمن }") 
 return false
 end
 end
 if text == "ادمن" then
 if not Owner(msg) then 
-send(msg.chat_id_, msg.id_,"\n• الاستخدام خطا رتبتك اقل من مدير \n• تستطيع اضافة صلاحيات الاتيه فقط ← { عضو ، مميز }") 
+send(msg.chat_id_, msg.id_,"\n◦ الاستخدام خطا رتبتك اقل من مدير \n◦ تستطيع اضافة صلاحيات الاتيه فقط ← { عضو ، مميز }") 
 return false
 end
 end
 if text == "مميز" then
 if not Admin(msg) then
-send(msg.chat_id_, msg.id_,"\n• الاستخدام خطا رتبتك اقل من ادمن \n• تستطيع اضافة صلاحيات الاتيه فقط ← { عضو }") 
+send(msg.chat_id_, msg.id_,"\n◦ الاستخدام خطا رتبتك اقل من ادمن \n◦ تستطيع اضافة صلاحيات الاتيه فقط ← { عضو }") 
 return false
 end
 end
 if text == "مدير" or text == "ادمن" or text == "مميز" or text == "عضو" then
 local textn = redis:get(bot_id.."Eqap:botsAdd:Validity:Group:Rt:New"..msg.chat_id_..msg.sender_user_id_)  
 redis:set(bot_id.."Eqap:botsAdd:Validity:Group:Rt"..textn,text)
-send(msg.chat_id_, msg.id_, "\n• تم اضافة صلاحيه عامه باسم ← { "..textn..' }') 
+send(msg.chat_id_, msg.id_, "\n◦ تم اضافة صلاحيه عامه باسم ← { "..textn..' }') 
 redis:del(bot_id.."Eqap:botsRedis:Validity:Group"..msg.chat_id_..""..msg.sender_user_id_) 
 return false  
 end 
@@ -2070,12 +2070,12 @@ end
 ------------------------------------------------------------------------------------------------------------
 if text and text:match("^(.*)$") then
 if text == "الغاء" then 
-send(msg.chat_id_, msg.id_, "• تم الغاء حفظ الرد") 
+send(msg.chat_id_, msg.id_, "◦ تم الغاء حفظ الرد") 
 redis:del(bot_id.."Eqap:Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_)
 return false  
 end 
 if redis:get(bot_id.."Eqap:Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
-send(msg.chat_id_, msg.id_, '\n• ارسل لي الرد لاضافته\n• تستطيع اضافة ← { ملف ، فديو ، نص ، ملصق ، بصمه ، متحركه }\n• تستطيع ايضا اضافة :\n• `#username` » معرف المستخدم \n• `#msgs` » عدد الرسائل\n• `#name` » اسم المستخدم\n• `#id` » ايدي المستخدم\n• `#stast` » موقع المستخدم \n• `#edit` » عدد السحكات ')
+send(msg.chat_id_, msg.id_, '\n◦ ارسل لي الرد لاضافته\n◦ تستطيع اضافة ← { ملف ، فديو ، نص ، ملصق ، بصمه ، متحركه }\n◦ تستطيع ايضا اضافة :\n◦ `#username` » معرف المستخدم \n◦ `#msgs` » عدد الرسائل\n◦ `#name` » اسم المستخدم\n◦ `#id` » ايدي المستخدم\n◦ `#stast` » موقع المستخدم \n◦ `#edit` » عدد السحكات ')
 redis:set(bot_id.."Eqap:Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_,"true1")
 redis:set(bot_id.."Eqap:Text:Manager"..msg.sender_user_id_..":"..msg.chat_id_, text)
 redis:del(bot_id.."Eqap:Add:Rd:Manager:Gif"..text..msg.chat_id_)   
@@ -2092,12 +2092,12 @@ end
 ------------------------------------------------------------------------------------------------------------
 if text and text:match("^(.*)$") then
 if text == "الغاء" then 
-send(msg.chat_id_, msg.id_, "• تم الغاء حذف الرد") 
+send(msg.chat_id_, msg.id_, "◦ تم الغاء حذف الرد") 
 redis:del(bot_id.."Eqap:Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_)
 return false  
 end 
 if redis:get(bot_id.."Eqap:Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_.."") == "true2" then
-send(msg.chat_id_, msg.id_,"• تم حذف الرد من الردود ")
+send(msg.chat_id_, msg.id_,"◦ تم حذف الرد من الردود ")
 redis:del(bot_id.."Eqap:Add:Rd:Manager:Gif"..text..msg.chat_id_)   
 redis:del(bot_id.."Eqap:Add:Rd:Manager:Vico"..text..msg.chat_id_)   
 redis:del(bot_id.."Eqap:Add:Rd:Manager:Stekrs"..text..msg.chat_id_)     
@@ -2251,14 +2251,14 @@ photo_in_group = msg.content_.photo_.sizes_[3].photo_.persistent_id_
 end
 redis:set(bot_id.."Eqap:Add:Rd:Sudo:Photo"..test, photo_in_group)  
 end
-send(msg.chat_id_, msg.id_,"• تم حفظ رد \n• ارسل ( "..test.." ) لرئية الرد")
+send(msg.chat_id_, msg.id_,"◦ تم حفظ رد \n◦ ارسل ( "..test.." ) لرئية الرد")
 return false  
 end  
 end
 ------------------------------------------------------------------------------------------------------------
 if text and text:match("^(.*)$") then
 if redis:get(bot_id.."Eqap:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
-send(msg.chat_id_, msg.id_, '\n• ارسل لي الكلمه الان \n• تستطيع اضافة ← { ملف ، فديو ، نص ، ملصق ، بصمه ، متحركه }\n• تستطيع ايضا اضافة :\n• `#username` » معرف المستخدم \n• `#msgs` » عدد الرسائل\n• `#name` » اسم المستخدم\n• `#id` » ايدي المستخدم\n• `#stast` » موقع المستخدم \n• `#edit` » عدد السحكات ')
+send(msg.chat_id_, msg.id_, '\n◦ ارسل لي الكلمه الان \n◦ تستطيع اضافة ← { ملف ، فديو ، نص ، ملصق ، بصمه ، متحركه }\n◦ تستطيع ايضا اضافة :\n◦ `#username` » معرف المستخدم \n◦ `#msgs` » عدد الرسائل\n◦ `#name` » اسم المستخدم\n◦ `#id` » ايدي المستخدم\n◦ `#stast` » موقع المستخدم \n◦ `#edit` » عدد السحكات ')
 redis:set(bot_id.."Eqap:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_, "true1")
 redis:set(bot_id.."Eqap:Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_, text)
 redis:sadd(bot_id.."Eqap:List:Rd:Sudo", text)
@@ -2267,7 +2267,7 @@ end
 ------------------------------------------------------------------------------------------------------------
 if text and text:match("^(.*)$") then
 if redis:get(bot_id.."Eqap:Set:On"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
-send(msg.chat_id_, msg.id_,"• تم حذف الرد من الردود العامه ")
+send(msg.chat_id_, msg.id_,"◦ تم حذف الرد من الردود العامه ")
 list = {"Add:Rd:Sudo:Audio","Add:Rd:Sudo:File","Add:Rd:Sudo:Video","Add:Rd:Sudo:Photo","Add:Rd:Sudo:Text","Add:Rd:Sudo:stekr","Add:Rd:Sudo:vico","Add:Rd:Sudo:Gif"}
 for k,v in pairs(list) do
 redis:del(bot_id..'Eqap:'..v..text)
@@ -2279,48 +2279,48 @@ end
 end
 if redis:get(bot_id.."Eqap:Redis:Rules:" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then 
 if text == "الغاء" then 
-send(msg.chat_id_, msg.id_, "• تم الغاء حفظ القوانين") 
+send(msg.chat_id_, msg.id_, "◦ تم الغاء حفظ القوانين") 
 redis:del(bot_id.."Eqap:Redis:Rules:" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 return false  
 end 
 redis:set(bot_id.."Eqap::Rules:Group" .. msg.chat_id_,text) 
-send(msg.chat_id_, msg.id_,"• تم حفظ قوانين المجموعه") 
+send(msg.chat_id_, msg.id_,"◦ تم حفظ قوانين المجموعه") 
 redis:del(bot_id.."Eqap:Redis:Rules:" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 end  
 if redis:get(bot_id.."Eqap:Change:Description" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then  
 if text == "الغاء" then 
-send(msg.chat_id_,msg.id_, "\n• تم الغاء امر تغيير وصف المجموعه") 
+send(msg.chat_id_,msg.id_, "\n◦ تم الغاء امر تغيير وصف المجموعه") 
 redis:del(bot_id.."Eqap:Change:Description" .. msg.chat_id_ .. "" .. msg.sender_user_id_)
 return false  
 end 
 redis:del(bot_id.."Eqap:Change:Description" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
 https.request("https://api.telegram.org/bot"..token.."/setChatDescription?chat_id="..msg.chat_id_.."&description="..text) 
-send(msg.chat_id_, msg.id_,"• تم تغيير وصف المجموعه")   
+send(msg.chat_id_, msg.id_,"◦ تم تغيير وصف المجموعه")   
 return false  
 end 
 --------------------------------------------------------------------------------------------------------------
 if redis:get(bot_id.."Eqap:Welcome:Group" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then 
 if text == "الغاء" then 
-send(msg.chat_id_,msg.id_, "\n• تم الغاء امر حفظ الترحيب") 
+send(msg.chat_id_,msg.id_, "\n◦ تم الغاء امر حفظ الترحيب") 
 redis:del(bot_id.."Eqap:Welcome:Group" .. msg.chat_id_ .. "" .. msg.sender_user_id_)  
 return false  
 end 
 redis:del(bot_id.."Eqap:Welcome:Group" .. msg.chat_id_ .. "" .. msg.sender_user_id_)  
 redis:set(bot_id.."Eqap:Get:Welcome:Group"..msg.chat_id_,text) 
-send(msg.chat_id_, msg.id_,"• تم حفظ ترحيب المجموعه")   
+send(msg.chat_id_, msg.id_,"◦ تم حفظ ترحيب المجموعه")   
 return false   
 end
 --------------------------------------------------------------------------------------------------------------
 if redis:get(bot_id.."Eqap:link:set"..msg.chat_id_..""..msg.sender_user_id_) then
 if text == "الغاء" then
-send(msg.chat_id_,msg.id_, "\n• تم الغاء امر حفظ الرابط") 
+send(msg.chat_id_,msg.id_, "\n◦ تم الغاء امر حفظ الرابط") 
 redis:del(bot_id.."Eqap:link:set"..msg.chat_id_..""..msg.sender_user_id_) 
 return false
 end
 if text and text:match("(https://telegram.me/joinchat/%S+)") or text and text:match("(https://t.me/joinchat/%S+)") then     
 local Link = text:match("(https://telegram.me/joinchat/%S+)") or text:match("(https://t.me/joinchat/%S+)")   
 redis:set(bot_id.."Eqap:link:set:Group"..msg.chat_id_,Link)
-send(msg.chat_id_,msg.id_,"• تم حفظ الرابط بنجاح")       
+send(msg.chat_id_,msg.id_,"◦ تم حفظ الرابط بنجاح")       
 redis:del(bot_id.."Eqap:link:set"..msg.chat_id_..""..msg.sender_user_id_) 
 return false 
 end
@@ -2328,7 +2328,7 @@ end
 if text then 
 local DelFilter = redis:get(bot_id.."Eqap:Filter:Reply1"..msg.sender_user_id_..msg.chat_id_)  
 if DelFilter and DelFilter == "DelFilter" then   
-send(msg.chat_id_, msg.id_,"• تم الغاء منعها ")  
+send(msg.chat_id_, msg.id_,"◦ تم الغاء منعها ")  
 redis:del(bot_id.."Eqap:Filter:Reply1"..msg.sender_user_id_..msg.chat_id_)  
 redis:del(bot_id.."Eqap:Filter:Reply2"..text..msg.chat_id_)  
 redis:srem(bot_id.."Eqap:List:Filter"..msg.chat_id_,text)  
@@ -2339,7 +2339,7 @@ end
 if text then   
 local SetFilter = redis:get(bot_id.."Eqap:Filter:Reply1"..msg.sender_user_id_..msg.chat_id_)  
 if SetFilter and SetFilter == "SetFilter" then   
-send(msg.chat_id_, msg.id_,"• ارسل التحذير عند ارسال الكلمه")  
+send(msg.chat_id_, msg.id_,"◦ ارسل التحذير عند ارسال الكلمه")  
 redis:set(bot_id.."Eqap:Filter:Reply1"..msg.sender_user_id_..msg.chat_id_,"WirngFilter")  
 redis:set(bot_id.."Eqap:Filter:Reply:Status"..msg.sender_user_id_..msg.chat_id_, text)  
 redis:sadd(bot_id.."Eqap:List:Filter"..msg.chat_id_,text)  
@@ -2385,7 +2385,7 @@ local hms = msg.sender_user_id_
 if ross2.username_ then 
 hms = "@"..ross2.username_
 end
-faederdx(msg.chat_id_, msg.id_, 1, "❍ هذه همسه سريه الى { @["..faed_dx[2].."] }\n❍ مرسله من { ["..hms.."] }\n❍ هو فقط من يستطيع رويتها\n❍ [اضغط هنا لعرض الهمسه](https://t.me/"..bot_username.."?start=hms"..msg.chat_id_..msg.id_.."_"..res2.id_..") •", 1, 'md')
+faederdx(msg.chat_id_, msg.id_, 1, "❍ هذه همسه سريه الى { @["..faed_dx[2].."] }\n❍ مرسله من { ["..hms.."] }\n❍ هو فقط من يستطيع رويتها\n❍ [اضغط هنا لعرض الهمسه](https://t.me/"..bot_username.."?start=hms"..msg.chat_id_..msg.id_.."_"..res2.id_..") ◦", 1, 'md')
 end
 getUser(msg.sender_user_id_, Dxx)
 end
@@ -2415,7 +2415,7 @@ if text and text:match("/start hms(.*)_(%d+)") then
 if text then  
 local WirngFilter = redis:get(bot_id.."Eqap:Filter:Reply1"..msg.sender_user_id_..msg.chat_id_)  
 if WirngFilter and WirngFilter == "WirngFilter" then  
-send(msg.chat_id_, msg.id_,"• تم منع الكلمه مع التحذير")  
+send(msg.chat_id_, msg.id_,"◦ تم منع الكلمه مع التحذير")  
 redis:del(bot_id.."Eqap:Filter:Reply1"..msg.sender_user_id_..msg.chat_id_)  
 local test = redis:get(bot_id.."Eqap:Filter:Reply:Status"..msg.sender_user_id_..msg.chat_id_)  
 if text then   
@@ -2427,7 +2427,7 @@ end
 end
 if redis:get(bot_id.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then 
 if text and text:match("^الغاء$") then 
-send(msg.chat_id_, msg.id_, "• تم الغاء الامر ") 
+send(msg.chat_id_, msg.id_, "◦ تم الغاء الامر ") 
 redis:del(bot_id.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_)  
 return false  end 
 redis:del(bot_id.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_)  
@@ -2437,21 +2437,21 @@ ID = "SearchPublicChat",
 username_ = username  
 },function(arg,data) 
 if data and data.message_ and data.message_ == "USERNAME_NOT_OCCUPIED" then 
-send(msg.chat_id_, msg.id_, '• المعرف لا يوجد فيه قناة')
+send(msg.chat_id_, msg.id_, '◦ المعرف لا يوجد فيه قناة')
 return false  end
 if data and data.type_ and data.type_.ID and data.type_.ID == 'PrivateChatInfo' then
-send(msg.chat_id_, msg.id_, '• عذا لا يمكنك وضع معرف حسابات في الاشتراك ') 
+send(msg.chat_id_, msg.id_, '◦ عذا لا يمكنك وضع معرف حسابات في الاشتراك ') 
 return false  end
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.is_supergroup_ == true then
-send(msg.chat_id_, msg.id_,'• عذا لا يمكنك وضع معرف مجوعه في الاشتراك ') 
+send(msg.chat_id_, msg.id_,'◦ عذا لا يمكنك وضع معرف مجوعه في الاشتراك ') 
 return false  end
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.is_supergroup_ == false then
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.ID and data.type_.channel_.status_.ID == 'ChatMemberStatusEditor' then
-send(msg.chat_id_, msg.id_,'• البوت ادمن في القناة \n تم تفعيل الاشتراك الاجباري في \n ايدي القناة ('..data.id_..')\n• معرف القناة ([@'..data.type_.channel_.username_..'])') 
+send(msg.chat_id_, msg.id_,'◦ البوت ادمن في القناة \n تم تفعيل الاشتراك الاجباري في \n ايدي القناة ('..data.id_..')\n◦ معرف القناة ([@'..data.type_.channel_.username_..'])') 
 redis:set(bot_id..'add:ch:id',data.id_)
 redis:set(bot_id..'add:ch:username','@'..data.type_.channel_.username_)
 else
-send(msg.chat_id_, msg.id_,'• البوت ليس ادمن في القناة يرجى ترقيته ادمن ثم اعادة المحاوله ') 
+send(msg.chat_id_, msg.id_,'◦ البوت ليس ادمن في القناة يرجى ترقيته ادمن ثم اعادة المحاوله ') 
 end
 return false  
 end
@@ -2459,7 +2459,7 @@ end,nil)
 end
 if redis:get(bot_id.."textch:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then 
 if text and text:match("^الغاء$") then 
-send(msg.chat_id_, msg.id_, "• تم الغاء الامر ") 
+send(msg.chat_id_, msg.id_, "◦ تم الغاء الامر ") 
 redis:del(bot_id.."textch:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_)  
 return false  end 
 redis:del(bot_id.."textch:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_)  
@@ -2470,7 +2470,7 @@ end
 ---------------------------------------------------
 if TypeForChat == ("ForUser") then
 if text == '/play' or text == 'الاوامر الخدميه' then
-  local Text_keyboard = '• يمكنك ايضا استخدام الاوامر الخدميه \n• اليك ازرار الاوامر الخدميه اسفل الرساله\n                  ───────────────\n                               '
+  local Text_keyboard = '◦ يمكنك ايضا استخدام الاوامر الخدميه \n◦ اليك ازرار الاوامر الخدميه اسفل الرساله\n                  ───────────────\n                               '
 local List_keyboard = {
   {'احسب عمرك'},
   {'الابراج','نسبه الحب'},
@@ -2508,7 +2508,7 @@ if text and text:match("^برج (.*)$") or text and text:match("^برجي (.*)$"
 if TypeForChat == ("ForUser") then
 if text == '/start' or text == 'العوده' then  
 if Dev_Bots(msg) then
-local Text_keyboard = '• اهلا بك عزيزي Develper \n في اوامرك الخاصه \n يمكنك تحكم في بوت عن طريق كيبورد ادناه '
+local Text_keyboard = '◦ اهلا بك عزيزي Develper \n في اوامرك الخاصه \n يمكنك تحكم في بوت عن طريق كيبورد ادناه '
 local List_keyboard = {
 {'تغيير اسم البوت'},
 {'الاحصائيات'},
@@ -2533,15 +2533,15 @@ else
 if not redis:get(bot_id..'Eqap:Ban:Cmd:Start'..msg.sender_user_id_) then
 local GetCmdStart = redis:get(bot_id.."Eqap:Set:Cmd:Start:Bot")  
 if not GetCmdStart then 
-CmdStart = '\n• اهلا بك  \n انا بوت تابع  '..(redis:get(bot_id.."Eqap:Redis:Name:Bot") or "Lisa source")..''..
-'\n• اختصاصي حماية المجموعات'..
-'\n• لتفعيل البوت عليك اتباع مايلي ...'..
-'\n• اضف البوت الى مجموعتك'..
-'\n• ارفعه مشرف'..
-'\n• ارسل كلمة  تفعيل  ليتم تفعيل المجموعه'..
-'\n• سيتم ترقيتك منشئ اساسي في البوت'..
-'\n• يمكنك كتابة /play او الاوامر الخدميه لرؤيه خدمات الخاص '..
-'\n• Dev ← ['..UserName_Dev..']'
+CmdStart = '\n◦ اهلا بك  \n انا بوت تابع  '..(redis:get(bot_id.."Eqap:Redis:Name:Bot") or "Lisa source")..''..
+'\n◦ اختصاصي حماية المجموعات'..
+'\n◦ لتفعيل البوت عليك اتباع مايلي ...'..
+'\n◦ اضف البوت الى مجموعتك'..
+'\n◦ ارفعه مشرف'..
+'\n◦ ارسل كلمة  تفعيل  ليتم تفعيل المجموعه'..
+'\n◦ سيتم ترقيتك منشئ اساسي في البوت'..
+'\n◦ يمكنك كتابة /play او الاوامر الخدميه لرؤيه خدمات الخاص '..
+'\n◦ Dev ← ['..UserName_Dev..']'
 send(msg.chat_id_, msg.id_,CmdStart) 
 else
 send(msg.chat_id_, msg.id_,GetCmdStart) 
@@ -2552,7 +2552,7 @@ redis:setex(bot_id..'Eqap:Ban:Cmd:Start'..msg.sender_user_id_,60,true)
 return false
 end
 if not Dev_Bots(msg) and not redis:sismember(bot_id..'Eqap:User:Ban:Pv',msg.sender_user_id_) and not redis:get(bot_id..'Eqap:Lock:Twasl') then
-send(msg.sender_user_id_,msg.id_,'• تم ارسال رسالتك \n معرف ال Developer  ←  [@'..UserName_Dev..'] ')    
+send(msg.sender_user_id_,msg.id_,'◦ تم ارسال رسالتك \n معرف ال Developer  ←  [@'..UserName_Dev..'] ')    
 local List_id = {Id_Dev,msg.sender_user_id_}
 for k,v in pairs(List_id) do   
 tdcli_function({ID="GetChat",chat_id_=v},function(arg,chat) end,nil)
@@ -2560,7 +2560,7 @@ end
 tdcli_function({ID="ForwardMessages",chat_id_=Id_Dev,from_chat_id_= msg.sender_user_id_,message_ids_={[0]=msg.id_},disable_notification_=1,from_background_=1},function(arg,data) 
 if data and data.messages_ and data.messages_[0] ~= false and data.ID ~= "Error" then
 if data and data.messages_ and data.messages_[0].content_.sticker_ then
-Send_Optionspv(Id_Dev,0,msg.sender_user_id_,"reply_Pv","• قام بارسال الملصق")  
+Send_Optionspv(Id_Dev,0,msg.sender_user_id_,"reply_Pv","◦ قام بارسال الملصق")  
 return false
 end
 end
@@ -2574,18 +2574,18 @@ UserForward = result.forward_info_.sender_user_id_
 end     
 if text == 'حظر' then
 redis:sadd(bot_id..'Eqap:User:Ban:Pv',UserForward)  
-Send_Optionspv(Id_Dev,msg.id_,UserForward,"reply_Pv","• تم حظره من تواصل البوت")  
+Send_Optionspv(Id_Dev,msg.id_,UserForward,"reply_Pv","◦ تم حظره من تواصل البوت")  
 return false  
 end
 if text =='الغاء الحظر' then
 redis:srem(bot_id..'Eqap:User:Ban:Pv',UserForward) 
-Send_Optionspv(Id_Dev,msg.id_,UserForward,"reply_Pv","• تم الغاء الحظره من تواصل البوت")   
+Send_Optionspv(Id_Dev,msg.id_,UserForward,"reply_Pv","◦ تم الغاء الحظره من تواصل البوت")   
 return false  
 end 
 tdcli_function({ID='GetChat',chat_id_=UserForward},function(a,s) end,nil)
 tdcli_function({ID="SendChatAction",chat_id_=UserForward,action_={ID="SendMessageTypingAction",progress_=100}},function(arg,Get_Status) 
 if (Get_Status.code_) == (400) or (Get_Status.code_) == (5) then
-Send_Optionspv(Id_Dev,msg.id_,UserForward,"reply_Pv","• قام بحظر البوت لا تستطيع ارسال له رسائل")  
+Send_Optionspv(Id_Dev,msg.id_,UserForward,"reply_Pv","◦ قام بحظر البوت لا تستطيع ارسال له رسائل")  
 return false  
 end 
 if text then    
@@ -2599,7 +2599,7 @@ sendDocument(UserForward, msg.id_, msg.content_.animation_.animation_.persistent
 elseif msg.content_.ID == 'MessageVoice' then    
 sendVoice(UserForward, msg.id_, msg.content_.voice_.voice_.persistent_id_)    
 end     
-Send_Optionspv(Id_Dev,msg.id_,UserForward,"reply_Pv","• تم ارسال رسالتك اليه بنجاح")  
+Send_Optionspv(Id_Dev,msg.id_,UserForward,"reply_Pv","◦ تم ارسال رسالتك اليه بنجاح")  
 end,nil)end,nil)
 end
 if text == "تحديث" then
@@ -2608,7 +2608,7 @@ dofile("Info_Sudo.lua")
 send(msg.chat_id_, msg.id_, "تم تحديث ملفات البوت")
 end
 if text == 'الاذاعه' then  
-local Text_keyboard = '• اهلا بك عزيزي Developer \n في اوامر الاذاعه'
+local Text_keyboard = '◦ اهلا بك عزيزي Developer \n في اوامر الاذاعه'
 local List_keyboard = {
 {'اذاعه خاص','اذاعه للمجموعات'},
 {'اذاعه خاص بالتوجيه','اذاعه بالتوجيه'},
@@ -2660,7 +2660,7 @@ send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:setex(bot_id.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
-send(msg.chat_id_, msg.id_, '• حسنا ارسل لي معرف القناة') 
+send(msg.chat_id_, msg.id_, '◦ حسنا ارسل لي معرف القناة') 
 return false  
 end
 if text and text:match("^تغيير رساله الاشتراك$") then
@@ -2669,7 +2669,7 @@ send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:setex(bot_id.."textch:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
-send(msg.chat_id_, msg.id_, '• حسنا ارسل لي النص الذي تريده') 
+send(msg.chat_id_, msg.id_, '◦ حسنا ارسل لي النص الذي تريده') 
 return false  
 end
 if text == "حذف رساله الاشتراك" then
@@ -2678,7 +2678,7 @@ send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:del(bot_id..'text:ch:user')
-send(msg.chat_id_, msg.id_, "• تم مسح رساله الاشتراك ") 
+send(msg.chat_id_, msg.id_, "◦ تم مسح رساله الاشتراك ") 
 return false  
 end
 if text and text:match("^وضع قناة الاشتراك$") then
@@ -2687,7 +2687,7 @@ send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:setex(bot_id.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
-send(msg.chat_id_, msg.id_, '• حسنا ارسل لي معرف القناة') 
+send(msg.chat_id_, msg.id_, '◦ حسنا ارسل لي معرف القناة') 
 return false  
 end
 if text == "تفعيل الاشتراك" then
@@ -2697,7 +2697,7 @@ return false
 end
 if redis:get(bot_id..'add:ch:id') then
 local addchusername = redis:get(bot_id..'add:ch:username')
-send(msg.chat_id_, msg.id_,"• الاشتراك الاجباري مفعل \n على القناة ⇠ ["..addchusername.."]")
+send(msg.chat_id_, msg.id_,"◦ الاشتراك الاجباري مفعل \n على القناة ⇠ ["..addchusername.."]")
 else
 redis:setex(bot_id.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
 send(msg.chat_id_, msg.id_," لا يوجد قناة للاشتراك الاجباري")
@@ -2711,7 +2711,7 @@ return false
 end
 redis:del(bot_id..'add:ch:id')
 redis:del(bot_id..'add:ch:username')
-send(msg.chat_id_, msg.id_, "• تم تعطيل الاشتراك الاجباري ") 
+send(msg.chat_id_, msg.id_, "◦ تم تعطيل الاشتراك الاجباري ") 
 return false  
 end
 if text == "الاشتراك الاجباري" then
@@ -2721,9 +2721,9 @@ return false
 end
 if redis:get(bot_id..'add:ch:username') then
 local addchusername = redis:get(bot_id..'add:ch:username')
-send(msg.chat_id_, msg.id_, "• تم تفعيل الاشتراك الاجباري \n على القناة ⇠ ["..addchusername.."]")
+send(msg.chat_id_, msg.id_, "◦ تم تفعيل الاشتراك الاجباري \n على القناة ⇠ ["..addchusername.."]")
 else
-send(msg.chat_id_, msg.id_, "• لا يوجد قناة في الاشتراك الاجباري ") 
+send(msg.chat_id_, msg.id_, "◦ لا يوجد قناة في الاشتراك الاجباري ") 
 end
 return false  
 end
@@ -2775,91 +2775,91 @@ return false end
 end
 if text == 'تغيير كليشه ستارت' then
 redis:set(bot_id..'Eqap:Set:Cmd:Start:Bots',true) 
-send(msg.chat_id_, msg.id_,'• ارسل الان الكليشه ليتم وضعها') 
+send(msg.chat_id_, msg.id_,'◦ ارسل الان الكليشه ليتم وضعها') 
 end
 if text == 'ازالة كليشه ستارت' then
 redis:del(bot_id..'Eqap:Set:Cmd:Start:Bot') 
-send(msg.chat_id_, msg.id_,'• تم حذف كليشه ستارت') 
+send(msg.chat_id_, msg.id_,'◦ تم حذف كليشه ستارت') 
 end
 if text == "تفعيل مغادرة البوت" then   
 redis:del(bot_id.."Eqap:Lock:Left"..msg.chat_id_)  
-send(msg.chat_id_, msg.id_,"• تم تفعيل مغادرة البوت") 
+send(msg.chat_id_, msg.id_,"◦ تم تفعيل مغادرة البوت") 
 end
 if text == "تعطيل مغادرة البوت" then  
 redis:set(bot_id.."Eqap:Lock:Left"..msg.chat_id_,true)   
-send(msg.chat_id_, msg.id_, "• تم تعطيل مغادرة البوت") 
+send(msg.chat_id_, msg.id_, "◦ تم تعطيل مغادرة البوت") 
 end
 if text == "تفعيل الاذاعه" then  
 redis:del(bot_id.."Eqap:Broadcasting:Bot") 
-send(msg.chat_id_, msg.id_,"• تم تفعيل الاذاعه \n• الان يمكن للCommander  الاذاعه" ) 
+send(msg.chat_id_, msg.id_,"◦ تم تفعيل الاذاعه \n◦ الان يمكن للCommander  الاذاعه" ) 
 end
 if text == "تعطيل الاذاعه" then  
 redis:set(bot_id.."Eqap:Broadcasting:Bot",true) 
-send(msg.chat_id_, msg.id_,"• تم تعطيل الاذاعه") 
+send(msg.chat_id_, msg.id_,"◦ تم تعطيل الاذاعه") 
 end
 if text == 'تفعيل البوت الخدمي' then  
 redis:del(bot_id..'Eqap:Free:Bot') 
-send(msg.chat_id_, msg.id_,'• تم تفعيل البوت الخدمي \n• الان يمكن الجميع تفعيله') 
+send(msg.chat_id_, msg.id_,'◦ تم تفعيل البوت الخدمي \n◦ الان يمكن الجميع تفعيله') 
 end
 if text == 'تعطيل البوت الخدمي' then  
 redis:set(bot_id..'Eqap:Free:Bot',true) 
-send(msg.chat_id_, msg.id_,'• تم تعطيل البوت الخدمي') 
+send(msg.chat_id_, msg.id_,'◦ تم تعطيل البوت الخدمي') 
 end
 if text == 'تغيير كليشة المطور' then
 redis:set(bot_id..'Eqap:GetTexting:DevSlbotss'..msg.chat_id_..':'..msg.sender_user_id_,true)
-send(msg.chat_id_,msg.id_,'•  ارسل لي الكليشه الان')
+send(msg.chat_id_,msg.id_,'◦  ارسل لي الكليشه الان')
 end
 if text=="اذاعه خاص" then 
 redis:setex(bot_id.."Eqap:Broadcasting:Users" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
-send(msg.chat_id_, msg.id_,"• ارسل لي المنشور الان\n• يمكنك ارسال -{ صوره - ملصق - متحركه - رساله }\n• لالغاء الاذاعه ارسل : الغاء") 
+send(msg.chat_id_, msg.id_,"◦ ارسل لي المنشور الان\n◦ يمكنك ارسال -{ صوره - ملصق - متحركه - رساله }\n◦ لالغاء الاذاعه ارسل : الغاء") 
 return false
 end
 if text=="اذاعه للمجموعات" then 
 redis:setex(bot_id.."Eqap:Broadcasting:Groups" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
-send(msg.chat_id_, msg.id_,"• ارسل لي المنشور الان\n• يمكنك ارسال -{ صوره - ملصق - متحركه - رساله }\n• لالغاء الاذاعه ارسل : الغاء") 
+send(msg.chat_id_, msg.id_,"◦ ارسل لي المنشور الان\n◦ يمكنك ارسال -{ صوره - ملصق - متحركه - رساله }\n◦ لالغاء الاذاعه ارسل : الغاء") 
 return false
 end
 if text=="اذاعه بالتوجيه" and DeveloperBot(msg) then 
 redis:setex(bot_id.."Eqap:Broadcasting:Groups:Fwd" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
-send(msg.chat_id_, msg.id_,"• ارسل لي التوجيه الان\n• ليتم افتاراته في المجموعات") 
+send(msg.chat_id_, msg.id_,"◦ ارسل لي التوجيه الان\n◦ ليتم افتاراته في المجموعات") 
 return false
 end
 if text=="اذاعه خاص بالتوجيه" and DeveloperBot(msg) then 
 redis:setex(bot_id.."Eqap:Broadcasting:Users:Fwd" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
-send(msg.chat_id_, msg.id_,"• ارسل لي التوجيه الان\n• ليتم افتاراته الى المشتركين") 
+send(msg.chat_id_, msg.id_,"◦ ارسل لي التوجيه الان\n◦ ليتم افتاراته الى المشتركين") 
 return false
 end
 if text == 'ازالة كليشة المطور' then
 redis:del(bot_id..'Eqap:Texting:DevSlbotss')
-send(msg.chat_id_, msg.id_,'•  تم حذف كليشه Commander ')
+send(msg.chat_id_, msg.id_,'◦  تم حذف كليشه Commander ')
 end
 if text == "تغيير اسم البوت" then 
 redis:setex(bot_id.."Eqap:Change:Name:Bot"..msg.sender_user_id_,300,true) 
-send(msg.chat_id_, msg.id_,"•  ارسل لي الاسم الان ")  
+send(msg.chat_id_, msg.id_,"◦  ارسل لي الاسم الان ")  
 return false
 end
 if text == ("مسح قائمة العام") then
 redis:del(bot_id.."Eqap:Removal:User:Groups")
-send(msg.chat_id_, msg.id_, "• تم مسح المحظورين عام من البوت")
+send(msg.chat_id_, msg.id_, "◦ تم مسح المحظورين عام من البوت")
 end
 if text == ("مسح المكتومين عام") then
 redis:del(bot_id.."Eqap:Silence:User:Groups")
-send(msg.chat_id_, msg.id_, "• تم مسح المحظورين عام من البوت")
+send(msg.chat_id_, msg.id_, "◦ تم مسح المحظورين عام من البوت")
 end
 if text == ("مسح قائمة T") then
 redis:del(bot_id.."Eqap:Developer:Bot")
-send(msg.chat_id_, msg.id_, "•  تم مسح قائمة T من البوت  ")
+send(msg.chat_id_, msg.id_, "◦  تم مسح قائمة T من البوت  ")
 end
 if text == ("مسح قائمة TR") then
 redis:del(bot_id.."Eqap:Developer:Bot")
-send(msg.chat_id_, msg.id_, "•  تم مسح قائمة TR من البوت  ")
+send(msg.chat_id_, msg.id_, "◦  تم مسح قائمة TR من البوت  ")
 end
 if text == ("قائمة العام") then
 local list = redis:smembers(bot_id.."Eqap:Removal:User:Groups")
 if #list == 0 then
-return send(msg.chat_id_, msg.id_,"• لا يوجد محظورين عام")
+return send(msg.chat_id_, msg.id_,"◦ لا يوجد محظورين عام")
 end
-Gban = "\n• قائمة المحظورين عام في البوت\n━━━━━━━━\n"
+Gban = "\n◦ قائمة المحظورين عام في البوت\n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -2877,9 +2877,9 @@ end
 if text == ("المكتومين عام") and Dev_Bots(msg) then
 local list = redis:smembers(bot_id.."Eqap:Silence:User:Groups")
 if #list == 0 then
-return send(msg.chat_id_, msg.id_,"• لا يوجد مكتومين عام")
+return send(msg.chat_id_, msg.id_,"◦ لا يوجد مكتومين عام")
 end
-Gban = "\n• قائمة المكتومين عام في البوت\n━━━━━━━━\n"
+Gban = "\n◦ قائمة المكتومين عام في البوت\n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -2907,9 +2907,9 @@ end
 if text == ("قائمة T") and Dev_Bots(msg) then
 local list = redis:smembers(bot_id.."Eqap:Developer:Bot")
 if #list == 0 then
-return send(msg.chat_id_, msg.id_, "• لا يوجد Commander ")
+return send(msg.chat_id_, msg.id_, "◦ لا يوجد Commander ")
 end
-Sudos = "\n• قائمة Commander  في البوت \n━━━━━━━━\n"
+Sudos = "\n◦ قائمة Commander  في البوت \n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -2927,9 +2927,9 @@ end
 if text == ("قائمة TR") and Dev_Bots(msg) then
 local list = redis:smembers(bot_id.."Eqap:Developer:Bot1")
 if #list == 0 then
-return send(msg.chat_id_, msg.id_, "• لا يوجد Commander ")
+return send(msg.chat_id_, msg.id_, "◦ لا يوجد Commander ")
 end
-Sudos = "\n• قائمة Commander في البوت \n━━━━━━━━\n"
+Sudos = "\n◦ قائمة Commander في البوت \n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -2945,11 +2945,11 @@ end,nil)
 end
 end
 if text =='الاحصائيات' then 
-send(msg.chat_id_, msg.id_,'*• عدد الاحصائيات الكامله \n━━━━━━━━\n• عدد المجموعات : '..(redis:scard(bot_id..'Eqap:ChekBotAdd') or 0)..'\n• عدد المشتركين : '..(redis:scard(bot_id..'Eqap:Num:User:Pv') or 0)..'*')
+send(msg.chat_id_, msg.id_,'*◦ عدد الاحصائيات الكامله \n━━━━━━━━\n◦ عدد المجموعات : '..(redis:scard(bot_id..'Eqap:ChekBotAdd') or 0)..'\n◦ عدد المشتركين : '..(redis:scard(bot_id..'Eqap:Num:User:Pv') or 0)..'*')
 end
 if text == 'حذف كليشه المطور' then
 redis:del(bot_id..'Eqap:Texting:DevSlbotss')
-send(msg.chat_id_, msg.id_,'•  تم حذف كليشه المطور ')
+send(msg.chat_id_, msg.id_,'◦  تم حذف كليشه المطور ')
 end
 
 if text == "مسح المشتركين" then
@@ -2965,10 +2965,10 @@ sendok = sendok + 1
 end
 if #pv == i then 
 if sendok == 0 then
-send(msg.chat_id_, msg.id_,'• لا يوجد مشتركين وهميين')   
+send(msg.chat_id_, msg.id_,'◦ لا يوجد مشتركين وهميين')   
 else
 local ok = #pv - sendok
-send(msg.chat_id_, msg.id_,'*• عدد المشتركين الان ←{ '..#pv..' }\n• تم العثور على ←{ '..sendok..' } مشترك قام بحظر البوت\n• اصبح عدد المشتركين الان ←{ '..ok..' } مشترك *')   
+send(msg.chat_id_, msg.id_,'*◦ عدد المشتركين الان ←{ '..#pv..' }\n◦ تم العثور على ←{ '..sendok..' } مشترك قام بحظر البوت\n◦ اصبح عدد المشتركين الان ←{ '..ok..' } مشترك *')   
 end
 end
 end,nil)
@@ -3001,21 +3001,21 @@ w = w + 1
 end
 if #group == i then 
 if (w + q) == 0 then
-send(msg.chat_id_, msg.id_,'• لا توجد مجموعات وهميه ')   
+send(msg.chat_id_, msg.id_,'◦ لا توجد مجموعات وهميه ')   
 else
 local yazon = (w + q)
 local sendok = #group - yazon
 if q == 0 then
 yazon = ''
 else
-yazon = '\n•  تم ازالة ~ '..q..' مجموعات من البوت'
+yazon = '\n◦  تم ازالة ~ '..q..' مجموعات من البوت'
 end
 if w == 0 then
 groupss = ''
 else
-groupss = '\n•  تم ازالة ~'..w..' مجموعه لان البوت عضو'
+groupss = '\n◦  تم ازالة ~'..w..' مجموعه لان البوت عضو'
 end
-send(msg.chat_id_, msg.id_,'*•  عدد المجموعات الان ← { '..#group..' } مجموعه '..groupss..''..yazon..'\n• اصبح عدد المجموعات الان ← { '..sendok..' } مجموعات*\n')   
+send(msg.chat_id_, msg.id_,'*◦  عدد المجموعات الان ← { '..#group..' } مجموعه '..groupss..''..yazon..'\n◦ اصبح عدد المجموعات الان ← { '..sendok..' } مجموعات*\n')   
 end
 end
 end,nil)
@@ -3027,11 +3027,11 @@ GetFile_Bot(msg)
 end
 if text == 'تفعيل تواصل' then  
 redis:del(bot_id..'Eqap:Lock:Twasl') 
-send(msg.chat_id_, msg.id_,'•  تم تفعيل التواصل ') 
+send(msg.chat_id_, msg.id_,'◦  تم تفعيل التواصل ') 
 end
 if text == 'تعطيل تواصل' then  
 redis:set(bot_id..'Eqap:Lock:Twasl',true) 
-send(msg.chat_id_, msg.id_,'•  تم تعطيل التواصل ') 
+send(msg.chat_id_, msg.id_,'◦  تم تعطيل التواصل ') 
 end
 end 
 end
@@ -3051,7 +3051,7 @@ if text and text:match("^مسح صلاحيه عامه (.*)$") and Dev_Bots(msg) 
 local ComdNew = text:match("^مسح صلاحيه عامه (.*)$") or text:match("^حذف صلاحيه (.*)$")
 redis:del(bot_id.."Eqap:botsAdd:Validity:Group:Rt"..ComdNew)
 redis:srem(bot_id.."Eqap:botsValiditys:Group"..msg.chat_id_,ComdNew)  
-send(msg.chat_id_, msg.id_, "\n• تم مسح ← { "..ComdNew..' } من الصلاحيات العامه') 
+send(msg.chat_id_, msg.id_, "\n◦ تم مسح ← { "..ComdNew..' } من الصلاحيات العامه') 
 return false 
 end
 if text and text:match("^اضف صلاحيه عامه (.*)$") and Dev_Bots(msg) then 
@@ -3059,7 +3059,7 @@ local ComdNew = text:match("^اضف صلاحيه عامه (.*)$")
 redis:set(bot_id.."Eqap:botsAdd:Validity:Group:Rt:New"..msg.chat_id_..msg.sender_user_id_,ComdNew)  
 redis:sadd(bot_id.."Eqap:botsValiditys:Group"..msg.chat_id_,ComdNew)  
 redis:setex(bot_id.."Eqap:botsRedis:Validity:Group"..msg.chat_id_..""..msg.sender_user_id_,200,true)  
-send(msg.chat_id_, msg.id_, "\n• ارسل نوع الصلاحيه كما مطلوب منك :\n• انواع الصلاحيات المطلوبه ← { عضو ، مميز  ، ادمن  ، مدير }") 
+send(msg.chat_id_, msg.id_, "\n◦ ارسل نوع الصلاحيه كما مطلوب منك :\n◦ انواع الصلاحيات المطلوبه ← { عضو ، مميز  ، ادمن  ، مدير }") 
 return false 
 end
 
@@ -3069,36 +3069,36 @@ tdcli_function({ID="GetMessage",chat_id_=msg.chat_id_,message_id_=tonumber(msg.r
 local statusrt = redis:get(bot_id.."Eqap:botsAdd:Validity:Group:Rt"..mohammed) or redis:get(bot_id.."Eqap:Add:Validity:Group:Rt"..mohammed..msg.chat_id_)
 if  statusrt == "مميز" then
 if not redis:get(bot_id..'Eqap:Cheking:Seted'..msg.chat_id_) and not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*• عذرآ هاذا الامر معل *')
+return send(msg.chat_id_,msg.id_,'*◦ عذرآ هاذا الامر معل *')
 end
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• عذرآ هاذا الامر يخص : الادمنيه فقط *')
+return send(msg.chat_id_,msg.id_,'*◦ عذرآ هاذا الامر يخص : الادمنيه فقط *')
 end
 redis:set(bot_id.."Eqap:Add:Validity:Users"..msg.chat_id_..result.sender_user_id_,text:match("رفع (.*)")) 
 redis:sadd(bot_id.."Eqap:Vip:Group"..msg.chat_id_,result.sender_user_id_)  
-return Send_Options(msg,result.sender_user_id_,"reply","• تم رفعه "..mohammed)  
+return Send_Options(msg,result.sender_user_id_,"reply","◦ تم رفعه "..mohammed)  
 elseif statusrt == "ادمن" then 
 if not redis:get(bot_id..'Eqap:Cheking:Seted'..msg.chat_id_) and not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*• عذرآ هاذا الامر معل *')
+return send(msg.chat_id_,msg.id_,'*◦ عذرآ هاذا الامر معل *')
 end
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*• عذرآ هاذا الامر يخص : المدراء فقط *')
+return send(msg.chat_id_,msg.id_,'*◦ عذرآ هاذا الامر يخص : المدراء فقط *')
 end
 redis:set(bot_id.."Eqap:Add:Validity:Users"..msg.chat_id_..result.sender_user_id_,text:match("رفع (.*)"))
 redis:sadd(bot_id.."Eqap:Admin:Group"..msg.chat_id_,result.sender_user_id_)  
-return Send_Options(msg,result.sender_user_id_,"reply","• تم رفعه "..mohammed)  
+return Send_Options(msg,result.sender_user_id_,"reply","◦ تم رفعه "..mohammed)  
 elseif statusrt == "مدير" then
 if not Constructor(msg) then
-return send(msg.chat_id_,msg.id_,'*• عذرآ هاذا الامر يخص : المنشئين فقط *')
+return send(msg.chat_id_,msg.id_,'*◦ عذرآ هاذا الامر يخص : المنشئين فقط *')
 end
 redis:set(bot_id.."Eqap:Add:Validity:Users"..msg.chat_id_..result.sender_user_id_,text:match("رفع (.*)"))  
 redis:sadd(bot_id.."Eqap:Manager:Group"..msg.chat_id_,result.sender_user_id_)  
-return Send_Options(msg,result.sender_user_id_,"reply","• تم رفعه "..mohammed)  
+return Send_Options(msg,result.sender_user_id_,"reply","◦ تم رفعه "..mohammed)  
 elseif statusrt == "عضو" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• عذرآ هاذا الامر يخص : الادمنيه فقط *')
+return send(msg.chat_id_,msg.id_,'*◦ عذرآ هاذا الامر يخص : الادمنيه فقط *')
 end
-return Send_Options(msg,result.sender_user_id_,"reply","• تم رفعه "..mohammed)  
+return Send_Options(msg,result.sender_user_id_,"reply","◦ تم رفعه "..mohammed)  
 end
 end,nil)
 end
@@ -3108,30 +3108,30 @@ local statusrt = redis:get(bot_id.."Eqap:botsAdd:Validity:Group:Rt"..mohammed) o
 tdcli_function({ID="GetMessage",chat_id_=msg.chat_id_,message_id_=tonumber(msg.reply_to_message_id_)},function(extra,result)
 if  statusrt == "مميز" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• عذرآ هاذا الامر يخص : الادمنيه فقط *')
+return send(msg.chat_id_,msg.id_,'*◦ عذرآ هاذا الامر يخص : الادمنيه فقط *')
 end
 redis:del(bot_id.."Eqap:Add:Validity:Users"..msg.chat_id_..result.sender_user_id_,mohammed) 
 redis:srem(bot_id.."Eqap:Vip:Group"..msg.chat_id_,result.sender_user_id_)  
-return Send_Options(msg,result.sender_user_id_,"reply","• تم تنزيله "..mohammed)  
+return Send_Options(msg,result.sender_user_id_,"reply","◦ تم تنزيله "..mohammed)  
 elseif statusrt == "ادمن" then 
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*• عذرآ هاذا الامر يخص : المدراء فقط *')
+return send(msg.chat_id_,msg.id_,'*◦ عذرآ هاذا الامر يخص : المدراء فقط *')
 end
 redis:del(bot_id.."Eqap:Add:Validity:Users"..msg.chat_id_..result.sender_user_id_,mohammed)
 redis:srem(bot_id.."Eqap:Admin:Group"..msg.chat_id_,result.sender_user_id_)  
-return Send_Options(msg,result.sender_user_id_,"reply","• تم تنزيله "..mohammed)  
+return Send_Options(msg,result.sender_user_id_,"reply","◦ تم تنزيله "..mohammed)  
 elseif statusrt == "مدير" then
 if not Constructor(msg) then
-return send(msg.chat_id_,msg.id_,'*• عذرآ هاذا الامر يخص : المنشئين فقط *')
+return send(msg.chat_id_,msg.id_,'*◦ عذرآ هاذا الامر يخص : المنشئين فقط *')
 end
 redis:del(bot_id.."Eqap:Add:Validity:Users"..msg.chat_id_..result.sender_user_id_,mohammed)
 redis:srem(bot_id.."Eqap:Manager:Group"..msg.chat_id_,result.sender_user_id_)  
-return Send_Options(msg,result.sender_user_id_,"reply","• تم تنزيله "..mohammed)  
+return Send_Options(msg,result.sender_user_id_,"reply","◦ تم تنزيله "..mohammed)  
 elseif statusrt == "عضو" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• عذرآ هاذا الامر يخص : الادمنيه فقط *')
+return send(msg.chat_id_,msg.id_,'*◦ عذرآ هاذا الامر يخص : الادمنيه فقط *')
 end
-return Send_Options(msg,result.sender_user_id_,"reply","• تم تنزيله "..mohammed)   
+return Send_Options(msg,result.sender_user_id_,"reply","◦ تم تنزيله "..mohammed)   
 end
 end,nil)
 end
@@ -3142,43 +3142,43 @@ local statusrt = redis:get(bot_id.."Eqap:botsAdd:Validity:Group:Rt"..mohammed) o
 tdcli_function({ID="SearchPublicChat",username_=Text[3]},function(extra,result)
 if (result.id_) then
 if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
-return send(msg.chat_id_,msg.id_,"*• عذرا هاذا معرف قناة*")    
+return send(msg.chat_id_,msg.id_,"*◦ عذرا هاذا معرف قناة*")    
 end
 if statusrt == "مميز" then
 if not redis:get(bot_id..'Eqap:Cheking:Seted'..msg.chat_id_) and not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*• عذرآ هاذا الامر معل *')
+return send(msg.chat_id_,msg.id_,'*◦ عذرآ هاذا الامر معل *')
 end
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• عذرآ هاذا الامر يخص : الادمنيه فقط *')
+return send(msg.chat_id_,msg.id_,'*◦ عذرآ هاذا الامر يخص : الادمنيه فقط *')
 end
 redis:set(bot_id.."Eqap:Add:Validity:Users"..msg.chat_id_..result.id_,mohammed)
 redis:sadd(bot_id.."Eqap:Vip:Group"..msg.chat_id_,result.id_)  
-return Send_Options(msg,result.id_,"reply","• تم رفعه "..mohammed)  
+return Send_Options(msg,result.id_,"reply","◦ تم رفعه "..mohammed)  
 elseif statusrt == "ادمن" then 
 if not redis:get(bot_id..'Eqap:Cheking:Seted'..msg.chat_id_) and not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*• عذرآ هاذا الامر معل *')
+return send(msg.chat_id_,msg.id_,'*◦ عذرآ هاذا الامر معل *')
 end
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*• عذرآ هاذا الامر يخص : المدراء فقط *')
+return send(msg.chat_id_,msg.id_,'*◦ عذرآ هاذا الامر يخص : المدراء فقط *')
 end
 redis:set(bot_id.."Eqap:Add:Validity:Users"..msg.chat_id_..result.id_,mohammed)
 redis:sadd(bot_id.."Eqap:Admin:Group"..msg.chat_id_,result.id_)  
-return Send_Options(msg,result.id_,"reply","• تم رفعه "..mohammed)  
+return Send_Options(msg,result.id_,"reply","◦ تم رفعه "..mohammed)  
 elseif statusrt == "مدير" then
 if not Constructor(msg) then
-return send(msg.chat_id_,msg.id_,'*• عذرآ هاذا الامر يخص : المنشئين فقط *')
+return send(msg.chat_id_,msg.id_,'*◦ عذرآ هاذا الامر يخص : المنشئين فقط *')
 end
 redis:set(bot_id.."Eqap:Add:Validity:Users"..msg.chat_id_..result.id_,mohammed)
 redis:sadd(bot_id.."Eqap:Manager:Group"..msg.chat_id_,result.id_)  
-return Send_Options(msg,result.id_,"reply","• تم رفعه "..mohammed)  
+return Send_Options(msg,result.id_,"reply","◦ تم رفعه "..mohammed)  
 elseif statusrt == "عضو" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• عذرآ هاذا الامر يخص : الادمنيه فقط *')
+return send(msg.chat_id_,msg.id_,'*◦ عذرآ هاذا الامر يخص : الادمنيه فقط *')
 end
-return Send_Options(msg,result.id_,"reply","• تم رفعه "..mohammed)  
+return Send_Options(msg,result.id_,"reply","◦ تم رفعه "..mohammed)  
 end
 else
-send(msg.chat_id_, msg.id_,"*• المعرف غلط لا يمكن استخراج معلوماته*")
+send(msg.chat_id_, msg.id_,"*◦ المعرف غلط لا يمكن استخراج معلوماته*")
 end
 end,nil)
 end
@@ -3190,37 +3190,37 @@ local statusrt = redis:get(bot_id.."Eqap:botsAdd:Validity:Group:Rt"..mohammed) o
 tdcli_function({ID="SearchPublicChat",username_=Text[3]},function(extra,result)
 if (result.id_) then
 if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
-return send(msg.chat_id_,msg.id_,"*• عذرا هاذا معرف قناة*")    
+return send(msg.chat_id_,msg.id_,"*◦ عذرا هاذا معرف قناة*")    
 end
 if statusrt == "مميز" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• عذرآ هاذا الامر يخص : الادمنيه فقط *')
+return send(msg.chat_id_,msg.id_,'*◦ عذرآ هاذا الامر يخص : الادمنيه فقط *')
 end
 redis:del(bot_id.."Eqap:Add:Validity:Users"..msg.chat_id_..result.id_,mohammed)
 redis:srem(bot_id.."Eqap:Vip:Group"..msg.chat_id_,result.id_)  
-return Send_Options(msg,result.id_,"reply","• تم تنزيله "..mohammed)  
+return Send_Options(msg,result.id_,"reply","◦ تم تنزيله "..mohammed)  
 elseif statusrt == "ادمن" then 
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*• عذرآ هاذا الامر يخص : المدراء فقط *')
+return send(msg.chat_id_,msg.id_,'*◦ عذرآ هاذا الامر يخص : المدراء فقط *')
 end
 redis:del(bot_id.."Eqap:Add:Validity:Users"..msg.chat_id_..result.id_,mohammed)
 redis:srem(bot_id.."Eqap:Admin:Group"..msg.chat_id_,result.id_)  
-return Send_Options(msg,result.id_,"reply","• تم تنزيله "..mohammed)  
+return Send_Options(msg,result.id_,"reply","◦ تم تنزيله "..mohammed)  
 elseif statusrt == "مدير" then
 if not Constructor(msg) then
-return send(msg.chat_id_,msg.id_,'*• عذرآ هاذا الامر يخص : المنشئين فقط *')
+return send(msg.chat_id_,msg.id_,'*◦ عذرآ هاذا الامر يخص : المنشئين فقط *')
 end
 redis:del(bot_id.."Eqap:Add:Validity:Users"..msg.chat_id_..result.id_,mohammed)
 redis:srem(bot_id.."Eqap:Manager:Group"..msg.chat_id_,result.id_)  
-return Send_Options(msg,result.id_,"reply","• تم تنزيله "..mohammed)  
+return Send_Options(msg,result.id_,"reply","◦ تم تنزيله "..mohammed)  
 elseif statusrt == "عضو" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• عذرآ هاذا الامر يخص : الادمنيه فقط *')
+return send(msg.chat_id_,msg.id_,'*◦ عذرآ هاذا الامر يخص : الادمنيه فقط *')
 end
-return Send_Options(msg,result.id_,"reply","• تم تنزيله "..mohammed)  
+return Send_Options(msg,result.id_,"reply","◦ تم تنزيله "..mohammed)  
 end
 else
-send(msg.chat_id_, msg.id_,"*• المعرف غلط لا يمكن استخراج معلوماته*")
+send(msg.chat_id_, msg.id_,"*◦ المعرف غلط لا يمكن استخراج معلوماته*")
 end
 end,nil)
 end
@@ -3231,13 +3231,13 @@ end
 if text and text:match('^تقييد (%d+) (.*) @(.*)$') and Admin(msg) then
 local TextEnd = {string.match(text, "^(تقييد) (%d+) (.*) @(.*)$")}
 if msg.can_be_deleted_ == false then 
-send(msg.chat_id_, msg.id_,"• عذرآ البوت ليس ادمن") 
+send(msg.chat_id_, msg.id_,"◦ عذرآ البوت ليس ادمن") 
 return false  
 end
 function FunctionStatus(arg, result)
 if (result.id_) then
 if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
-send(msg.chat_id_,msg.id_,"• عذرا هاذا معرف قناة")   
+send(msg.chat_id_,msg.id_,"◦ عذرا هاذا معرف قناة")   
 return false 
 end      
 if TextEnd[3] == 'يوم' then
@@ -3256,9 +3256,9 @@ TextEnd[3] = TextEnd[3]:gsub('دقيقه',"دقايق")
 TextEnd[3] = TextEnd[3]:gsub('ساعه',"ساعات") 
 TextEnd[3] = TextEnd[3]:gsub("يوم","ايام") 
 if Rank_Checking(result.id_, msg.chat_id_) then
-send(msg.chat_id_, msg.id_, "\n• لا تستطيع تقييد : "..Get_Rank(result.id_,msg.chat_id_).."")
+send(msg.chat_id_, msg.id_, "\n◦ لا تستطيع تقييد : "..Get_Rank(result.id_,msg.chat_id_).."")
 else
-Send_Options(msg,result.id_,"reply", "• تم تقييده لمدة ~ { "..TextEnd[2]..' '..TextEnd[3]..'}')
+Send_Options(msg,result.id_,"reply", "◦ تم تقييده لمدة ~ { "..TextEnd[2]..' '..TextEnd[3]..'}')
 https.request("https://api.telegram.org/bot"..token.."/restrictChatMember?chat_id="..msg.chat_id_.."&user_id="..result.id_..'&until_date='..tonumber(msg.date_+Time))
 end
 end
@@ -3268,7 +3268,7 @@ end
 if text and text:match('^تقييد (%d+) (.*)$') and tonumber(msg.reply_to_message_id_) ~= 0 and Admin(msg) then
 local TextEnd = {string.match(text, "^(تقييد) (%d+) (.*)$")}
 if msg.can_be_deleted_ == false then 
-send(msg.chat_id_, msg.id_,"• عذرآ البوت ليس ادمن") 
+send(msg.chat_id_, msg.id_,"◦ عذرآ البوت ليس ادمن") 
 return false  
 end
 function FunctionStatus(arg, result)
@@ -3288,9 +3288,9 @@ TextEnd[3] = TextEnd[3]:gsub('دقيقه',"دقايق")
 TextEnd[3] = TextEnd[3]:gsub('ساعه',"ساعات") 
 TextEnd[3] = TextEnd[3]:gsub("يوم","ايام") 
 if Rank_Checking(result.sender_user_id_, msg.chat_id_) then
-send(msg.chat_id_, msg.id_, "\n• لا تستطيع تقييد : "..Get_Rank(result.sender_user_id_,msg.chat_id_).."")
+send(msg.chat_id_, msg.id_, "\n◦ لا تستطيع تقييد : "..Get_Rank(result.sender_user_id_,msg.chat_id_).."")
 else
-Send_Options(msg,result.sender_user_id_,"reply", "• تم تقييده لمدة ~ { "..TextEnd[2]..' '..TextEnd[3]..'}')
+Send_Options(msg,result.sender_user_id_,"reply", "◦ تم تقييده لمدة ~ { "..TextEnd[2]..' '..TextEnd[3]..'}')
 https.request("https://api.telegram.org/bot"..token.."/restrictChatMember?chat_id="..msg.chat_id_.."&user_id="..result.sender_user_id_..'&until_date='..tonumber(msg.date_+Time))
 end
 end
@@ -3736,9 +3736,9 @@ end
 if text == ("المقيدين") and Admin(msg) then
 local list = redis:smembers(bot_id.."Eqap:Silence:kid:User:Group"..msg.chat_id_)
 if #list == 0 then
-return send(msg.chat_id_, msg.id_, "• لا يوجد مقيدين")
+return send(msg.chat_id_, msg.id_, "◦ لا يوجد مقيدين")
 end
-selint = "\n• قائمة المقيدين في المجموعه \n━━━━━━━━\n"
+selint = "\n◦ قائمة المقيدين في المجموعه \n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -3861,9 +3861,9 @@ end
 if text == ("المقيدين عام") and DeveloperBot1(msg) then
 local list = redis:smembers(bot_id.."Eqap:Removalked:User:Groups")
 if #list == 0 then
-return send(msg.chat_id_, msg.id_,"• لا يوجد مقيدين عام")
+return send(msg.chat_id_, msg.id_,"◦ لا يوجد مقيدين عام")
 end
-Gban = "\n• قائمة المقيدين عام في البوت\n━━━━━━━━━━━━━\n"
+Gban = "\n◦ قائمة المقيدين عام في البوت\n━━━━━━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -3913,7 +3913,7 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^طرد @(.*)$")}, FunctionStatus, nil)
 end
 
-if text == ("رفع T") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_Bots(msg) then
+if text == ("رفع Owner S") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_Bots(msg) then
 function FunctionStatus(arg, result)
 redis:sadd(bot_id.."Eqap:Developer:Bot", result.sender_user_id_)
 Send_Options(msg,result.sender_user_id_,"reply","تم ترقيته T في البوت")  
@@ -3921,7 +3921,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, FunctionStatus, nil)
 end
 
-if text == ("تنزيل T") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_Bots(msg) then
+if text == ("تنزيل Owner S") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_Bots(msg) then
 function FunctionStatus(arg, result)
 redis:srem(bot_id.."Eqap:Developer:Bot", result.sender_user_id_)
 Send_Options(msg,result.sender_user_id_,"reply","تم تنزيله من T")  
@@ -3929,7 +3929,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, FunctionStatus, nil)
 end
 
-if text == ("رفع TR") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_Bots(msg) then
+if text == ("رفع Owner S 🎖") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_Bots(msg) then
 function FunctionStatus(arg, result)
 redis:sadd(bot_id.."Eqap:Developer:Bot1", result.sender_user_id_)
 Send_Options(msg,result.sender_user_id_,"reply","تم ترقيته TR في البوت")  
@@ -3937,7 +3937,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, FunctionStatus, nil)
 end
 
-if text == ("تنزيل TR") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_Bots(msg) then
+if text == ("تنزيل Owner S 🎖") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_Bots(msg) then
 function FunctionStatus(arg, result)
 redis:srem(bot_id.."Eqap:Developer:Bot1", result.sender_user_id_)
 Send_Options(msg,result.sender_user_id_,"reply","تم تنزيله من TR")  
@@ -4090,7 +4090,7 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^تنزيل T @(.*)$")}, FunctionStatus, nil)
 end
 
-if text and text:match("^رفع TR @(.*)$") and Dev_Bots(msg) then
+if text and text:match("^رفع OWNER S @(.*)$") and Dev_Bots(msg) then
 function FunctionStatus(arg, result)
 if (result.id_) then
 if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
@@ -4103,10 +4103,10 @@ else
 send(msg.chat_id_, msg.id_,"المعرف غلط ")
 end
 end
-tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^رفع TR @(.*)$")}, FunctionStatus, nil)
+tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^رفع OWNER S @(.*)$")}, FunctionStatus, nil)
 end
 
-if text and text:match("^تنزيل TR @(.*)$") and Dev_Bots(msg) then
+if text and text:match("^تنزيل OWNER S @(.*)$") and Dev_Bots(msg) then
 function FunctionStatus(arg, result)
 if (result.id_) then
 redis:srem(bot_id.."Eqap:Developer:Bot1", result.id_)
@@ -4115,7 +4115,7 @@ else
 send(msg.chat_id_, msg.id_,"المعرف غلط ")
 end
 end
-tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^تنزيل TR @(.*)$")}, FunctionStatus, nil)
+tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^تنزيل OWNER S @(.*)$")}, FunctionStatus, nil)
 end
 
 if text and text:match("^رفع منشئ اساسي @(.*)$") and DeveloperBot(msg) then
@@ -4311,9 +4311,9 @@ end
 if text == ("قائمة العام") and DeveloperBot1(msg) or text == ("المحظورين عام") and DeveloperBot1(msg) then
 local list = redis:smembers(bot_id.."Eqap:Removal:User:Groups")
 if #list == 0 then
-return send(msg.chat_id_, msg.id_,"• لا يوجد محظورين عام")
+return send(msg.chat_id_, msg.id_,"◦ لا يوجد محظورين عام")
 end
-Gban = "\n• قائمة المحظورين عام في البوت\n━━━━━━━━\n"
+Gban = "\n◦ قائمة المحظورين عام في البوت\n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -4331,9 +4331,9 @@ end
 if text == ("المكتومين عام") and DeveloperBot1(msg) then
 local list = redis:smembers(bot_id.."Eqap:Silence:User:Groups")
 if #list == 0 then
-return send(msg.chat_id_, msg.id_,"• لا يوجد مكتومين عام")
+return send(msg.chat_id_, msg.id_,"◦ لا يوجد مكتومين عام")
 end
-Gban = "\n• قائمة المكتومين عام في البوت\n━━━━━━━━\n"
+Gban = "\n◦ قائمة المكتومين عام في البوت\n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -4351,9 +4351,9 @@ end
 if text == ("قائمة C") and DeveloperBot(msg) then
 local list = redis:smembers(bot_id.."Eqap:Developer:Bot")
 if #list == 0 then
-return send(msg.chat_id_, msg.id_, "• لا يوجد Commander ")
+return send(msg.chat_id_, msg.id_, "◦ لا يوجد Commander ")
 end
-Sudos = "\n• قائمة Commander  في البوت \n━━━━━━━━\n"
+Sudos = "\n◦ قائمة Commander  في البوت \n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -4371,9 +4371,9 @@ end
 if text == ("قائمة CM") and DeveloperBot1(msg) then
 local list = redis:smembers(bot_id.."Eqap:Developer:Bot1")
 if #list == 0 then
-return send(msg.chat_id_, msg.id_, "• لا يوجد Commander ")
+return send(msg.chat_id_, msg.id_, "◦ لا يوجد Commander ")
 end
-Sudos = "\n• قائمة Commander  في البوت \n━━━━━━━━\n"
+Sudos = "\n◦ قائمة Commander  في البوت \n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -4391,9 +4391,9 @@ end
 if text == "المنشئين الاساسيين" and PresidentGroup(msg) or text == "الاساسين" and PresidentGroup(msg) then
 local list = redis:smembers(bot_id.."Eqap:President:Group"..msg.chat_id_)
 if #list == 0 then
-return send(msg.chat_id_, msg.id_, "• لا يوجد منشئين اساسيين")
+return send(msg.chat_id_, msg.id_, "◦ لا يوجد منشئين اساسيين")
 end
-Asase = "\n• قائمة المنشئين الاساسيين في المجموعه\n━━━━━━━━\n"
+Asase = "\n◦ قائمة المنشئين الاساسيين في المجموعه\n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -4410,7 +4410,7 @@ end
 end
 
 if text == 'ايديي' then
-send(msg.chat_id_, msg.id_,'• ID - '..msg.sender_user_id_)
+send(msg.chat_id_, msg.id_,'◦ ID - '..msg.sender_user_id_)
 end
 
 if text:match("^بايو$")  and faeder11(msg) then
@@ -4425,9 +4425,9 @@ end
 if text == ("المنشئين") and PresidentGroup(msg) then
 local list = redis:smembers(bot_id.."Eqap:Constructor:Group"..msg.chat_id_)
 if #list == 0 then
-return send(msg.chat_id_, msg.id_, "• لا يوجد منشئين")
+return send(msg.chat_id_, msg.id_, "◦ لا يوجد منشئين")
 end
-Monsh = "\n• قائمة منشئين المجموعه \n━━━━━━━━\n"
+Monsh = "\n◦ قائمة منشئين المجموعه \n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -4445,9 +4445,9 @@ end
 if text == ("المدراء") and Constructor(msg) then
 local list = redis:smembers(bot_id.."Eqap:Manager:Group"..msg.chat_id_)
 if #list == 0 then
-return send(msg.chat_id_, msg.id_, "• لا يوجد مدراء")
+return send(msg.chat_id_, msg.id_, "◦ لا يوجد مدراء")
 end
-mder = "\n• قائمة مدراء المجموعه \n━━━━━━━━\n"
+mder = "\n◦ قائمة مدراء المجموعه \n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -4465,9 +4465,9 @@ end
 if text == ("الادمنيه") and Owner(msg) then
 local list = redis:smembers(bot_id.."Eqap:Admin:Group"..msg.chat_id_)
 if #list == 0 then
-return send(msg.chat_id_, msg.id_, "• لا يوجد ادمنيه")
+return send(msg.chat_id_, msg.id_, "◦ لا يوجد ادمنيه")
 end
-Admin = "\n• قائمة الادمنيه في المجموعه\n━━━━━━━━\n"
+Admin = "\n◦ قائمة الادمنيه في المجموعه\n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -4485,9 +4485,9 @@ end
 if text == ("المميزين") and Admin(msg) then
 local list = redis:smembers(bot_id.."Eqap:Vips:Group"..msg.chat_id_)
 if #list == 0 then
-return send(msg.chat_id_, msg.id_, "• لا يوجد مميزين")
+return send(msg.chat_id_, msg.id_, "◦ لا يوجد مميزين")
 end
-vips = "\n• قائمة المميزين في المجموعه \n━━━━━━━━\n"
+vips = "\n◦ قائمة المميزين في المجموعه \n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -4505,9 +4505,9 @@ end
 if text == ("المكتومين") and Admin(msg) then
 local list = redis:smembers(bot_id.."Eqap:Silence:User:Group"..msg.chat_id_)
 if #list == 0 then
-return send(msg.chat_id_, msg.id_, "• لا يوجد مكتومين")
+return send(msg.chat_id_, msg.id_, "◦ لا يوجد مكتومين")
 end
-selint = "\n• قائمة المكتومين في المجموعه \n━━━━━━━━\n"
+selint = "\n◦ قائمة المكتومين في المجموعه \n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -4525,9 +4525,9 @@ end
 if text == ("المحظورين") and Admin(msg) then
 local list = redis:smembers(bot_id.."Eqap:Removal:User:Group"..msg.chat_id_)
 if #list == 0 then
-return send(msg.chat_id_, msg.id_, "• لا يوجد محظورين")
+return send(msg.chat_id_, msg.id_, "◦ لا يوجد محظورين")
 end
-ban = "\n• قائمة المحظوريين في المجموعه \n━━━━━━━━\n"
+ban = "\n◦ قائمة المحظوريين في المجموعه \n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -4622,941 +4622,941 @@ return false
 end
 local url , res = https.request('https://api.telegram.org/bot'..token..'/unpinAllChatMessages?chat_id='..msg.chat_id_)
 if res == 200 then
-send(msg.chat_id_, msg.id_,"• تم الغاء تثبيت كل الرسائل المثبته")   
+send(msg.chat_id_, msg.id_,"◦ تم الغاء تثبيت كل الرسائل المثبته")   
 redis:del(bot_id..'Pin:Id:Msg'..msg.chat_id_)
 elseif res == 400 then
-send(msg.chat_id_,msg.id_,"• انا لست مشرف هنا يرجى ترقيتي مشرف او ليست لدي صلاحية التثبيت يرجى التحقق من الصلاحيات ثم اعد المحاوله")  
+send(msg.chat_id_,msg.id_,"◦ انا لست مشرف هنا يرجى ترقيتي مشرف او ليست لدي صلاحية التثبيت يرجى التحقق من الصلاحيات ثم اعد المحاوله")  
 end
 end
 if text == ("مسح قائمة العام") and DeveloperBot1(msg) or text == ("مسح المحظورين عام") and DeveloperBot1(msg) then
 redis:del(bot_id.."Eqap:Removal:User:Groups")
-send(msg.chat_id_, msg.id_, "• تم مسح المحظورين عام من البوت")
+send(msg.chat_id_, msg.id_, "◦ تم مسح المحظورين عام من البوت")
 end
 if text == ("مسح المكتومين عام") and DeveloperBot1(msg) or text == ("مسح المحظورين عام") and DeveloperBot1(msg) then
 redis:del(bot_id.."Eqap:Silence:User:Groups")
-send(msg.chat_id_, msg.id_, "• تم مسح المكتومين عام من البوت")
+send(msg.chat_id_, msg.id_, "◦ تم مسح المكتومين عام من البوت")
 end
 if text == ("مسح قائمة C") and Dev_Bots(msg) then
 redis:del(bot_id.."Eqap:Developer:Bot")
-send(msg.chat_id_, msg.id_, "•  تم مسح قائمة C من البوت  ")
+send(msg.chat_id_, msg.id_, "◦  تم مسح قائمة C من البوت  ")
 end
 if text == ("مسح قائمة CM") and Dev_Bots(msg) then
 redis:del(bot_id.."Eqap:Developer:Bot1")
-send(msg.chat_id_, msg.id_, "•  تم مسح قائمة C من البوت  ")
+send(msg.chat_id_, msg.id_, "◦  تم مسح قائمة C من البوت  ")
 end
 if text == ("مسح المنشئين الاساسين") and DeveloperBot(msg) or text == "مسح الاساسين" and DeveloperBot(msg) then
 redis:del(bot_id.."Eqap:President:Group"..msg.chat_id_)
-send(msg.chat_id_, msg.id_, "•  تم مسح المنشئين الاساسيين في المجموعه")
+send(msg.chat_id_, msg.id_, "◦  تم مسح المنشئين الاساسيين في المجموعه")
 end
 if text == ("مسح المنشئين الاساسين") or text == "مسح الاساسين" then
 tdcli_function ({ID = "GetChatMember",chat_id_ = msg.chat_id_,user_id_ = msg.sender_user_id_},function(arg,da) 
 if da.status_.ID == "ChatMemberStatusCreator" then
 redis:del(bot_id.."Eqap:President:Group"..msg.chat_id_)
-send(msg.chat_id_, msg.id_, "•  تم مسح المنشئين الاساسيين في المجموعه")
+send(msg.chat_id_, msg.id_, "◦  تم مسح المنشئين الاساسيين في المجموعه")
 end
 end,nil)
 end
 if text == ("مسح المنشئين") and PresidentGroup(msg) then
 redis:del(bot_id.."Eqap:Constructor:Group"..msg.chat_id_)
-send(msg.chat_id_, msg.id_, "•  تم مسح المنشئين في المجموعه")
+send(msg.chat_id_, msg.id_, "◦  تم مسح المنشئين في المجموعه")
 end
 if text == ("مسح المدراء") and Constructor(msg) then
 redis:del(bot_id.."Eqap:Manager:Group"..msg.chat_id_)
-send(msg.chat_id_, msg.id_, "•  تم مسح المدراء في المجموعه")
+send(msg.chat_id_, msg.id_, "◦  تم مسح المدراء في المجموعه")
 end
 if text == ("مسح الادمنيه") and Owner(msg) then
 redis:del(bot_id.."Eqap:Admin:Group"..msg.chat_id_)
-send(msg.chat_id_, msg.id_, "•  تم مسح الادمنيه في المجموعه")
+send(msg.chat_id_, msg.id_, "◦  تم مسح الادمنيه في المجموعه")
 end
 if text == ("مسح المميزين") and Admin(msg) then
 redis:del(bot_id.."Eqap:Vip:Group"..msg.chat_id_)
-send(msg.chat_id_, msg.id_, "•  تم مسح المميزين في المجموعه")
+send(msg.chat_id_, msg.id_, "◦  تم مسح المميزين في المجموعه")
 end
 if text == ("مسح المكتومين") and Admin(msg) then
 redis:del(bot_id.."Eqap:Silence:User:Group"..msg.chat_id_)
-send(msg.chat_id_, msg.id_, "•  تم مسح المكتومين في المجموعه")
+send(msg.chat_id_, msg.id_, "◦  تم مسح المكتومين في المجموعه")
 end
 if text == ("مسح المقيدين") and Admin(msg) then
 redis:del(bot_id.."Eqap:Silence:kid:User:Group"..msg.chat_id_)
-send(msg.chat_id_, msg.id_, "•  تم مسح المقيدين في المجموعه")
+send(msg.chat_id_, msg.id_, "◦  تم مسح المقيدين في المجموعه")
 end
 if text == ("مسح المحظورين") and Admin(msg) then
 redis:del(bot_id.."Eqap:Removal:User:Group"..msg.chat_id_)
-send(msg.chat_id_, msg.id_, "• تم مسح المحظورين في المجموعه")
+send(msg.chat_id_, msg.id_, "◦ تم مسح المحظورين في المجموعه")
 end
 
 if text ==  "قفل الدردشه" then
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
 end 
 redis:set(bot_id.."Eqap:Lock:text"..msg.chat_id_,true) 
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل الدردشه")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل الدردشه")  
 elseif text ==  "قفل الاضافه" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end 
 redis:set(bot_id.."Eqap:Lock:AddMempar"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل اضافة الاعضاء")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل اضافة الاعضاء")  
 elseif text ==  "قفل الدخول" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end 
 redis:set(bot_id.."Eqap:Lock:Join"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل دخول الاعضاء")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل دخول الاعضاء")  
 elseif text ==  "قفل البوتات" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end 
 redis:set(bot_id.."Eqap:Lock:Bot:kick"..msg.chat_id_,"del")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل البوتات")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل البوتات")  
 elseif text ==  "قفل البوتات بالطرد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end 
 redis:set(bot_id.."Eqap:Lock:Bot:kick"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","• تم قفل البوتات")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","◦ تم قفل البوتات")  
 elseif text ==  "قفل الاشعارات" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end  
 redis:set(bot_id.."Eqap:Lock:tagservr"..msg.chat_id_,true)  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل الاشعارات")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل الاشعارات")  
 elseif text ==  "قفل التثبيت" then
 if not Constructor(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
 end 
 redis:set(bot_id.."Eqap:lockpin"..msg.chat_id_, true) 
 redis:sadd(bot_id.."Eqap:Lock:pin",msg.chat_id_) 
 tdcli_function ({ ID = "GetChannelFull",  channel_id_ = msg.chat_id_:gsub("-100","") }, function(arg,data)  redis:set(bot_id.."Eqap:Get:Id:Msg:Pin"..msg.chat_id_,data.pinned_message_id_)  end,nil)
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل التثبيت هنا")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل التثبيت هنا")  
 elseif text ==  "قفل التعديل" then
 if not Constructor(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
 end 
 redis:set(bot_id.."Eqap:Lock:edit"..msg.chat_id_,true) 
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل تعديل")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل تعديل")  
 elseif text ==  "قفل تعديل الميديا" then
 if not Constructor(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
 end 
 redis:set(bot_id.."Eqap:Lock:edit"..msg.chat_id_,true) 
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل تعديل")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل تعديل")  
 elseif text ==  "قفل الكل" then
 if not Constructor(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
 end  
 redis:set(bot_id.."Eqap:Lock:tagservrbot"..msg.chat_id_,true)   
 list ={"Lock:Bot:kick","Lock:User:Name","Lock:hashtak","Lock:Cmd","Lock:Link","Lock:forward","Lock:Keyboard","Lock:geam","Lock:Photo","Lock:Animation","Lock:Video","Lock:Audio","Lock:vico","Lock:Sticker","Lock:Document","Lock:Unsupported","Lock:Markdaun","Lock:Contact","Lock:Spam"}
 for i,lock in pairs(list) do;redis:set(bot_id..lock..msg.chat_id_,"del");end
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل جميع الاوامر")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل جميع الاوامر")  
 elseif text ==  "فتح الاضافه" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end 
 redis:del(bot_id.."Eqap:Lock:AddMempar"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح اضافة الاعضاء")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح اضافة الاعضاء")  
 elseif text ==  "قفل السب" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end 
 redis:set(bot_id.."lock:Fshar"..msg.chat_id_,true)  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل السب")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل السب")  
 elseif text ==  "قفل الايموجي" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end 
 redis:set(bot_id.."lock:emoje"..msg.chat_id_,true)  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل الايموجي")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل الايموجي")  
 elseif text ==  "فتح السب" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end 
 redis:del(bot_id.."lock:Fshar"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم فتح السب")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم فتح السب")  
 elseif text ==  "فتح الايموجي" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end 
 redis:del(bot_id.."lock:emoje"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم فتح الايموجي")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم فتح الايموجي")  
 elseif text ==  "فتح الدردشه" then
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
 end 
 redis:del(bot_id.."Eqap:Lock:text"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح الدردشه")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح الدردشه")  
 elseif text ==  "فتح الدخول" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end 
 redis:del(bot_id.."Eqap:Lock:Join"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح دخول الاعضاء")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح دخول الاعضاء")  
 elseif text ==  "فتح البوتات" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end 
 redis:del(bot_id.."Eqap:Lock:Bot:kick"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح البوتات")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح البوتات")  
 elseif text ==  "فتح البوتات " then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end 
 redis:del(bot_id.."Eqap:Lock:Bot:kick"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","\n• تم فتح البوتات")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","\n◦ تم فتح البوتات")  
 elseif text ==  "فتح الاشعارات" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end  
 redis:del(bot_id.."Eqap:Lock:tagservr"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح الاشعارات")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح الاشعارات")  
 elseif text ==  "فتح التثبيت" then
 if not Constructor(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
 end 
 redis:del(bot_id.."Eqap:lockpin"..msg.chat_id_)  
 redis:srem(bot_id.."Eqap:Lock:pin",msg.chat_id_)
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح التثبيت هنا")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح التثبيت هنا")  
 elseif text ==  "فتح التعديل" then
 if not Constructor(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
 end 
 redis:del(bot_id.."Eqap:Lock:edit"..msg.chat_id_) 
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح تعديل")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح تعديل")  
 elseif text ==  "فتح التعديل الميديا" then
 if not Constructor(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
 end 
 redis:del(bot_id.."Eqap:Lock:edit"..msg.chat_id_) 
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح تعديل")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح تعديل")  
 elseif text ==  "فتح الكل" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end 
 redis:del(bot_id.."Eqap:Lock:tagservrbot"..msg.chat_id_)   
 list ={"Lock:Bot:kick","Lock:User:Name","Lock:hashtak","Lock:Cmd","Lock:Link","Lock:forward","Lock:Keyboard","Lock:geam","Lock:Photo","Lock:Animation","Lock:Video","Lock:Audio","Lock:vico","Lock:Sticker","Lock:Document","Lock:Unsupported","Lock:Markdaun","Lock:Contact","Lock:Spam"}
 for i,lock in pairs(list) do;redis:del(bot_id..lock..msg.chat_id_);end
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح جميع الاوامر")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح جميع الاوامر")  
 elseif text ==  "قفل الروابط" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Link"..msg.chat_id_,"del")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل الروابط")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل الروابط")  
 elseif text ==  "قفل الروابط بالتقييد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Link"..msg.chat_id_,"ked")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","• تم قفل الروابط")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","◦ تم قفل الروابط")  
 elseif text ==  "قفل الروابط بالكتم" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Link"..msg.chat_id_,"ktm")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","• تم قفل الروابط")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","◦ تم قفل الروابط")  
 elseif text ==  "قفل الروابط بالطرد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Link"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","• تم قفل الروابط")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","◦ تم قفل الروابط")  
 elseif text ==  "فتح الروابط" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:del(bot_id.."Eqap:Lock:Link"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح الروابط")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح الروابط")  
 elseif text ==  "قفل المعرفات" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:User:Name"..msg.chat_id_,"del")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل المعرفات")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل المعرفات")  
 elseif text ==  "قفل المعرفات بالتقييد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:User:Name"..msg.chat_id_,"ked")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","• تم قفل المعرفات")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","◦ تم قفل المعرفات")  
 elseif text ==  "قفل المعرفات بالكتم" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:User:Name"..msg.chat_id_,"ktm")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","• تم قفل المعرفات")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","◦ تم قفل المعرفات")  
 elseif text ==  "قفل المعرفات بالطرد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:User:Name"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","• تم قفل المعرفات")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","◦ تم قفل المعرفات")  
 elseif text ==  "فتح المعرفات" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:del(bot_id.."Eqap:Lock:User:Name"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح المعرفات")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح المعرفات")  
 elseif text ==  "قفل التاك" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:hashtak"..msg.chat_id_,"del")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل التاك")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل التاك")  
 elseif text ==  "قفل التاك بالتقييد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:hashtak"..msg.chat_id_,"ked")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","• تم قفل التاك")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","◦ تم قفل التاك")  
 elseif text ==  "قفل التاك بالكتم" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:hashtak"..msg.chat_id_,"ktm")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","• تم قفل التاك")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","◦ تم قفل التاك")  
 elseif text ==  "قفل التاك بالطرد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:hashtak"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","• تم قفل التاك")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","◦ تم قفل التاك")  
 elseif text ==  "فتح التاك" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:del(bot_id.."Eqap:Lock:hashtak"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح التاك")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح التاك")  
 elseif text ==  "قفل الشارحه" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Cmd"..msg.chat_id_,"del")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل الشارحه")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل الشارحه")  
 elseif text ==  "قفل الشارحه بالتقييد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Cmd"..msg.chat_id_,"ked")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","• تم قفل الشارحه")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","◦ تم قفل الشارحه")  
 elseif text ==  "قفل الشارحه بالكتم" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Cmd"..msg.chat_id_,"ktm")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","• تم قفل الشارحه")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","◦ تم قفل الشارحه")  
 elseif text ==  "قفل الشارحه بالطرد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Cmd"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","• تم قفل الشارحه")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","◦ تم قفل الشارحه")  
 elseif text ==  "فتح الشارحه" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:del(bot_id.."Eqap:Lock:Cmd"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح الشارحه")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح الشارحه")  
 elseif text ==  "قفل الصور"then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Photo"..msg.chat_id_,"del")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل الصور")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل الصور")  
 elseif text ==  "قفل الصور بالتقييد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Photo"..msg.chat_id_,"ked")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","• تم قفل الصور")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","◦ تم قفل الصور")  
 elseif text ==  "قفل الصور بالكتم" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Photo"..msg.chat_id_,"ktm")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","• تم قفل الصور")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","◦ تم قفل الصور")  
 elseif text ==  "قفل الصور بالطرد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Photo"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","• تم قفل الصور")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","◦ تم قفل الصور")  
 elseif text ==  "فتح الصور" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:del(bot_id.."Eqap:Lock:Photo"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح الصور")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح الصور")  
 elseif text ==  "قفل الفيديو" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Video"..msg.chat_id_,"del")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل الفيديو")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل الفيديو")  
 elseif text ==  "قفل الفيديو بالتقييد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Video"..msg.chat_id_,"ked")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","• تم قفل الفيديو")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","◦ تم قفل الفيديو")  
 elseif text ==  "قفل الفيديو بالكتم" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Video"..msg.chat_id_,"ktm")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","• تم قفل الفيديو")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","◦ تم قفل الفيديو")  
 elseif text ==  "قفل الفيديو بالطرد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Video"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","• تم قفل الفيديو")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","◦ تم قفل الفيديو")  
 elseif text ==  "فتح الفيديو" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:del(bot_id.."Eqap:Lock:Video"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح الفيديو")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح الفيديو")  
 elseif text ==  "قفل المتحركه" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Animation"..msg.chat_id_,"del")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل المتحركه")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل المتحركه")  
 elseif text ==  "قفل المتحركه بالتقييد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Animation"..msg.chat_id_,"ked")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","• تم قفل المتحركه")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","◦ تم قفل المتحركه")  
 elseif text ==  "قفل المتحركه بالكتم" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Animation"..msg.chat_id_,"ktm")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","• تم قفل المتحركه")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","◦ تم قفل المتحركه")  
 elseif text ==  "قفل المتحركه بالطرد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Animation"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","• تم قفل المتحركه")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","◦ تم قفل المتحركه")  
 elseif text ==  "فتح المتحركه" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:del(bot_id.."Eqap:Lock:Animation"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح المتحركه")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح المتحركه")  
 elseif text ==  "قفل الالعاب" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:geam"..msg.chat_id_,"del")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل الالعاب")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل الالعاب")  
 elseif text ==  "قفل الالعاب بالتقييد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:geam"..msg.chat_id_,"ked")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","• تم قفل الالعاب")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","◦ تم قفل الالعاب")  
 elseif text ==  "قفل الالعاب بالكتم" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:geam"..msg.chat_id_,"ktm")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","• تم قفل الالعاب")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","◦ تم قفل الالعاب")  
 elseif text ==  "قفل الالعاب بالطرد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:geam"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","• تم قفل الالعاب")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","◦ تم قفل الالعاب")  
 elseif text ==  "فتح الالعاب" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:del(bot_id.."Eqap:Lock:geam"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح الالعاب")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح الالعاب")  
 elseif text ==  "قفل الاغاني" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Audio"..msg.chat_id_,"del")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل الاغاني")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل الاغاني")  
 elseif text ==  "قفل الاغاني بالتقييد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Audio"..msg.chat_id_,"ked")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","• تم قفل الاغاني")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","◦ تم قفل الاغاني")  
 elseif text ==  "قفل الاغاني بالكتم" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Audio"..msg.chat_id_,"ktm")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","• تم قفل الاغاني")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","◦ تم قفل الاغاني")  
 elseif text ==  "قفل الاغاني بالطرد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Audio"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","• تم قفل الاغاني")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","◦ تم قفل الاغاني")  
 elseif text ==  "فتح الاغاني" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:del(bot_id.."Eqap:Lock:Audio"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح الاغاني")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح الاغاني")  
 elseif text ==  "قفل الصوت" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:vico"..msg.chat_id_,"del")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل الصوت")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل الصوت")  
 elseif text ==  "قفل الصوت بالتقييد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:vico"..msg.chat_id_,"ked")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","• تم قفل الصوت")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","◦ تم قفل الصوت")  
 elseif text ==  "قفل الصوت بالكتم" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:vico"..msg.chat_id_,"ktm")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","• تم قفل الصوت")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","◦ تم قفل الصوت")  
 elseif text ==  "قفل الصوت بالطرد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:vico"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","• تم قفل الصوت")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","◦ تم قفل الصوت")  
 elseif text ==  "فتح الصوت" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:del(bot_id.."Eqap:Lock:vico"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح الصوت")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح الصوت")  
 elseif text ==  "قفل الكيبورد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Keyboard"..msg.chat_id_,"del")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل الكيبورد")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل الكيبورد")  
 elseif text ==  "قفل الكيبورد بالتقييد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Keyboard"..msg.chat_id_,"ked")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","• تم قفل الكيبورد")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","◦ تم قفل الكيبورد")  
 elseif text ==  "قفل الكيبورد بالكتم" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Keyboard"..msg.chat_id_,"ktm")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","• تم قفل الكيبورد")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","◦ تم قفل الكيبورد")  
 elseif text ==  "قفل الكيبورد بالطرد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Keyboard"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","• تم قفل الكيبورد")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","◦ تم قفل الكيبورد")  
 elseif text ==  "فتح الكيبورد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:del(bot_id.."Eqap:Lock:Keyboard"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح الكيبورد")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح الكيبورد")  
 elseif text ==  "قفل الملصقات" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Sticker"..msg.chat_id_,"del")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل الملصقات")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل الملصقات")  
 elseif text ==  "قفل الملصقات بالتقييد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Sticker"..msg.chat_id_,"ked")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","• تم قفل الملصقات")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","◦ تم قفل الملصقات")  
 elseif text ==  "قفل الملصقات بالكتم" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Sticker"..msg.chat_id_,"ktm")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","• تم قفل الملصقات")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","◦ تم قفل الملصقات")  
 elseif text ==  "قفل الملصقات بالطرد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Sticker"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","• تم قفل الملصقات")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","◦ تم قفل الملصقات")  
 elseif text ==  "فتح الملصقات" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:del(bot_id.."Eqap:Lock:Sticker"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح الملصقات")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح الملصقات")  
 elseif text ==  "قفل التوجيه" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:forward"..msg.chat_id_,"del")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل التوجيه")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل التوجيه")  
 elseif text ==  "قفل التوجيه بالتقييد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:forward"..msg.chat_id_,"ked")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","• تم قفل التوجيه")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","◦ تم قفل التوجيه")  
 elseif text ==  "قفل التوجيه بالكتم" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:forward"..msg.chat_id_,"ktm")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","• تم قفل التوجيه")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","◦ تم قفل التوجيه")  
 elseif text ==  "قفل التوجيه بالطرد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:forward"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","• تم قفل التوجيه")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","◦ تم قفل التوجيه")  
 elseif text ==  "فتح التوجيه" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:del(bot_id.."Eqap:Lock:forward"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح التوجيه")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح التوجيه")  
 elseif text ==  "قفل الملفات" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Document"..msg.chat_id_,"del")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل الملفات")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل الملفات")  
 elseif text ==  "قفل الملفات بالتقييد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Document"..msg.chat_id_,"ked")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","• تم قفل الملفات")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","◦ تم قفل الملفات")  
 elseif text ==  "قفل الملفات بالكتم" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Document"..msg.chat_id_,"ktm")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","• تم قفل الملفات")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","◦ تم قفل الملفات")  
 elseif text ==  "قفل الملفات بالطرد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Document"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","• تم قفل الملفات")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","◦ تم قفل الملفات")  
 elseif text ==  "فتح الملفات" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:del(bot_id.."Eqap:Lock:Document"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح الملفات")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح الملفات")  
 elseif text ==  "قفل السيلفي" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Unsupported"..msg.chat_id_,"del")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل السيلفي")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل السيلفي")  
 elseif text ==  "قفل السيلفي بالتقييد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Unsupported"..msg.chat_id_,"ked")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","• تم قفل السيلفي")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","◦ تم قفل السيلفي")  
 elseif text ==  "قفل السيلفي بالكتم" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Unsupported"..msg.chat_id_,"ktm")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","• تم قفل السيلفي")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","◦ تم قفل السيلفي")  
 elseif text ==  "قفل السيلفي بالطرد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Unsupported"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","• تم قفل السيلفي")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","◦ تم قفل السيلفي")  
 elseif text ==  "فتح السيلفي" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:del(bot_id.."Eqap:Lock:Unsupported"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح السيلفي")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح السيلفي")  
 elseif text ==  "قفل الماركداون" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Markdaun"..msg.chat_id_,"del")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل الماركداون")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل الماركداون")  
 elseif text ==  "قفل الماركداون بالتقييد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Markdaun"..msg.chat_id_,"ked")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","• تم قفل الماركداون")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","◦ تم قفل الماركداون")  
 elseif text ==  "قفل الماركداون بالكتم" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Markdaun"..msg.chat_id_,"ktm")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","• تم قفل الماركداون")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","◦ تم قفل الماركداون")  
 elseif text ==  "قفل الماركداون بالطرد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Markdaun"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","• تم قفل الماركداون")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","◦ تم قفل الماركداون")  
 elseif text ==  "فتح الماركداون" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:del(bot_id.."Eqap:Lock:Markdaun"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح الماركداون")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح الماركداون")  
 elseif text ==  "قفل الجهات" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Contact"..msg.chat_id_,"del")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل الجهات")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل الجهات")  
 elseif text ==  "قفل الجهات بالتقييد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Contact"..msg.chat_id_,"ked")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","• تم قفل الجهات")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","◦ تم قفل الجهات")  
 elseif text ==  "قفل الجهات بالكتم" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Contact"..msg.chat_id_,"ktm")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","• تم قفل الجهات")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","◦ تم قفل الجهات")  
 elseif text ==  "قفل الجهات بالطرد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Contact"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","• تم قفل الجهات")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","◦ تم قفل الجهات")  
 elseif text ==  "فتح الجهات" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:del(bot_id.."Eqap:Lock:Contact"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح الجهات")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح الجهات")  
 elseif text ==  "قفل الكلايش" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Spam"..msg.chat_id_,"del")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل الكلايش")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل الكلايش")  
 elseif text ==  "قفل الكلايش بالتقييد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Spam"..msg.chat_id_,"ked")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","• تم قفل الكلايش")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","◦ تم قفل الكلايش")  
 elseif text ==  "قفل الكلايش بالكتم" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Spam"..msg.chat_id_,"ktm")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","• تم قفل الكلايش")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","◦ تم قفل الكلايش")  
 elseif text ==  "قفل الكلايش بالطرد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Spam"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","• تم قفل الكلايش")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","◦ تم قفل الكلايش")  
 elseif text ==  "فتح الكلايش" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:del(bot_id.."Eqap:Lock:Spam"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح الكلايش")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح الكلايش")  
 elseif text ==  "قفل الانلاين" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Inlen"..msg.chat_id_,"del")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل الانلاين")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل الانلاين")  
 elseif text ==  "قفل الانلاين بالتقييد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Inlen"..msg.chat_id_,"ked")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","• تم قفل الانلاين")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","◦ تم قفل الانلاين")  
 elseif text ==  "قفل الانلاين بالكتم" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Inlen"..msg.chat_id_,"ktm")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","• تم قفل الانلاين")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","◦ تم قفل الانلاين")  
 elseif text ==  "قفل الانلاين بالطرد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:set(bot_id.."Eqap:Lock:Inlen"..msg.chat_id_,"kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","• تم قفل الانلاين")  
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","◦ تم قفل الانلاين")  
 elseif text ==  "فتح الانلاين" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:del(bot_id.."Eqap:Lock:Inlen"..msg.chat_id_)  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح الانلاين")  
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح الانلاين")  
 elseif text ==  "قفل التكرار بالطرد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end 
 redis:hset(bot_id.."Eqap:Spam:Group:User"..msg.chat_id_ ,"Spam:User","kick")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","• تم قفل التكرار")
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kick","◦ تم قفل التكرار")
 elseif text ==  "قفل التكرار" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end 
 redis:hset(bot_id.."Eqap:Spam:Group:User"..msg.chat_id_ ,"Spam:User","del")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status","• تم قفل التكرار بالحذف")
+return Send_Options(msg,msg.sender_user_id_,"Close_Status","◦ تم قفل التكرار بالحذف")
 elseif text ==  "قفل التكرار بالتقييد" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end 
 redis:hset(bot_id.."Eqap:Spam:Group:User"..msg.chat_id_ ,"Spam:User","keed")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","• تم قفل التكرار")
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Kid","◦ تم قفل التكرار")
 elseif text ==  "قفل التكرار بالكتم" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end 
 redis:hset(bot_id.."Eqap:Spam:Group:User"..msg.chat_id_ ,"Spam:User","mute")  
-return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","• تم قفل التكرار")
+return Send_Options(msg,msg.sender_user_id_,"Close_Status_Ktm","◦ تم قفل التكرار")
 elseif text ==  "فتح التكرار" then
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end 
 redis:hdel(bot_id.."Eqap:Spam:Group:User"..msg.chat_id_ ,"Spam:User")  
-return Send_Options(msg,msg.sender_user_id_,"Open_Status","• تم فتح التكرار")
+return Send_Options(msg,msg.sender_user_id_,"Open_Status","◦ تم فتح التكرار")
 end
 
 if text == 'تفعيل جلب الرابط' or text == 'تفعيل الرابط' then
 
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end  
 redis:set(bot_id..'Eqap:Link_Group'..msg.chat_id_,true) 
-return send(msg.chat_id_, msg.id_,'• تم تفعيل جلب الرابط المجموعه') 
+return send(msg.chat_id_, msg.id_,'◦ تم تفعيل جلب الرابط المجموعه') 
 end
 if text == 'تعطيل جلب الرابط' or text == 'تعطيل الرابط' then
 
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end
 redis:del(bot_id..'Eqap:Link_Group'..msg.chat_id_) 
-return send(msg.chat_id_, msg.id_,'• تم تعطيل جلب رابط المجموعه') 
+return send(msg.chat_id_, msg.id_,'◦ تم تعطيل جلب رابط المجموعه') 
 end
 if text == 'تفعيل الترحيب' then
 
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end  
 redis:set(bot_id..'Eqap:Chek:Welcome'..msg.chat_id_,true) 
-return send(msg.chat_id_, msg.id_,'• تم تفعيل ترحيب المجموعه') 
+return send(msg.chat_id_, msg.id_,'◦ تم تفعيل ترحيب المجموعه') 
 end
 if text == 'تعطيل الترحيب' then
 
 if not Admin(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص- ادمن - مدير*')
 end  
 redis:del(bot_id..'Eqap:Chek:Welcome'..msg.chat_id_) 
-return send(msg.chat_id_, msg.id_,'• تم تعطيل ترحيب المجموعه') 
+return send(msg.chat_id_, msg.id_,'◦ تم تعطيل ترحيب المجموعه') 
 end
 if text == 'تفعيل الردود' then
 
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
 end   
 redis:del(bot_id..'Eqap:Reply:Manager'..msg.chat_id_)  
-return send(msg.chat_id_, msg.id_,'• تم تفعيل الردود') 
+return send(msg.chat_id_, msg.id_,'◦ تم تفعيل الردود') 
 end
 if text == 'تعطيل الردود' then
 
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
 end  
 redis:set(bot_id..'Eqap:Reply:Manager'..msg.chat_id_,true)  
-return send(msg.chat_id_, msg.id_,'• تم تعطيل الردود' ) 
+return send(msg.chat_id_, msg.id_,'◦ تم تعطيل الردود' ) 
 end
 if text == 'تفعيل الردود العامه' then
 
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
 end   
 redis:del(bot_id..'Eqap:Reply:Sudo'..msg.chat_id_)  
-return send(msg.chat_id_, msg.id_,'• تم تفعيل الردود العامه ' ) 
+return send(msg.chat_id_, msg.id_,'◦ تم تفعيل الردود العامه ' ) 
 end
 if text == 'تعطيل الردود العامه' then
 
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
 end  
 redis:set(bot_id..'Eqap:Reply:Sudo'..msg.chat_id_,true)   
-return send(msg.chat_id_, msg.id_,'• تم تعطيل الردود العامه ' ) 
+return send(msg.chat_id_, msg.id_,'◦ تم تعطيل الردود العامه ' ) 
 end
 if text == 'تفعيل ضافني' then
 
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
 end   
 redis:set(bot_id..'Added:Me'..msg.chat_id_,true)  
-return send(msg.chat_id_, msg.id_,'• تم تفعيل امر ضافني') 
+return send(msg.chat_id_, msg.id_,'◦ تم تفعيل امر ضافني') 
 end
 if text == 'تفعيل صيح' then
 
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
 end   
 redis:set(bot_id..'Seh:User'..msg.chat_id_,true)  
-return send(msg.chat_id_, msg.id_,'• تم تفعيل امر صيح') 
+return send(msg.chat_id_, msg.id_,'◦ تم تفعيل امر صيح') 
 end
 if text == 'تفعيل اطردني' then
 
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
 end   
 redis:del(bot_id..'Eqap:Cheking:Kick:Me:Group'..msg.chat_id_)  
-return send(msg.chat_id_, msg.id_,'• تم تفعيل امر اطردني') 
+return send(msg.chat_id_, msg.id_,'◦ تم تفعيل امر اطردني') 
 end
 if text == 'تعطيل ضافني' then
 
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
 end   
 redis:del(bot_id..'Added:Me'..msg.chat_id_)  
-return send(msg.chat_id_, msg.id_,'• تم تعطيل امر ضافني') 
+return send(msg.chat_id_, msg.id_,'◦ تم تعطيل امر ضافني') 
 end
 if text == 'تعطيل صيح' then
 
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
 end   
 redis:del(bot_id..'Seh:User'..msg.chat_id_)  
-return send(msg.chat_id_, msg.id_,'• تم تعطيل امر صيح') 
+return send(msg.chat_id_, msg.id_,'◦ تم تعطيل امر صيح') 
 end
 if text == 'تعطيل اطردني' then
 
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
 end  
 redis:set(bot_id..'Eqap:Cheking:Kick:Me:Group'..msg.chat_id_,true)  
-return send(msg.chat_id_, msg.id_,'• تم تعطيل امر اطردني') 
+return send(msg.chat_id_, msg.id_,'◦ تم تعطيل امر اطردني') 
 end
 if text == 'تفعيل المغادره' then
    
 if not Dev_Bots(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - Carbon*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - Carbon*')
 end
 redis:del(bot_id..'Eqap:Lock:Left'..msg.chat_id_)  
-return send(msg.chat_id_, msg.id_,'• تم تفعيل مغادرة البوت') 
+return send(msg.chat_id_, msg.id_,'◦ تم تفعيل مغادرة البوت') 
 end
 if text=="اذاعه بالتثبيت" and Dev_Bots(msg) then
  
@@ -5568,140 +5568,140 @@ end
 if text == 'تعطيل المغادره' then
   
 if not Dev_Bots(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - Carbon*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - Carbon*')
 end
 redis:set(bot_id..'Eqap:Lock:Left'..msg.chat_id_,true)   
-return send(msg.chat_id_, msg.id_, '• تم تعطيل مغادرة البوت') 
+return send(msg.chat_id_, msg.id_, '◦ تم تعطيل مغادرة البوت') 
 end
 if text == 'تفعيل الاذاعه' then
   
 if not Dev_Bots(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - Carbon*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - Carbon*')
 end
 redis:del(bot_id..'Eqap:Broadcasting:Bot') 
-return send(msg.chat_id_, msg.id_,'• تم تفعيل الاذاعه \n• الان يمكن للCommander  الاذاعه' ) 
+return send(msg.chat_id_, msg.id_,'◦ تم تفعيل الاذاعه \n◦ الان يمكن للCommander  الاذاعه' ) 
 end
 if text == 'تعطيل الاذاعه' then
   
 if not Dev_Bots(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - Carbon*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - Carbon*')
 end
 redis:set(bot_id..'Eqap:Broadcasting:Bot',true) 
-return send(msg.chat_id_, msg.id_,'• تم تعطيل الاذاعه') 
+return send(msg.chat_id_, msg.id_,'◦ تم تعطيل الاذاعه') 
 end
 if text == 'تفعيل الايدي' then
 
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
 end   
 redis:del(bot_id..'Eqap:Lock:Id:Photo'..msg.chat_id_) 
-return send(msg.chat_id_, msg.id_,'• تم تفعيل الايدي') 
+return send(msg.chat_id_, msg.id_,'◦ تم تفعيل الايدي') 
 end
 if text == 'تعطيل الايدي' then
 
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
 end  
 redis:set(bot_id..'Eqap:Lock:Id:Photo'..msg.chat_id_,true) 
-return send(msg.chat_id_, msg.id_,'• تم تعطيل الايدي') 
+return send(msg.chat_id_, msg.id_,'◦ تم تعطيل الايدي') 
 end
 
 if text == 'تفعيل الايدي بالصوره' then
 
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
 end   
 redis:del(bot_id..'Eqap:Lock:Id:Py:Photo'..msg.chat_id_) 
-return send(msg.chat_id_, msg.id_,'• تم تفعيل الايدي بالصوره') 
+return send(msg.chat_id_, msg.id_,'◦ تم تفعيل الايدي بالصوره') 
 end
   
 if text == 'تعطيل الايدي بالصوره' then    
     
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
 end  
 redis:set(bot_id..'Eqap:Lock:Id:Py:Photo'..msg.chat_id_,true) 
-return send(msg.chat_id_, msg.id_,'• تم تعطيل الايدي بالصوره') 
+return send(msg.chat_id_, msg.id_,'◦ تم تعطيل الايدي بالصوره') 
 end
 if text == 'تعطيل الالعاب' then
 
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
 end   
 redis:del(bot_id..'Eqap:Lock:Game:Group'..msg.chat_id_) 
-return send(msg.chat_id_, msg.id_,'• تم تعطيل الالعاب') 
+return send(msg.chat_id_, msg.id_,'◦ تم تعطيل الالعاب') 
 end
 if text == 'تفعيل الالعاب' then
 
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - مدير - منشئ*')
 end  
 redis:set(bot_id..'Eqap:Lock:Game:Group'..msg.chat_id_,true) 
-return send(msg.chat_id_, msg.id_,'• تم تفعيل الالعاب') 
+return send(msg.chat_id_, msg.id_,'◦ تم تفعيل الالعاب') 
 end
 if text == 'تفعيل البوت الخدمي' then
   
 if not Dev_Bots(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - Carbon*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - Carbon*')
 end
 redis:del(bot_id..'Eqap:Free:Bot') 
-return send(msg.chat_id_, msg.id_,'• تم تفعيل البوت الخدمي \n• الان يمكن الجميع تفعيله') 
+return send(msg.chat_id_, msg.id_,'◦ تم تفعيل البوت الخدمي \n◦ الان يمكن الجميع تفعيله') 
 end
 if text == 'تعطيل البوت الخدمي' then
   
 if not Dev_Bots(msg) then
-return send(msg.chat_id_,msg.id_,'*•اهلا عزيزي \n عذرا الامر يخص - Carbon*')
+return send(msg.chat_id_,msg.id_,'*◦اهلا عزيزي \n عذرا الامر يخص - Carbon*')
 end
 redis:set(bot_id..'Eqap:Free:Bot',true) 
-return send(msg.chat_id_, msg.id_,'• تم تعطيل البوت الخدمي') 
+return send(msg.chat_id_, msg.id_,'◦ تم تعطيل البوت الخدمي') 
 end
 if text == 'تعطيل الطرد' or text == 'تعطيل الحظر' then
 
 if not Constructor(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
 end
 redis:set(bot_id..'Eqap:Lock:Ban:Group'..msg.chat_id_,'true')
-return send(msg.chat_id_, msg.id_, '• تم تعطيل - ( الحظر - الطرد ) ')
+return send(msg.chat_id_, msg.id_, '◦ تم تعطيل - ( الحظر - الطرد ) ')
 end
 if text == 'تفعيل الطرد' or text == 'تفعيل الحظر' then
 
 if not Constructor(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
 end
 redis:del(bot_id..'Eqap:Lock:Ban:Group'..msg.chat_id_)
-return send(msg.chat_id_, msg.id_, '• تم تفعيل - ( الحظر - الطرد ) ')
+return send(msg.chat_id_, msg.id_, '◦ تم تفعيل - ( الحظر - الطرد ) ')
 end
 if text == 'تعطيل الرفع' or text == 'تعطيل الترقيه' then
 
 if not Constructor(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
 end
 redis:set(bot_id..'Eqap:Cheking:Seted'..msg.chat_id_,'true')
-return send(msg.chat_id_, msg.id_, '• تم تعطيل رفع - ( الادمن - المميز ) ')
+return send(msg.chat_id_, msg.id_, '◦ تم تعطيل رفع - ( الادمن - المميز ) ')
 end
 if text == 'تفعيل الرفع' or text == 'تفعيل الترقيه' then
 
 if not Constructor(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
 end
 redis:del(bot_id..'Eqap:Cheking:Seted'..msg.chat_id_)
-return send(msg.chat_id_, msg.id_, '• تم تفعيل رفع - ( الادمن - المميز ) ')
+return send(msg.chat_id_, msg.id_, '◦ تم تفعيل رفع - ( الادمن - المميز ) ')
 end
 if text == 'تعطيل صورتي' then
 
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
 end
 redis:set(bot_id..'my_photo:status:bot'..msg.chat_id_,'yazon')
-return send(msg.chat_id_, msg.id_, '• تم تعطيل - ( امر صورتي ) ')
+return send(msg.chat_id_, msg.id_, '◦ تم تعطيل - ( امر صورتي ) ')
 end
 if text == 'تفعيل صورتي' then
 
 if not Owner(msg) then
-return send(msg.chat_id_,msg.id_,'*• اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
+return send(msg.chat_id_,msg.id_,'*◦ اهلا عزيزي \n عذرا الامر يخص - منشئ - منشئ اساسي *')
 end
 redis:del(bot_id..'my_photo:status:bot'..msg.chat_id_)
-return send(msg.chat_id_, msg.id_, '• تم تفعيل - ( امر صورتي ) ')
+return send(msg.chat_id_, msg.id_, '◦ تم تفعيل - ( امر صورتي ) ')
 end
 
 if text and text:match("^صيح (.*)$") then
@@ -5710,23 +5710,23 @@ local username = text:match("^صيح (.*)$")
 if redis:get(bot_id..'Seh:User'..msg.chat_id_) then
 function start_function(extra, result, success)
 if result and result.message_ and result.message_ == "USERNAME_NOT_OCCUPIED" then 
-send(msg.chat_id_, msg.id_,'• المعرف غلط ') 
+send(msg.chat_id_, msg.id_,'◦ المعرف غلط ') 
 return false  
 end
 if result and result.type_ and result.type_.channel_ and result.type_.channel_.ID == "Channel" then
-send(msg.chat_id_, msg.id_,'• لا اسطيع صيح معرفات القنوات') 
+send(msg.chat_id_, msg.id_,'◦ لا اسطيع صيح معرفات القنوات') 
 return false  
 end
 if result.type_.user_.type_.ID == "UserTypeBot" then
-send(msg.chat_id_, msg.id_,'• لا اسطيع صيح معرفات البوتات') 
+send(msg.chat_id_, msg.id_,'◦ لا اسطيع صيح معرفات البوتات') 
 return false  
 end
 if result and result.type_ and result.type_.channel_ and result.type_.channel_.is_supergroup_ == true then
-send(msg.chat_id_, msg.id_,'• لا اسطيع صيح معرفات المجموعات') 
+send(msg.chat_id_, msg.id_,'◦ لا اسطيع صيح معرفات المجموعات') 
 return false  
 end
 if result.id_ then
-send(msg.chat_id_, msg.id_,'• تعال يبونك [@'..username..']') 
+send(msg.chat_id_, msg.id_,'◦ تعال يبونك [@'..username..']') 
 return false
 end
 end
@@ -5747,15 +5747,15 @@ local Added_Me = redis:get(bot_id.."Eqap:Who:Added:Me"..msg.chat_id_..':'..msg.s
 if Added_Me then 
 tdcli_function ({ID = "GetUser",user_id_ = Added_Me},function(extra,result,success)
 local Name = '['..result.first_name_..'](tg://user?id='..result.id_..')'
-Text = '• هذا الي ضافك  ⇠ '..Name
+Text = '◦ هذا الي ضافك  ⇠ '..Name
 sendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
 end,nil)
 else
-send(msg.chat_id_, msg.id_,'• انت دخلت عبر الرابط ') 
+send(msg.chat_id_, msg.id_,'◦ انت دخلت عبر الرابط ') 
 end
 end,nil)
 else
-send(msg.chat_id_, msg.id_,'• امر منو ضافني تم تعطيله من قبل المدراء ') 
+send(msg.chat_id_, msg.id_,'◦ امر منو ضافني تم تعطيله من قبل المدراء ') 
 end
 end
 if text == "صورتي" or text == 'افتاري' then
@@ -5774,41 +5774,41 @@ end
 end
 
 if text == "ضع رابط" and Admin(msg) or text == "وضع رابط" and Admin(msg) then
-send(msg.chat_id_,msg.id_,"• ارسل رابط المجموعه او رابط قناة المجموعه")
+send(msg.chat_id_,msg.id_,"◦ ارسل رابط المجموعه او رابط قناة المجموعه")
 redis:setex(bot_id.."Eqap:link:set"..msg.chat_id_..""..msg.sender_user_id_,120,true) 
 return false 
 end
 if text and text:match("^ضع صوره") and Admin(msg) and msg.reply_to_message_id_ == 0 or text and text:match("^وضع صوره") and Admin(msg) and msg.reply_to_message_id_ == 0 then  
 redis:set(bot_id.."Eqap:Set:Chat:Photo"..msg.chat_id_..":"..msg.sender_user_id_,true) 
-send(msg.chat_id_,msg.id_,"• ارسل الصوره لوضعها") 
+send(msg.chat_id_,msg.id_,"◦ ارسل الصوره لوضعها") 
 return false 
 end
 if text == "ضع وصف" and Admin(msg) or text == "وضع وصف" and Admin(msg) then  
 redis:setex(bot_id.."Eqap:Change:Description" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 120, true)  
-send(msg.chat_id_,msg.id_,"• ارسل الان الوصف")
+send(msg.chat_id_,msg.id_,"◦ ارسل الان الوصف")
 return false 
 end
 if text == "ضع ترحيب" and Admin(msg) or text == "وضع ترحيب" and Admin(msg) then  
 redis:setex(bot_id.."Eqap:Welcome:Group" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 120, true)  
-send(msg.chat_id_,msg.id_,"• ارسل لي الترحيب الان".."\n• تستطيع اضافة مايلي !\n• دالة عرض الاسم »{`name`}\n• دالة عرض المعرف »{`user`}") 
+send(msg.chat_id_,msg.id_,"◦ ارسل لي الترحيب الان".."\n◦ تستطيع اضافة مايلي !\n◦ دالة عرض الاسم »{`name`}\n◦ دالة عرض المعرف »{`user`}") 
 return false 
 end
 if text == "ضع قوانين" and Admin(msg) or text == "وضع قوانين" and Admin(msg) then 
 redis:setex(bot_id.."Eqap:Redis:Rules:" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
-send(msg.chat_id_,msg.id_,"• ارسل لي القوانين الان")  
+send(msg.chat_id_,msg.id_,"◦ ارسل لي القوانين الان")  
 return false 
 end
 if text and text:match("^ضع اسم (.*)") and Owner(msg) or text and text:match("^وضع اسم (.*)") and Owner(msg) then 
 local Name = text:match("^ضع اسم (.*)") or text:match("^وضع اسم (.*)") 
 tdcli_function ({ ID = "ChangeChatTitle",chat_id_ = msg.chat_id_,title_ = Name },function(arg,data) 
 if data.message_ == "Channel chat title can be changed by administrators only" then
-send(msg.chat_id_,msg.id_,"•  البوت ليس ادمن يرجى ترقيتي !")  
+send(msg.chat_id_,msg.id_,"◦  البوت ليس ادمن يرجى ترقيتي !")  
 return false  
 end 
 if data.message_ == "CHAT_ADMIN_REQUIRED" then
-send(msg.chat_id_,msg.id_,"•  ليست لدي صلاحية تغيير اسم المجموعه")  
+send(msg.chat_id_,msg.id_,"◦  ليست لدي صلاحية تغيير اسم المجموعه")  
 else
-send(msg.chat_id_,msg.id_,"•  تم تغيير اسم المجموعه الى {["..Name.."]}")  
+send(msg.chat_id_,msg.id_,"◦  تم تغيير اسم المجموعه الى {["..Name.."]}")  
 end
 end,nil) 
 return false 
@@ -5826,7 +5826,7 @@ local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token.
 if linkgpp.ok == true then 
 send1(msg.chat_id_,msg.id_,"["..ta.title_.."]("..linkgpp.result..")")                          
 else
-send(msg.chat_id_, msg.id_,"• لا يوجد رابط للمجموعه")              
+send(msg.chat_id_, msg.id_,"◦ لا يوجد رابط للمجموعه")              
 end            
 end
 end,nil)
@@ -5837,7 +5837,7 @@ if text == "الترحيب" and Admin(msg) then
 if redis:get(bot_id.."Eqap:Get:Welcome:Group"..msg.chat_id_)   then 
 Welcome = redis:get(bot_id.."Eqap:Get:Welcome:Group"..msg.chat_id_)  
 else 
-Welcome = "• لم يتم تعيين ترحيب للمجموعه"
+Welcome = "◦ لم يتم تعيين ترحيب للمجموعه"
 end 
 send(msg.chat_id_, msg.id_,"["..Welcome.."]") 
 return false 
@@ -5847,53 +5847,53 @@ local Set_Rules = redis:get(bot_id.."Eqap::Rules:Group" .. msg.chat_id_)
 if Set_Rules then     
 send(msg.chat_id_,msg.id_, Set_Rules)   
 else      
-send(msg.chat_id_, msg.id_,"• اهلا عزيزي لديك قائمة قوانين القروب و هي كالاتي \n يمنع سب و شتم نهايا \n يمنع تدخل في الاوامر الساسيه و دينيه \n احترام مالك او مشرفين قروب واجب عليك \n احترم تحترم و اظهر تربيتك")   
+send(msg.chat_id_, msg.id_,"◦ اهلا عزيزي لديك قائمة قوانين القروب و هي كالاتي \n يمنع سب و شتم نهايا \n يمنع تدخل في الاوامر الساسيه و دينيه \n احترام مالك او مشرفين قروب واجب عليك \n احترم تحترم و اظهر تربيتك")   
 end    
 return false 
 end
 if text == "مسح الرابط" and Admin(msg) or text == "حذف الرابط" and Admin(msg) then
 
-send(msg.chat_id_,msg.id_,"• تم ازالة رابط المجموعه")           
+send(msg.chat_id_,msg.id_,"◦ تم ازالة رابط المجموعه")           
 redis:del(bot_id.."Eqap:link:set:Group"..msg.chat_id_) 
 return false 
 end
 if text == "حذف الصوره" and Admin(msg) or text == "مسح الصوره" and Admin(msg) then
  
 https.request("https://api.telegram.org/bot"..token.."/deleteChatPhoto?chat_id="..msg.chat_id_) 
-send(msg.chat_id_, msg.id_,"• تم ازالة صورة المجموعه") 
+send(msg.chat_id_, msg.id_,"◦ تم ازالة صورة المجموعه") 
 return false 
 end
 if text == "مسح الترحيب" and Admin(msg) or text == "حذف الترحيب" and Admin(msg) then
  
 redis:del(bot_id.."Eqap:Get:Welcome:Group"..msg.chat_id_) 
-send(msg.chat_id_, msg.id_,"• تم ازالة ترحيب المجموعه") 
+send(msg.chat_id_, msg.id_,"◦ تم ازالة ترحيب المجموعه") 
 return false 
 end
 if text == "مسح القوانين" and Admin(msg) or text == "حذف القوانين" and Admin(msg) then
   
-send(msg.chat_id_, msg.id_,"• تم ازالة قوانين المجموعه")  
+send(msg.chat_id_, msg.id_,"◦ تم ازالة قوانين المجموعه")  
 redis:del(bot_id.."Eqap::Rules:Group"..msg.chat_id_) 
 return false 
 end
 if text == 'حذف الايدي' and Owner(msg) or text == 'مسح الايدي' and Owner(msg) then
 
 redis:del(bot_id.."Eqap:Set:Id:Group"..msg.chat_id_)
-send(msg.chat_id_, msg.id_, '• تم ازالة كليشة الايدي ')
+send(msg.chat_id_, msg.id_, '◦ تم ازالة كليشة الايدي ')
 return false 
 end
 if text == 'مسح رسائلي' then
 redis:del(bot_id..'Eqap:Num:Message:User'..msg.chat_id_..':'..msg.sender_user_id_)
-send(msg.chat_id_, msg.id_,'• تم مسح جميع رسائلك ') 
+send(msg.chat_id_, msg.id_,'◦ تم مسح جميع رسائلك ') 
 return false 
 end
 if text == 'مسح سحكاتي' or text == 'مسح تعديلاتي' then
 redis:del(bot_id..'Eqap:Num:Message:Edit'..msg.chat_id_..':'..msg.sender_user_id_)
-send(msg.chat_id_, msg.id_,'• تم مسح جميع تعديلاتك ') 
+send(msg.chat_id_, msg.id_,'◦ تم مسح جميع تعديلاتك ') 
 return false 
 end
 if text == 'مسح جهاتي' then
 redis:del(bot_id..'Eqap:Num:Add:Memp'..msg.chat_id_..':'..msg.sender_user_id_)
-send(msg.chat_id_, msg.id_,'• تم مسح جميع جهاتك المضافه ') 
+send(msg.chat_id_, msg.id_,'◦ تم مسح جميع جهاتك المضافه ') 
 return false 
 end
 if text ==("مسح") and Admin(msg) and tonumber(msg.reply_to_message_id_) > 0 then
@@ -5903,12 +5903,12 @@ return false
 end
 if text and text:match("^وضع تكرار (%d+)$") and Admin(msg) then   
 redis:hset(bot_id.."Eqap:Spam:Group:User"..msg.chat_id_ ,"Num:Spam" ,text:match("^وضع تكرار (%d+)$")) 
-send(msg.chat_id_, msg.id_,"• تم وضع عدد التكرار : "..text:match("^وضع تكرار (%d+)$").."")  
+send(msg.chat_id_, msg.id_,"◦ تم وضع عدد التكرار : "..text:match("^وضع تكرار (%d+)$").."")  
 return false 
 end
 if text and text:match("^وضع زمن التكرار (%d+)$") and Admin(msg) then   
 redis:hset(bot_id.."Eqap:Spam:Group:User"..msg.chat_id_ ,"Num:Spam:Time" ,text:match("^وضع زمن التكرار (%d+)$")) 
-send(msg.chat_id_, msg.id_,"• تم وضع زمن التكرار : "..text:match("^وضع زمن التكرار (%d+)$").."") 
+send(msg.chat_id_, msg.id_,"◦ تم وضع زمن التكرار : "..text:match("^وضع زمن التكرار (%d+)$").."") 
 return false 
 end
 if text == "مسح قائمة المنع" and Admin(msg) then
@@ -5919,72 +5919,72 @@ redis:del(bot_id.."Eqap:Filter:Reply1"..msg.sender_user_id_..msg.chat_id_)
 redis:del(bot_id.."Eqap:Filter:Reply2"..v..msg.chat_id_)  
 redis:srem(bot_id.."Eqap:List:Filter"..msg.chat_id_,v)  
 end  
-send(msg.chat_id_, msg.id_,"• تم مسح قائمة المنع")  
+send(msg.chat_id_, msg.id_,"◦ تم مسح قائمة المنع")  
 return false 
 end
 if text == "قائمة المنع" and Admin(msg) then
    
 local list = redis:smembers(bot_id.."Eqap:List:Filter"..msg.chat_id_)  
-t = "\n• قائمة المنع \n━━━━━━━━\n"
+t = "\n◦ قائمة المنع \n━━━━━━━━\n"
 for k,v in pairs(list) do  
 local FilterMsg = redis:get(bot_id.."Eqap:Filter:Reply2"..v..msg.chat_id_)   
 t = t..""..k.."- "..v.." » {"..FilterMsg.."}\n"    
 end  
 if #list == 0 then  
-t = "• لا يوجد كلمات ممنوعه"  
+t = "◦ لا يوجد كلمات ممنوعه"  
 end  
 send(msg.chat_id_, msg.id_,t)  
 return false 
 end
 if text and text == "منع" and msg.reply_to_message_id_ == 0 and Admin(msg) then
        
-send(msg.chat_id_, msg.id_,"• ارسل الكلمه لمنعها")  
+send(msg.chat_id_, msg.id_,"◦ ارسل الكلمه لمنعها")  
 redis:set(bot_id.."Eqap:Filter:Reply1"..msg.sender_user_id_..msg.chat_id_,"SetFilter")  
 return false  
 end
 if text == "الغاء منع" and msg.reply_to_message_id_ == 0 and Admin(msg) then
     
-send(msg.chat_id_, msg.id_,"• ارسل الكلمه الان")  
+send(msg.chat_id_, msg.id_,"◦ ارسل الكلمه الان")  
 redis:set(bot_id.."Eqap:Filter:Reply1"..msg.sender_user_id_..msg.chat_id_,"DelFilter")  
 return false 
 end
 if text ==("تثبيت") and msg.reply_to_message_id_ ~= 0 and Admin(msg) then
 
 if redis:sismember(bot_id.."Eqap:Lock:pin",msg.chat_id_) and not Constructor(msg) then
-send(msg.chat_id_,msg.id_,"• التثبيت مقفل من قبل المنشئين")  
+send(msg.chat_id_,msg.id_,"◦ التثبيت مقفل من قبل المنشئين")  
 return false end
 tdcli_function ({ID = "PinChannelMessage",channel_id_ = msg.chat_id_:gsub("-100",""),message_id_ = msg.reply_to_message_id_,disable_notification_ = 1},function(arg,data) 
 if data.ID == "Ok" then
-send(msg.chat_id_, msg.id_,"• تم تثبيت الرساله بنجاح")   
+send(msg.chat_id_, msg.id_,"◦ تم تثبيت الرساله بنجاح")   
 redis:set(bot_id.."Eqap:Get:Id:Msg:Pin"..msg.chat_id_,msg.reply_to_message_id_)
 return false 
 end
 if data.code_ == 6 then
-send(msg.chat_id_,msg.id_,"• البوت ليس ادمن هنا")  
+send(msg.chat_id_,msg.id_,"◦ البوت ليس ادمن هنا")  
 return false 
 end
 if data.message_ == "CHAT_ADMIN_REQUIRED" then
-send(msg.chat_id_,msg.id_,"• ليست لدي صلاحية التثبيت .")  
+send(msg.chat_id_,msg.id_,"◦ ليست لدي صلاحية التثبيت .")  
 end;end,nil) 
 return false 
 end
 if text == "الغاء التثبيت" and Admin(msg) then
 
 if redis:sismember(bot_id.."Eqap:Lock:pin",msg.chat_id_) and not Constructor(msg) then
-send(msg.chat_id_,msg.id_,"• التثبيت مقفل من قبل المنشئين")  
+send(msg.chat_id_,msg.id_,"◦ التثبيت مقفل من قبل المنشئين")  
 return false end
 tdcli_function({ID="UnpinChannelMessage",channel_id_ = msg.chat_id_:gsub("-100","")},function(arg,data) 
 if data.ID == "Ok" then
-send(msg.chat_id_, msg.id_,"• تم الغاء تثبيت الرساله بنجاح")   
+send(msg.chat_id_, msg.id_,"◦ تم الغاء تثبيت الرساله بنجاح")   
 redis:del(bot_id.."Eqap:Get:Id:Msg:Pin"..msg.chat_id_)
 return false 
 end
 if data.code_ == 6 then
-send(msg.chat_id_,msg.id_,"• البوت ليس ادمن هنا")  
+send(msg.chat_id_,msg.id_,"◦ البوت ليس ادمن هنا")  
 return false 
 end
 if data.message_ == "CHAT_ADMIN_REQUIRED" then
-send(msg.chat_id_,msg.id_,"• ليست لدي صلاحية التثبيت .")
+send(msg.chat_id_,msg.id_,"◦ ليست لدي صلاحية التثبيت .")
 end;end,nil)
 return false 
 end
@@ -5997,7 +5997,7 @@ tdcli_function({ID = "GetUser",user_id_ = v.user_id_},function(b,data)
 if data.first_name_ == false then
 KickGroup(msg.chat_id_, data.id_)
 end;end,nil);end
-send(msg.chat_id_, msg.id_,'• تم طرد الحسابات المحذوفه')
+send(msg.chat_id_, msg.id_,'◦ تم طرد الحسابات المحذوفه')
 end,nil)
 end
 return false 
@@ -6006,7 +6006,7 @@ if text ==("مسح المطرودين") and Admin(msg) then
     
 local function delbans(extra, result)  
 if not msg.can_be_deleted_ == true then  
-send(msg.chat_id_, msg.id_, "•  يرجى ترقيتي ادمن هنا") 
+send(msg.chat_id_, msg.id_, "◦  يرجى ترقيتي ادمن هنا") 
 return false
 end  
 local num = 0 
@@ -6014,7 +6014,7 @@ for k,y in pairs(result.members_) do
 num = num + 1  
 tdcli_function ({ ID = "ChangeChatMemberStatus", chat_id_ = msg.chat_id_, user_id_ = y.user_id_, status_ = { ID = "ChatMemberStatusLeft"}, }, dl_cb, nil)  
 end  
-send(msg.chat_id_, msg.id_,"•  تم الغاء الحظر عن *: "..num.." * شخص") 
+send(msg.chat_id_, msg.id_,"◦  تم الغاء الحظر عن *: "..num.." * شخص") 
 end    
 return false 
 end
@@ -6034,9 +6034,9 @@ end
 c = c + 1
 end     
 if (c - x) == 0 then
-send(msg.chat_id_, msg.id_, "• لا توجد بوتات في المجموعه")
+send(msg.chat_id_, msg.id_, "◦ لا توجد بوتات في المجموعه")
 else
-send(msg.chat_id_, msg.id_,"\n• عدد البوتات هنا : "..c.."\n• عدد البوتات التي هي ادمن : "..x.."\n• تم طرد - "..(c - x).." - بوتات ") 
+send(msg.chat_id_, msg.id_,"\n◦ عدد البوتات هنا : "..c.."\n◦ عدد البوتات التي هي ادمن : "..x.."\n◦ تم طرد - "..(c - x).." - بوتات ") 
 end 
 end,nil)  
 return false 
@@ -6045,7 +6045,7 @@ if text == ("كشف البوتات") and Admin(msg) then
   
 tdcli_function ({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersBots"},offset_ = 0,limit_ = 100 },function(extra,result,success)
 local admins = result.members_  
-text = "\n• قائمة البوتات \n━━━━━━━━\n"
+text = "\n◦ قائمة البوتات \n━━━━━━━━\n"
 local n = 0
 local t = 0
 for i=0 , #admins do 
@@ -6060,12 +6060,12 @@ tr = " {★}"
 end
 text = text..": [@"..ta.username_.."]"..tr.."\n"
 if #admins == 0 then
-send(msg.chat_id_, msg.id_, "• لا توجد بوتات في المجموعه")
+send(msg.chat_id_, msg.id_, "◦ لا توجد بوتات في المجموعه")
 return false 
 end
 if #admins == i then 
-local a = "\n━━━━━━━━\n• عدد البوتات التي هنا : "..n.." بوت"
-local f = "\n• عدد البوتات التي هي ادمن : "..t.."\n• ملاحضه علامة النجمه يعني البوت ادمن - ★ \n"
+local a = "\n━━━━━━━━\n◦ عدد البوتات التي هنا : "..n.." بوت"
+local f = "\n◦ عدد البوتات التي هي ادمن : "..t.."\n◦ ملاحضه علامة النجمه يعني البوت ادمن - ★ \n"
 send(msg.chat_id_, msg.id_, text..a..f)
 end
 end,nil)
@@ -6079,7 +6079,7 @@ if text and text:match("^تنزيل الكل @(.*)$") and Owner(msg) then
 function FunctionStatus(extra, result, success)
 if (result.id_) then
 if Dev_Bots_User(result.id_) == true then
-send(msg.chat_id_, msg.id_,"•  لا تستطيع تنزيل Carbon")
+send(msg.chat_id_, msg.id_,"◦  لا تستطيع تنزيل Carbon")
 return false 
 end
 if redis:sismember(bot_id.."Eqap:Developer:Bot1",result.id_) then
@@ -6098,9 +6098,9 @@ if redis:sismember(bot_id..'Eqap:Vip:Group'..msg.chat_id_, result.id_) then
 vip = "مميز ،" else vip = ""
 end
 if Rank_Checking(result.id_,msg.chat_id_) ~= false then
-send(msg.chat_id_, msg.id_,"\n• تم تنزيل الشخص من الرتب التاليه \n•  { "..dev..""..crr..""..cr..""..own..""..mod..""..vip.." } \n")
+send(msg.chat_id_, msg.id_,"\n◦ تم تنزيل الشخص من الرتب التاليه \n◦  { "..dev..""..crr..""..cr..""..own..""..mod..""..vip.." } \n")
 else
-send(msg.chat_id_, msg.id_,"\n• ليس لديه رتب حتى استطيع تنزيله \n")
+send(msg.chat_id_, msg.id_,"\n◦ ليس لديه رتب حتى استطيع تنزيله \n")
 end
 if Dev_Bots_User(msg.sender_user_id_) == true then
 redis:srem(bot_id.."Eqap:Developer:Bot1", result.id_)
@@ -6143,7 +6143,7 @@ if text == ("تنزيل الكل") and msg.reply_to_message_id_ ~= 0 and Owner(m
 
 function Function_Status(extra, result, success)
 if Dev_Bots_User(result.sender_user_id_) == true then
-send(msg.chat_id_, msg.id_,"•  لا تستطيع تنزيل Carbon")
+send(msg.chat_id_, msg.id_,"◦  لا تستطيع تنزيل Carbon")
 return false 
 end
 if redis:sismember(bot_id.."Eqap:Developer:Bot1",result.sender_user_id_) then
@@ -6162,9 +6162,9 @@ if redis:sismember(bot_id..'Eqap:Vip:Group'..msg.chat_id_, result.sender_user_id
 vip = "مميز ،" else vip = ""
 end
 if Rank_Checking(result.sender_user_id_,msg.chat_id_) ~= false then
-send(msg.chat_id_, msg.id_,"\n• تم تنزيل الشخص من الرتب التاليه \n•  { "..dev..""..crr..""..cr..""..own..""..mod..""..vip.." } \n")
+send(msg.chat_id_, msg.id_,"\n◦ تم تنزيل الشخص من الرتب التاليه \n◦  { "..dev..""..crr..""..cr..""..own..""..mod..""..vip.." } \n")
 else
-send(msg.chat_id_, msg.id_,"\n• ليس لديه رتب حتى استطيع تنزيله \n")
+send(msg.chat_id_, msg.id_,"\n◦ ليس لديه رتب حتى استطيع تنزيله \n")
 end
 if Dev_Bots_User(msg.sender_user_id_) == true then
 redis:srem(bot_id.."Eqap:Developer:Bot1", result.sender_user_id_)
@@ -6204,17 +6204,17 @@ tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumbe
 return false end
 if text == "رتبتي" then
 local rtp = Get_Rank(msg.sender_user_id_,msg.chat_id_)
-send(msg.chat_id_, msg.id_,"•  رتبتك في البوت ← "..rtp)
+send(msg.chat_id_, msg.id_,"◦  رتبتك في البوت ← "..rtp)
 return false end
 if text == "اسمي"  then 
 tdcli_function({ID="GetUser",user_id_=msg.sender_user_id_},function(extra,result,success)
 if result.first_name_  then
-first_name = "•  اسمك الاول : `"..(result.first_name_).."`"
+first_name = "◦  اسمك الاول : `"..(result.first_name_).."`"
 else
 first_name = ""
 end   
 if result.last_name_ then 
-last_name = "•  اسمك الثاني ← : `"..result.last_name_.."`" 
+last_name = "◦  اسمك الثاني ← : `"..result.last_name_.."`" 
 else
 last_name = ""
 end      
@@ -6224,16 +6224,16 @@ return false end
 if text==("عدد المجموعه") and Admin(msg) then
   
 if msg.can_be_deleted_ == false then 
-send(msg.chat_id_,msg.id_,"•  البوت ليس ادمن هنا \n") 
+send(msg.chat_id_,msg.id_,"◦  البوت ليس ادمن هنا \n") 
 return false  
 end 
 tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,ta) 
 tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub("-100","")},function(arg,data) 
-local yazon = "•  عدد الادمنيه : "..data.administrator_count_..
-"\n•  عدد المطرودين : "..data.kicked_count_..
-"\n•  عدد الاعضاء : "..data.member_count_..
-"\n•  عدد رسائل المجموعه : "..(msg.id_/2097152/0.5)..
-"\n•  اسم المجموعه : ["..ta.title_.."]"
+local yazon = "◦  عدد الادمنيه : "..data.administrator_count_..
+"\n◦  عدد المطرودين : "..data.kicked_count_..
+"\n◦  عدد الاعضاء : "..data.member_count_..
+"\n◦  عدد رسائل المجموعه : "..(msg.id_/2097152/0.5)..
+"\n◦  اسم المجموعه : ["..ta.title_.."]"
 send(msg.chat_id_, msg.id_, yazon) 
 end,nil)end,nil)
 end
@@ -6251,8 +6251,8 @@ local GP_ID = {string.match(text, "^(غادر) (-%d+)$")}
 if DeveloperBot(msg) and not redis:get(bot_id.."Eqap:Lock:Left"..msg.chat_id_) then 
 tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=GP_ID[2],user_id_=bot_id,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
 send(msg.chat_id_, msg.id_,"-") 
-send(GP_ID[2], 0,"•  تم مغادرة المجموعه بامر من Commander البوت") 
-send(msg.chat_id_, msg.id_,"•  تم مغادرة المجموعه بامر من Commander البوت") 
+send(GP_ID[2], 0,"◦  تم مغادرة المجموعه بامر من Commander البوت") 
+send(msg.chat_id_, msg.id_,"◦  تم مغادرة المجموعه بامر من Commander البوت") 
 redis:srem(bot_id.."Eqap:ChekBotAdd",GP_ID[2])  
 end
 end
@@ -6557,55 +6557,55 @@ else
 FunGroup = "← ✖"
 end
 local Num_Flood = redis:hget(bot_id.."Eqap:Spam:Group:User"..msg.chat_id_,"Num:Spam") or 0
-send(msg.chat_id_, msg.id_,"*\n• اعدادات المجموعه "..
+send(msg.chat_id_, msg.id_,"*\n◦ اعدادات المجموعه "..
 "\n━━━━━━━━"..
 "\nعلامة ال (✔️) تعني مفعل"..
 "\nعلامة ال (✖) تعني معطل"..
 "\n━━━━━━━━"..
-"\n• الروابط "..lock_links..
-"\n".."• الكلايش "..lock_spam..
-"\n".."• الكيبورد "..lock_inlin..
-"\n".."• الاغاني "..lock_vico..
-"\n".."• المتحركه "..lock_gif..
-"\n".."• الملفات "..lock_file..
-"\n".."• الدردشه "..lock_text..
-"\n".."• الفيديو "..lock_ved..
-"\n".."• الصور "..lock_photo..
+"\n◦ الروابط "..lock_links..
+"\n".."◦ الكلايش "..lock_spam..
+"\n".."◦ الكيبورد "..lock_inlin..
+"\n".."◦ الاغاني "..lock_vico..
+"\n".."◦ المتحركه "..lock_gif..
+"\n".."◦ الملفات "..lock_file..
+"\n".."◦ الدردشه "..lock_text..
+"\n".."◦ الفيديو "..lock_ved..
+"\n".."◦ الصور "..lock_photo..
 "\n━━━━━━━━"..
-"\n".."• المعرفات  "..lock_user..
-"\n".."• التاك "..lock_hash..
-"\n".."• البوتات "..lock_bots..
-"\n".."• التوجيه "..lock_fwd..
-"\n".."• الصوت "..lock_muse..
-"\n".."• الملصقات "..lock_ste..
-"\n".."• الجهات "..lock_phon..
-"\n".."• الدخول "..lock_join..
-"\n".."• الاضافه "..lock_add..
-"\n".."• السيلفي "..lock_self..
+"\n".."◦ المعرفات  "..lock_user..
+"\n".."◦ التاك "..lock_hash..
+"\n".."◦ البوتات "..lock_bots..
+"\n".."◦ التوجيه "..lock_fwd..
+"\n".."◦ الصوت "..lock_muse..
+"\n".."◦ الملصقات "..lock_ste..
+"\n".."◦ الجهات "..lock_phon..
+"\n".."◦ الدخول "..lock_join..
+"\n".."◦ الاضافه "..lock_add..
+"\n".."◦ السيلفي "..lock_self..
 "\n━━━━━━━━"..
-"\n".."• التثبيت "..lock_pin..
-"\n".."• الاشعارات "..lock_tagservr..
-"\n".."• الماركدون "..lock_mark..
-"\n".."• التعديل "..lock_edit..
-"\n".."• الالعاب "..lock_geam..
-"\n".."• التكرار "..flood..
+"\n".."◦ التثبيت "..lock_pin..
+"\n".."◦ الاشعارات "..lock_tagservr..
+"\n".."◦ الماركدون "..lock_mark..
+"\n".."◦ التعديل "..lock_edit..
+"\n".."◦ الالعاب "..lock_geam..
+"\n".."◦ التكرار "..flood..
 "\n━━━━━━━━"..
-"\n".."• الترحيب "..welcome..
-"\n".."• الرفع "..Setusers..
-"\n".."• الطرد "..Banusers..
-"\n".."• الايدي "..IdPhoto..
-"\n".."• الايدي بالصوره "..IdPyPhoto..
-"\n".."• اطردني "..KickMe..
-"\n".."• الردود "..ReplyManager..
-"\n".."• الردود العامه  "..ReplySudo..
-"\n".."• اوامر التحشيش "..FunGroup..
-"\n".."• جلب الرابط "..Link_Group..
-"\n".."• عدد التكرار ← {"..Num_Flood.."}\n\n.*")     
+"\n".."◦ الترحيب "..welcome..
+"\n".."◦ الرفع "..Setusers..
+"\n".."◦ الطرد "..Banusers..
+"\n".."◦ الايدي "..IdPhoto..
+"\n".."◦ الايدي بالصوره "..IdPyPhoto..
+"\n".."◦ اطردني "..KickMe..
+"\n".."◦ الردود "..ReplyManager..
+"\n".."◦ الردود العامه  "..ReplySudo..
+"\n".."◦ اوامر التحشيش "..FunGroup..
+"\n".."◦ جلب الرابط "..Link_Group..
+"\n".."◦ عدد التكرار ← {"..Num_Flood.."}\n\n.*")     
 end
 if text and text:match('^مسح (%d+)$') and Admin(msg) or text and text:match('^حذف (%d+)$') and Admin(msg) or text and text:match('^العراب (%d+)$') and Admin(msg) then    
 local Msg_Num = tonumber(text:match('^مسح (%d+)$')) or tonumber(text:match('^حذف (%d+)$'))  or tonumber(text:match('^العراب (%d+)$')) 
 if Msg_Num > 1000 then 
-send(msg.chat_id_, msg.id_,'• تستطيع حذف *(1000)* رساله فقط') 
+send(msg.chat_id_, msg.id_,'◦ تستطيع حذف *(1000)* رساله فقط') 
 return false  
 end  
 local Message = msg.id_
@@ -6613,85 +6613,85 @@ for i=1,tonumber(Msg_Num) do
 Delete_Message(msg.chat_id_,{[0]=Message})
 Message = Message - 1048576
 end
-send(msg.chat_id_, msg.id_,'• تم ازالة *- '..Msg_Num..'* رساله من المجموعه')  
+send(msg.chat_id_, msg.id_,'◦ تم ازالة *- '..Msg_Num..'* رساله من المجموعه')  
 end
 
 if text and text:match("^تغيير رد Commander  (.*)$") and Owner(msg) then
 
 local Teext = text:match("^تغيير رد Commander  (.*)$") 
 redis:set(bot_id.."Eqap:Developer:Bot:Reply"..msg.chat_id_,Teext)
-send(msg.chat_id_, msg.id_,"•  تم تغيير رد Commander  الى :"..Teext)
+send(msg.chat_id_, msg.id_,"◦  تم تغيير رد Commander  الى :"..Teext)
 return false end
 if text and text:match("^تغيير رد المنشئ الاساسي (.*)$") and Owner(msg) then
 
 local Teext = text:match("^تغيير رد المنشئ الاساسي (.*)$") 
 redis:set(bot_id.."Eqap:President:Group:Reply"..msg.chat_id_,Teext)
-send(msg.chat_id_, msg.id_,"•  تم تغيير رد المنشئ الاساسي الى :"..Teext)
+send(msg.chat_id_, msg.id_,"◦  تم تغيير رد المنشئ الاساسي الى :"..Teext)
 return false end
 if text and text:match("^تغيير رد المنشئ (.*)$") and Owner(msg) then
 
 local Teext = text:match("^تغيير رد المنشئ (.*)$") 
 redis:set(bot_id.."Eqap:Constructor:Group:Reply"..msg.chat_id_,Teext)
-send(msg.chat_id_, msg.id_,"•  تم تغيير رد المنشئ الى :"..Teext)
+send(msg.chat_id_, msg.id_,"◦  تم تغيير رد المنشئ الى :"..Teext)
 return false end
 if text and text:match("^تغيير رد المدير (.*)$") and Owner(msg) then
 
 local Teext = text:match("^تغيير رد المدير (.*)$") 
 redis:set(bot_id.."Eqap:Manager:Group:Reply"..msg.chat_id_,Teext) 
-send(msg.chat_id_, msg.id_,"•  تم تغيير رد المدير الى :"..Teext)
+send(msg.chat_id_, msg.id_,"◦  تم تغيير رد المدير الى :"..Teext)
 return false end
 if text and text:match("^تغيير رد الادمن (.*)$") and Owner(msg) then
 
 local Teext = text:match("^تغيير رد الادمن (.*)$") 
 redis:set(bot_id.."Eqap:Admin:Group:Reply"..msg.chat_id_,Teext)
-send(msg.chat_id_, msg.id_,"•  تم تغيير رد الادمن الى :"..Teext)
+send(msg.chat_id_, msg.id_,"◦  تم تغيير رد الادمن الى :"..Teext)
 return false end
 if text and text:match("^تغيير رد المميز (.*)$") and Owner(msg) then
 
 local Teext = text:match("^تغيير رد المميز (.*)$") 
 redis:set(bot_id.."Eqap:Vip:Group:Reply"..msg.chat_id_,Teext)
-send(msg.chat_id_, msg.id_,"•  تم تغيير رد المميز الى :"..Teext)
+send(msg.chat_id_, msg.id_,"◦  تم تغيير رد المميز الى :"..Teext)
 return false end
 if text and text:match("^تغيير رد العضو (.*)$") and Owner(msg) then
 
 local Teext = text:match("^تغيير رد العضو (.*)$") 
 redis:set(bot_id.."Eqap:Mempar:Group:Reply"..msg.chat_id_,Teext)
-send(msg.chat_id_, msg.id_,"•  تم تغيير رد العضو الى :"..Teext)
+send(msg.chat_id_, msg.id_,"◦  تم تغيير رد العضو الى :"..Teext)
 return false end
 if text == 'حذف رد Commander ' and Owner(msg) then
 
 redis:del(bot_id.."Eqap:Developer:Bot:Reply"..msg.chat_id_)
-send(msg.chat_id_, msg.id_,"• تم حدف رد Commander ")
+send(msg.chat_id_, msg.id_,"◦ تم حدف رد Commander ")
 return false end
 if text == 'حذف رد المنشئ الاساسي' and Owner(msg) then
 
 redis:del(bot_id.."Eqap:President:Group:Reply"..msg.chat_id_)
-send(msg.chat_id_, msg.id_,"• تم حذف رد المنشئ الاساسي ")
+send(msg.chat_id_, msg.id_,"◦ تم حذف رد المنشئ الاساسي ")
 return false end
 if text == 'حذف رد المنشئ' and Owner(msg) then
 
 redis:del(bot_id.."Eqap:Constructor:Group:Reply"..msg.chat_id_)
-send(msg.chat_id_, msg.id_,"• تم حذف رد المنشئ ")
+send(msg.chat_id_, msg.id_,"◦ تم حذف رد المنشئ ")
 return false end
 if text == 'حذف رد المدير' and Owner(msg) then
 
 redis:del(bot_id.."Eqap:Manager:Group:Reply"..msg.chat_id_) 
-send(msg.chat_id_, msg.id_,"• تم حذف رد المدير ")
+send(msg.chat_id_, msg.id_,"◦ تم حذف رد المدير ")
 return false end
 if text == 'حذف رد الادمن' and Owner(msg) then
 
 redis:del(bot_id.."Eqap:Admin:Group:Reply"..msg.chat_id_)
-send(msg.chat_id_, msg.id_,"• تم حذف رد الادمن ")
+send(msg.chat_id_, msg.id_,"◦ تم حذف رد الادمن ")
 return false end
 if text == 'حذف رد المميز' and Owner(msg) then
 
 redis:del(bot_id.."Eqap:Vip:Group:Reply"..msg.chat_id_)
-send(msg.chat_id_, msg.id_,"• تم حذف رد المميز")
+send(msg.chat_id_, msg.id_,"◦ تم حذف رد المميز")
 return false end
 if text == 'حذف رد العضو' and Owner(msg) then
 
 redis:del(bot_id.."Eqap:Mempar:Group:Reply"..msg.chat_id_)
-send(msg.chat_id_, msg.id_,"• تم حذف رد العضو")
+send(msg.chat_id_, msg.id_,"◦ تم حذف رد العضو")
 return false 
 end
 
@@ -6709,13 +6709,13 @@ redis:del(bot_id.."Eqap:Add:Rd:Manager:File"..v..msg.chat_id_)
 redis:del(bot_id.."Eqap:Add:Rd:Manager:Audio"..v..msg.chat_id_)
 redis:del(bot_id.."Eqap:List:Manager"..msg.chat_id_)
 end
-send(msg.chat_id_, msg.id_,"• تم مسح قائمة الردود")
+send(msg.chat_id_, msg.id_,"◦ تم مسح قائمة الردود")
 return false 
 end
 if text == ("الردود") and Owner(msg) then
 
 local list = redis:smembers(bot_id.."Eqap:List:Manager"..msg.chat_id_.."")
-text = "• قائمة الردود \n━━━━━━━━\n"
+text = "◦ قائمة الردود \n━━━━━━━━\n"
 for k,v in pairs(list) do
 if redis:get(bot_id.."Eqap:Add:Rd:Manager:Gif"..v..msg.chat_id_) then
 db = "متحركه "
@@ -6737,7 +6737,7 @@ end
 text = text..""..k.." » {"..v.."} » {"..db.."}\n"
 end
 if #list == 0 then
-text = "• عذرا لا يوجد الردود في المجموعه"
+text = "◦ عذرا لا يوجد الردود في المجموعه"
 end
 send(msg.chat_id_, msg.id_,"["..text.."]")
 return false 
@@ -6746,10 +6746,10 @@ if text == "الصلاحيات" and Admin(msg) then
  
 local list = redis:smembers(bot_id.."Eqap:Validitys:Group"..msg.chat_id_)
 if #list == 0 then
-send(msg.chat_id_, msg.id_,"• لا توجد صلاحيات مضافه هنا")
+send(msg.chat_id_, msg.id_,"◦ لا توجد صلاحيات مضافه هنا")
 return false
 end
-Validity = "\n• قائمة الصلاحيات المضافه \n━━━━━━━━\n"
+Validity = "\n◦ قائمة الصلاحيات المضافه \n━━━━━━━━\n"
 for k,v in pairs(list) do
 var = redis:get(bot_id.."Eqap:Add:Validity:Group:Rt"..v..msg.chat_id_)
 if var then
@@ -6763,7 +6763,7 @@ end
 if text == "الاوامر المضافه" and Constructor(msg) then
 
 local list = redis:smembers(bot_id.."Eqap:Command:List:Group"..msg.chat_id_.."")
-Command = "• قائمة الاوامر المضافه  \n━━━━━━━━\n"
+Command = "◦ قائمة الاوامر المضافه  \n━━━━━━━━\n"
 for k,v in pairs(list) do
 Commands = redis:get(bot_id.."Eqap:Get:Reides:Commands:Group"..msg.chat_id_..":"..v)
 if Commands then 
@@ -6773,7 +6773,7 @@ Command = Command..""..k..": ("..v..") \n"
 end
 end
 if #list == 0 then
-Command = "• لا توجد اوامر اضافيه"
+Command = "◦ لا توجد اوامر اضافيه"
 end
 send(msg.chat_id_, msg.id_,"["..Command.."]")
 end
@@ -6784,23 +6784,23 @@ for k,v in pairs(list) do
 redis:del(bot_id.."Eqap:Get:Reides:Commands:Group"..msg.chat_id_..":"..v)
 redis:del(bot_id.."Eqap:Command:List:Group"..msg.chat_id_)
 end
-send(msg.chat_id_, msg.id_,"• تم مسح جميع الاوامر التي تم اضافتها")  
+send(msg.chat_id_, msg.id_,"◦ تم مسح جميع الاوامر التي تم اضافتها")  
 end
 if text == "مسح الصلاحيات" and Constructor(msg) then
 
 local list = redis:smembers(bot_id.."Eqap:Validitys:Group"..msg.chat_id_)
 for k,v in pairs(list) do;redis:del(bot_id.."Eqap:Add:Validity:Group:Rt"..v..msg.chat_id_);redis:del(bot_id.."Eqap:Validitys:Group"..msg.chat_id_);end
-send(msg.chat_id_, msg.id_,"• تم مسح صلاحيات المجموعه")
+send(msg.chat_id_, msg.id_,"◦ تم مسح صلاحيات المجموعه")
 end
 if text == "اضف رد" and Owner(msg) then
 
-send(msg.chat_id_, msg.id_,"• ارسل الان الكلمه لاضافتها في الردود ")
+send(msg.chat_id_, msg.id_,"◦ ارسل الان الكلمه لاضافتها في الردود ")
 redis:set(bot_id.."Eqap:Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_,true)
 return false 
 end
 if text == "حذف رد" and Owner(msg) then
 
-send(msg.chat_id_, msg.id_,"• ارسل الان الكلمه لحذفها من الردود")
+send(msg.chat_id_, msg.id_,"◦ ارسل الان الكلمه لحذفها من الردود")
 redis:set(bot_id.."Eqap:Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_,"true2")
 return false 
 end
@@ -6818,13 +6818,13 @@ redis:del(bot_id.."Eqap:Add:Rd:Sudo:File"..v)
 redis:del(bot_id.."Eqap:Add:Rd:Sudo:Audio"..v)
 redis:del(bot_id.."Eqap:List:Rd:Sudo")
 end
-send(msg.chat_id_, msg.id_,"• تم حذف الردود العامه ")
+send(msg.chat_id_, msg.id_,"◦ تم حذف الردود العامه ")
 return false 
 end
 if text == ("الردود العامه") and DeveloperBot1(msg) then
  
 local list = redis:smembers(bot_id.."Eqap:List:Rd:Sudo")
-text = "\n• قائمة الردود العامه  \n━━━━━━━━\n"
+text = "\n◦ قائمة الردود العامه  \n━━━━━━━━\n"
 for k,v in pairs(list) do
 if redis:get(bot_id.."Eqap:Add:Rd:Sudo:Gif"..v) then
 db = "متحركه "
@@ -6846,33 +6846,33 @@ end
 text = text..""..k.." » {"..v.."} » {"..db.."}\n"
 end
 if #list == 0 then
-text = "• لا توجد ردود عامه"
+text = "◦ لا توجد ردود عامه"
 end
 send(msg.chat_id_, msg.id_,"["..text.."]")
 return false 
 end
 if text == "اضف رد عام" and DeveloperBot1(msg) then
  
-send(msg.chat_id_, msg.id_,"• ارسل الان الكلمه لاضافتها في الردود العامه ")
+send(msg.chat_id_, msg.id_,"◦ ارسل الان الكلمه لاضافتها في الردود العامه ")
 redis:set(bot_id.."Eqap:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,true)
 return false 
 end
 if text == "حذف رد عام" and DeveloperBot1(msg) then
  
-send(msg.chat_id_, msg.id_,"• ارسل الان الكلمه لحذفها من الردود العامه ")
+send(msg.chat_id_, msg.id_,"◦ ارسل الان الكلمه لحذفها من الردود العامه ")
 redis:set(bot_id.."Eqap:Set:On"..msg.sender_user_id_..":"..msg.chat_id_,true)
 return false 
 end
 if text == "اضف امر" and Constructor(msg) then
 
 redis:set(bot_id.."Eqap:Command:Reids:Group"..msg.chat_id_..":"..msg.sender_user_id_,"true") 
-send(msg.chat_id_, msg.id_,"• الان ارسل لي الامر القديم ...")  
+send(msg.chat_id_, msg.id_,"◦ الان ارسل لي الامر القديم ...")  
 return false 
 end
 if text == "حذف امر" and Constructor(msg) or text == "مسح امر" and Constructor(msg) then
  
 redis:set(bot_id.."Eqap:Command:Reids:Group:Del"..msg.chat_id_..":"..msg.sender_user_id_,"true") 
-send(msg.chat_id_, msg.id_,"• ارسل الان الامر الذي قمت بوضعه مكان الامر القديم")  
+send(msg.chat_id_, msg.id_,"◦ ارسل الان الامر الذي قمت بوضعه مكان الامر القديم")  
 return false 
 end
 if text and text:match("^مسح صلاحيه (.*)$") and Admin(msg) or text and text:match("^حذف صلاحيه (.*)$") and Admin(msg) then
@@ -6880,7 +6880,7 @@ if text and text:match("^مسح صلاحيه (.*)$") and Admin(msg) or text and 
 local ComdNew = text:match("^مسح صلاحيه (.*)$") or text:match("^حذف صلاحيه (.*)$")
 redis:del(bot_id.."Eqap:Add:Validity:Group:Rt"..ComdNew..msg.chat_id_)
 redis:srem(bot_id.."Eqap:Validitys:Group"..msg.chat_id_,ComdNew)  
-send(msg.chat_id_, msg.id_, "\n• تم مسح ← { "..ComdNew..' } من الصلاحيات') 
+send(msg.chat_id_, msg.id_, "\n◦ تم مسح ← { "..ComdNew..' } من الصلاحيات') 
 return false 
 end
 if text and text:match("^اضف صلاحيه (.*)$") and Admin(msg) then
@@ -6889,7 +6889,7 @@ local ComdNew = text:match("^اضف صلاحيه (.*)$")
 redis:set(bot_id.."Eqap:Add:Validity:Group:Rt:New"..msg.chat_id_..msg.sender_user_id_,ComdNew)  
 redis:sadd(bot_id.."Eqap:Validitys:Group"..msg.chat_id_,ComdNew)  
 redis:setex(bot_id.."Eqap:Redis:Validity:Group"..msg.chat_id_..""..msg.sender_user_id_,200,true)  
-send(msg.chat_id_, msg.id_, "\n• ارسل نوع الصلاحيه كما مطلوب منك :\n• انواع الصلاحيات المطلوبه ← { عضو ، مميز  ، ادمن  ، مدير }") 
+send(msg.chat_id_, msg.id_, "\n◦ ارسل نوع الصلاحيه كما مطلوب منك :\n◦ انواع الصلاحيات المطلوبه ← { عضو ، مميز  ، ادمن  ، مدير }") 
 return false 
 end
 if text == 'المطور' or text == 'مطور' then
@@ -6903,53 +6903,53 @@ end
 if text == 'وضع كليشه المطور' and Dev_Bots(msg) then
 
 redis:set(bot_id..'Eqap:GetTexting:DevSlbotss'..msg.chat_id_..':'..msg.sender_user_id_,true)
-send(msg.chat_id_,msg.id_,'•  ارسل لي الكليشه الان')
+send(msg.chat_id_,msg.id_,'◦  ارسل لي الكليشه الان')
 return false 
 end
 if text == 'حذف كليشه المطور' and Dev_Bots(msg) then
 
 redis:del(bot_id..'Eqap:Texting:DevSlbotss')
-send(msg.chat_id_, msg.id_,'•  تم حذف كليشه Commander ')
+send(msg.chat_id_, msg.id_,'◦  تم حذف كليشه Commander ')
 end
 if text == "تغيير اسم البوت" and Dev_Bots(msg) or text == "تغيير اسم البوت" and Dev_Bots(msg) then
  
 redis:setex(bot_id.."Eqap:Change:Name:Bot"..msg.sender_user_id_,300,true) 
-send(msg.chat_id_, msg.id_,"•  ارسل لي الاسم الان ")  
+send(msg.chat_id_, msg.id_,"◦  ارسل لي الاسم الان ")  
 end
 if text=="اذاعه خاص" and msg.reply_to_message_id_ == 0 and DeveloperBot(msg) then
  
 if redis:get(bot_id.."Eqap:Broadcasting:Bot") and not Dev_Bots(msg) then 
-send(msg.chat_id_, msg.id_,"• تم تعطيل الاذاعه من قبل Develope !")
+send(msg.chat_id_, msg.id_,"◦ تم تعطيل الاذاعه من قبل Develope !")
 return false end
 redis:setex(bot_id.."Eqap:Broadcasting:Users" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
-send(msg.chat_id_, msg.id_,"• ارسل لي المنشور الان\n• يمكنك ارسال -{ صوره - ملصق - متحركه - رساله }\n• لالغاء الاذاعه ارسل : الغاء") 
+send(msg.chat_id_, msg.id_,"◦ ارسل لي المنشور الان\n◦ يمكنك ارسال -{ صوره - ملصق - متحركه - رساله }\n◦ لالغاء الاذاعه ارسل : الغاء") 
 return false
 end
 if text=="اذاعه" and msg.reply_to_message_id_ == 0 and DeveloperBot(msg) then
  
 if redis:get(bot_id.."Eqap:Broadcasting:Bot") and not Dev_Bots(msg) then 
-send(msg.chat_id_, msg.id_,"• تم تعطيل الاذاعه من قبل Developer !")
+send(msg.chat_id_, msg.id_,"◦ تم تعطيل الاذاعه من قبل Developer !")
 return false end
 redis:setex(bot_id.."Eqap:Broadcasting:Groups" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
-send(msg.chat_id_, msg.id_,"• ارسل لي المنشور الان\n• يمكنك ارسال -{ صوره - ملصق - متحركه - رساله }\n• لالغاء الاذاعه ارسل : الغاء") 
+send(msg.chat_id_, msg.id_,"◦ ارسل لي المنشور الان\n◦ يمكنك ارسال -{ صوره - ملصق - متحركه - رساله }\n◦ لالغاء الاذاعه ارسل : الغاء") 
 return false
 end
 if text=="اذاعه بالتوجيه" and msg.reply_to_message_id_ == 0  and DeveloperBot(msg) then
  
 if redis:get(bot_id.."Eqap:Broadcasting:Bot") and not Dev_Bots(msg) then 
-send(msg.chat_id_, msg.id_,"• تم تعطيل الاذاعه من قبل Develope !")
+send(msg.chat_id_, msg.id_,"◦ تم تعطيل الاذاعه من قبل Develope !")
 return false end
 redis:setex(bot_id.."Eqap:Broadcasting:Groups:Fwd" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
-send(msg.chat_id_, msg.id_,"• ارسل لي التوجيه الان\n• ليتم افتاراته في المجموعات") 
+send(msg.chat_id_, msg.id_,"◦ ارسل لي التوجيه الان\n◦ ليتم افتاراته في المجموعات") 
 return false
 end
 if text=="اذاعه بالتوجيه خاص" and msg.reply_to_message_id_ == 0  and DeveloperBot(msg) then
  
 if redis:get(bot_id.."Eqap:Broadcasting:Bot") and not Dev_Bots(msg) then 
-send(msg.chat_id_, msg.id_,"• تم تعطيل الاذاعه من قبل Develper !")
+send(msg.chat_id_, msg.id_,"◦ تم تعطيل الاذاعه من قبل Develper !")
 return false end
 redis:setex(bot_id.."Eqap:Broadcasting:Users:Fwd" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
-send(msg.chat_id_, msg.id_,"• ارسل لي التوجيه الان\n• ليتم افتاراته الى المشتركين") 
+send(msg.chat_id_, msg.id_,"◦ ارسل لي التوجيه الان\n◦ ليتم افتاراته الى المشتركين") 
 return false
 end
 if text == 'تعيين الايدي' and Owner(msg) then
@@ -6977,7 +6977,7 @@ redis:del(bot_id.."Eqap:Set:Sma"..msg.chat_id_)
 Random = {"🍏","🍎","🍐","🍊","🍋","🍉","🍇","🍓","🍈","🍒","🍑","🍍","🥥","🥝","🍅","🍆","🥑","🥦","🥒","🌶","🌽","🥕","🥔","🥖","🥐","🍞","🥨","🍟","🧀","🥚","🍳","🥓","🥩","🍗","🍖","🌭","🍔","🍠","🍕","🥪","🥙","☕️","??","🥤","🍶","🍺","🍻","🏀","⚽️","🏈","⚾️","🎾","🏐","🏉","🎱","🏓","🏸","🥅","🎰","🎮","🎳","🎯","🎲","🎻","🎸","🎺","🥁","🎹","🎼","🎧","🎤","🎬","🎨","","🎪","🎟","🎫","🎗","🏵","🎖","🏆","🥌","🛷","🚗","🚌","🏎","🚓","🚑","🚚","🚛","🚜","🇮🇶","⚔","🛡","🔮","🌡","💣","📌","📍","📓","📗","📂","📅","📪","📫","📬","📭","⏰","📺","🎚","☎️","📡"}
 SM = Random[math.random(#Random)]
 redis:set(bot_id.."Eqap:Random:Sm"..msg.chat_id_,SM)
-send(msg.chat_id_, msg.id_,"• اسرع واحد يرسل هاذا السمايل ?  `"..SM.."`")
+send(msg.chat_id_, msg.id_,"◦ اسرع واحد يرسل هاذا السمايل ?  `"..SM.."`")
 return false
 end
 end
@@ -7027,7 +7027,7 @@ name = string.gsub(name,"حاسوب","س ا ح و ب")
 name = string.gsub(name,"انترنيت","ا ت ن ر ن ي ت")
 name = string.gsub(name,"ساحه","ح ا ه س")
 name = string.gsub(name,"جسر","ر ج س")
-send(msg.chat_id_, msg.id_,"• اسرع واحد يرتبها "..name.."")
+send(msg.chat_id_, msg.id_,"◦ اسرع واحد يرتبها "..name.."")
 return false
 end
 end
@@ -7070,7 +7070,7 @@ name = string.gsub(name,"الثلج","انا ابن الماء فان تركون
 name = string.gsub(name,"الاسفنج","كلي ثقوب ومع ذالك احفض الماء فمن اكون ؟")
 name = string.gsub(name,"الصوت","اسير بلا رجلين ولا ادخل الا بالاذنين فمن انا ؟")
 name = string.gsub(name,"بلم","حامل ومحمول نصف ناشف ونصف مبلول فمن اكون ؟ ")
-send(msg.chat_id_, msg.id_,"• اسرع واحد يحل الحزوره ↓\n "..name.."")
+send(msg.chat_id_, msg.id_,"◦ اسرع واحد يحل الحزوره ↓\n "..name.."")
 return false
 end
 end
@@ -7105,7 +7105,7 @@ name = string.gsub(name,"زرافه","🦒")
 name = string.gsub(name,"قنفذ","??")
 name = string.gsub(name,"تفاحه","🍎")
 name = string.gsub(name,"باذنجان","🍆")
-send(msg.chat_id_, msg.id_,"• اسرع واحد يرسل معنى السمايل "..name.."")
+send(msg.chat_id_, msg.id_,"◦ اسرع واحد يرسل معنى السمايل "..name.."")
 return false
 end
 end
@@ -7140,7 +7140,7 @@ name = string.gsub(name,"موعطشان","عطشان")
 name = string.gsub(name,"خوش ولد","موخوش ولد")
 name = string.gsub(name,"اني","مطي")
 name = string.gsub(name,"هادئ","عصبي")
-send(msg.chat_id_, msg.id_,"• اسرع واحد يرسل العكس "..name.."")
+send(msg.chat_id_, msg.id_,"◦ اسرع واحد يرسل العكس "..name.."")
 return false
 end
 end
@@ -7148,7 +7148,7 @@ if text == "خمن" or text == "تخمين" then
 if redis:get(bot_id.."Eqap:Lock:Game:Group"..msg.chat_id_) then
 Num = math.random(1,20)
 redis:set(bot_id.."Eqap:GAMES:NUM"..msg.chat_id_,Num) 
-send(msg.chat_id_, msg.id_,"\n• اهلا بك عزيزي في لعبة التخمين :\nٴ━━━━━━━━━━\n".."• ملاحظه لديك { 3 } محاولات فقط فكر قبل ارسال تخمينك \n\n".."• سيتم تخمين عدد ما بين ال {1 و 20} اذا تعتقد انك تستطيع الفوز جرب واللعب الان ؟ ")
+send(msg.chat_id_, msg.id_,"\n◦ اهلا بك عزيزي في لعبة التخمين :\nٴ━━━━━━━━━━\n".."◦ ملاحظه لديك { 3 } محاولات فقط فكر قبل ارسال تخمينك \n\n".."◦ سيتم تخمين عدد ما بين ال {1 و 20} اذا تعتقد انك تستطيع الفوز جرب واللعب الان ؟ ")
 redis:setex(bot_id.."Eqap:GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 100, true)  
 return false  
 end
@@ -7161,8 +7161,8 @@ send(msg.chat_id_, msg.id_,[[
 *➀       ➁     ➂      ➃      ➄     ➅
 ↓      ↓     ↓      ↓     ↓     ↓
 👊 ‹› 👊 ‹› 👊 ‹› 👊 ‹› 👊 ‹› 👊
-• اختر لأستخراج المحيبس الايد التي تحمل المحيبس 
-• الفائز يحصل على { 3 } من النقاط *
+◦ اختر لأستخراج المحيبس الايد التي تحمل المحيبس 
+◦ الفائز يحصل على { 3 } من النقاط *
 ]])
 redis:setex(bot_id.."Eqap:SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 100, true)  
 return false  
@@ -7200,7 +7200,7 @@ name = string.gsub(name,"🕒","🕒🕒🕒🕒🕒🕒🕓🕒🕒🕒")
 name = string.gsub(name,"🕤","🕥🕥🕥🕥🕥🕤🕥🕥🕥")
 name = string.gsub(name,"⌛️","⏳⏳⏳⏳⏳⏳⌛️⏳⏳")
 name = string.gsub(name,"📅","📆📆📆📆📆📆📅📆📆")
-send(msg.chat_id_, msg.id_,"• اسرع واحد يرسل الاختلاف "..name.."")
+send(msg.chat_id_, msg.id_,"◦ اسرع واحد يرسل الاختلاف "..name.."")
 return false
 end
 end
@@ -7230,49 +7230,49 @@ name = string.gsub(name,"شهر","امشي__ولا تعبر نهر")
 name = string.gsub(name,"شكه","يامن تعب يامن__يا من على الحاضر لكة")
 name = string.gsub(name,"القرد","__بعين امه غزال")
 name = string.gsub(name,"يكحله","اجه___عماها")
-send(msg.chat_id_, msg.id_,"• اسرع واحد يكمل المثل "..name.."")
+send(msg.chat_id_, msg.id_,"◦ اسرع واحد يكمل المثل "..name.."")
 return false
 end
 end
 if text == 'رسائلي' then
 local nummsg = redis:get(bot_id..'Eqap:Num:Message:User'..msg.chat_id_..':'..msg.sender_user_id_) or 1
-send(msg.chat_id_, msg.id_,'• عدد رسائلك هنا *~ '..nummsg..'*') 
+send(msg.chat_id_, msg.id_,'◦ عدد رسائلك هنا *~ '..nummsg..'*') 
 end
 if text == 'سحكاتي' or text == 'تعديلاتي' then
 local edit = redis:get(bot_id..'Eqap:Num:Message:Edit'..msg.chat_id_..msg.sender_user_id_) or 0
-send(msg.chat_id_, msg.id_,'• عدد التعديلات هنا *~ '..edit..'*') 
+send(msg.chat_id_, msg.id_,'◦ عدد التعديلات هنا *~ '..edit..'*') 
 end
 if text == 'جهاتي' then
 local addmem = redis:get(bot_id.."Eqap:Num:Add:Memp"..msg.chat_id_..":"..msg.sender_user_id_) or 0
-send(msg.chat_id_, msg.id_,'• عدد جهاتك المضافه هنا *~ '..addmem..'*') 
+send(msg.chat_id_, msg.id_,'◦ عدد جهاتك المضافه هنا *~ '..addmem..'*') 
 end
 if text == "نقاطي" then 
 local Num = redis:get(bot_id.."Eqap:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_) or 0
 if Num == 0 then 
-Text = "• لم تفز بأي مجوهره "
+Text = "◦ لم تفز بأي مجوهره "
 else
-Text = "• عدد نقاط التي ربحتها *← "..Num.." *"
+Text = "◦ عدد نقاط التي ربحتها *← "..Num.." *"
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
 if text and text:match("^بيع نقاطي (%d+)$") then
 local NUMPY = text:match("^بيع نقاطي (%d+)$") 
 if tonumber(NUMPY) == tonumber(0) then
-send(msg.chat_id_,msg.id_,"\n*• لا استطيع البيع اقل من 1 *") 
+send(msg.chat_id_,msg.id_,"\n*◦ لا استطيع البيع اقل من 1 *") 
 return false 
 end
 if tonumber(redis:get(bot_id.."Eqap:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_)) == tonumber(0) then
-send(msg.chat_id_,msg.id_,"• ليس لديك جواهر من الالعاب \n• اذا كنت تريد ربح نقاط \n• ارسل الالعاب وابدأ اللعب ! ") 
+send(msg.chat_id_,msg.id_,"◦ ليس لديك جواهر من الالعاب \n◦ اذا كنت تريد ربح نقاط \n◦ ارسل الالعاب وابدأ اللعب ! ") 
 else
 local NUM_GAMES = redis:get(bot_id.."Eqap:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_)
 if tonumber(NUMPY) > tonumber(NUM_GAMES) then
-send(msg.chat_id_,msg.id_,"\n• ليس لديك جواهر بهاذا العدد \n• لزيادة نقاطك في اللعبه \n• ارسل الالعاب وابدأ اللعب !") 
+send(msg.chat_id_,msg.id_,"\n◦ ليس لديك جواهر بهاذا العدد \n◦ لزيادة نقاطك في اللعبه \n◦ ارسل الالعاب وابدأ اللعب !") 
 return false 
 end
 local NUMNKO = (NUMPY * 50)
 redis:decrby(bot_id.."Eqap:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_,NUMPY)  
 redis:incrby(bot_id.."Eqap:Num:Message:User"..msg.chat_id_..":"..msg.sender_user_id_,NUMNKO)  
-send(msg.chat_id_,msg.id_,"• تم خصم *~ { "..NUMPY.." }* من نقاطك \n• وتم اضافة* ~ { "..(NUMPY * 50).." } رساله الى رسالك *")
+send(msg.chat_id_,msg.id_,"◦ تم خصم *~ { "..NUMPY.." }* من نقاطك \n◦ وتم اضافة* ~ { "..(NUMPY * 50).." } رساله الى رسالك *")
 end 
 return false 
 end
@@ -7280,19 +7280,19 @@ if text and text:match("^اضف رسائل (%d+)$") and msg.reply_to_message_id_
 yazon = text:match("^اضف رسائل (%d+)$")
 redis:set(bot_id.."Eqap:id:user"..msg.chat_id_,yazon)  
 redis:setex(bot_id.."Eqap:Add:msg:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 120, true)  
-send(msg.chat_id_, msg.id_, "• ارسل لي عدد الرسائل الان") 
+send(msg.chat_id_, msg.id_, "◦ ارسل لي عدد الرسائل الان") 
 return false
 end
 if text and text:match("^اضف نقاط (%d+)$") and msg.reply_to_message_id_ == 0 and Constructor(msg) then  
 yazon = text:match("^اضف نقاط (%d+)$")
 redis:set(bot_id.."Eqap:idgem:user"..msg.chat_id_,yazon)  
 redis:setex(bot_id.."Eqap:gemadd:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 120, true)  
-send(msg.chat_id_, msg.id_, "• ارسل لي عدد النقاط الان") 
+send(msg.chat_id_, msg.id_, "◦ ارسل لي عدد النقاط الان") 
 end
 if text and text:match("^اضف نقاط (%d+)$") and msg.reply_to_message_id_ ~= 0 and Constructor(msg) then
 function reply(extra, result, success)
 redis:incrby(bot_id.."Eqap:Num:Add:Games"..msg.chat_id_..result.sender_user_id_,text:match("^اضف نقاط (%d+)$"))  
-send(msg.chat_id_, msg.id_,"• تم اضافه عدد نقاط : "..text:match("^اضف نقاط (%d+)$").." ")  
+send(msg.chat_id_, msg.id_,"◦ تم اضافه عدد نقاط : "..text:match("^اضف نقاط (%d+)$").." ")  
 end
 tdcli_function ({ID = "GetMessage",chat_id_=msg.chat_id_,message_id_=tonumber(msg.reply_to_message_id_)},reply, nil)
 return false
@@ -7302,7 +7302,7 @@ if text and text:match("^اضف رسائل (%d+)$") and msg.reply_to_message_id_
 function reply(extra, result, success)
 redis:del(bot_id.."Eqap:Msg_User"..msg.chat_id_..":"..result.sender_user_id_) 
 redis:incrby(bot_id.."Eqap:Num:Message:User"..msg.chat_id_..":"..result.sender_user_id_,text:match("^اضف رسائل (%d+)$"))  
-send(msg.chat_id_, msg.id_, "• تم اضافه عدد الرسائل : "..text:match("^اضف رسائل (%d+)$").." ")  
+send(msg.chat_id_, msg.id_, "◦ تم اضافه عدد الرسائل : "..text:match("^اضف رسائل (%d+)$").." ")  
 end
 tdcli_function ({ID = "GetMessage",chat_id_=msg.chat_id_,message_id_=tonumber(msg.reply_to_message_id_)},reply, nil)
 return false
@@ -7321,10 +7321,10 @@ sendok = sendok + 1
 end
 if #pv == i then 
 if sendok == 0 then
-send(msg.chat_id_, msg.id_,'• لا يوجد مشتركين وهميين')   
+send(msg.chat_id_, msg.id_,'◦ لا يوجد مشتركين وهميين')   
 else
 local ok = #pv - sendok
-send(msg.chat_id_, msg.id_,'*• عدد المشتركين الان ←{ '..#pv..' }\n• تم العثور على ←{ '..sendok..' } مشترك قام بحظر البوت\n• اصبح عدد المشتركين الان ←{ '..ok..' } مشترك *')   
+send(msg.chat_id_, msg.id_,'*◦ عدد المشتركين الان ←{ '..#pv..' }\n◦ تم العثور على ←{ '..sendok..' } مشترك قام بحظر البوت\n◦ اصبح عدد المشتركين الان ←{ '..ok..' } مشترك *')   
 end
 end
 end,nil)
@@ -7358,21 +7358,21 @@ w = w + 1
 end
 if #group == i then 
 if (w + q) == 0 then
-send(msg.chat_id_, msg.id_,'• لا توجد مجموعات وهميه ')   
+send(msg.chat_id_, msg.id_,'◦ لا توجد مجموعات وهميه ')   
 else
 local yazon = (w + q)
 local sendok = #group - yazon
 if q == 0 then
 yazon = ''
 else
-yazon = '\n•  تم ازالة ~ '..q..' مجموعات من البوت'
+yazon = '\n◦  تم ازالة ~ '..q..' مجموعات من البوت'
 end
 if w == 0 then
 groupss = ''
 else
-groupss = '\n•  تم ازالة ~'..w..' مجموعه لان البوت عضو'
+groupss = '\n◦  تم ازالة ~'..w..' مجموعه لان البوت عضو'
 end
-send(msg.chat_id_, msg.id_,'*•  عدد المجموعات الان ← { '..#group..' } مجموعه '..groupss..''..yazon..'\n• اصبح عدد المجموعات الان ← { '..sendok..' } مجموعات*\n')   
+send(msg.chat_id_, msg.id_,'*◦  عدد المجموعات الان ← { '..#group..' } مجموعه '..groupss..''..yazon..'\n◦ اصبح عدد المجموعات الان ← { '..sendok..' } مجموعات*\n')   
 end
 end
 end,nil)
@@ -7382,30 +7382,30 @@ if text == "اطردني" or text == "طردني" then
 
 if not redis:get(bot_id.."Eqap:Cheking:Kick:Me:Group"..msg.chat_id_) then
 if Rank_Checking(msg.sender_user_id_, msg.chat_id_) == true then
-send(msg.chat_id_, msg.id_, "\n•  عذرا لا استطيع طرد "..Get_Rank(msg.sender_user_id_,msg.chat_id_).." ")
+send(msg.chat_id_, msg.id_, "\n◦  عذرا لا استطيع طرد "..Get_Rank(msg.sender_user_id_,msg.chat_id_).." ")
 return false
 end
 tdcli_function({ID="ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=msg.sender_user_id_,status_={ID="ChatMemberStatusKicked"},},function(arg,data) 
 if (data and data.code_ and data.code_ == 400 and data.message_ == "CHAT_ADMIN_REQUIRED") then 
-send(msg.chat_id_, msg.id_,"•  ليس لدي صلاحية حظر المستخدمين يرجى تفعيلها !") 
+send(msg.chat_id_, msg.id_,"◦  ليس لدي صلاحية حظر المستخدمين يرجى تفعيلها !") 
 return false  
 end
 if (data and data.code_ and data.code_ == 3) then 
-send(msg.chat_id_, msg.id_,"•  البوت ليس ادمن يرجى ترقيتي !") 
+send(msg.chat_id_, msg.id_,"◦  البوت ليس ادمن يرجى ترقيتي !") 
 return false  
 end
 if data and data.code_ and data.code_ == 400 and data.message_ == "USER_ADMIN_INVALID" then 
-send(msg.chat_id_, msg.id_,"•  عذرا لا استطيع طرد ادمنية المجموعه") 
+send(msg.chat_id_, msg.id_,"◦  عذرا لا استطيع طرد ادمنية المجموعه") 
 return false  
 end
 if data and data.ID and data.ID == "Ok" then
-send(msg.chat_id_, msg.id_,"•  تم طردك من المجموعه ") 
+send(msg.chat_id_, msg.id_,"◦  تم طردك من المجموعه ") 
 tdcli_function ({ ID = "ChangeChatMemberStatus", chat_id_ = msg.chat_id_, user_id_ = msg.sender_user_id_, status_ = { ID = "ChatMemberStatusLeft" },},function(arg,ban) end,nil)   
 return false
 end
 end,nil)   
 else
-send(msg.chat_id_, msg.id_,"•  امر اطردني تم تعطيله من قبل المدراء ") 
+send(msg.chat_id_, msg.id_,"◦  امر اطردني تم تعطيله من قبل المدراء ") 
 end
 end
 if text and text:match("^رفع القيود @(.*)") and Owner(msg) then
@@ -7418,14 +7418,14 @@ redis:srem(bot_id.."Eqap:Removal:User:Groups",result.id_)
 redis:srem(bot_id.."Eqap:Removal:User:Group"..msg.chat_id_,result.id_)
 redis:srem(bot_id.."Eqap:Silence:User:Group"..msg.chat_id_,result.id_)
 redis:srem(bot_id.."Eqap:Silence:User:Groups"..msg.chat_id_,result.id_)
-Send_Options(msg,result.id_,"reply","\n•  تم الغاء القيود عنه")  
+Send_Options(msg,result.id_,"reply","\n◦  تم الغاء القيود عنه")  
 else
 redis:srem(bot_id.."Eqap:Removal:User:Group"..msg.chat_id_,result.id_)
 redis:srem(bot_id.."Eqap:Silence:User:Group"..msg.chat_id_,result.id_)
-Send_Options(msg,result.id_,"reply","\n•  تم الغاء القيود عنه")  
+Send_Options(msg,result.id_,"reply","\n◦  تم الغاء القيود عنه")  
 end
 else
-send(msg.chat_id_, msg.id_,"•  المعرف غلط")
+send(msg.chat_id_, msg.id_,"◦  المعرف غلط")
 end
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, Function_Status, nil)
@@ -7438,11 +7438,11 @@ redis:srem(bot_id.."Eqap:Removal:User:Groups",result.sender_user_id_)
 redis:srem(bot_id.."Eqap:Removal:User:Group"..msg.chat_id_,result.sender_user_id_)
 redis:srem(bot_id.."Eqap:Silence:User:Group"..msg.chat_id_,result.sender_user_id_)
 redis:srem(bot_id.."Eqap:Silence:User:Groups"..msg.chat_id_,result.sender_user_id_)
-Send_Options(msg,result.sender_user_id_,"reply","\n•  تم الغاء القيود عنه")  
+Send_Options(msg,result.sender_user_id_,"reply","\n◦  تم الغاء القيود عنه")  
 else
 redis:srem(bot_id.."Eqap:Removal:User:Group"..msg.chat_id_,result.sender_user_id_)
 redis:srem(bot_id.."Eqap:Silence:User:Group"..msg.chat_id_,result.sender_user_id_)
-Send_Options(msg,result.sender_user_id_,"reply","\n•  تم الغاء القيود عنه")  
+Send_Options(msg,result.sender_user_id_,"reply","\n◦  تم الغاء القيود عنه")  
 end
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, Function_Status, nil)
@@ -7472,9 +7472,9 @@ GBanss = "مكتوم عام"
 else
 GBanss = "غير مكتوم عام"
 end
-send(msg.chat_id_, msg.id_,"•  كتم العام ← "..GBanss.."\n•  الحظر العام ← "..GBan.."\n•  الحظر ← "..Ban.."\n•  الكتم ← "..Muted)
+send(msg.chat_id_, msg.id_,"◦  كتم العام ← "..GBanss.."\n◦  الحظر العام ← "..GBan.."\n◦  الحظر ← "..Ban.."\n◦  الكتم ← "..Muted)
 else
-send(msg.chat_id_, msg.id_,"•  المعرف غلط")
+send(msg.chat_id_, msg.id_,"◦  المعرف غلط")
 end
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, Function_Status, nil)
@@ -7502,7 +7502,7 @@ GBanss = "مكتوم عام"
 else
 GBanss = "غير مكتوم عام"
 end
-send(msg.chat_id_, msg.id_,"•  كتم العام ← "..GBanss.."\n•  الحظر العام ← "..GBan.."\n•  الحظر ← "..Ban.."\n•  الكتم ← "..Muted)
+send(msg.chat_id_, msg.id_,"◦  كتم العام ← "..GBanss.."\n◦  الحظر العام ← "..GBan.."\n◦  الحظر ← "..Ban.."\n◦  الكتم ← "..Muted)
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, Function_Status, nil)
 end
@@ -7527,9 +7527,9 @@ redis:sadd(bot_id..'Eqap:Admin:Group'..msg.chat_id_, admins[i].user_id_)
 end
 end
 if num2 == 0 then
-send(msg.chat_id_, msg.id_,"•  لا توجد ادمنية ليتم رفعهم") 
+send(msg.chat_id_, msg.id_,"◦  لا توجد ادمنية ليتم رفعهم") 
 else
-send(msg.chat_id_, msg.id_,"•  تمت ترقية - "..num2.." من ادمنية المجموعه") 
+send(msg.chat_id_, msg.id_,"◦  تمت ترقية - "..num2.." من ادمنية المجموعه") 
 end
 end,nil)   
 end
@@ -7802,11 +7802,11 @@ if data.members_[i].status_.ID == "ChatMemberStatusCreator" then
 owner_id = admins[i].user_id_
 tdcli_function ({ID = "GetUser",user_id_ = owner_id},function(arg,b) 
 if b.first_name_ == false then
-send(msg.chat_id_, msg.id_,"•  حساب المالك محذوف")
+send(msg.chat_id_, msg.id_,"◦  حساب المالك محذوف")
 return false  
 end
 local UserName = (b.username_ or "ramses20")
-send(msg.chat_id_, msg.id_,"• مالك المجموعه ~ ["..b.first_name_.."](T.me/"..UserName..")")  
+send(msg.chat_id_, msg.id_,"◦ مالك المجموعه ~ ["..b.first_name_.."](T.me/"..UserName..")")  
 end,nil)   
 end
 end
@@ -7823,11 +7823,11 @@ end
 end
 tdcli_function ({ID = "GetUser",user_id_ = owner_id},function(arg,b) 
 if b.first_name_ == false then
-send(msg.chat_id_, msg.id_,"• حساب المالك محذوف")
+send(msg.chat_id_, msg.id_,"◦ حساب المالك محذوف")
 return false  
 end
 local UserName = (b.username_ or "ramses20")
-send(msg.chat_id_, msg.id_,"• تم ترقية مالك المجموعه ← ["..b.first_name_.."](T.me/"..UserName..")")  
+send(msg.chat_id_, msg.id_,"◦ تم ترقية مالك المجموعه ← ["..b.first_name_.."](T.me/"..UserName..")")  
 redis:sadd(bot_id.."Eqap:President:Group"..msg.chat_id_,b.id_)
 end,nil)   
 end,nil)   
@@ -7835,7 +7835,7 @@ end
 if text and text:match("^تعيين عدد الاعضاء (%d+)$") and Dev_Bots(msg) then
 
 redis:set(bot_id..'Eqap:Num:Add:Bot',text:match("تعيين عدد الاعضاء (%d+)$") ) 
-send(msg.chat_id_, msg.id_,'*•  تم تعيين عدد اعضاء تفعيل البوت اكثر من : '..text:match("تعيين عدد الاعضاء (%d+)$")..' عضو *')
+send(msg.chat_id_, msg.id_,'*◦  تم تعيين عدد اعضاء تفعيل البوت اكثر من : '..text:match("تعيين عدد الاعضاء (%d+)$")..' عضو *')
 end
 
 if text and text:match("^تغيير الاشتراك$") then
@@ -7845,7 +7845,7 @@ send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:setex(bot_id.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
-send(msg.chat_id_, msg.id_, '• حسنا ارسل لي معرف القناة') 
+send(msg.chat_id_, msg.id_, '◦ حسنا ارسل لي معرف القناة') 
 return false  
 end
 if text and text:match("^تغيير رساله الاشتراك$") then
@@ -7855,7 +7855,7 @@ send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:setex(bot_id.."textch:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
-send(msg.chat_id_, msg.id_, '• حسنا ارسل لي النص الذي تريده') 
+send(msg.chat_id_, msg.id_, '◦ حسنا ارسل لي النص الذي تريده') 
 return false  
 end
 if text == "حذف رساله الاشتراك" then
@@ -7865,7 +7865,7 @@ send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:del(bot_id..'text:ch:user')
-send(msg.chat_id_, msg.id_, "• تم مسح رساله الاشتراك ") 
+send(msg.chat_id_, msg.id_, "◦ تم مسح رساله الاشتراك ") 
 return false  
 end
 if text and text:match("^وضع قناة الاشتراك$") then
@@ -7875,7 +7875,7 @@ send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
 redis:setex(bot_id.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
-send(msg.chat_id_, msg.id_, '• حسنا ارسل لي معرف القناة') 
+send(msg.chat_id_, msg.id_, '◦ حسنا ارسل لي معرف القناة') 
 return false  
 end
 if text == "تفعيل الاشتراك" then
@@ -7886,7 +7886,7 @@ return false
 end
 if redis:get(bot_id..'add:ch:id') then
 local addchusername = redis:get(bot_id..'add:ch:username')
-send(msg.chat_id_, msg.id_,"• الاشتراك الاجباري مفعل \n على القناة ⇠ ["..addchusername.."]")
+send(msg.chat_id_, msg.id_,"◦ الاشتراك الاجباري مفعل \n على القناة ⇠ ["..addchusername.."]")
 else
 redis:setex(bot_id.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
 send(msg.chat_id_, msg.id_," لا يوجد قناة للاشتراك الاجباري")
@@ -7901,7 +7901,7 @@ return false
 end
 redis:del(bot_id..'add:ch:id')
 redis:del(bot_id..'add:ch:username')
-send(msg.chat_id_, msg.id_, "• تم تعطيل الاشتراك الاجباري ") 
+send(msg.chat_id_, msg.id_, "◦ تم تعطيل الاشتراك الاجباري ") 
 return false  
 end
 if text == "الاشتراك الاجباري" then
@@ -7912,9 +7912,9 @@ return false
 end
 if redis:get(bot_id..'add:ch:username') then
 local addchusername = redis:get(bot_id..'add:ch:username')
-send(msg.chat_id_, msg.id_, "• تم تفعيل الاشتراك الاجباري \n على القناة ⇠ ["..addchusername.."]")
+send(msg.chat_id_, msg.id_, "◦ تم تفعيل الاشتراك الاجباري \n على القناة ⇠ ["..addchusername.."]")
 else
-send(msg.chat_id_, msg.id_, "• لا يوجد قناة في الاشتراك الاجباري ") 
+send(msg.chat_id_, msg.id_, "◦ لا يوجد قناة في الاشتراك الاجباري ") 
 end
 return false  
 end
@@ -7999,7 +7999,7 @@ if #list ~= 0 then
 quschen = list[math.random(#list)]
 quschen1 = string.gsub(quschen,"-"," ")
 quschen1 = string.gsub(quschen1,"*"," ")
-quschen1 = string.gsub(quschen1,"•"," ")
+quschen1 = string.gsub(quschen1,"◦"," ")
 quschen1 = string.gsub(quschen1,"_"," ")
 quschen1 = string.gsub(quschen1,","," ")
 quschen1 = string.gsub(quschen1,"/"," ")
@@ -8086,8 +8086,8 @@ send(msg.chat_id_, msg.id_,' البوت ليس مشرف يرجى ترقيتي ')
 return false  
 end
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n• العضو ⇠ ['..data.first_name_..'](t.me/'..(data.username_ or 'hlil3')..') '
-status  = '\n• \n تم تغيير لقب '..namess..''
+usertext = '\n◦ العضو ⇠ ['..data.first_name_..'](t.me/'..(data.username_ or 'hlil3')..') '
+status  = '\n◦ \n تم تغيير لقب '..namess..''
 send(msg.chat_id_, msg.id_, usertext..status)
 https.request("https://api.telegram.org/bot"..token.."/setChatAdministratorCustomTitle?chat_id="..msg.chat_id_.."&user_id="..result.sender_user_id_.."&custom_title="..namess)
 end,nil)
@@ -8109,16 +8109,16 @@ end
 function start_function(extra, result, success)
 if result.id_ then
 if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
-send(msg.chat_id_,msg.id_,"• عذرا عزيزي المستخدم هذا معرف قناة يرجى استخدام الامر بصوره صحيحه ")   
+send(msg.chat_id_,msg.id_,"◦ عذرا عزيزي المستخدم هذا معرف قناة يرجى استخدام الامر بصوره صحيحه ")   
 return false 
 end      
-usertext = '\n• العضو ⇠ ['..result.title_..'](t.me/'..(username or 'hlil3')..')'
+usertext = '\n◦ العضو ⇠ ['..result.title_..'](t.me/'..(username or 'hlil3')..')'
 status  = ' \n تم تغيير لقب '..TextEnd[3]..' '
 texts = usertext..status
 send(msg.chat_id_, msg.id_, texts)
 https.request("https://api.telegram.org/bot"..token.."/setChatAdministratorCustomTitle?chat_id="..msg.chat_id_.."&user_id="..result.id_.."&custom_title="..TextEnd[3])
 else
-send(msg.chat_id_, msg.id_, '• لا يوجد حساب بهذا المعرف')
+send(msg.chat_id_, msg.id_, '◦ لا يوجد حساب بهذا المعرف')
 end
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = TextEnd[2]}, start_function, nil)
@@ -8136,8 +8136,8 @@ send(msg.chat_id_, msg.id_,' البوت ليس مشرف يرجى ترقيتي ')
 return false  
 end
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n• العضو ⇠ ['..data.first_name_..'](t.me/'..(data.username_ or 'hlil3')..') '
-status  = '\n• \n تم رفعه مشرف بالقروب '
+usertext = '\n◦ العضو ⇠ ['..data.first_name_..'](t.me/'..(data.username_ or 'hlil3')..') '
+status  = '\n◦ \n تم رفعه مشرف بالقروب '
 send(msg.chat_id_, msg.id_, usertext..status)
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=false&can_delete_messages=false&can_invite_users=True&can_restrict_members=false&can_pin_messages=True&can_promote_members=false")
 end,nil)
@@ -8159,16 +8159,16 @@ end
 function start_function(extra, result, success)
 if result.id_ then
 if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
-send(msg.chat_id_,msg.id_,"• عذرا عزيزي المستخدم هذا معرف قناة يرجى استخدام الامر بصوره صحيحه ")   
+send(msg.chat_id_,msg.id_,"◦ عذرا عزيزي المستخدم هذا معرف قناة يرجى استخدام الامر بصوره صحيحه ")   
 return false 
 end      
-usertext = '\n• العضو ⇠ ['..result.title_..'](t.me/'..(username or 'hlil3')..')'
+usertext = '\n◦ العضو ⇠ ['..result.title_..'](t.me/'..(username or 'hlil3')..')'
 status  = '\n تم رفعه مشرف بالقروب '
 texts = usertext..status
 send(msg.chat_id_, msg.id_, texts)
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.id_.."&can_change_info=false&can_delete_messages=false&can_invite_users=True&can_restrict_members=false&can_pin_messages=True&can_promote_members=false")
 else
-send(msg.chat_id_, msg.id_, '• لا يوجد حساب بهذا المعرف')
+send(msg.chat_id_, msg.id_, '◦ لا يوجد حساب بهذا المعرف')
 end
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
@@ -8186,8 +8186,8 @@ send(msg.chat_id_, msg.id_,' البوت ليس مشرف يرجى ترقيتي ')
 return false  
 end
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n• العضو ⇠ ['..data.first_name_..'](t.me/'..(data.username_ or 'hlil3')..') '
-status  = '\n• تم تنزيله مشرف'
+usertext = '\n◦ العضو ⇠ ['..data.first_name_..'](t.me/'..(data.username_ or 'hlil3')..') '
+status  = '\n◦ تم تنزيله مشرف'
 send(msg.chat_id_, msg.id_, usertext..status)
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=false&can_delete_messages=false&can_invite_users=false&can_restrict_members=false&can_pin_messages=false&can_promote_members=false")
 end,nil)
@@ -8209,16 +8209,16 @@ end
 function start_function(extra, result, success)
 if result.id_ then
 if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
-send(msg.chat_id_,msg.id_,"• عذرا عزيزي المستخدم هذا معرف قناة يرجى استخدام الامر بصوره صحيحه ")   
+send(msg.chat_id_,msg.id_,"◦ عذرا عزيزي المستخدم هذا معرف قناة يرجى استخدام الامر بصوره صحيحه ")   
 return false 
 end      
-usertext = '\n• العضو ⇠ ['..result.title_..'](t.me/'..(username or 'hlil3')..')'
+usertext = '\n◦ العضو ⇠ ['..result.title_..'](t.me/'..(username or 'hlil3')..')'
 status  = '\n تم تنزيله مشرف من القروب'
 texts = usertext..status
 send(msg.chat_id_, msg.id_, texts)
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.id_.."&can_change_info=false&can_delete_messages=false&can_invite_users=false&can_restrict_members=false&can_pin_messages=false&can_promote_members=false")
 else
-send(msg.chat_id_, msg.id_, '• لا يوجد حساب بهذا المعرف')
+send(msg.chat_id_, msg.id_, '◦ لا يوجد حساب بهذا المعرف')
 end
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
@@ -8238,8 +8238,8 @@ send(msg.chat_id_, msg.id_,' البوت ليس مشرف يرجى ترقيتي ')
 return false  
 end
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n• العضو ⇠ ['..data.first_name_..'](t.me/'..(data.username_ or 'hlil3')..') '
-status  = '\n• \n تم رفع العضو مالك القروب'
+usertext = '\n◦ العضو ⇠ ['..data.first_name_..'](t.me/'..(data.username_ or 'hlil3')..') '
+status  = '\n◦ \n تم رفع العضو مالك القروب'
 send(msg.chat_id_, msg.id_, usertext..status)
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=True")
 end,nil)
@@ -8261,16 +8261,16 @@ end
 function start_function(extra, result, success)
 if result.id_ then
 if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
-send(msg.chat_id_,msg.id_,"• عذرا عزيزي المستخدم هذا معرف قناة يرجى استخدام الامر بصوره صحيحه ")   
+send(msg.chat_id_,msg.id_,"◦ عذرا عزيزي المستخدم هذا معرف قناة يرجى استخدام الامر بصوره صحيحه ")   
 return false 
 end      
-usertext = '\n• العضو ⇠ ['..result.title_..'](t.me/'..(username or 'hlil3')..')'
+usertext = '\n◦ العضو ⇠ ['..result.title_..'](t.me/'..(username or 'hlil3')..')'
 status  = '\n تم رفع العضو مالك'
 texts = usertext..status
 send(msg.chat_id_, msg.id_, texts)
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.id_.."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=True")
 else
-send(msg.chat_id_, msg.id_, '• لا يوجد حساب بهذا المعرف')
+send(msg.chat_id_, msg.id_, '◦ لا يوجد حساب بهذا المعرف')
 end
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
@@ -8288,8 +8288,8 @@ send(msg.chat_id_, msg.id_,' البوت ليس مشرف يرجى ترقيتي ')
 return false  
 end
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
-usertext = '\n• العضو ⇠ ['..data.first_name_..'](t.me/'..(data.username_ or 'hlil3')..') '
-status  = '\n• \n تم تنزيله تنزيل مالك من القروب بكل الصلاحيات'
+usertext = '\n◦ العضو ⇠ ['..data.first_name_..'](t.me/'..(data.username_ or 'hlil3')..') '
+status  = '\n◦ \n تم تنزيله تنزيل مالك من القروب بكل الصلاحيات'
 send1(msg.chat_id_, msg.id_, usertext..status)
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=false&can_delete_messages=false&can_invite_users=false&can_restrict_members=false&can_pin_messages=false&can_promote_members=false")
 end,nil)
@@ -8311,16 +8311,16 @@ end
 function start_function(extra, result, success)
 if result.id_ then
 if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
-send(msg.chat_id_,msg.id_,"• عذرا عزيزي المستخدم هذا معرف قناة يرجى استخدام الامر بصوره صحيحه ")   
+send(msg.chat_id_,msg.id_,"◦ عذرا عزيزي المستخدم هذا معرف قناة يرجى استخدام الامر بصوره صحيحه ")   
 return false 
 end      
-usertext = '\n• العضو ⇠ ['..result.title_..'](t.me/'..(username or 'hlil3')..')'
+usertext = '\n◦ العضو ⇠ ['..result.title_..'](t.me/'..(username or 'hlil3')..')'
 status  = '\n تم رفع عضو مالك'
 texts = usertext..status
 send(msg.chat_id_, msg.id_, texts)
 https.request("https://api.telegram.org/bot"..token.."/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.id_.."&can_change_info=false&can_delete_messages=false&can_invite_users=false&can_restrict_members=false&can_pin_messages=false&can_promote_members=false")
 else
-send(msg.chat_id_, msg.id_, '• لا يوجد حساب بهذا المعرف')
+send(msg.chat_id_, msg.id_, '◦ لا يوجد حساب بهذا المعرف')
 end
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
@@ -8333,7 +8333,7 @@ send(msg.chat_id_,msg.id_,'اهلا عزيزي \n عذرا الامر يخص - �
 return false
 end     
 function cb(a,b,c) 
-textt = '•تم منع '
+textt = '◦تم منع '
 if b.content_.sticker_ then
 local idsticker = b.content_.sticker_.set_id_
 redis:sadd(bot_id.."filtersteckr"..msg.chat_id_,idsticker)
@@ -8365,7 +8365,7 @@ send(msg.chat_id_,msg.id_,'اهلا عزيزي \n عذرا الامر يخص - �
 return false
 end     
 function cb(a,b,c) 
-textt = '• تم الغاء منع '
+textt = '◦ تم الغاء منع '
 if b.content_.sticker_ then
 local idsticker = b.content_.sticker_.set_id_
 redis:srem(bot_id.."filtersteckr"..msg.chat_id_,idsticker)
@@ -8397,7 +8397,7 @@ send(msg.chat_id_,msg.id_,'اهلا عزيزي \n عذرا الامر يخص - �
 return false
 end     
 redis:del(bot_id.."filteranimation"..msg.chat_id_)
-send(msg.chat_id_, msg.id_,'• تم مسح قائمة منع المتحركات')  
+send(msg.chat_id_, msg.id_,'◦ تم مسح قائمة منع المتحركات')  
 end
 if text == 'مسح قائمة منع الصور' then
 
@@ -8406,7 +8406,7 @@ send(msg.chat_id_,msg.id_,'اهلا عزيزي \n عذرا الامر يخص - �
 return false
 end     
 redis:del(bot_id.."filterphoto"..msg.chat_id_)
-send(msg.chat_id_, msg.id_,'• تم مسح قائمة منع الصور')  
+send(msg.chat_id_, msg.id_,'◦ تم مسح قائمة منع الصور')  
 end
 if text == 'مسح قائمة منع الملصقات' then
 
@@ -8415,7 +8415,7 @@ send(msg.chat_id_,msg.id_,'اهلا عزيزي \n عذرا الامر يخص - �
 return false
 end     
 redis:del(bot_id.."filtersteckr"..msg.chat_id_)
-send(msg.chat_id_, msg.id_,'• تم مسح قائمة منع الملصقات')  
+send(msg.chat_id_, msg.id_,'◦ تم مسح قائمة منع الملصقات')  
 end
 
 if text == 'تغيير الايدي' then
@@ -8452,10 +8452,10 @@ local List = {[[
 - 𝙼𝚂𝙶𝚂 . #msgs !
 ]],
 [[
-• 𝐮𝐬𝐞𝐫 : #username .
-• 𝐦𝐬𝐠 : #msgs .
-• 𝐬𝐭𝐚 : #stast .
-• 𝐢𝐝 : #id .
+◦ 𝐮𝐬𝐞𝐫 : #username .
+◦ 𝐦𝐬𝐠 : #msgs .
+◦ 𝐬𝐭𝐚 : #stast .
+◦ 𝐢𝐝 : #id .
 ]],
 [[
 .𓄌 : 𝖴𝖲𝖤𝖱 #username 𓇡.
@@ -8591,10 +8591,10 @@ local Get_Is_Id = Get_Is_Id:gsub('#game',Num_Games)
 local Get_Is_Id = Get_Is_Id:gsub('#photos',Total_Photp) 
 sendPhoto(msg.chat_id_,msg.id_,yazon.photos_[0].sizes_[1].photo_.persistent_id_,Get_Is_Id)
 else
-sendPhoto(msg.chat_id_,msg.id_,yazon.photos_[0].sizes_[1].photo_.persistent_id_,'\n•  iD 𖦹 '..Id..'\n•  User Name 𖦹 '..UserName_User..'\n•  Rank 𖦹 '..Status_Gps..'\n•  Msg 𖦹 '..NumMsg..'\n•  Your Title 𖦹 '..lakbk)
+sendPhoto(msg.chat_id_,msg.id_,yazon.photos_[0].sizes_[1].photo_.persistent_id_,'\n◦  iD 𖦹 '..Id..'\n◦  User Name 𖦹 '..UserName_User..'\n◦  Rank 𖦹 '..Status_Gps..'\n◦  Msg 𖦹 '..NumMsg..'\n◦  Your Title 𖦹 '..lakbk)
 end
 else
-send(msg.chat_id_, msg.id_,'\n•  iD 𖦹 '..Id..'\n•  User Name 𖦹 ['..UserName_User..']\n•  Rank 𖦹 '..Status_Gps..'\n•  Msg 𖦹 '..NumMsg..'\n•  Your Title 𖦹 '..lakbk) 
+send(msg.chat_id_, msg.id_,'\n◦  iD 𖦹 '..Id..'\n◦  User Name 𖦹 ['..UserName_User..']\n◦  Rank 𖦹 '..Status_Gps..'\n◦  Msg 𖦹 '..NumMsg..'\n◦  Your Title 𖦹 '..lakbk) 
 end
 else
 if Get_Is_Id then
@@ -8610,7 +8610,7 @@ local Get_Is_Id = Get_Is_Id:gsub('#game',Num_Games)
 local Get_Is_Id = Get_Is_Id:gsub('#photos',Total_Photp) 
 send(msg.chat_id_, msg.id_,'['..Get_Is_Id..']') 
 else
-send(msg.chat_id_, msg.id_,'\n•  iD 𖦹 '..Id..'\n•  User Name 𖦹 ['..UserName_User..']\n•  Rank 𖦹 '..Status_Gps..'\n•  Msg 𖦹 '..NumMsg..'\n•  Your Title 𖦹 '..lakbk) 
+send(msg.chat_id_, msg.id_,'\n◦  iD 𖦹 '..Id..'\n◦  User Name 𖦹 ['..UserName_User..']\n◦  Rank 𖦹 '..Status_Gps..'\n◦  Msg 𖦹 '..NumMsg..'\n◦  Your Title 𖦹 '..lakbk) 
 end
 end
 end,nil)   
@@ -8632,7 +8632,7 @@ offset_ = offset,limit_ = limit},
 cb, nil) 
 end
 
-if text == "تحديث السورس" and is_Dev_Bots(msg) then 
+if text == "تحديث السورس" and Dev_Bots(msg) then 
   send(msg.chat_id_, msg.id_, "تم تحديث ملفات السورس") 
   os.execute('rm -rf Eqap.lua') 
   os.execute('wget https://raw.githubusercontent.com/GG702GG/Eqap/master/Eqap.lua') 
@@ -8655,7 +8655,7 @@ if tonumber(msg.reply_to_message_id_) > 0 then
 function Function_Status(extra, result, success)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 if data.first_name_ == false then
-send(msg.chat_id_, msg.id_,'• الحساب محذوف لا توجد معلوماته ')
+send(msg.chat_id_, msg.id_,'◦ الحساب محذوف لا توجد معلوماته ')
 return false
 end
 if data.username_ then
@@ -8670,7 +8670,7 @@ local Status_Gps = Get_Rank(Id,msg.chat_id_)
 local NumMessageEdit = redis:get(bot_id..'Eqap:Num:Message:Edit'..msg.chat_id_..data.id_) or 0
 local Num_Games = redis:get(bot_id.."Eqap:Msg_User"..msg.chat_id_..":"..data.id_) or 0
 local Add_Mem = redis:get(bot_id.."Eqap:Num:Add:Memp"..msg.chat_id_..":"..data.id_) or 0
-send(msg.chat_id_, msg.id_,'\n*•  iD 𖦹 '..Id..'\n•  Msg 𖦹  '..NumMsg..'\n•  User 𖦹  ← *['..UserName_User..']*\n•  Rank 𖦹  ← '..Status_Gps..'*') 
+send(msg.chat_id_, msg.id_,'\n*◦  iD 𖦹 '..Id..'\n◦  Msg 𖦹  '..NumMsg..'\n◦  User 𖦹  ← *['..UserName_User..']*\n◦  Rank 𖦹  ← '..Status_Gps..'*') 
 end,nil)   
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, Function_Status, nil)
@@ -8694,10 +8694,10 @@ local Status_Gps = Get_Rank(Id,msg.chat_id_)
 local NumMessageEdit = redis:get(bot_id..'Eqap:Num:Message:Edit'..msg.chat_id_..data.id_) or 0
 local Num_Games = redis:get(bot_id.."Eqap:Msg_User"..msg.chat_id_..":"..data.id_) or 0
 local Add_Mem = redis:get(bot_id.."Eqap:Num:Add:Memp"..msg.chat_id_..":"..data.id_) or 0
-send(msg.chat_id_, msg.id_,'\n*•  iD 𖦹 '..Id..'\n•  Msg 𖦹  '..NumMsg..'\n•  User 𖦹  ← *['..UserName_User..']*\n•  Rank 𖦹  ← '..Status_Gps..'') 
+send(msg.chat_id_, msg.id_,'\n*◦  iD 𖦹 '..Id..'\n◦  Msg 𖦹  '..NumMsg..'\n◦  User 𖦹  ← *['..UserName_User..']*\n◦  Rank 𖦹  ← '..Status_Gps..'') 
 end,nil)   
 else
-send(msg.chat_id_, msg.id_,'• لا يوجد حساب بهاذا المعرف')
+send(msg.chat_id_, msg.id_,'◦ لا يوجد حساب بهاذا المعرف')
 end
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, Function_Status, nil)
@@ -8709,12 +8709,12 @@ if not DeveloperBot(msg) then
 send(msg.chat_id_,msg.id_,' هذا الامر خاص Developer فقط')
 return false
 end
-send(msg.chat_id_, msg.id_,'*• عدد الاحصائيات الكامله \n━━━━━━━━\n• عدد المجموعات : '..(redis:scard(bot_id..'Eqap:ChekBotAdd') or 0)..'\n• عدد المشتركين : '..(redis:scard(bot_id..'Eqap:Num:User:Pv') or 0)..'*')
+send(msg.chat_id_, msg.id_,'*◦ عدد الاحصائيات الكامله \n━━━━━━━━\n◦ عدد المجموعات : '..(redis:scard(bot_id..'Eqap:ChekBotAdd') or 0)..'\n◦ عدد المشتركين : '..(redis:scard(bot_id..'Eqap:Num:User:Pv') or 0)..'*')
 end
 if text == 'تاك للكل' or text == 'منشن' and Admin(msg) then
 
 tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""), offset_ = 0,limit_ = 400},function(ta,yazon)
-t = "\n• قائمة الاعضاء \n━━━━━━━━━\n"
+t = "\n◦ قائمة الاعضاء \n━━━━━━━━━\n"
 local list = yazon.members_
 for i=0 ,#list do
 tdcli_function ({ID = "GetUser",user_id_ = yazon.members_[i].user_id_},function(arg,data) 
@@ -8792,7 +8792,7 @@ local username = text:gsub('@','')
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, function(extra, result, success)
 if result.id_ then
 if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
-send(msg.chat_id_,msg.id_,"• عذرا عزيزي هذا معرف قناة يرجى ارسال المعرف مره اخره")   
+send(msg.chat_id_,msg.id_,"◦ عذرا عزيزي هذا معرف قناة يرجى ارسال المعرف مره اخره")   
 return false 
 end      
 local file_Info_Sudo = io.open("Info_Sudo.lua", 'w')
@@ -8808,7 +8808,7 @@ end
 ]])
 file_Info_Sudo:close()
 else
-send(msg.chat_id_, msg.id_, '• لا يوجد حساب بهذا المعرف')
+send(msg.chat_id_, msg.id_, '◦ لا يوجد حساب بهذا المعرف')
 end
 end, nil)
 redis:del(bot_id..'Set:Text:Dev:Bot:id'..msg.chat_id_)
@@ -9024,7 +9024,7 @@ if text == 'تنزيل الكل' and Owner(msg) then
 redis:del(bot_id.."Eqap:Manager:Group"..msg.chat_id_)
 redis:del(bot_id.."Eqap:Admin:Group"..msg.chat_id_)
 redis:del(bot_id.."Eqap:Vip:Group"..msg.chat_id_)
-return send(msg.chat_id_, msg.id_, "•  تم مسح جميع رتب المجموعه")
+return send(msg.chat_id_, msg.id_, "◦  تم مسح جميع رتب المجموعه")
 end
 if text and text:match('^ترجم (.*)$') and not redis:get(bot_id..'dw:bot:api'..msg.chat_id_) then
                         
@@ -9037,7 +9037,7 @@ if text and text:match('^طقس (.*)$') and not redis:get(bot_id..'dw:bot:api'..
 local Ttext = text:match('^طقس (.*)$') 
 local taks = https.request('https://api-alshh.cf/API/wether.php?cry='..Ttext)
 local zxe = JSON.decode(taks)
-send(msg.chat_id_, msg.id_, '• حالة الجو : '..zxe.result.condition..'\n• درجة الحراره : '..zxe.result.temp_c)
+send(msg.chat_id_, msg.id_, '◦ حالة الجو : '..zxe.result.condition..'\n◦ درجة الحراره : '..zxe.result.temp_c)
 end
 if text == 'الالعاب' then
 
@@ -9063,7 +9063,7 @@ return false
 end
 if redis:get(bot_id..'Eqap:new:sourse'..msg.chat_id_..msg.sender_user_id_) == 'true1' then
 redis:set(bot_id..'Eqap:new:sourse1',text)
-send2(msg.chat_id_, msg.id_, 'الان ارسل رمز بدلا عن • ')
+send2(msg.chat_id_, msg.id_, 'الان ارسل رمز بدلا عن ◦ ')
 redis:set(bot_id..'Eqap:new:sourse'..msg.chat_id_..msg.sender_user_id_,'true2') 
 return false
 end
@@ -9086,11 +9086,11 @@ local list2 = redis:smembers(bot_id.."Eqap:Manager:Group"..msg.chat_id_)
 local list3 = redis:smembers(bot_id.."Eqap:Admin:Group"..msg.chat_id_)
 local list4 = redis:smembers(bot_id.."Eqap:Manager:Group"..msg.chat_id_)
 if #list1 == 0 and #list2 == 0 and #list3 == 0 and #list4 == 0 then
-return send(msg.chat_id_, msg.id_,'• لا يوجد رتب هنا')
+return send(msg.chat_id_, msg.id_,'◦ لا يوجد رتب هنا')
 end 
 local list = redis:smembers(bot_id.."Eqap:Vips:Group"..msg.chat_id_)
 if #list ~= 0 then
-vips = "\n• قائمة المميزين في المجموعه \n━━━━━━━━\n"
+vips = "\n◦ قائمة المميزين في المجموعه \n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -9107,7 +9107,7 @@ end
 end
 local list = redis:smembers(bot_id.."Eqap:Admin:Group"..msg.chat_id_)
 if #list ~= 0 then
-Admin = "\n• قائمة الادمنيه في المجموعه\n━━━━━━━━\n"
+Admin = "\n◦ قائمة الادمنيه في المجموعه\n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -9124,7 +9124,7 @@ end
 end
 local list = redis:smembers(bot_id.."Eqap:Manager:Group"..msg.chat_id_)
 if #list ~= 0 then
-mder = "\n• قائمة المدراء المجموعه \n━━━━━━━━\n"
+mder = "\n◦ قائمة المدراء المجموعه \n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -9141,7 +9141,7 @@ end
 end
 local list = redis:smembers(bot_id.."Eqap:Constructor:Group"..msg.chat_id_)
 if #list ~= 0 then
-Monsh = "\n• قائمة منشئين المجموعه \n━━━━━━━━\n"
+Monsh = "\n◦ قائمة منشئين المجموعه \n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -9311,9 +9311,9 @@ if NewCmmd then
 redis:del(bot_id.."Eqap:Get:Reides:Commands:Group"..msg.chat_id_..":"..text)
 redis:del(bot_id.."Eqap:Command:Reids:Group:New"..msg.chat_id_)
 redis:srem(bot_id.."Eqap:Command:List:Group"..msg.chat_id_,text)
-send(msg.chat_id_, msg.id_,"• تم ازالة هاذا ← { "..text.." }")  
+send(msg.chat_id_, msg.id_,"◦ تم ازالة هاذا ← { "..text.." }")  
 else
-send(msg.chat_id_, msg.id_,"• لا يوجد امر بهاذا الاسم")  
+send(msg.chat_id_, msg.id_,"◦ لا يوجد امر بهاذا الاسم")  
 end
 redis:del(bot_id.."Eqap:Command:Reids:Group:Del"..msg.chat_id_..":"..msg.sender_user_id_)
 return false
@@ -9407,26 +9407,26 @@ end
 end
 if text == 'تفعيل' and DeveloperBot(msg) then
 if TypeForChat1 ~= 'ForSuppur' then
-send(msg.chat_id_, msg.id_,'• المجموعه عاديه وليست خارقه لا تستطيع تفعيلي يرجى ان تضع سجل رسائل المجموعه ضاهر وليس مخفي ومن بعدها يمكنك رفعي ادمن ثم تفعيلي') 
+send(msg.chat_id_, msg.id_,'◦ المجموعه عاديه وليست خارقه لا تستطيع تفعيلي يرجى ان تضع سجل رسائل المجموعه ضاهر وليس مخفي ومن بعدها يمكنك رفعي ادمن ثم تفعيلي') 
 return false
 end
 if msg.can_be_deleted_ == false then 
-send(msg.chat_id_, msg.id_,'• البوت ليس ادمن يرجى ترقيتي !') 
+send(msg.chat_id_, msg.id_,'◦ البوت ليس ادمن يرجى ترقيتي !') 
 return false  
 end
 tdcli_function ({ ID = "GetChannelFull", channel_id_ = msg.chat_id_:gsub("-100","")}, function(arg,data)  
 if tonumber(data.member_count_) < tonumber(redis:get(bot_id..'Eqap:Num:Add:Bot') or 0) and not Dev_Bots(msg) then
-send(msg.chat_id_, msg.id_,'• لا تستطيع تفعيل المجموعه بسبب قلة عدد اعضاء المجموعه يجب ان يكون اكثر من *:'..(redis:get(bot_id..'Eqap:Num:Add:Bot') or 0)..'* عضو')
+send(msg.chat_id_, msg.id_,'◦ لا تستطيع تفعيل المجموعه بسبب قلة عدد اعضاء المجموعه يجب ان يكون اكثر من *:'..(redis:get(bot_id..'Eqap:Num:Add:Bot') or 0)..'* عضو')
 return false
 end
 if redis:sismember(bot_id..'Eqap:ChekBotAdd',msg.chat_id_) then
-send(msg.chat_id_, msg.id_,'• تم تفعيل المجموعه من قبل')
+send(msg.chat_id_, msg.id_,'◦ تم تفعيل المجموعه من قبل')
 else
 local Texti = 'عليك اختيار نوع المجموعه لتفعيلها'
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = 'وضع الافتارات', callback_data="/addsender@"..msg.sender_user_id_},{text = 'وضع الدردشه', callback_data="/addchat@"..msg.sender_user_id_},
+{text = 'وضع القروبات الخدميه', callback_data="/addsender@"..msg.sender_user_id_},{text = 'وضع القروبات العاديه', callback_data="/addchat@"..msg.sender_user_id_},
 },
 }
 local msg_id = msg.id_/2097152/0.5
@@ -9436,20 +9436,20 @@ end,nil)
 end
 if text == 'تفعيل' and not DeveloperBot(msg) then
 if TypeForChat1 ~= 'ForSuppur' then
-send(msg.chat_id_, msg.id_,'• المجموعه عاديه وليست خارقه لا تستطيع تفعيلي يرجى ان تضع سجل رسائل المجموعه ضاهر وليس مخفي ومن بعدها يمكنك رفعي ادمن ثم تفعيلي') 
+send(msg.chat_id_, msg.id_,'◦ المجموعه عاديه وليست خارقه لا تستطيع تفعيلي يرجى ان تضع سجل رسائل المجموعه ضاهر وليس مخفي ومن بعدها يمكنك رفعي ادمن ثم تفعيلي') 
 return false
 end
 if msg.can_be_deleted_ == false then 
-send(msg.chat_id_, msg.id_,'• البوت ليس ادمن يرجى ترقيتي !') 
+send(msg.chat_id_, msg.id_,'◦ البوت ليس ادمن يرجى ترقيتي !') 
 return false  
 end
 tdcli_function ({ ID = "GetChannelFull", channel_id_ = msg.chat_id_:gsub("-100","")}, function(arg,data)  
 if tonumber(data.member_count_) < tonumber(redis:get(bot_id..'Eqap:Num:Add:Bot') or 0) and not Dev_Bots(msg) then
-send(msg.chat_id_, msg.id_,'• لا تستطيع تفعيل المجموعه بسبب قلة عدد اعضاء المجموعه يجب ان يكون اكثر من *:'..(redis:get(bot_id..'Eqap:Num:Add:Bot') or 0)..'* عضو')
+send(msg.chat_id_, msg.id_,'◦ لا تستطيع تفعيل المجموعه بسبب قلة عدد اعضاء المجموعه يجب ان يكون اكثر من *:'..(redis:get(bot_id..'Eqap:Num:Add:Bot') or 0)..'* عضو')
 return false
 end
 if redis:sismember(bot_id..'Eqap:ChekBotAdd',msg.chat_id_) then
-send(msg.chat_id_, msg.id_,'• تم تفعيل المجموعه مسبقا')
+send(msg.chat_id_, msg.id_,'◦ تم تفعيل المجموعه مسبقا')
 else
 local Texti = 'عليك اختيار نوع المجموعه لتفعيلها'
 keyboard = {} 
@@ -9468,9 +9468,9 @@ if text == 'تعطيل' and DeveloperBot(msg) then
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
 tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,chat)  
 if not redis:sismember(bot_id..'Eqap:ChekBotAdd',msg.chat_id_) then
-send(msg.chat_id_, msg.id_,'• المجموعه بالتاكيد معطله')
+send(msg.chat_id_, msg.id_,'◦ المجموعه بالتاكيد معطله')
 else
-Send_Options(msg,result.id_,'reply_Add','• تم تعطيل مجموعه '..chat.title_..'')
+Send_Options(msg,result.id_,'reply_Add','◦ تم تعطيل مجموعه '..chat.title_..'')
 redis:srem(bot_id..'Eqap:ChekBotAdd',msg.chat_id_)  
 redis:del(bot_id..'Eqap:ChekBot:Add'..msg.chat_id_)
 local Name1 = result.first_name_
@@ -9496,7 +9496,7 @@ else
 LinkGp = 'لا يوجد'
 end
 if not Dev_Bots(msg) then
-sendText(Id_Dev,'• تم تعطيل مجموعه جديده\n'..'\n• بواسطة : '..Name..''..'\n• ايدي المجموعه : `'..IdChat..'`\n• اسم المجموعه : ['..NameChat..']',0,'md')
+sendText(Id_Dev,'◦ تم تعطيل مجموعه جديده\n'..'\n◦ بواسطة : '..Name..''..'\n◦ ايدي المجموعه : `'..IdChat..'`\n◦ اسم المجموعه : ['..NameChat..']',0,'md')
 end
 end
 end,nil) 
@@ -9519,7 +9519,7 @@ local Text = data.payload_.data_
 
 if Text and Text:match('/addsender@(.*)') then
 if tonumber(Text:match('/addsender@(.*)')) == tonumber(data.sender_user_id_) then
-https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape('• تم تفعيل مجموعه ')..'&message_id='..msg_idd) 
+https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape('◦ تم تفعيل مجموعه ')..'&message_id='..msg_idd) 
 redis:sadd(bot_id..'Eqap:ChekBotAdd',Chat_id)
 redis:set(bot_id..'Eqap:ChekBot:Add'..Chat_id,'addsender')
 tdcli_function ({ID = "GetChannelMembers",channel_id_ = Chat_id:gsub("-100",""),filter_ = {ID = "ChannelMembersAdministrators"},offset_ = 0,limit_ = 100},function(arg,datta) 
@@ -9556,7 +9556,7 @@ else
 LinkGp = 'لا يوجد'
 end
 if not Dev_Bots(data) then
-sendText(Id_Dev,'• تم تفعيل مجموعه جديده\n'..'\n• بواسطة : '..Name..''..'\n• ايدي المجموعه : `'..IdChat..'`'..'\n• اسم المجموعه : ['..NameChat..']'..'\n• الرابط : ['..LinkGp..']',0,'md')
+sendText(Id_Dev,'◦ تم تفعيل مجموعه جديده\n'..'\n◦ بواسطة : '..Name..''..'\n◦ ايدي المجموعه : `'..IdChat..'`'..'\n◦ اسم المجموعه : ['..NameChat..']'..'\n◦ الرابط : ['..LinkGp..']',0,'md')
 end
 end,nil) 
 end,nil)
@@ -9564,7 +9564,7 @@ end
 elseif Text and Text:match('/addchat@(.*)') then
 print(Text:match('/addchat@(.*)'),data.sender_user_id_)
 if tonumber(Text:match('/addchat@(.*)')) == tonumber(data.sender_user_id_) then
-https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape('• تم تفعيل مجموعه ')..'&message_id='..msg_idd) 
+https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape('◦ تم تفعيل مجموعه ')..'&message_id='..msg_idd) 
 redis:sadd(bot_id..'Eqap:ChekBotAdd',Chat_id)
 redis:del(bot_id..'Eqap:ChekBot:Add'..Chat_id)
 tdcli_function ({ID = "GetChannelMembers",channel_id_ = Chat_id:gsub("-100",""),filter_ = {ID = "ChannelMembersAdministrators"},offset_ = 0,limit_ = 100},function(arg,datta) 
@@ -9601,7 +9601,7 @@ else
 LinkGp = 'لا يوجد'
 end
 if not Dev_Bots(data) then
-sendText(Id_Dev,'• تم تفعيل مجموعه جديده\n'..'\n• بواسطة : '..Name..''..'\n• ايدي المجموعه : `'..IdChat..'`'..'\n• اسم المجموعه : ['..NameChat..']'..'\n• الرابط : ['..LinkGp..']',0,'md')
+sendText(Id_Dev,'◦ تم تفعيل مجموعه جديده\n'..'\n◦ بواسطة : '..Name..''..'\n◦ ايدي المجموعه : `'..IdChat..'`'..'\n◦ اسم المجموعه : ['..NameChat..']'..'\n◦ الرابط : ['..LinkGp..']',0,'md')
 end
 end,nil) 
 end,nil) 
@@ -9850,7 +9850,7 @@ end
 end
 if Text and Text:match('(.*)/lockdul') and Owner(data) then
 if tonumber(Text:match('(.*)/lockdul')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تعطيل التنزيل '
+local Textedit = '◦ تم تعطيل التنزيل '
 redis:set(bot_id..'dw:bot:api'..Chat_id,true) 
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -9861,7 +9861,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lock_links') and Owner(data) then
 if tonumber(Text:match('(.*)/lock_links')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تعطيل الرابط '
+local Textedit = '◦ تم تعطيل الرابط '
 redis:del(bot_id..'Eqap:Link_Group'..Chat_id) 
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -9872,7 +9872,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockmyphoto') and Owner(data) then
 if tonumber(Text:match('(.*)/lockmyphoto')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تعطيل صورتي '
+local Textedit = '◦ تم تعطيل صورتي '
 redis:set(bot_id..'my_photo:status:bot'..Chat_id,'yazon')
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -9883,7 +9883,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockwelcome') and Owner(data) then
 if tonumber(Text:match('(.*)/lockwelcome')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تعطيل الترحيب '
+local Textedit = '◦ تم تعطيل الترحيب '
 redis:del(bot_id..'Eqap:Chek:Welcome'..Chat_id)
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -9894,7 +9894,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockwelcome') and Owner(data) then
 if tonumber(Text:match('(.*)/lockwelcome')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تعطيل الردود العامه '
+local Textedit = '◦ تم تعطيل الردود العامه '
 redis:set(bot_id..'Eqap:Reply:Sudo'..Chat_id,true)   
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -9905,7 +9905,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockide') and Owner(data) then
 if tonumber(Text:match('(.*)/lockide')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تعطيل الايدي '
+local Textedit = '◦ تم تعطيل الايدي '
 redis:set(bot_id..'Eqap:Lock:Id:Photo'..Chat_id,true) 
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -9916,7 +9916,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockidephoto') and Owner(data) then
 if tonumber(Text:match('(.*)/lockidephoto')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تعطيل الايدي بالصوره '
+local Textedit = '◦ تم تعطيل الايدي بالصوره '
 redis:set(bot_id..'Eqap:Lock:Id:Py:Photo'..Chat_id,true) 
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -9927,7 +9927,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockkiked') and Owner(data) then
 if tonumber(Text:match('(.*)/lockkiked')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تعطيل الحظر '
+local Textedit = '◦ تم تعطيل الحظر '
 redis:set(bot_id..'Eqap:Lock:Ban:Group'..Chat_id,'true')
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -9938,7 +9938,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/locksetm') and Owner(data) then
 if tonumber(Text:match('(.*)/locksetm')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تعطيل الرفع '
+local Textedit = '◦ تم تعطيل الرفع '
 redis:set(bot_id..'Eqap:Cheking:Seted'..Chat_id,'true')
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -9949,7 +9949,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockaddme') and Owner(data) then
 if tonumber(Text:match('(.*)/lockaddme')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تعطيل ضافني '
+local Textedit = '◦ تم تعطيل ضافني '
 redis:del(bot_id..'Added:Me'..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -9960,7 +9960,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/locksehe') and Owner(data) then
 if tonumber(Text:match('(.*)/locksehe')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تعطيل صيح '
+local Textedit = '◦ تم تعطيل صيح '
 redis:del(bot_id..'Seh:User'..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -9971,7 +9971,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockkikedme') and Owner(data) then
 if tonumber(Text:match('(.*)/lockkikedme')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تعطيل اطردني '
+local Textedit = '◦ تم تعطيل اطردني '
 redis:set(bot_id..'Eqap:Cheking:Kick:Me:Group'..Chat_id,true)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -9982,7 +9982,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockgames') and Owner(data) then
 if tonumber(Text:match('(.*)/lockgames')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تعطيل الالعاب '
+local Textedit = '◦ تم تعطيل الالعاب '
 redis:del(bot_id..'Eqap:Lock:Game:Group'..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -9993,7 +9993,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockrepgr') and Owner(data) then
 if tonumber(Text:match('(.*)/lockrepgr')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تعطيل الردود '
+local Textedit = '◦ تم تعطيل الردود '
 redis:set(bot_id..'Eqap:Reply:Manager'..Chat_id,true)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10005,7 +10005,7 @@ return https.request("https://api.telegram.org/bot"..token..'/editMessageText?ch
 end
 if Text and Text:match('(.*)/unlockdul') and Owner(data) then
 if tonumber(Text:match('(.*)/unlockdul')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تفعيل التنزيل '
+local Textedit = '◦ تم تفعيل التنزيل '
 redis:del(bot_id..'dw:bot:api'..Chat_id) 
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10016,7 +10016,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlock_links') and Owner(data) then
 if tonumber(Text:match('(.*)/unlock_links')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تفعيل الرابط '
+local Textedit = '◦ تم تفعيل الرابط '
 redis:set(bot_id..'Eqap:Link_Group'..Chat_id,true) 
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10027,7 +10027,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockmyphoto') and Owner(data) then
 if tonumber(Text:match('(.*)/unlockmyphoto')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تفعيل صورتي '
+local Textedit = '◦ تم تفعيل صورتي '
 redis:del(bot_id..'my_photo:status:bot'..Chat_id)
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10038,7 +10038,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockwelcome') and Owner(data) then
 if tonumber(Text:match('(.*)/unlockwelcome')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تفعيل الترحيب '
+local Textedit = '◦ تم تفعيل الترحيب '
 redis:set(bot_id..'Eqap:Chek:Welcome'..Chat_id,true) 
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10049,7 +10049,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockrepall') and Owner(data) then
 if tonumber(Text:match('(.*)/unlockrepall')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تفعيل الردود العامه '
+local Textedit = '◦ تم تفعيل الردود العامه '
 redis:del(bot_id..'Eqap:Reply:Sudo'..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10060,7 +10060,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockide') and Owner(data) then
 if tonumber(Text:match('(.*)/unlockide')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تفعيل الايدي '
+local Textedit = '◦ تم تفعيل الايدي '
 redis:del(bot_id..'Eqap:Lock:Id:Photo'..Chat_id) 
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10071,7 +10071,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockidephoto') and Owner(data) then
 if tonumber(Text:match('(.*)/unlockidephoto')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تفعيل الايدي بالصوره '
+local Textedit = '◦ تم تفعيل الايدي بالصوره '
 redis:del(bot_id..'Eqap:Lock:Id:Py:Photo'..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10082,7 +10082,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockkiked') and Owner(data) then
 if tonumber(Text:match('(.*)/unlockkiked')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تفعيل الحظر '
+local Textedit = '◦ تم تفعيل الحظر '
 redis:del(bot_id..'Eqap:Lock:Ban:Group'..Chat_id)
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10093,7 +10093,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlocksetm') and Owner(data) then
 if tonumber(Text:match('(.*)/unlocksetm')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تفعيل الرفع '
+local Textedit = '◦ تم تفعيل الرفع '
 redis:del(bot_id..'Eqap:Cheking:Seted'..Chat_id)
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10104,7 +10104,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockaddme') and Owner(data) then
 if tonumber(Text:match('(.*)/unlockaddme')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تفعيل ضافني '
+local Textedit = '◦ تم تفعيل ضافني '
 redis:set(bot_id..'Added:Me'..Chat_id,true)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10115,7 +10115,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlocksehe') and Owner(data) then
 if tonumber(Text:match('(.*)/unlocksehe')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تفعيل صيح '
+local Textedit = '◦ تم تفعيل صيح '
 redis:set(bot_id..'Seh:User'..Chat_id,true)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10126,7 +10126,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockkikedme') and Owner(data) then
 if tonumber(Text:match('(.*)/unlockkikedme')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تفعيل اطردني '
+local Textedit = '◦ تم تفعيل اطردني '
 redis:del(bot_id..'Eqap:Cheking:Kick:Me:Group'..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10137,7 +10137,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockgames') and Owner(data) then
 if tonumber(Text:match('(.*)/unlockgames')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تفعيل الالعاب '
+local Textedit = '◦ تم تفعيل الالعاب '
 redis:set(bot_id..'Eqap:Lock:Game:Group'..Chat_id,true) 
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10148,7 +10148,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockrepgr') and Owner(data) then
 if tonumber(Text:match('(.*)/unlockrepgr')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم تفعيل الردود '
+local Textedit = '◦ تم تفعيل الردود '
 redis:del(bot_id..'Eqap:Reply:Manager'..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10213,7 +10213,7 @@ end
 end
 if Text and Text:match('(.*)/lockjoine') and Admin(data) then
 if tonumber(Text:match('(.*)/lockjoine')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل الاضافه '
+local Textedit = '◦ تم قفل الاضافه '
 redis:set(bot_id.."Eqap:Lock:AddMempar"..Chat_id,"kick")  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10224,7 +10224,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockchat') and Admin(data) then
 if tonumber(Text:match('(.*)/lockchat')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل الدردشه '
+local Textedit = '◦ تم قفل الدردشه '
 redis:set(bot_id.."Eqap:Lock:text"..Chat_id,true) 
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10235,7 +10235,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lock_joine') and Admin(data) then
 if tonumber(Text:match('(.*)/lock_joine')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل الدخول '
+local Textedit = '◦ تم قفل الدخول '
 redis:set(bot_id.."Eqap:Lock:Join"..Chat_id,"kick")  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10246,7 +10246,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockbots') and Admin(data) then
 if tonumber(Text:match('(.*)/lockbots')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل البوتات '
+local Textedit = '◦ تم قفل البوتات '
 redis:set(bot_id.."Eqap:Lock:Bot:kick"..Chat_id,"del")  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10257,7 +10257,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/locktags') and Admin(data) then
 if tonumber(Text:match('(.*)/locktags')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل الاشعارات '
+local Textedit = '◦ تم قفل الاشعارات '
 redis:set(bot_id.."Eqap:Lock:tagservr"..Chat_id,true)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10268,7 +10268,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockedit') and Admin(data) then
 if tonumber(Text:match('(.*)/lockedit')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل التعديل '
+local Textedit = '◦ تم قفل التعديل '
 redis:set(bot_id.."Eqap:Lock:edit"..Chat_id,true) 
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10279,7 +10279,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/locklink') and Admin(data) then
 if tonumber(Text:match('(.*)/locklink')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل الروابط '
+local Textedit = '◦ تم قفل الروابط '
 redis:set(bot_id.."Eqap:Lock:Link"..Chat_id,"del")  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10290,7 +10290,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockusername') and Admin(data) then
 if tonumber(Text:match('(.*)/lockusername')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل المعرفات '
+local Textedit = '◦ تم قفل المعرفات '
 redis:set(bot_id.."Eqap:Lock:User:Name"..Chat_id,"del")  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10301,7 +10301,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockusername') and Admin(data) then
 if tonumber(Text:match('(.*)/lockusername')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل التاك '
+local Textedit = '◦ تم قفل التاك '
 redis:set(bot_id.."Eqap:Lock:hashtak"..Chat_id,"del")  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10312,7 +10312,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/locksticar') and Admin(data) then
 if tonumber(Text:match('(.*)/locksticar')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل الملصقات '
+local Textedit = '◦ تم قفل الملصقات '
 redis:set(bot_id.."Eqap:Lock:Sticker"..Chat_id,'del')  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10323,7 +10323,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockgif') and Admin(data) then
 if tonumber(Text:match('(.*)/lockgif')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل المتحركات '
+local Textedit = '◦ تم قفل المتحركات '
 redis:set(bot_id.."Eqap:Lock:Animation"..Chat_id,'del')  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10334,7 +10334,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockvideo') and Admin(data) then
 if tonumber(Text:match('(.*)/lockvideo')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل الفيديو '
+local Textedit = '◦ تم قفل الفيديو '
 redis:set(bot_id.."Eqap:Lock:Video"..Chat_id,'del')  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10345,7 +10345,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockphoto') and Admin(data) then
 if tonumber(Text:match('(.*)/lockphoto')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل الصور '
+local Textedit = '◦ تم قفل الصور '
 redis:set(bot_id.."Eqap:Lock:Photo"..Chat_id,'del')  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10356,7 +10356,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockvoise') and Admin(data) then
 if tonumber(Text:match('(.*)/lockvoise')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل الاغاني '
+local Textedit = '◦ تم قفل الاغاني '
 redis:set(bot_id.."Eqap:Lock:Audio"..Chat_id,'del')  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10367,7 +10367,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockaudo') and Admin(data) then
 if tonumber(Text:match('(.*)/lockaudo')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل الصوت '
+local Textedit = '◦ تم قفل الصوت '
 redis:set(bot_id.."Eqap:Lock:vico"..Chat_id,'del')  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10378,7 +10378,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockfwd') and Admin(data) then
 if tonumber(Text:match('(.*)/lockfwd')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل التوجيه '
+local Textedit = '◦ تم قفل التوجيه '
 redis:set(bot_id.."Eqap:Lock:forward"..Chat_id,'del')  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10389,7 +10389,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockfile') and Admin(data) then
 if tonumber(Text:match('(.*)/lockfile')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل الملفات '
+local Textedit = '◦ تم قفل الملفات '
 redis:set(bot_id.."Eqap:Lock:Document"..Chat_id,'del')  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10400,7 +10400,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockphone') and Admin(data) then
 if tonumber(Text:match('(.*)/lockphone')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل الجهات '
+local Textedit = '◦ تم قفل الجهات '
 redis:set(bot_id.."Eqap:Lock:Contact"..Chat_id,'del')  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10411,7 +10411,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockposts') and Admin(data) then
 if tonumber(Text:match('(.*)/lockposts')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل الكلايش '
+local Textedit = '◦ تم قفل الكلايش '
 redis:set(bot_id.."Eqap:Lock:Spam"..Chat_id,'del')  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10422,7 +10422,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockflood') and Admin(data) then
 if tonumber(Text:match('(.*)/lockflood')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل التكرار '
+local Textedit = '◦ تم قفل التكرار '
 redis:hset(bot_id.."Eqap:Spam:Group:User"..Chat_id ,"Spam:User",'del')  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10433,7 +10433,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockfarse') and Admin(data) then
 if tonumber(Text:match('(.*)/lockfarse')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل الفارسيه '
+local Textedit = '◦ تم قفل الفارسيه '
 redis:set(bot_id..'lock:Fars'..Chat_id,true) 
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10444,7 +10444,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockfshar') and Admin(data) then
 if tonumber(Text:match('(.*)/lockfshar')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل السب '
+local Textedit = '◦ تم قفل السب '
 redis:set(bot_id..'lock:Fshar'..Chat_id,true) 
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10455,7 +10455,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockenglish') and Admin(data) then
 if tonumber(Text:match('(.*)/lockenglish')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل الانجليزيه '
+local Textedit = '◦ تم قفل الانجليزيه '
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
@@ -10465,7 +10465,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/lockinlene') and Admin(data) then
 if tonumber(Text:match('(.*)/lockinlene')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم قفل الانلاين '
+local Textedit = '◦ تم قفل الانلاين '
 redis:set(bot_id.."Eqap:Lock:Inlen"..Chat_id,"del")  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10477,7 +10477,7 @@ return https.request("https://api.telegram.org/bot"..token..'/editMessageText?ch
 end
 if Text and Text:match('(.*)/unlockjoine') and Admin(data) then
 if tonumber(Text:match('(.*)/unlockjoine')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح الاضافه '
+local Textedit = '◦ تم فتح الاضافه '
 redis:del(bot_id.."Eqap:Lock:AddMempar"..Chat_id)
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10488,7 +10488,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockchat') and Admin(data) then
 if tonumber(Text:match('(.*)/unlockchat')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح الدردشه '
+local Textedit = '◦ تم فتح الدردشه '
 redis:del(bot_id.."Eqap:Lock:text"..Chat_id) 
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10499,7 +10499,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlock_joine') and Admin(data) then
 if tonumber(Text:match('(.*)/unlock_joine')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح الدخول '
+local Textedit = '◦ تم فتح الدخول '
 redis:del(bot_id.."Eqap:Lock:Join"..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10510,7 +10510,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockbots') and Admin(data) then
 if tonumber(Text:match('(.*)/unlockbots')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح البوتات '
+local Textedit = '◦ تم فتح البوتات '
 redis:del(bot_id.."Eqap:Lock:Bot:kick"..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10521,7 +10521,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlocktags') and Admin(data) then
 if tonumber(Text:match('(.*)/unlocktags')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح الاشعارات '
+local Textedit = '◦ تم فتح الاشعارات '
 redis:del(bot_id.."Eqap:Lock:tagservr"..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10532,7 +10532,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockedit') and Admin(data) then
 if tonumber(Text:match('(.*)/unlockedit')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح التعديل '
+local Textedit = '◦ تم فتح التعديل '
 redis:del(bot_id.."Eqap:Lock:edit"..Chat_id)
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10543,7 +10543,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlocklink') and Admin(data) then
 if tonumber(Text:match('(.*)/unlocklink')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح الروابط '
+local Textedit = '◦ تم فتح الروابط '
 redis:del(bot_id.."Eqap:Lock:Link"..Chat_id)
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10554,7 +10554,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockusername') and Admin(data) then
 if tonumber(Text:match('(.*)/unlockusername')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح المعرفات '
+local Textedit = '◦ تم فتح المعرفات '
 redis:del(bot_id.."Eqap:Lock:User:Name"..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10565,7 +10565,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlocktag') and Admin(data) then
 if tonumber(Text:match('(.*)/unlocktag')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح التاك '
+local Textedit = '◦ تم فتح التاك '
 redis:del(bot_id.."Eqap:Lock:hashtak"..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10576,7 +10576,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlocksticar') and Admin(data) then
 if tonumber(Text:match('(.*)/unlocksticar')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح الملصقات '
+local Textedit = '◦ تم فتح الملصقات '
 redis:del(bot_id.."Eqap:Lock:Sticker"..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10587,7 +10587,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockgif') and Admin(data) then
 if tonumber(Text:match('(.*)/unlockgif')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح المتحركات '
+local Textedit = '◦ تم فتح المتحركات '
 redis:del(bot_id.."Eqap:Lock:Animation"..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10598,7 +10598,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockvideo') and Admin(data) then
 if tonumber(Text:match('(.*)/unlockvideo')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح الفيديو '
+local Textedit = '◦ تم فتح الفيديو '
 redis:del(bot_id.."Eqap:Lock:Video"..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10609,7 +10609,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockphoto') and Admin(data) then
 if tonumber(Text:match('(.*)/unlockphoto')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح الصور '
+local Textedit = '◦ تم فتح الصور '
 redis:del(bot_id.."Eqap:Lock:Photo"..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10620,7 +10620,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockvoise') and Admin(data) then
 if tonumber(Text:match('(.*)/unlockvoise')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح الاغاني '
+local Textedit = '◦ تم فتح الاغاني '
 redis:del(bot_id.."Eqap:Lock:Audio"..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10631,7 +10631,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockaudo') and Admin(data) then
 if tonumber(Text:match('(.*)/unlockaudo')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح الصوت '
+local Textedit = '◦ تم فتح الصوت '
 redis:del(bot_id.."Eqap:Lock:vico"..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10642,7 +10642,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockfwd') and Admin(data) then
 if tonumber(Text:match('(.*)/unlockfwd')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح التوجيه '
+local Textedit = '◦ تم فتح التوجيه '
 redis:del(bot_id.."Eqap:Lock:forward"..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10653,7 +10653,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockfile') and Admin(data) then
 if tonumber(Text:match('(.*)/unlockfile')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح الملفات '
+local Textedit = '◦ تم فتح الملفات '
 redis:del(bot_id.."Eqap:Lock:Document"..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10664,7 +10664,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockphone') and Admin(data) then
 if tonumber(Text:match('(.*)/unlockphone')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح الجهات '
+local Textedit = '◦ تم فتح الجهات '
 redis:del(bot_id.."Eqap:Lock:Contact"..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10675,7 +10675,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockposts') and Admin(data) then
 if tonumber(Text:match('(.*)/unlockposts')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح الكلايش '
+local Textedit = '◦ تم فتح الكلايش '
 redis:del(bot_id.."Eqap:Lock:Spam"..Chat_id) 
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10686,7 +10686,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockflood') and Admin(data) then
 if tonumber(Text:match('(.*)/unlockflood')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح التكرار '
+local Textedit = '◦ تم فتح التكرار '
 redis:hdel(bot_id.."Eqap:Spam:Group:User"..Chat_id ,"Spam:User")  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10697,7 +10697,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockfarse') and Admin(data) then
 if tonumber(Text:match('(.*)/unlockfarse')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح الفارسيه '
+local Textedit = '◦ تم فتح الفارسيه '
 redis:del(bot_id..'lock:Fars'..Chat_id) 
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10708,7 +10708,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockfshar') and Admin(data) then
 if tonumber(Text:match('(.*)/unlockfshar')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح السب '
+local Textedit = '◦ تم فتح السب '
 redis:del(bot_id..'lock:Fshar'..Chat_id) 
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10719,7 +10719,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockenglish') and Admin(data) then
 if tonumber(Text:match('(.*)/unlockenglish')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح الانجليزيه '
+local Textedit = '◦ تم فتح الانجليزيه '
 redis:del(bot_id..'lock:Fars'..Chat_id) 
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10730,7 +10730,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Textedit)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard))  end
 elseif Text and Text:match('(.*)/unlockinlene') and Admin(data) then
 if tonumber(Text:match('(.*)/unlockinlene')) == tonumber(data.sender_user_id_) then
-local Textedit = '• تم فتح الانلاين '
+local Textedit = '◦ تم فتح الانلاين '
 redis:del(bot_id.."Eqap:Lock:Inlen"..Chat_id)  
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -10833,7 +10833,7 @@ local textedit = result.content_.text_
 redis:incr(bot_id..'Eqap:Num:Message:Edit'..result.chat_id_..result.sender_user_id_)
 if redis:get(bot_id.."Eqap:Lock:edit"..msg.chat_id_) and not textedit and not PresidentGroup(result) then
 Delete_Message(result.chat_id_,{[0] = data.message_id_}) 
-Send_Options(result,result.sender_user_id_,"reply","• قام بالتعديل على الميديا")  
+Send_Options(result,result.sender_user_id_,"reply","◦ قام بالتعديل على الميديا")  
 end
 if not Vips(result) then
 ------------------------------------------------------------------------
@@ -10896,7 +10896,7 @@ elseif textedit then
 local Text_Filter = redis:get(bot_id.."Eqap:Filter:Reply2"..textedit..result.chat_id_)   
 if Text_Filter then    
 Delete_Message(result.chat_id_, {[0] = data.message_id_})     
-Send_Options(result,result.sender_user_id_,"reply","• "..Text_Filter)  
+Send_Options(result,result.sender_user_id_,"reply","◦ "..Text_Filter)  
 return false
 end
 end
