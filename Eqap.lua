@@ -2501,19 +2501,7 @@ if text and text:match('^امحطه @(.*)') then
   if tonumber(result.id_) == tonumber(bot_id) then  
   faederdx(msg.chat_id_, msg.id_, 1, 'لاتصير غبي يرحم اهلك كيف امحط نفسي ؟', 1, 'md') 
   return false 
-  end  
-  if tonumber(result.id_) == tonumber(bot_owner) then 
-  faederdx(msg.chat_id_, msg.id_, 1, 'غبي انت مالك السورس ذا !', 1, 'md') 
-  return false  
-  end  
-  if tonumber(result.id_) == tonumber(1769776049) then 
-  faederdx(msg.chat_id_, msg.id_, 1, 'ذا مطور السورس لو اتفل عليه وقفني يرجال', 1, 'md') 
-  return false  
-  end  
-  if faederdx1:sismember(bot_id.."bot:monsh:"..msg.chat_id_,result.id_) then
-  faederdx(msg.chat_id_, msg.id_, 1, 'دزمها بس ذا مالك السورس المنشى', 1, 'md') 
-  return false
-  end 
+  end    
   local faeder = "تم ي بعدي" 
   faederdx(msg.chat_id_, msg.id_, 1,faeder, 1, 'md') 
   local faeder = {"اذا مااحترمت نفسك بضربك واخلي الاطباء عاجزين عن علاجك","بسم الله نطلع الرشاش","بعطيك ","على قفاك","اهجد يورع"}
