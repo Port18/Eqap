@@ -411,6 +411,13 @@ end
 return Get_Api(Url_Api)  
 end
 ------------------------------------------------------------------------------------------------------------
+function getUser(user_id, cb)
+  tdcli_function ({
+  ID = "GetUser",
+  user_id_ = user_id
+  }, cb, nil)
+  end
+-------------------------------------------------------------------------------------------------------------
 function send_inline_keyboard(chat_id,text,keyboard,inline,reply_id) 
 local response = {} 
 response.keyboard = keyboard 
