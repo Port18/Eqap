@@ -2501,6 +2501,47 @@ if text == "احسب عمرك" then
     t = Age.ok.abs
     faederdx(msg.chat_id_, msg.id_, 1, t, 1, 'html')
     end
+---------------------------------
+if text == 'تعطيل اليوتيوب' and Constructor(msg) then
+  send(msg.chat_id_,msg.id_,'\n• تم الامر بنجاح')
+  database:set(bot_id.."dl_yt_dl"..msg.chat_id_,"close")
+  return false
+  end
+  if text == 'تفعيل اليوتيوب' and Constructor(msg) then
+  send(msg.chat_id_,msg.id_,'\n• تم الامر بنجاح')
+  database:set(bot_id.."dl_yt_dl"..msg.chat_id_,"open")
+  return false
+  end
+  if text and text:match('^بصمه (.*)$')  and database:get(bot_id.."dl_yt_dl"..msg.chat_id_) == "open" then
+  local Ttext = text:match('^بصمه (.*)$')
+  local InfoSearch = https.request('https://mode-dev.tk/tg/search.php?search='..URL.escape(Ttext))
+  local JsonSearch = JSON.decode(InfoSearch)
+  for k,vv in pairs(JsonSearch.results) do
+  if k == 1 then
+  local GetStart = io.popen('downloadsh '..vv.url):read('*all')
+  if GetStart and GetStart:match('(.*)oksend(.*)') then
+  print('download Mp3 done ...\nName : '..vv.title..'\nIdLink : '..vv.url)
+  sendVoice(msg.chat_id_, msg.id_, 0, 1, nil,'./'..vv.url..'.mp3',vv.title,'- '..vv.title..'\n- @DewSc1','@DewSc1')
+  os.execute('rm -rf ./'..vv.url..'.mp3')
+  end
+  end
+  end
+  end
+  if text and text:match('^صوت (.*)$')  and database:get(bot_id.."dl_yt_dl"..msg.chat_id_) == "open" then
+  local Ttext = text:match('^صوت (.*)$')
+  local InfoSearch = https.request('https://mode-dev.tk/tg/search.php?search='..URL.escape(Ttext))
+  local JsonSearch = JSON.decode(InfoSearch)
+  for k,vv in pairs(JsonSearch.results) do
+  if k == 1 then
+  local GetStart = io.popen('downloadsh '..vv.url):read('*all')
+  if GetStart and GetStart:match('(.*)oksend(.*)') then
+  print('download Mp3 done ...\nName : '..vv.title..'\nIdLink : '..vv.url)
+  sendAudio(msg.chat_id_,msg.id_,'./'..vv.url..'.mp3',vv.title,'- '..vv.title..'\n- @DewSc1','@DewSc1')
+  os.execute('rm -rf ./'..vv.url..'.mp3')
+  end
+  end
+  end
+  end
 ------------------------------------------
 if text and text:match('^امحطه @(.*)')then 
   local username = text:match('^امحطه @(.*)') 
@@ -2912,11 +2953,11 @@ if text == ("مسح المكتومين عام") then
 redis:del(bot_id.."Eqap:Silence:User:Groups")
 send(msg.chat_id_, msg.id_, "◦ تم مسح المحظورين عام من البوت")
 end
-if text == ("مسح قائمة T") then
+if text == ("مسح قائمة Onwer S 🎖") then
 redis:del(bot_id.."Eqap:Developer:Bot")
 send(msg.chat_id_, msg.id_, "◦  تم مسح قائمة T من البوت  ")
 end
-if text == ("مسح قائمة TR") then
+if text == ("مسح قائمة Onwer S") then
 redis:del(bot_id.."Eqap:Developer:Bot")
 send(msg.chat_id_, msg.id_, "◦  تم مسح قائمة TR من البوت  ")
 end
@@ -2970,12 +3011,12 @@ send(msg.chat_id_, msg.id_,Text)
 return false
 end
 
-if text == ("قائمة T") and Dev_Bots(msg) then
+if text == ("قائمة Onwer S") and Dev_Bots(msg) then
 local list = redis:smembers(bot_id.."Eqap:Developer:Bot")
 if #list == 0 then
-return send(msg.chat_id_, msg.id_, "◦ لا يوجد Commander ")
+return send(msg.chat_id_, msg.id_, "◦ لا يوجد Onwer S ")
 end
-Sudos = "\n◦ قائمة Commander  في البوت \n━━━━━━━━\n"
+Sudos = "\n◦ قائمة Onwer S  في البوت \n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -2990,12 +3031,12 @@ end
 end,nil)
 end
 end
-if text == ("قائمة TR") and Dev_Bots(msg) then
+if text == ("قائمة Onwer S 🎖") and Dev_Bots(msg) then
 local list = redis:smembers(bot_id.."Eqap:Developer:Bot1")
 if #list == 0 then
-return send(msg.chat_id_, msg.id_, "◦ لا يوجد Commander ")
+return send(msg.chat_id_, msg.id_, "◦ لا يوجد Onwer S 🎖 ")
 end
-Sudos = "\n◦ قائمة Commander في البوت \n━━━━━━━━\n"
+Sudos = "\n◦ قائمة Onwer S 🎖 في البوت \n━━━━━━━━\n"
 for k,v in pairs(list) do
 tdcli_function ({ID = "GetUser",user_id_ = v},function(arg,data) 
 if data.username_ then
@@ -3101,6 +3142,8 @@ send(msg.chat_id_, msg.id_,'◦  تم تعطيل التواصل ')
 end
 end 
 end
+---------------------------------------------------
+
 
 ---------------------------------------------------
 if TypeForChat == ("ForSuppur") then
