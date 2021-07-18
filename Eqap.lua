@@ -2494,23 +2494,63 @@ if text == "احسب عمرك" then
     faederdx(msg.chat_id_, msg.id_, 1, t, 1, 'html')
     end
 ------------------------------------------
-if text and text:match('^امحطه @(.*)') then 
+if text and text:match('^امحطه @(.*)')then 
   local username = text:match('^امحطه @(.*)') 
   function faeder(extra,result,success)
   if result.id_ then  
   if tonumber(result.id_) == tonumber(bot_id) then  
   faederdx(msg.chat_id_, msg.id_, 1, 'لاتصير غبي يرحم اهلك كيف امحط نفسي ؟', 1, 'md') 
   return false 
-  end    
+  end  
+  if tonumber(result.id_) == tonumber(bot_owner) then 
+  faederdx(msg.chat_id_, msg.id_, 1, 'غبي انت مالك السورس ذا !', 1, 'md') 
+  return false  
+  end  
+  if tonumber(result.id_) == tonumber(1669091036) then 
+  faederdx(msg.chat_id_, msg.id_, 1, 'ذا مطور السورس لو اتفل عليه وقفني يرجال', 1, 'md') 
+  return false  
+  end  
+  if faederdx1:sismember(bot_id.."bot:monsh:"..msg.chat_id_,result.id_) then
+  faederdx(msg.chat_id_, msg.id_, 1, 'دزمها بس ذا مالك السورس المنشى', 1, 'md') 
+  return false
+  end 
   local faeder = "تم ي بعدي" 
   faederdx(msg.chat_id_, msg.id_, 1,faeder, 1, 'md') 
   local faeder = {"اذا مااحترمت نفسك بضربك واخلي الاطباء عاجزين عن علاجك","بسم الله نطلع الرشاش","بعطيك ","على قفاك","اهجد يورع"}
-  faederdx(msg.chat_id_, result.id_, 1,'اهجد يورع', 1, 'html') 
+  faederdx(msg.chat_id_, result.id_, 1,''..faeder[math.random(#faeder)]..'', 1, 'html') 
   else  
   faederdx(msg.chat_id_, msg.id_, 1, '❍ عذرا عزيزي بس الشخص ذا مهو بلمجموعه', 1, 'md') 
   end end
   resolve_username(username,faeder)
   end
+  --     By Developer Faeder     -- 
+  if text:match("^امحطه$") or text:match("^اقين امحطه$") or text:match("^امحطه بعد$") or text:match("^اقولك امحطه$") or text:match("^امحطها$") or text:match("^امحطهه$") then
+  function hena(extra, result, success)
+  if tonumber(result.sender_user_id_) == tonumber(bot_id) then 
+  faederdx(msg.chat_id_, msg.id_, 1, 'لاتصير غبي يرحم اهلك كيف امحط نفسي ؟', 1, 'md') 
+  return false  
+  end  
+  if tonumber(result.sender_user_id_) == tonumber(bot_owner) then  
+  faederdx(msg.chat_id_, msg.id_, 1, 'غبي انت مالك السورس ذا !', 1, 'md') 
+  return false
+  end 
+  if tonumber(result.sender_user_id_) == tonumber(1669091036) then  
+  faederdx(msg.chat_id_, msg.id_, 1, 'ذا مطور السورس لو اتفل عليه وقفني يرجال', 1, 'md') 
+  return false
+  end 
+  if faederdx1:sismember(FAEDER.."bot:monsh:"..msg.chat_id_,result.sender_user_id_) then
+  faederdx(msg.chat_id_, msg.id_, 1, 'دزمها بس ذا مالك السورس المنشى', 1, 'md') 
+  return false
+  end 
+  local faeder = "تم ي عمري" 
+  faederdx(msg.chat_id_, msg.id_, 1,faeder, 1, 'md') 
+  local faeder = {"شفيك على خوينا يحيوان تبي امحطك ها ؟","حظر عام القم يلا","بمشيها لك هالمره بس المره الجايه مابتمشي على خير فاهم؟","شبمك ؟","استرجل عشان ماالعن شكلك 🤒🤙"} 
+  faederdx(msg.chat_id_, result.id_, 1,''..faeder[math.random(#faeder)]..'', 1, 'md') 
+  end 
+  if tonumber(msg.reply_to_message_id_) == 0 then
+  else 
+  getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),hena)   
+  end end
 -------------------------------------------
 if text == "الابراج" then
   send(msg.chat_id_, msg.id_,"❍ من خلال البوت يمكنك معرفه توقعات برجك ،\n❍ فقط قم بارسال امر برج + اسم البرج ،\n❍ مثال : برج الدلو ،\n❍ لمعرفه برجك قم بالرجوع الى قسم حساب العمر")
