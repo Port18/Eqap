@@ -2341,6 +2341,63 @@ send(msg.chat_id_, msg.id_,Text)
 return false
 end
 ------------------------------------------------------------------------------------------------------------
+local msg = data.message_
+text = msg.content_.text_ 
+if not faederdx1:get(FAEDER..'TFF'..msg.chat_id_) then
+if text and text:match("^اهمس (.*) (.*)") then 
+text = text:gsub('@',"")
+faed_dx = {string.match(text, "اهمس (.*) (.*)")}
+function hamss(res1,res2)
+if not res2.id_ then 
+faederdx(msg.chat_id_, msg.id_, 1, '❍ المعرف غير صحيح ، ', 1, 'html')
+return "dx"
+end
+function hamssss(ress1,ress2)
+if (ress2 and ((ress2.status_ and ress2.status_.ID == "ChatMemberStatusLeft") or ress2.ID == "Error")) then 
+faederdx(msg.chat_id_, msg.id_, 1, '❍ العضو غير موجود بالمجموعه ، ', 1, 'html')
+return "dx"
+end
+tdcli_function ({
+ID="DeleteMessages",
+chat_id_= msg.chat_id_,
+message_ids_= {[0] = msg.id_}
+}, 
+dl_cb, nil)
+faederdx1:set(FAEDER.."HM:"..msg.chat_id_..msg.id_..res2.id_,faed_dx[1])
+function bot_id_get(ros1,ros2)
+bot_username = (ros2.username_ or "DX_XBOT")
+function Dxx(ross1,ross2)
+local hms = msg.sender_user_id_
+if ross2.username_ then 
+hms = "@"..ross2.username_
+end
+faederdx(msg.chat_id_, msg.id_, 1, "❍ هذه همسه سريه الى { @["..faed_dx[2].."] }\n❍ مرسله من { ["..hms.."] }\n❍ هو فقط من يستطيع رويتها\n❍ [اضغط هنا لعرض الهمسه](https://t.me/"..bot_username.."?start=hms"..msg.chat_id_..msg.id_.."_"..res2.id_..") •", 1, 'md')
+end
+getUser(msg.sender_user_id_, Dxx)
+end
+getUser(bot_id, bot_id_get)
+end
+tdcli_function ({
+ID = "GetChatMember",
+chat_id_ = msg.chat_id_,
+user_id_ = res2.id_
+}, hamssss, nil)
+end
+resolve_username(faed_dx[2],hamss) 
+end end
+-------------
+if text and text:match("/start hms(.*)_(%d+)") then 
+  faed_dx = {string.match(text, "^/start hms(.*)_(%d+)")}
+  if tonumber(msg.sender_user_id_) == tonumber(faed_dx[2]) then 
+  Faeder = faederdx1:get(FAEDER.."HM:"..faed_dx[1]..faed_dx[2])
+  if Faeder then 
+  faederdx(msg.chat_id_, msg.id_, 1, '❍ الهمسه هي\n❍ { ['..Faeder..'] }', 1, 'md')
+  else 
+  faederdx(msg.chat_id_, msg.id_, 1, '❍ اثقل الهمسه مو لك ،', 1, 'md')
+  end else 
+  faederdx(msg.chat_id_, msg.id_, 1, '❍ اثقل الهمسه مو لك ،', 1, 'md')
+  end end
+-------------حق الهمس--------------------------------
 if text then  
 local WirngFilter = redis:get(bot_id.."Eqap:Filter:Reply1"..msg.sender_user_id_..msg.chat_id_)  
 if WirngFilter and WirngFilter == "WirngFilter" then  
@@ -2401,18 +2458,10 @@ if TypeForChat == ("ForUser") then
 if text == '/play' or text == 'الاوامر الخدميه' then
   local Text_keyboard = '• يمكنك ايضا استخدام الاوامر الخدميه \n• اليك ازرار الاوامر الخدميه اسفل الرساله\n                  ───────────────\n                               '
 local List_keyboard = {
-  {'زخرفه','احسب عمرك'},
+  {'احسب عمرك'},
   {'الابراج','نسبه الحب'},
   {'ضحكني'},
   {'افتارات عيال'},
-  {'الالعاب'},
-  {'تخمين','كت تويت'},
-  {'ترتيب','سمايلات'},
-  {'حزوره','المعاني'},
-  {'افتارات بنات'},
-  {'العكس','المحيبس'},
-  {'امثله','المختلف'},
-  {'انقليزي','رياضيات'},
   {'افتارات انمي'},
 }
 send_inline_keyboard(msg.chat_id_,Text_keyboard,List_keyboard)
@@ -2431,6 +2480,9 @@ if text == "احسب عمرك" then
     faederdx(msg.chat_id_, msg.id_, 1, t, 1, 'html')
     end
 -------------------------------------------
+if text == "الابراج" then
+  send(msg.chat_id_, msg.id_,"❍ من خلال البوت يمكنك معرفه توقعات برجك ،\n❍ فقط قم بارسال امر برج + اسم البرج ،\n❍ مثال : برج الدلو ،\n❍ لمعرفه برجك قم بالرجوع الى قسم حساب العمر")
+  return false end
 if text and text:match("^برج (.*)$") or text and text:match("^برجي (.*)$") then 
   local TextBrg = text:match("^برج (.*)$") or text:match("^برجي (.*)$") 
   UrlBrg = https.request('https://apiabs.ml/brg.php?brg='..URL.escape(TextBrg)) 
@@ -2829,9 +2881,10 @@ end,nil)
 end
 end
 if text == 'السورس' or text == 'سورس' then
-Text = [
-- [LISA source (http://t.me/L6_L5) .
-- dev (http://t.me/L7_L1) .
+Text = [[
+⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤   
+▻ [𝑆𝑈𝐾𝐴𝐼𝑅𝑂](http://t.me/L7_L1)\n\n▻ [𝐿𝐼𝑆𝐴 𝑆𝑂𝑈𝑅𝐶𝐸](http://t.me/L6_L5) 
+⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤
 ]]
 send(msg.chat_id_, msg.id_,Text)
 return false
@@ -7917,16 +7970,14 @@ redis:set(bot_id.."makal:bots:set"..msg.sender_user_id_..":"..msg.chat_id_,"true
 redis:sadd(bot_id.."makal:bots", text)
 return false end
 end
-
 if text == 'السورس' or text == 'سورس' then
-Text = [
-- [LISA source (http://t.me/L6_L5) .
-- dev (http://t.me/L7_L1) .
+Text = [[
+▻ [𝐿𝐼𝑆𝐴 𝑆𝑂𝑈𝑅𝐶𝐸](t.me/L6_L5) .
+▻ [𝐷𝐸𝑉𝐸𝐿𝑂𝑃𝐸𝑅 𝑆𝑈𝐾𝐴𝐼𝑅𝑂](t.me/L7_L1) .
 ]]
 send(msg.chat_id_, msg.id_,Text)
 return false
 end
-
 if text == 'مقالات' then
 
 local list = redis:smembers(bot_id.."makal:bots")
@@ -8503,11 +8554,11 @@ local Num_Games = redis:get(bot_id.."Eqap:Num:Add:Games"..msg.chat_id_..msg.send
 local Add_Mem = redis:get(bot_id.."Eqap:Num:Add:Memp"..msg.chat_id_..":"..msg.sender_user_id_) or 0
 local Total_Photp = (yazon.total_count_ or 0)
 local Texting = {
-'ملاك وناسيك بكروبنه😟',
-"حلغوم والله☹️ ",
-"اطلق صوره🐼❤️",
-"كيكك والله🥺",
-"لازك بيها غيرها عاد",
+'يخوان من ضيع الملاك ذا',
+"اسطوريه",
+"اطلق صوره",
+"كيكك والله",
+"ملاك ماشي على الارض ولا ايش",
 }
 local Description = Texting[math.random(#Texting)]
 local Get_Is_Id = redis:get(bot_id.."KLISH:ID:bot") or redis:get(bot_id.."Eqap:Set:Id:Group"..msg.chat_id_)
