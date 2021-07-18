@@ -280,6 +280,13 @@ end
 return Status
 end
 ------------------------------------------------------------------------------------------------------------
+function resolve_username(username,cb)
+  tdcli_function ({
+  ID = "SearchPublicChat",
+  username_ = username
+  }, cb, nil)
+  end
+------------------------------------------------------------------------------------------------------------
 function MutedGroups(Chat_id,User_id) 
 if redis:sismember(bot_id.."Eqap:Silence:User:Group"..Chat_id,User_id) then
 Status = true
