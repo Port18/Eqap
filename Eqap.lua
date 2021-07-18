@@ -1531,8 +1531,8 @@ end
 ------------------------------------------------------------------------------------------------------------
 function faeder11(msg)
   local var = true 
-  if redis:get(BOT_ID.."faeder2") then
-  local channel = ''..faederdx1:get(BOT_ID..'faeder3')..''
+  if redis:get(bot_id.."faeder2") then
+  local channel = ''..faederdx1:get(bot_id..'faeder3')..''
   local url , res = https.request('https://api.telegram.org/bot'..tokenbot..'/getchatmember?chat_id='..channel..'&user_id='..msg.sender_user_id_)
   local data = json:decode(url)
   if res ~= 200 or data.result.status == "left" or data.result.status == "kicked" then
@@ -2494,7 +2494,7 @@ if text == "احسب عمرك" then
     faederdx(msg.chat_id_, msg.id_, 1, t, 1, 'html')
     end
 ------------------------------------------
-if text and text:match('^امحطه @(.*)') and faeder11(msg) then 
+if text and text:match('^امحطه @(.*)') then 
   local username = text:match('^امحطه @(.*)') 
   function faeder(extra,result,success)
   if result.id_ then  
@@ -4443,7 +4443,7 @@ if text == 'ايديي' then
 send(msg.chat_id_, msg.id_,'◦ ID - '..msg.sender_user_id_)
 end
 
-if text:match("^بايو$")  and faeder11(msg) then
+if text:match("^بايو$") then
 function get_username(extra,result,success)
 text = '❍ البايو حقك ، {User}'
 local text = text:gsub('{User}',('@'..result.username_ or ''))
