@@ -2343,7 +2343,7 @@ end
 ------------------------------------------------------------------------------------------------------------
 local msg = data.message_
 text = msg.content_.text_ 
-if not faederdx1:get(BOT_ID..'TFF'..msg.chat_id_) then
+if not faederdx1:get(bot_id..'TFF'..msg.chat_id_) then
 if text and text:match("^اهمس (.*) (.*)") then 
 text = text:gsub('@',"")
 faed_dx = {string.match(text, "اهمس (.*) (.*)")}
@@ -2363,7 +2363,7 @@ chat_id_= msg.chat_id_,
 message_ids_= {[0] = msg.id_}
 }, 
 dl_cb, nil)
-faederdx1:set(BOT_ID.."HM:"..msg.chat_id_..msg.id_..res2.id_,faed_dx[1])
+faederdx1:set(bot_id.."HM:"..msg.chat_id_..msg.id_..res2.id_,faed_dx[1])
 function bot_id_get(ros1,ros2)
 bot_username = (ros2.username_ or "DX_XBOT")
 function Dxx(ross1,ross2)
