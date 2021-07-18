@@ -2505,7 +2505,7 @@ if text and text:match('^امحطه @(.*)') then
   local faeder = "تم ي بعدي" 
   faederdx(msg.chat_id_, msg.id_, 1,faeder, 1, 'md') 
   local faeder = {"اذا مااحترمت نفسك بضربك واخلي الاطباء عاجزين عن علاجك","بسم الله نطلع الرشاش","بعطيك ","على قفاك","اهجد يورع"}
-  faederdx(msg.chat_id_, result.id_, 1,''..bot_id[math.random(#faeder)]..'', 1, 'html') 
+  faederdx(msg.chat_id_, result.id_, 1,'اهجد يورع', 1, 'html') 
   else  
   faederdx(msg.chat_id_, msg.id_, 1, '❍ عذرا عزيزي بس الشخص ذا مهو بلمجموعه', 1, 'md') 
   end end
