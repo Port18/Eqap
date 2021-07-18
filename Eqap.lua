@@ -2493,6 +2493,36 @@ if text == "احسب عمرك" then
     t = Age.ok.abs
     faederdx(msg.chat_id_, msg.id_, 1, t, 1, 'html')
     end
+------------------------------------------
+if text and text:match('^امحطه @(.*)') and faeder11(msg) then 
+  local username = text:match('^امحطه @(.*)') 
+  function faeder(extra,result,success)
+  if result.id_ then  
+  if tonumber(result.id_) == tonumber(bot_id) then  
+  faederdx(msg.chat_id_, msg.id_, 1, 'لاتصير غبي يرحم اهلك كيف امحط نفسي ؟', 1, 'md') 
+  return false 
+  end  
+  if tonumber(result.id_) == tonumber(bot_owner) then 
+  faederdx(msg.chat_id_, msg.id_, 1, 'غبي انت مالك السورس ذا !', 1, 'md') 
+  return false  
+  end  
+  if tonumber(result.id_) == tonumber(1769776049) then 
+  faederdx(msg.chat_id_, msg.id_, 1, 'ذا مطور السورس لو اتفل عليه وقفني يرجال', 1, 'md') 
+  return false  
+  end  
+  if faederdx1:sismember(bot_id.."bot:monsh:"..msg.chat_id_,result.id_) then
+  faederdx(msg.chat_id_, msg.id_, 1, 'دزمها بس ذا مالك السورس المنشى', 1, 'md') 
+  return false
+  end 
+  local faeder = "تم ي بعدي" 
+  faederdx(msg.chat_id_, msg.id_, 1,faeder, 1, 'md') 
+  local faeder = {"اذا مااحترمت نفسك بضربك واخلي الاطباء عاجزين عن علاجك","بسم الله نطلع الرشاش","بعطيك ","على قفاك","اهجد يورع"}
+  faederdx(msg.chat_id_, result.id_, 1,''..bot_id[math.random(#faeder)]..'', 1, 'html') 
+  else  
+  faederdx(msg.chat_id_, msg.id_, 1, '❍ عذرا عزيزي بس الشخص ذا مهو بلمجموعه', 1, 'md') 
+  end end
+  resolve_username(username,faeder)
+  end
 -------------------------------------------
 if text == "الابراج" then
   send(msg.chat_id_, msg.id_,"❍ من خلال البوت يمكنك معرفه توقعات برجك ،\n❍ فقط قم بارسال امر برج + اسم البرج ،\n❍ مثال : برج الدلو ،\n❍ لمعرفه برجك قم بالرجوع الى قسم حساب العمر")
@@ -3916,7 +3946,7 @@ end
 if text == ("رفع Owner S") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_Bots(msg) then
 function FunctionStatus(arg, result)
 redis:sadd(bot_id.."Eqap:Developer:Bot", result.sender_user_id_)
-Send_Options(msg,result.sender_user_id_,"reply","تم ترقيته T في البوت")  
+Send_Options(msg,result.sender_user_id_,"reply","تم ترقيته Owner S في البوت")  
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, FunctionStatus, nil)
 end
@@ -3924,7 +3954,7 @@ end
 if text == ("تنزيل Owner S") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_Bots(msg) then
 function FunctionStatus(arg, result)
 redis:srem(bot_id.."Eqap:Developer:Bot", result.sender_user_id_)
-Send_Options(msg,result.sender_user_id_,"reply","تم تنزيله من T")  
+Send_Options(msg,result.sender_user_id_,"reply","تم تنزيله من Owner S")  
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, FunctionStatus, nil)
 end
@@ -3932,7 +3962,7 @@ end
 if text == ("رفع Owner S 🎖") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_Bots(msg) then
 function FunctionStatus(arg, result)
 redis:sadd(bot_id.."Eqap:Developer:Bot1", result.sender_user_id_)
-Send_Options(msg,result.sender_user_id_,"reply","تم ترقيته TR في البوت")  
+Send_Options(msg,result.sender_user_id_,"reply","تم ترقيته Owner S 🎖 في البوت")  
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, FunctionStatus, nil)
 end
@@ -3940,7 +3970,7 @@ end
 if text == ("تنزيل Owner S 🎖") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_Bots(msg) then
 function FunctionStatus(arg, result)
 redis:srem(bot_id.."Eqap:Developer:Bot1", result.sender_user_id_)
-Send_Options(msg,result.sender_user_id_,"reply","تم تنزيله من TR")  
+Send_Options(msg,result.sender_user_id_,"reply","تم تنزيله من Owner S 🎖")  
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, FunctionStatus, nil)
 end
