@@ -1517,8 +1517,8 @@ end
 ------------------------------------------------------------------------------------------------------------
 function faeder11(msg)
   local var = true 
-  if redis:get(FAEDER.."faeder2") then
-  local channel = ''..faederdx1:get(FAEDER..'faeder3')..''
+  if redis:get(BOT_ID.."faeder2") then
+  local channel = ''..faederdx1:get(BOT_ID..'faeder3')..''
   local url , res = https.request('https://api.telegram.org/bot'..tokenbot..'/getchatmember?chat_id='..channel..'&user_id='..msg.sender_user_id_)
   local data = json:decode(url)
   if res ~= 200 or data.result.status == "left" or data.result.status == "kicked" then
@@ -2343,7 +2343,7 @@ end
 ------------------------------------------------------------------------------------------------------------
 local msg = data.message_
 text = msg.content_.text_ 
-if not faederdx1:get(FAEDER..'TFF'..msg.chat_id_) then
+if not faederdx1:get(BOT_ID..'TFF'..msg.chat_id_) then
 if text and text:match("^اهمس (.*) (.*)") then 
 text = text:gsub('@',"")
 faed_dx = {string.match(text, "اهمس (.*) (.*)")}
@@ -2363,7 +2363,7 @@ chat_id_= msg.chat_id_,
 message_ids_= {[0] = msg.id_}
 }, 
 dl_cb, nil)
-faederdx1:set(FAEDER.."HM:"..msg.chat_id_..msg.id_..res2.id_,faed_dx[1])
+faederdx1:set(BOT_ID.."HM:"..msg.chat_id_..msg.id_..res2.id_,faed_dx[1])
 function bot_id_get(ros1,ros2)
 bot_username = (ros2.username_ or "DX_XBOT")
 function Dxx(ross1,ross2)
@@ -2389,9 +2389,9 @@ end end
 if text and text:match("/start hms(.*)_(%d+)") then 
   faed_dx = {string.match(text, "^/start hms(.*)_(%d+)")}
   if tonumber(msg.sender_user_id_) == tonumber(faed_dx[2]) then 
-  Faeder = faederdx1:get(FAEDER.."HM:"..faed_dx[1]..faed_dx[2])
+  Faeder = faederdx1:get(BOT_ID.."HM:"..faed_dx[1]..faed_dx[2])
   if Faeder then 
-  faederdx(msg.chat_id_, msg.id_, 1, '❍ الهمسه هي\n❍ { ['..Faeder..'] }', 1, 'md')
+  faederdx(msg.chat_id_, msg.id_, 1, '❍ الهمسه هي\n❍ { ['..Bot_id..'] }', 1, 'md')
   else 
   faederdx(msg.chat_id_, msg.id_, 1, '❍ اثقل الهمسه مو لك ،', 1, 'md')
   end else 
@@ -8603,11 +8603,11 @@ end,nil)
 end,nil)   
 end
 
-if text == "all" or text == "@all" or text == "تاك للكل" or text == "تاك الكل" and is_owner(msg.sender_user_id_, msg.chat_id_) and faeder11(msg) then if faederdx1:get(FAEDER..'bot:lock_tag'..msg.chat_id_) then faederdx(msg.chat_id_, msg.id_, 1, '❍ هذا الامر معطل ', 1, 'md') else if faederdx1:get(FAEDER.."taagall"..msg.chat_id_..':'..msg.sender_user_id_) then return faederdx(msg.chat_id_, msg.id_, 1, "❍ انتظر لا يمكن عمل تاك قبل انتهاء 5 دقائق للتاك السابق", 1, 'md') end faederdx1:setex(bot_id..'taagall'..msg.chat_id_..':'..msg.sender_user_id_,300,true) tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(dx,faeder)  tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = faeder.member_count_},function(dxx,faederr) x = 0 tags = 0 local list = faederr.members_ for k, v in pairs(list) do tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data) if x == 5 or x == tags or k == 0 then tags = x + 5 t = "#all" end x = x + 1 taagall = data.first_name_ taagall = taagall:gsub("]","") taagall = taagall:gsub("[[]","") t = t..", "..taagall.."" if x == 5 or x == tags or k == 0 then local Text = t:gsub('#all,','#all\n') sendText(msg.chat_id_,Text,0,'md') end end,nil) end end,nil) end,nil) end end
+if text == "all" or text == "@all" or text == "تاك للكل" or text == "تاك الكل" and is_owner(msg.sender_user_id_, msg.chat_id_) and faeder11(msg) then if faederdx1:get(BOT_ID..'bot:lock_tag'..msg.chat_id_) then faederdx(msg.chat_id_, msg.id_, 1, '❍ هذا الامر معطل ', 1, 'md') else if faederdx1:get(BOT_ID.."taagall"..msg.chat_id_..':'..msg.sender_user_id_) then return faederdx(msg.chat_id_, msg.id_, 1, "❍ انتظر لا يمكن عمل تاك قبل انتهاء 5 دقائق للتاك السابق", 1, 'md') end faederdx1:setex(bot_id..'taagall'..msg.chat_id_..':'..msg.sender_user_id_,300,true) tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(dx,faeder)  tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = faeder.member_count_},function(dxx,faederr) x = 0 tags = 0 local list = faederr.members_ for k, v in pairs(list) do tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data) if x == 5 or x == tags or k == 0 then tags = x + 5 t = "#all" end x = x + 1 taagall = data.first_name_ taagall = taagall:gsub("]","") taagall = taagall:gsub("[[]","") t = t..", "..taagall.."" if x == 5 or x == tags or k == 0 then local Text = t:gsub('#all,','#all\n') sendText(msg.chat_id_,Text,0,'md') end end,nil) end end,nil) end,nil) end end
 --     By Developer LAKS     -- 
-if text:match("^all (.*)$") and is_owner(msg.sender_user_id_, msg.chat_id_) and faeder11(msg) then local txt = {string.match(text, "^(all) (.*)$")} if faederdx1:get(FAEDER..'bot:lock_geam'..msg.chat_id_) then faederdx(msg.chat_id_, msg.id_, 1, '❍ هذا الامر معطل ', 1, 'md') end if faederdx1:get(FAEDER.."taagall"..msg.chat_id_..':'..msg.sender_user_id_) then return faederdx(msg.chat_id_, msg.id_, 1, "❍ انتظر لا يمكن عمل تاك قبل انتهاء 5 دقائق للتاك السابق", 1, 'md') end faederdx1:setex(FAEDER..'taagall'..msg.chat_id_..':'..msg.sender_user_id_,300,true) tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(dx,faeder) tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = faeder.member_count_},function(dxx,faederr) x = 0 tags = 0 local list = faederr.members_ for k, v in pairs(list) do tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data) if x == 5 or x == tags or k == 0 then tags = x + 5 t = "#all "..txt[2].."\n\n" end x = x + 1 taagall = data.first_name_ taagall = taagall:gsub("]","") taagall = taagall:gsub("[[]","") t = t..", "..taagall.."" if x == 5 or x == tags or k == 0 then local Text = t:gsub('#all,','#all\n') sendText(msg.chat_id_,Text,0,'md') end end,nil) end end,nil) end,nil) end
+if text:match("^all (.*)$") and is_owner(msg.sender_user_id_, msg.chat_id_) and faeder11(msg) then local txt = {string.match(text, "^(all) (.*)$")} if faederdx1:get(BOT_ID..'bot:lock_geam'..msg.chat_id_) then faederdx(msg.chat_id_, msg.id_, 1, '❍ هذا الامر معطل ', 1, 'md') end if faederdx1:get(BOT_ID.."taagall"..msg.chat_id_..':'..msg.sender_user_id_) then return faederdx(msg.chat_id_, msg.id_, 1, "❍ انتظر لا يمكن عمل تاك قبل انتهاء 5 دقائق للتاك السابق", 1, 'md') end faederdx1:setex(BOT_ID..'taagall'..msg.chat_id_..':'..msg.sender_user_id_,300,true) tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(dx,faeder) tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = faeder.member_count_},function(dxx,faederr) x = 0 tags = 0 local list = faederr.members_ for k, v in pairs(list) do tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data) if x == 5 or x == tags or k == 0 then tags = x + 5 t = "#all "..txt[2].."\n\n" end x = x + 1 taagall = data.first_name_ taagall = taagall:gsub("]","") taagall = taagall:gsub("[[]","") t = t..", "..taagall.."" if x == 5 or x == tags or k == 0 then local Text = t:gsub('#all,','#all\n') sendText(msg.chat_id_,Text,0,'md') end end,nil) end end,nil) end,nil) end
 --     By Developer LAKS     -- 
-if text:match("^@all (.*)$") and is_owner(msg.sender_user_id_, msg.chat_id_) and faeder11(msg) then local txt = {string.match(text, "^(@all) (.*)$")} if faederdx1:get(FAEDER..'bot:lock_geam'..msg.chat_id_) then faederdx(msg.chat_id_, msg.id_, 1, '❍ هذا الامر معطل ', 1, 'md') else if faederdx1:get(FAEDER.."taagall"..msg.chat_id_..':'..msg.sender_user_id_) then return faederdx(msg.chat_id_, msg.id_, 1, "❍ انتظر لا يمكن عمل تاك قبل انتهاء 5 دقائق للتاك السابق", 1, 'md') end faederdx1:setex(FAEDER..'taagall'..msg.chat_id_..':'..msg.sender_user_id_,300,true) tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(dx,faeder) tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = faeder.member_count_},function(dxx,faederr) x = 0 tags = 0 local list = faederr.members_ for k, v in pairs(list) do tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data) if x == 5 or x == tags or k == 0 then tags = x + 5 t = "#all "..txt[2].."\n\n" end x = x + 1 taagall = data.first_name_ taagall = taagall:gsub("]","") taagall = taagall:gsub("[[]","") t = t..", "..taagall.."" if x == 5 or x == tags or k == 0 then local Text = t:gsub('#all,','#all\n') sendText(msg.chat_id_,Text,0,'md') end end,nil) end end,nil) end,nil) end end
+if text:match("^@all (.*)$") and is_owner(msg.sender_user_id_, msg.chat_id_) and faeder11(msg) then local txt = {string.match(text, "^(@all) (.*)$")} if faederdx1:get(BOT_ID..'bot:lock_geam'..msg.chat_id_) then faederdx(msg.chat_id_, msg.id_, 1, '❍ هذا الامر معطل ', 1, 'md') else if faederdx1:get(BOT_ID.."taagall"..msg.chat_id_..':'..msg.sender_user_id_) then return faederdx(msg.chat_id_, msg.id_, 1, "❍ انتظر لا يمكن عمل تاك قبل انتهاء 5 دقائق للتاك السابق", 1, 'md') end faederdx1:setex(BOT_ID..'taagall'..msg.chat_id_..':'..msg.sender_user_id_,300,true) tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(dx,faeder) tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = faeder.member_count_},function(dxx,faederr) x = 0 tags = 0 local list = faederr.members_ for k, v in pairs(list) do tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data) if x == 5 or x == tags or k == 0 then tags = x + 5 t = "#all "..txt[2].."\n\n" end x = x + 1 taagall = data.first_name_ taagall = taagall:gsub("]","") taagall = taagall:gsub("[[]","") t = t..", "..taagall.."" if x == 5 or x == tags or k == 0 then local Text = t:gsub('#all,','#all\n') sendText(msg.chat_id_,Text,0,'md') end end,nil) end end,nil) end,nil) end end
 
 local function getChannelMembers(channel_id, offset, filter, limit,cb) 
 tdcli_function ({ 
