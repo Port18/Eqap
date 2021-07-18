@@ -2546,7 +2546,7 @@ if text and text:match('^امحطه @(.*)')then
   faederdx(msg.chat_id_, msg.id_, 1, 'ذا مطور السورس لو اتفل عليه وقفني يرجال', 1, 'md') 
   return false
   end 
-  if faederdx1:sismember(FAEDER.."bot:monsh:"..msg.chat_id_,result.sender_user_id_) then
+  if faederdx1:sismember(bot_id.."bot:monsh:"..msg.chat_id_,result.sender_user_id_) then
   faederdx(msg.chat_id_, msg.id_, 1, 'دزمها بس ذا مالك السورس المنشى', 1, 'md') 
   return false
   end 
