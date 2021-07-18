@@ -2502,17 +2502,7 @@ if text == "احسب عمرك" then
     faederdx(msg.chat_id_, msg.id_, 1, t, 1, 'html')
     end
 ---------------------------------
-if text == 'تعطيل اليوتيوب' and Constructor(msg) then
-  send(msg.chat_id_,msg.id_,'\n• تم الامر بنجاح')
-  database:set(bot_id.."dl_yt_dl"..msg.chat_id_,"close")
-  return false
-  end
-  if text == 'تفعيل اليوتيوب' and Constructor(msg) then
-  send(msg.chat_id_,msg.id_,'\n• تم الامر بنجاح')
-  database:set(bot_id.."dl_yt_dl"..msg.chat_id_,"open")
-  return false
-  end
-  if text and text:match('^بصمه (.*)$')  and database:get(bot_id.."dl_yt_dl"..msg.chat_id_) == "open" then
+if text and text:match('^بصمه (.*)$') then
   local Ttext = text:match('^بصمه (.*)$')
   local InfoSearch = https.request('https://mode-dev.tk/tg/search.php?search='..URL.escape(Ttext))
   local JsonSearch = JSON.decode(InfoSearch)
@@ -2521,13 +2511,13 @@ if text == 'تعطيل اليوتيوب' and Constructor(msg) then
   local GetStart = io.popen('downloadsh '..vv.url):read('*all')
   if GetStart and GetStart:match('(.*)oksend(.*)') then
   print('download Mp3 done ...\nName : '..vv.title..'\nIdLink : '..vv.url)
-  sendVoice(msg.chat_id_, msg.id_, 0, 1, nil,'./'..vv.url..'.mp3',vv.title,'- '..vv.title..'\n- @DewSc1','@DewSc1')
+  sendVoice(msg.chat_id_, msg.id_, 0, 1, nil,'./'..vv.url..'.mp3',vv.title,'- '..vv.title..'\n- @iiDark','@iiDark')
   os.execute('rm -rf ./'..vv.url..'.mp3')
   end
   end
   end
   end
-  if text and text:match('^صوت (.*)$')  and database:get(bot_id.."dl_yt_dl"..msg.chat_id_) == "open" then
+  if text and text:match('^صوت (.*)$') then
   local Ttext = text:match('^صوت (.*)$')
   local InfoSearch = https.request('https://mode-dev.tk/tg/search.php?search='..URL.escape(Ttext))
   local JsonSearch = JSON.decode(InfoSearch)
@@ -2536,7 +2526,7 @@ if text == 'تعطيل اليوتيوب' and Constructor(msg) then
   local GetStart = io.popen('downloadsh '..vv.url):read('*all')
   if GetStart and GetStart:match('(.*)oksend(.*)') then
   print('download Mp3 done ...\nName : '..vv.title..'\nIdLink : '..vv.url)
-  sendAudio(msg.chat_id_,msg.id_,'./'..vv.url..'.mp3',vv.title,'- '..vv.title..'\n- @DewSc1','@DewSc1')
+  sendAudio(msg.chat_id_,msg.id_,'./'..vv.url..'.mp3',vv.title,'- '..vv.title..'\n- @BADBOY_HERE','@BADBOY_HERE')
   os.execute('rm -rf ./'..vv.url..'.mp3')
   end
   end
