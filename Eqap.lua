@@ -574,6 +574,14 @@ caption_ = caption or ""
 }},func or dl_cb,nil))
 end
 ------------------------------------------------------------------------------------------------------------
+function getMessage(chat_id, message_id,cb)
+  tdcli_function ({
+  ID = "GetMessage",
+  chat_id_ = chat_id,
+  message_id_ = message_id
+  }, cb, nil)
+  end
+------------------------------------------------------------------------------------------------------------
 function sendDocument(chat_id,reply_id,document,caption,func)
 pcall(tdcli_function({
 ID="SendMessage",
