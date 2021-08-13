@@ -42,6 +42,13 @@ $SAIED11 = $SAIED18->from->id;
 $SAIED2 = explode("\n",file_get_contents("SAIED4.txt"));
 $SAIED3 = count($SAIED2)-1;
 
+if($text == "/start"){
+    bot(sendmessage,[
+        'chat_id'=>$chat_id
+        'text'=>"l",
+    ]);
+}
+
 $send = "اشترك في القناة : @badboy_here";
 if($update){
 for($ab=0;$ab<10;$ab++){
